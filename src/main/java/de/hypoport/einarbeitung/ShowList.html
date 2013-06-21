@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<body>
+<wicket:panel>
+<style>
+/* transitionen von Links */
+a {
+	-moz-transition: color 0.2s ease;    /* mozilla */
+	-webkit-transition: color 0.2s ease; /* chrom, safari*/
+	-o-transition: color 0.2s ease;      /* Opera */
+	-ms-transition: color 0.2s ease;     /* microsoft */
+	color: Orange;
+}
+
+a:hover {
+	-moz-transition: color 1s ease;
+	-webkit-transition: color 1s ease;
+	-o-transition: color 1s ease;
+	-ms-transition: color 1s ease;
+	color: firebrick;
+}
+
+/* transitionen von Links */
+h2 {
+	-moz-transition: font-size 0.2s;    /* mozilla */
+	-webkit-transition: font-size 0.2s /* chrom, safari*/
+	-o-transition: font-size 0.2s;      /* Opera */
+	-ms-transition: font-size 0.2s;     /* microsoft */
+	font-size: 16px;
+}
+
+h2:hover {
+	-moz-transition: font-size 1s;
+	-webkit-transition: font-size 1s;
+	-o-transition: font-size 1s;
+	-ms-transition: font-size 1s;
+	font-size: 26px;
+}
+
+</style>
+<h2>Eine Liste als Panel</h2>
+Ein hover Effekt auf den Links.
+<table class="tableborder">
+<tr wicket:id="list">
+<td><span wicket:id="name"></span></td>
+<td><a wicket:id="link" href="#"><span wicket:id="name"></span></a></td>
+</tr>
+</table>
+</wicket:panel>
+</body>
+</html>
