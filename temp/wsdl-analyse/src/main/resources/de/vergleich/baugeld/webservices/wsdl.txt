@@ -1,0 +1,42 @@
+Usage : wsdl2java 
+-fe|-frontend <front-end-name> 
+-db|-databinding <data-binding-name> 
+-wv <wsdl-version> 
+-p <[wsdl-namespace =]package-name>* 
+-sn <service-name> 
+-b <binding-file-name>* 
+-reserveClass <class-name>* 
+-catalog <catalog-file-name> 
+-d <output-directory> 
+-compile 
+-classdir <compile-classes-directory> 
+-impl 
+-server 
+-client 
+-clientjar <jar-file-name> 
+-all 
+-autoNameResolution 
+-allowElementReferences|-aer<=true> 
+-defaultValues<=class-name-for-DefaultValueProvider> 
+-ant 
+-nexclude <schema-namespace [= java-package-name]>* 
+-exsh <(true, false)> 
+-noTypes 
+-dns <Default value is true> 
+-dex <(true, false)> 
+-validate<[=all|basic|none]> 
+-keep 
+-wsdlLocation <wsdlLocation> 
+-xjc<xjc-arguments>* 
+-asyncMethods<[=method1,method2,...]>* 
+-bareMethods<[=method1,method2,...]>* 
+-mimeMethods<[=method1,method2,...]>*
+-noAddressBinding 
+-faultSerialVersionUID <fault-serialVersionUID> 
+-encoding <encoding> 
+-exceptionSuper <exceptionSuper> 
+-mark-generated 
+-h|-?|-help 
+-version|-v -verbose|-V 
+-quiet|-q|-Q 
+-wsdlList <wsdlurl>
