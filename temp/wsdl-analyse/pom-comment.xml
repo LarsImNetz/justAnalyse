@@ -1,0 +1,189 @@
+<!--  ein versuch -->
+      <plugin>
+        <!--  ############# ACHTUNG Eclipse m2e Nutzer #################
+             Es ist nicht so einfach möglich über eclipse die generierten Sourcen als Abhängigkeiten  einzubinden,
+             darum wird dies erstmal in Eclipse ignoriert.
+             auf der Konsole mit
+             mvn generate-sources
+             werden die Quellen hinzugefügt. Es ist darauf zu achten, dass diese dann auch im classpath sind
+             also in den Eclipse Properties hinzugefuegt sind
+        -->
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+              <!-- <enableWrapperStyle/> -->
+              <wsdlOptions>
+                <wsdlOption>
+                  <!-- <staleFile>${project.build.directory}/cxf/stale/wsdl.InnosystemsBerechnung.done</staleFile> -->
+                  <wsdl>${basedir}/src/main/resources/de/vergleich/baugeld/webservices/SimpleInterestCheck.wsdl</wsdl>
+                  <packagenames>
+                    <packagename>de.vergleich.baugeld.webservices</packagename>
+                  </packagenames>
+                  <extraargs>
+                    <!-- <extraarg>-validate</extraarg> -->
+                    <extraarg>-verbose</extraarg>
+                    <extraarg>-autoNameResolution</extraarg>
+                  </extraargs>
+                  <!-- <wsdlLocation>https://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <!-- <wsdlLocation>http://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <wsdlLocation>SimpleInterestCheck.wsdl</wsdlLocation>
+                </wsdlOption>
+              </wsdlOptions>
+
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>interhyp</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${project.build.directory}/generated-sources</sourceRoot>
+              <!-- <enableWrapperStyle/> -->
+              <wsdlOptions>
+                <wsdlOption>
+                  <!-- <staleFile>${project.build.directory}/cxf/stale/wsdl.InnosystemsBerechnung.done</staleFile> -->
+                  <wsdl>src/main/resources/de/vergleich/baugeld/webservices/SimpleInterestCheck.wsdl</wsdl>
+                  <packagenames>
+                    <packagename>de.vergleich.baugeld.webservice.client.with.cxf</packagename>
+                  </packagenames>
+                  <extraargs>
+                    <!-- <extraarg>-validate</extraarg> -->
+                    <extraarg>-verbose</extraarg>
+                    <!-- <extraarg>-autoNameResolution</extraarg> -->
+                  </extraargs>
+                  <!-- <wsdlLocation>https://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <!-- <wsdlLocation>http://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <wsdlLocation>SimpleInterestCheck.wsdl</wsdlLocation>
+                </wsdlOption>
+              </wsdlOptions>
+
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+
+        </executions>
+      </plugin>
+
+<!-- Ein weiterer Versuch -->
+      <plugin>
+        <!--  ############# ACHTUNG Eclipse m2e Nutzer #################
+             Es ist nicht so einfach möglich über eclipse die generierten Sourcen als Abhängigkeiten  einzubinden,
+             darum wird dies erstmal in Eclipse ignoriert.
+             auf der Konsole mit
+             mvn generate-sources
+             werden die Quellen hinzugefügt. Es ist darauf zu achten, dass diese dann auch im classpath sind
+             also in den Eclipse Properties hinzugefuegt sind
+        -->
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+              <!-- <enableWrapperStyle/> -->
+              <wsdlOptions>
+                <wsdlOption>
+                  <!-- <staleFile>${project.build.directory}/cxf/stale/wsdl.InnosystemsBerechnung.done</staleFile> -->
+                  <wsdl>${basedir}/src/main/resources/de/vergleich/baugeld/webservices/SimpleInterestCheck.wsdl</wsdl>
+                  <packagenames>
+                    <packagename>de.vergleich.baugeld.webservices</packagename>
+                  </packagenames>
+                  <extraargs>
+                    <!-- <extraarg>-validate</extraarg> -->
+                    <extraarg>-client</extraarg>
+                    <!-- <extraarg>-wv 2</extraarg> -->
+                    <extraarg>-validate=all</extraarg>
+                  </extraargs>
+                  <!-- <wsdlLocation>https://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <!-- <wsdlLocation>http://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <!-- <wsdlLocation></wsdlLocation> -->
+                </wsdlOption>
+              </wsdlOptions>
+
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+<!-- Ich habe wohl keine Rechte...
+      <plugin>
+        <groupId>org.apache.axis2</groupId>
+        <artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+        <version>1.6.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>wsdl2code</goal>
+            </goals>
+            <configuration>
+              <wsdlFile>/src/main/resources/de/vergleich/baugeld/webservices/SimpleInterestCheck.wsdl</wsdlFile>
+              <databindingName>adb</databindingName>
+              <packageName>de.vergleich.baugeld.webservices.client</packageName>
+              <outputDirectory>src/main/java</outputDirectory>
+              <flattenFiles>true</flattenFiles>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+-->
+
+      <plugin>
+        <!--  ############# ACHTUNG Eclipse m2e Nutzer #################
+             Es ist nicht so einfach möglich über eclipse die generierten Sourcen als Abhängigkeiten  einzubinden,
+             darum wird dies erstmal in Eclipse ignoriert.
+             auf der Konsole mit
+             mvn generate-sources
+             werden die Quellen hinzugefügt. Es ist darauf zu achten, dass diese dann auch im classpath sind
+             also in den Eclipse Properties hinzugefuegt sind
+        -->
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+              <!-- <enableWrapperStyle/> -->
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdl>${basedir}/src/main/resources/de/vergleich/baugeld/webservices/HelloService.wsdl</wsdl>
+                  <packagenames>
+                    <packagename>de.vergleich.baugeld.webservices</packagename>
+                  </packagenames>
+                  <extraargs>
+                    <!-- <extraarg>-validate</extraarg> -->
+                    <extraarg>-client</extraarg>
+                    <!-- <extraarg>-wv 2</extraarg> -->
+                    <extraarg>-validate=all</extraarg>
+                  </extraargs>
+                  <!-- <wsdlLocation>https://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <!-- <wsdlLocation>http://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <!-- <wsdlLocation></wsdlLocation> -->
+                </wsdlOption>
+              </wsdlOptions>
+
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>

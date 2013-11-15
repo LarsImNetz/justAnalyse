@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>de.vergleich.baushup</groupId>
+    <artifactId>baushup--environment</artifactId>
+    <version>1.1-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
+
+  <groupId>de.vergleich.baushup</groupId>
+  <artifactId>interhyp-interface</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <packaging>jar</packaging>
+  <name>Interhyp-Schnittstelle</name>
+  <description></description>
+
+  <properties>
+    <cxf.version>2.7.7</cxf.version>
+    <junit.version>4.11</junit.version>
+    <slf4j.version>1.7.5</slf4j.version>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.hudsonci.libs</groupId>
+      <artifactId>hudson-jaxb-xjc</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>${slf4j.version}</version>
+	</dependency>
+
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+
+    <!-- Jetty is needed if you're are not using the CXFServlet -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http-jetty</artifactId>
+      <version>${cxf.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-kernel</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-transport-local</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-transport-http</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.ws.commons.axiom</groupId>
+      <artifactId>axiom-api</artifactId>
+      <version>1.2.14</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ws.commons.axiom</groupId>
+      <artifactId>axiom-impl</artifactId>
+      <version>1.2.14</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>interhyp-wsdl-interface</finalName>
+
+    <resources>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**</include>
+        </includes>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+
+
+    <plugins>
+      <plugin>
+        <inherited>true</inherited>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+          <encoding>UTF-8</encoding>
+          <showWarnings>true</showWarnings>
+          <showDeprecation>true</showDeprecation>
+        </configuration>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- ein versuch -->
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <executions>
+          <execution>
+            <id>helloworld</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${project.build.directory}/generated-sources</sourceRoot>
+              <!-- <enableWrapperStyle/> -->
+              <wsdlOptions>
+                <wsdlOption>
+                  <!-- <staleFile>${project.build.directory}/cxf/stale/wsdl.InnosystemsBerechnung.done</staleFile> -->
+                  <wsdl>src/main/resources/de/vergleich/baugeld/webservices/HelloWorld.wsdl</wsdl>
+                  <packagenames>
+                    <packagename>de.vergleich.baugeld.hello.client.with.cxf</packagename>
+                  </packagenames>
+                  <extraargs>
+                    <!-- <extraarg>-validate</extraarg> -->
+                    <extraarg>-verbose</extraarg>
+                    <!-- <extraarg>-autoNameResolution</extraarg> -->
+                  </extraargs>
+                  <!-- <wsdlLocation>https://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <!-- <wsdlLocation>http://server7.innosystems.net/cgi-bin/xml/xml.cgi?WSDL</wsdlLocation> -->
+                  <wsdlLocation>HelloWorld.wsdl</wsdlLocation>
+                </wsdlOption>
+              </wsdlOptions>
+
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+
+        </executions>
+      </plugin>
+
+
+      <!-- wsdl in Java convertierten with axis2 -->
+      <plugin>
+        <groupId>org.apache.axis2</groupId>
+        <artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+        <version>1.6.2</version>
+        <executions>
+          <execution>
+            <id>helloworld</id>
+            <goals>
+              <goal>wsdl2code</goal>
+            </goals>
+            <configuration>
+              <wsdlFile>/src/main/resources/de/vergleich/baugeld/webservices/HelloWorld.wsdl</wsdlFile>
+              <!-- <wsdlFile>http://localhost:8080/services?wsdl</wsdlFile> -->
+
+              <databindingName>adb</databindingName>
+              <packageName>de.vergleich.baugeld.hello.client.with.axis2</packageName>
+              <outputDirectory>target/generated-sources</outputDirectory>
+              <flattenFiles>true</flattenFiles>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>interhyp</id>
+            <goals>
+              <goal>wsdl2code</goal>
+            </goals>
+            <configuration>
+              <wsdlFile>src/main/resources/de/vergleich/baugeld/webservices/SimpleInterestCheck.wsdl</wsdlFile>
+              <!--               <databindingName>adb</databindingName> -->
+              <packageName>de.vergleich.baugeld.webservices.client.with.axis2</packageName>
+              <outputDirectory>target/generated-sources</outputDirectory>
+              <flattenFiles>true</flattenFiles>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+
+
+
+      <!-- Hiermit wird das Directory von automatisch generiertem Code fest
+           eingebunden -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/generated-sources</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+
+    <pluginManagement>
+      <plugins>
+        <!--This plugin's configuration is used to store Eclipse m2e settings
+            only. It has no influence on the Maven build itself. -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>
+                      org.apache.cxf
+                    </groupId>
+                    <artifactId>
+                      cxf-codegen-plugin
+                    </artifactId>
+                    <versionRange>
+                      [${cxf.version},)
+                    </versionRange>
+                    <goals>
+                      <goal>wsdl2java</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>2.4</version>
+
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>de.vergleich.baugeld.main</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
