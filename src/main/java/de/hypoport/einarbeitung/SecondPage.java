@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -58,7 +59,7 @@ public class SecondPage extends WebPage {
 
 		};
 
-		form.add(new Label("label", new AbstractReadOnlyModel<String>() {
+		IModel<String> labelModel = new AbstractReadOnlyModel<String>() {
 
 			@Override
 			public String getObject() {
@@ -67,16 +68,19 @@ public class SecondPage extends WebPage {
 				String label = parameters.get("label").toString();
 				return label + " " + String.valueOf(counter);
 			}
-		}
+		};			
 
-		) {
-
+		Label label = new Label("label", labelModel) {
+				
 			@Override
 			protected void onConfigure() {
 				setVisibilityAllowed(true);
 				super.onConfigure();
 			}
-		}.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(3))));
+		};
+		
+		label.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(3)));
+		form.add(label);
 
 		form.add(new Button("button") {
 

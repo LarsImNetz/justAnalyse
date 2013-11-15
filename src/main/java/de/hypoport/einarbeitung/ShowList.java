@@ -64,7 +64,7 @@ public abstract class ShowList extends Panel {
 			liste.add(name);
 
 			try {
-				Thread.sleep(8 * 1000 / strings.length);
+				Thread.sleep(2 * 1000 / strings.length);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
