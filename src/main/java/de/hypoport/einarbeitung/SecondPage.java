@@ -20,6 +20,7 @@ import org.apache.wicket.util.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class SecondPage extends WebPage {
 
 	private final static Logger logger = LoggerFactory.getLogger(SecondPage.class);
@@ -28,7 +29,15 @@ public class SecondPage extends WebPage {
 
 	private int counter = 0;
 	private ListModel<String> listeModel;
-	private transient SOAPEmulatingThread soapThread = new SOAPEmulatingThread();
+	
+	private transient SOAPEmulatingThread soapThread = null;
+
+	SOAPEmulatingThread getThread() {
+		if (soapThread == null) {
+			soapThread = new SOAPEmulatingThread();
+		}
+		return soapThread;
+	}
 
 	public SecondPage() {
 		logger.debug("SecondPage() ctor");
@@ -116,7 +125,7 @@ public class SecondPage extends WebPage {
 				super.onPostProcessTarget(target);
 
 				logger.debug("post process target");
-				if (soapThread.isReady()) {
+				if (getThread().isReady()) {
 					logger.debug("post process target was ready");
 
 					this.stop(target);
@@ -143,9 +152,9 @@ public class SecondPage extends WebPage {
 
 				logger.debug("onConfigure");
 
-				if (soapThread.isReady()) {
+				if (getThread().isReady()) {
 					logger.debug("was ready");
-					listeModel.setObject(soapThread.getListe());
+					listeModel.setObject(getThread().getListe());
 					//					this.remove(ajaxSelfUpdatingTimerBehavior);
 				}
 			}
@@ -162,7 +171,7 @@ public class SecondPage extends WebPage {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				logger.debug("showlist");
-				new Thread(soapThread).start();
+				new Thread(getThread()).start();
 			}
 
 		});
