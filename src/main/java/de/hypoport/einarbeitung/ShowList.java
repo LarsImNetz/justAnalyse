@@ -27,7 +27,7 @@ public abstract class ShowList extends Panel {
 				item.add(label);
 
 				// Setzen eines Labels innerhalb eines Links
-				Link link = new Link("link") {
+				Link<Void> link = new Link<Void>("link") {
 
 					@Override
 					public void onClick() {
@@ -54,7 +54,7 @@ public abstract class ShowList extends Panel {
 	public static List<String> createList() {
 
 		// Füllen einer Pseudo-Liste
-		List<String> liste = new ArrayList();
+		List<String> liste = new ArrayList<String>();
 		String[] strings = {"Anakin Skywalker", "Ben Obi-Wan Kenobi", "Luke Skywalker", "Leia Organa", "Han Solo",
 				"Darth Vader", "Boba Fett", "Jabba the Hutt", "R2 D2", "C-3P0", "Lando Calrissian", "Qui-Gon Jinn",
 				"Padme Amidala", "Darth Maul", "Mace Windu", "Yoda", "Chewbacca"};
