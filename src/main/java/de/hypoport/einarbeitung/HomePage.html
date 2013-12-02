@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
-	<head>
-		<meta charset="utf-8" />
-		<title>LLA Date Viewer</title>
-		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-	</head>
+<head>
+<meta charset="utf-8" />
+<title>LLA just Analyse</title>
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+ 
+</head>
 <body>
-<style>
-.tableborder  {
+	<style>
+.tableborder {
 	border-width: 1px;
-	border-style:solid;
-	border-radius:0 15px 0 15px;
-	border-color:black;
-	padding:10px;
-	margin-bottom:10px;
+	border-style: solid;
+	border-radius: 0 15px 0 15px;
+	border-color: black;
+	padding: 10px;
+	margin-bottom: 10px;
 }
+
 .cellborder {
 	border-width: 1px;
-	border-style:solid;
-	border-radius:10px 0 10px 0;
-	border-color:red;
+	border-style: solid;
+	border-radius: 10px 0 10px 0;
+	border-color: red;
 	padding: 5px;
 	background-color: #fee;
 }
 
+.buttonlink {
+	border-width: 2px;
+	border-style: dashed;
+	border-radius: 10px 0 10px 0;
+	border-color: green;
+	padding: 10px;
+	background-color: #cdd;
+}
 </style>
 
-<form wicket:id="form">
-<table class="tableborder">
-<tr>
-<td>Hier kommt ein Label:</td>
-<td  class="cellborder" wicket:id="label"></td>
-</tr>
-</table>
+	<form wicket:id="form">
+		<table class="tableborder">
+			<tr>
+				<td>Hier kommt ein Label:</td>
+				<td class="cellborder" wicket:id="label"></td>
+			</tr>
+		</table>
 
-<!--  <button wicket:id="doNothing">Klick hier für neues Datum</button>  -->
+		<!--  <button wicket:id="doNothing">Klick hier für neues Datum</button>  -->
 
-<input type="submit" wicket:id="button" value="Second"/>
-<div>
-<input type="range" id="r2" value="50" max="100" min="0"/>
-</div>
-</form>
-
+		<input type="submit" wicket:id="button" value="Second" />
+		<div>
+			<!-- <input type="range" wicked:id="range" id="r2" value="50" max="100" min="0" /> -->
+			<div wicket:id="slider" id="wrapper-panel-frame" class="ui-corner-all"></div>
+		</div>
+	</form>
+	<br />
+	<br />
+	<a wicket:id="link" class="buttonlink">Mir doch wurst</a>
 </body>
 </html>

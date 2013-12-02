@@ -2,11 +2,13 @@ package de.hypoport.einarbeitung;
 
 import java.io.IOException;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,9 @@ public class HomePage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
 
+	private Label label;
+	private StringModel labelText;
+	
 	@SuppressWarnings("serial")
 	public HomePage(final PageParameters parameters) throws InterruptedException, IOException {
 		super(parameters);
@@ -41,22 +46,25 @@ public class HomePage extends WebPage {
 
 		};
 
-		form.add(new Label("label", new AbstractReadOnlyModel<String>() {
+//		labelText = new AbstractReadOnlyModel<String>() {
+//
+//			@Override
+//			public String getObject() {
+//				return "Hier könnte Ihr Text stehen"; // EnvironmentProvider.getHostname();
+//			}
+//		};
+		labelText = new StringModel("Hier könnte Ihr Text stehen");
 
-			@Override
-			public String getObject() {
-				return "Hier könnte Ihr Text stehen"; // EnvironmentProvider.getHostname();
-			}
-		}
-
-		) {
+		label = new Label("label", labelText) {
 
 			@Override
 			protected void onConfigure() {
 				setVisibilityAllowed(true);
 				super.onConfigure();
 			}
-		});
+		};
+		label.setOutputMarkupId(true);
+		form.add(label);
 
 		form.add(new Button("button") {
 
@@ -70,7 +78,27 @@ public class HomePage extends WebPage {
 			}
 		});
 
+		form.add(new SliderPanel("slider"));
 		add(form);
+
+		add(createLink("link"));
+	}
+
+	private AjaxLink<Void> createLink(String wicketId) {
+		AjaxLink<Void> ajaxLink = new AjaxLink<Void>(wicketId) {
+
+			@Override
+			public void onClick(AjaxRequestTarget target) {
+				// DisplayAnbieter current = getModelObject();
+				// setModelObject(current.swap());
+				// Events.send(this, new
+				// BusinessPartnerChangedEventPayload(target));
+
+				labelText.setObject("Hier steht jetzt Ihr Text");
+				target.add(label);
+			}
+		};
+		return ajaxLink;
 	}
 
 	public static void sleep() {
@@ -80,4 +108,29 @@ public class HomePage extends WebPage {
 			e.printStackTrace();
 		}
 	}
+	
+	private static class StringModel implements IModel<String> {
+		private String text;
+
+		private StringModel(String text) {
+			this.text = text;
+		}
+		
+		@Override
+		public void detach() {
+			text = null;
+		}
+
+		@Override
+		public String getObject() {
+			return text;
+		}
+
+		@Override
+		public void setObject(String object) {
+			text = object;
+		}
+	}
+
+
 }
