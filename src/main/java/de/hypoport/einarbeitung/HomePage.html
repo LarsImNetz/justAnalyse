@@ -3,10 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <title>LLA just Analyse</title>
-<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
- 
+<link
+	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+	title="Stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
 </head>
 <body>
 	<style>
@@ -52,10 +56,17 @@
 		<div>
 			<!-- <input type="range" wicked:id="range" id="r2" value="50" max="100" min="0" /> -->
 			<div wicket:id="slider" id="wrapper-panel-frame" class="ui-corner-all"></div>
+			<!-- http://api.jqueryui.com/slider/ -->
+			<script type="text/javascript">
+				// $( "#wrapper-panel-frame" ).slider();
+				// $(".ui-corner-all").slider({step : 5});
+			</script>
+
 		</div>
 	</form>
 	<br />
 	<br />
 	<a wicket:id="link" class="buttonlink">Mir doch wurst</a>
+
 </body>
 </html>
