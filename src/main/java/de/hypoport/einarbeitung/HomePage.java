@@ -4,12 +4,15 @@ import java.io.IOException;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.CssResourceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -109,6 +112,10 @@ public class HomePage extends WebPage {
 		}
 	}
 	
+	@Override
+	public void renderHead(IHeaderResponse response) {
+		response.render(CssHeaderItem.forReference(new CssResourceReference(this.getClass(), "HomePage.css")));
+	}
 	private static class StringModel implements IModel<String> {
 		private String text;
 
