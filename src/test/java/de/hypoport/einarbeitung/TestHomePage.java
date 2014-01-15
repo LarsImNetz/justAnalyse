@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import de.hypoport.einarbeitung.homepage.WicketApplication;
+
 /**
  * Simple test using the WicketTester
  */
