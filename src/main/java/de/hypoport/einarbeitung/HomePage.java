@@ -21,7 +21,7 @@ public class HomePage extends WebPage {
 
 	private Label label;
 	private StringModel labelText;
-	
+
 	@SuppressWarnings("serial")
 	public HomePage(final PageParameters parameters) throws InterruptedException, IOException {
 		super(parameters);
@@ -108,14 +108,14 @@ public class HomePage extends WebPage {
 			e.printStackTrace();
 		}
 	}
-	
-	private static class StringModel implements IModel<String> {
+
+	public static class StringModel implements IModel<String> {
 		private String text;
 
-		private StringModel(String text) {
+		public StringModel(String text) {
 			this.text = text;
 		}
-		
+
 		@Override
 		public void detach() {
 			text = null;
