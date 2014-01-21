@@ -1,38 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-   Licensed to the Apache Software Foundation (ASF) under one or more
-   contributor license agreements.  See the NOTICE file distributed with
-   this work for additional information regarding copyright ownership.
-   The ASF licenses this file to You under the Apache License, Version 2.0
-   (the "License"); you may not use this file except in compliance with
-   the License.  You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor
+	license agreements. See the NOTICE file distributed with this work for additional
+	information regarding copyright ownership. The ASF licenses this file to
+	You under the Apache License, Version 2.0 (the "License"); you may not use
+	this file except in compliance with the License. You may obtain a copy of
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required
+	by applicable law or agreed to in writing, software distributed under the
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+	OF ANY KIND, either express or implied. See the License for the specific
+	language governing permissions and limitations under the License. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.vergleich.sample</groupId>
-	<artifactId>ovalsample</artifactId>
+
+	<groupId>org.homelinux.moonserver</groupId>
+	<artifactId>justAnalyse</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
-		<!-- TODO project name  -->
-	<name>OValSample Demonstration</name>
+	<version>1.0.0</version>
+	<name>Ein paar Simple Analysen</name>
 	<description></description>
-	<!--
-		<organization>
-			<name>company name</name>
-			<url>company url</url>
-		</organization>
-	-->
+	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -41,26 +29,27 @@
 		</license>
 	</licenses>
 	<properties>
-		<wicket.version>6.13.0</wicket.version>
-		<jetty.version>7.6.13.v20130916</jetty.version>
+		<wicket.version>6.12.0</wicket.version>
+		<jetty.version>7.6.9.v20130131</jetty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
-		<wtp.version>none</wtp.version>
 	</properties>
+
 	<dependencies>
-		<!--  WICKET DEPENDENCIES -->
+		<!-- WICKET DEPENDENCIES -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-core</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
-		<!-- OPTIONAL DEPENDENCY
+		<!-- OPTIONAL DEPENDENCY <dependency> <groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-extensions</artifactId> <version>${wicket.version}</version>
+			</dependency> -->
+
 		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-extensions</artifactId>
+			<groupId>com.googlecode.wicket-jquery-ui</groupId>
+			<artifactId>wicket-jquery-ui</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
-		-->
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
@@ -74,7 +63,7 @@
 			<version>1.2.16</version>
 		</dependency>
 
-		<!--  JUNIT DEPENDENCY FOR TESTING -->
+		<!-- JUNIT DEPENDENCY FOR TESTING -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -82,7 +71,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--  JETTY DEPENDENCIES FOR TESTING  -->
+		<!-- JETTY DEPENDENCIES FOR TESTING -->
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all-server</artifactId>
@@ -90,11 +79,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-<!--		<dependency> -->
-<!--			<groupId>de.vergleich.baushup</groupId> -->
-<!--			<artifactId>de.vergleich- -baushup-wicket-toolkit</artifactId> -->
-<!--			<version>1.0-SNAPSHOT</version> -->
-<!--		</dependency> -->
 		<!-- OVal Validation Framework -->
 		<dependency>
 			<groupId>net.sf.oval</groupId>
@@ -104,6 +88,7 @@
 
 	</dependencies>
 	<build>
+		<finalName>just</finalName>
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -176,7 +161,6 @@
 				<version>2.9</version>
 				<configuration>
 					<downloadSources>true</downloadSources>
-					<wtpversion>${wtp.version}</wtpversion>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -194,4 +178,4 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	</project>
+</project>
