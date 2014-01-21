@@ -27,6 +27,6 @@
 
 	<filter-mapping>
 		<filter-name>wicket.justanalytics</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/just/*</url-pattern>
 	</filter-mapping>
 </web-app>
