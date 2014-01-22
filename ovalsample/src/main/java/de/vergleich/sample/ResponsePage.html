@@ -6,31 +6,44 @@
 <title>OVal Sample</title>
 <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+<style type="text/css">
+.fixwidth {
+	width: 200px;
+	font-family: helvetica;
+	font-size: 12px;
+}
+.right {
+	text-align: right;
+}
+</style>
 </head>
+
 <body>
-	<p>Herzlich willkommen: <span wicket:id="name"></span></p>
+	<p>
+		Herzlich willkommen: <span wicket:id="name"></span>
+	</p>
 	<table border="1">
-	<tr>
-	<th>Value</th>
-	<th>Wert</th>
-	</tr>
-	<tr>
-	<td>Darlehensbetrag</td>
-	<td style="text-align: right;"><span  wicket:id="darlehensbetrag">12345</span></td>
-	</tr>
-	<tr>
-	<td>Immobilienwert</td>
-	<td style="text-align: right;"><span  wicket:id="immobilienwert">1234</span></td>
-	</tr>
-	<tr>
-	<td>Monatliche Rate</td>
-	<td style="text-align: right;"><span  wicket:id="mtl-rate">123</span></td>
-	</tr>
+		<tr>
+			<th>Value</th>
+			<th>Wert</th>
+		</tr>
+		<tr>
+			<td class="fixwidth">Darlehensbetrag</td>
+			<td class="fixwidth right" ><span wicket:id="darlehensbetrag">12345</span></td>
+		</tr>
+		<tr>
+			<td class="fixwidth">Immobilienwert</td>
+			<td class="fixwidth right" ><span wicket:id="immobilienwert">1234</span></td>
+		</tr>
+		<tr>
+			<td class="fixwidth">Monatliche Rate</td>
+			<td class="fixwidth right"><span wicket:id="mtl-rate">123</span></td>
+		</tr>
 	</table>
 
 	<form wicket:id="form">
-	<div wicket:id="feedback" class="feedback"></div>
-	<input wicket:id="button" type="submit" value="nochmal" />
+		<div wicket:id="feedback" class="feedback"></div>
+		<input wicket:id="button" type="submit" value="nochmal" />
 	</form>
 </body>
 </html>
