@@ -6,7 +6,7 @@ import org.apache.wicket.util.convert.converter.AbstractConverter;
 
 public class DoubleWicketConverter extends AbstractConverter<Double> {
 
-	private final DoubleConverter converter = new DoubleConverter();
+	private transient final DoubleConverter converter = new DoubleConverter();
 
 	@Override
 	public Double convertToObject(String value, Locale locale) {
