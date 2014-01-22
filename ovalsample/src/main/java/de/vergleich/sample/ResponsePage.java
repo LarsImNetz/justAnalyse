@@ -1,27 +1,44 @@
 package de.vergleich.sample;
 
+import org.apache.wicket.Page;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
 import de.vergleich.sample.adapter.BeanAdapter;
+import de.vergleich.sample.bean.Bean;
 
-public class ResponsePage extends WebPage  {
+public class ResponsePage extends WebPage {
 
 	public ResponsePage(PageParameters params) {
 
-		StringValue name = params.get(BeanAdapter.NAME);
-		add(new Label("name", name.toString()));
+		final Bean bean = new BeanAdapter().adapt(params);
 
-		StringValue darlehensbetrag = params.get(BeanAdapter.DARLEHENSBETRAG);
-		add(new Label("darlehensbetrag", darlehensbetrag.toString()));
+		add(new Label("name", bean.getName()));
 
-		StringValue immobilienwert = params.get(BeanAdapter.IMMOBILIENWERT);
-		add(new Label("immobilienwert", immobilienwert.toString()));
+		add(new Label("darlehensbetrag", bean.getDarlehensbetrag()));
 
-		StringValue monatlicheRate = params.get(BeanAdapter.MONATLICHERATE);
-		add(new Label("mtl-rate", monatlicheRate.toString()));
+		add(new Label("immobilienwert", bean.getImmobilienwert()));
+
+		add(new Label("mtl-rate", bean.getMonatlicheRate()));
+
+		Form<Void> form = new Form<Void>("form");
+		form.add(new FeedbackPanel("feedback"));
+
+		Button button = new Button("button") {
+			public void onSubmit() {
+				PageParameters p = new BeanAdapter().adapt(bean);
+				Page home = new HomePage(p);
+				this.setResponsePage(home);
+			}
+		};
+		form.add(button);
+		add(form);
 
 	}
 }

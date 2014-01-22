@@ -1,4 +1,4 @@
-package de.vergleich.sample;
+package de.vergleich.sample.validator;
 
 import java.util.regex.Pattern;
 

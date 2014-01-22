@@ -28,7 +28,12 @@ public class HomePage extends WebPage {
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
-		beanModel = Model.of(new Bean());
+		if (parameters != null) {
+			beanModel = Model.of(new BeanAdapter().adapt(parameters));
+		}
+		else {
+			beanModel = Model.of(new Bean());
+		}
 
 		Form<Void> form = new Form<Void>("form") {
 			protected void onSubmit() {
