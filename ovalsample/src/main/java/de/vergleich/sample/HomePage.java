@@ -1,5 +1,10 @@
 package de.vergleich.sample;
 
+import java.util.List;
+
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+
 import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
@@ -91,13 +96,21 @@ public class HomePage extends WebPage {
 
 				final Bean aBean = beanModel.getObject();
 
-				// TODO: Hier die Bean prüfen
-				if (!form.hasError()) {
-					if (aBean.getName().toLowerCase().equals("asdf")) {
-						final StringResourceModel explanationString = new StringResourceModel("asdf", HomePage.this, null);
-						form.error(explanationString.getObject());
-					}
+				Validator validator = new Validator();
+				List<ConstraintViolation> violations = validator.validate(aBean);
+				for (ConstraintViolation violation : violations) {
+					final String errorCode = violation.getErrorCode();
+					final StringResourceModel explanationString = new StringResourceModel(errorCode, HomePage.this, null);
+					form.error(explanationString.getObject());
 				}
+
+//				// TODO: Hier die Bean prüfen
+//				if (!form.hasError()) {
+//					if (aBean.getName().toLowerCase().equals("asdf")) {
+//						final StringResourceModel explanationString = new StringResourceModel("asdf", HomePage.this, null);
+//						form.error(explanationString.getObject());
+//					}
+//				}
 			}
 		};
 		form.add(multiFormValidator);
