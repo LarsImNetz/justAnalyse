@@ -16,6 +16,10 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import de.vergleich.sample.adapter.BeanAdapter;
+import de.vergleich.sample.bean.Bean;
+import de.vergleich.sample.validator.NameStartsWithGreatCharacterValidator;
+
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
 
@@ -29,6 +33,7 @@ public class HomePage extends WebPage {
 		Form<Void> form = new Form<Void>("form") {
 			protected void onSubmit() {
 				final Bean aBean = beanModel.getObject();
+
 				// error("Das geht nicht");
 				if (!hasError()) {
 					final PageParameters params = new BeanAdapter().adapt(aBean);
@@ -38,16 +43,23 @@ public class HomePage extends WebPage {
 			}
 		};
 
-		final TextField<String> textField = new TextField<String>("wert1", new PropertyModel<String>(beanModel, "name"), String.class);
+		final TextField<String> textField = new TextField<String>("name", new PropertyModel<String>(beanModel, "name"), String.class);
 		textField.setRequired(true);
 		textField.add(new NameStartsWithGreatCharacterValidator());
-		textField.add(new AjaxFormComponentUpdatingBehavior("blur") {
-			@Override
-			protected void onUpdate(AjaxRequestTarget target) {
-			}
-		});
-
+		textField.add(createFormUpdatingBehavior());
 		form.add(textField);
+
+		final TextField<Double> darlehensbetrag = new TextField<Double>("darlehensbetrag", new PropertyModel<Double>(beanModel, "darlehensbetrag"), Double.class);
+		darlehensbetrag.add(createFormUpdatingBehavior());
+		form.add(darlehensbetrag);
+
+		final TextField<Double> immobilienwert = new TextField<Double>("immobilienwert", new PropertyModel<Double>(beanModel, "immobilienwert"), Double.class);
+		immobilienwert.add(createFormUpdatingBehavior());
+		form.add(immobilienwert);
+
+		final TextField<Double> monatlicheRate = new TextField<Double>("monatlicheRate", new PropertyModel<Double>(beanModel, "monatlicheRate"), Double.class);
+		monatlicheRate.add(createFormUpdatingBehavior());
+		form.add(monatlicheRate);
 
 		form.add(new FeedbackPanel("feedback"));
 
@@ -85,6 +97,14 @@ public class HomePage extends WebPage {
 		};
 		form.add(multiFormValidator);
 	}
+
+	private AjaxFormComponentUpdatingBehavior createFormUpdatingBehavior() {
+	    return new AjaxFormComponentUpdatingBehavior("blur") {
+			@Override
+			protected void onUpdate(AjaxRequestTarget target) {
+			}
+		};
+    }
 
 	private static class ImALocalFormComponentForMultifieldValidation extends FormComponent<Bean> {
 
