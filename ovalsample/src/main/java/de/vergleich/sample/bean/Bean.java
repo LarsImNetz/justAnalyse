@@ -4,18 +4,31 @@ import java.io.Serializable;
 
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.MatchPattern;
+import net.sf.oval.constraint.Max;
+import net.sf.oval.constraint.Min;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Range;
 import net.sf.oval.constraint.ValidateWithMethod;
 
 public class Bean implements Serializable {
-	@NotNull
-	@MatchPattern(pattern = "^[A-Z].*")
-	@Length(max = 32)
+
+	public final static String VIOLATION_GROSSBUCHSTABE = "GROSSBUCHSTABE";
+	public final static String VIOLATION_NOTNULL = "NOTNULL";
+	public final static String VIOLATION_LENGTH = "LENGTH";
+
+	@NotNull(errorCode = VIOLATION_NOTNULL)
+	@MatchPattern(pattern = "^[A-Z].*", errorCode = VIOLATION_GROSSBUCHSTABE)
+	@Length(max = 32, errorCode=VIOLATION_LENGTH)
 	String name;
 
+
+	public final static String VIOLATION_DARLEHENSBETRAG_TO_LOW = "DARLEHENSBETRAG_TO_LOW";
+	public final static String VIOLATION_DARLEHENSBETRAG_TO_HIGH = "DARLEHENSBETRAG_TO_HIGH";
+
 	@NotNull
-	@Range(min = 50000, max = 1000000)
+	@Min(value=50000, errorCode=VIOLATION_DARLEHENSBETRAG_TO_LOW)
+	@Max(value=1000000, errorCode=VIOLATION_DARLEHENSBETRAG_TO_HIGH)
+	// @Range(min = 50000, max = 1000000)
 	Double darlehensbetrag;
 
 	@NotNull
