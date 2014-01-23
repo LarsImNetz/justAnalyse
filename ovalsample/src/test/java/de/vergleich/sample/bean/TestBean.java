@@ -7,14 +7,8 @@ import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBean {
 

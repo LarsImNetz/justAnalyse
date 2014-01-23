@@ -2,7 +2,6 @@ package de.vergleich.sample.bean;
 
 import java.io.Serializable;
 
-import net.sf.oval.constraint.AssertValid;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.CheckWithCheck.SimpleCheck;
 import net.sf.oval.constraint.Length;
@@ -11,7 +10,6 @@ import net.sf.oval.constraint.Max;
 import net.sf.oval.constraint.Min;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Range;
-import net.sf.oval.constraint.ValidateWithMethod;
 
 public class Bean implements Serializable {
 
@@ -40,9 +38,17 @@ public class Bean implements Serializable {
 
 	public final static String VIOLATION_MONATLICHE_RATE = "MONATLICHE_RATE";
 
+
+	/**
+	 * Die Monatliche Rate
+	 * soll im Bereich darlehensbetrag / 12 / 40 und darlehensbetrag / 12 / 5 liegen
+	 *
+	 * Weitere Infos
+	 * http://oval.sourceforge.net/userguide.html#complex-class-specific-constraints
+	 */
+
 	@NotNull
-	// @ValidateWithMethod(methodName = "isMonatlicheRateValid", parameterType =
-	// Double.class)
+	// @ValidateWithMethod(methodName = "isMonatlicheRateValid", parameterType = Double.class)
 	@CheckWith(value = MonatlicheRateCheck.class, errorCode = VIOLATION_MONATLICHE_RATE)
 	Double monatlicheRate;
 
