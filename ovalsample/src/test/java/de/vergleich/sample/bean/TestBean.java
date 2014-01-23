@@ -7,8 +7,14 @@ import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBean {
 
@@ -70,10 +76,45 @@ public class TestBean {
 
 		Validator validator = new Validator();
 		List<ConstraintViolation> violations = validator.validate(bean);
-		Assert.assertTrue(violations.size() == 1);
-		Assert.assertEquals(Bean.VIOLATION_DARLEHENSBETRAG_TO_LOW, violations.get(0).getErrorCode());
+
+		Assert.assertEquals(2, violations.size());
+		// TODO: in hamcrest?
+		// assertThat(in(violation), oneFunctionCallOf(getErrorCode() returns Bean.VIOLATION_DARLEHENSBETRAG_TO_LOW));
+		for (ConstraintViolation violation : violations) {
+			if (violation.getErrorCode().equals(Bean.VIOLATION_DARLEHENSBETRAG_TO_LOW)) {
+			}
+			else if (violation.getErrorCode().equals(Bean.VIOLATION_MONATLICHE_RATE)) {
+			}
+			else {
+				Assert.fail("Illegale Violation gefunden: " + violation.getErrorCode());
+			}
+		}
 	}
 
+	@Test
+	public void testAll() {
+		Bean bean = new Bean();
+
+		Validator validator = new Validator();
+		List<ConstraintViolation> violations = validator.validate(bean);
+		Assert.assertEquals(4, violations.size());
+
+	}
+
+	@Test
+	public void test_MonatlicheRate_falsch() {
+		Bean bean = new Bean();
+		bean.setName("Super");
+		bean.setDarlehensbetrag(150000d);
+		bean.setImmobilienwert(250000d);
+		bean.setMonatlicheRate(200d);
+
+		Validator validator = new Validator();
+		List<ConstraintViolation> violations = validator.validate(bean);
+		// show(violations);
+		Assert.assertEquals(1, violations.size());
+		Assert.assertEquals(Bean.VIOLATION_MONATLICHE_RATE, violations.get(0).getErrorCode());
+	}
 
 	private void show(List<ConstraintViolation> violations) {
 		System.out.println("Show current violations");
