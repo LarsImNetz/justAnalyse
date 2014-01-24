@@ -11,20 +11,14 @@ import net.sf.oval.constraint.Min;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.constraint.Range;
 
-public class Bean implements Serializable {
+public class Bean implements Serializable, BeanErrorCodes {
 
-	public final static String VIOLATION_GROSSBUCHSTABE = "GROSSBUCHSTABE";
-	public final static String VIOLATION_NOTNULL = "NOTNULL";
-	public final static String VIOLATION_LENGTH = "LENGTH";
-
-	// @AssertValid
+	//??? @AssertValid
 	@NotNull(errorCode = VIOLATION_NOTNULL)
 	@MatchPattern(pattern = "^[A-Z].*", errorCode = VIOLATION_GROSSBUCHSTABE)
 	@Length(max = 32, errorCode = VIOLATION_LENGTH)
 	String name;
 
-	public final static String VIOLATION_DARLEHENSBETRAG_TO_LOW = "DARLEHENSBETRAG_TO_LOW";
-	public final static String VIOLATION_DARLEHENSBETRAG_TO_HIGH = "DARLEHENSBETRAG_TO_HIGH";
 
 	@NotNull
 	@Min(value = 50000, errorCode = VIOLATION_DARLEHENSBETRAG_TO_LOW)
@@ -32,11 +26,11 @@ public class Bean implements Serializable {
 	// ! @Range(min = 50000, max = 1000000)
 	Double darlehensbetrag;
 
+	
 	@NotNull
 	@Range(min = 1, max = 1000000)
 	Double immobilienwert;
 
-	public final static String VIOLATION_MONATLICHE_RATE = "MONATLICHE_RATE";
 
 
 	/**
