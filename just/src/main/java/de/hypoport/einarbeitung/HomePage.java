@@ -111,17 +111,16 @@ public class HomePage extends WebPage {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD:src/main/java/de/hypoport/einarbeitung/HomePage.java
+
 	
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		response.render(CssHeaderItem.forReference(new CssResourceReference(this.getClass(), "HomePage.css")));
 	}
-	private static class StringModel implements IModel<String> {
-=======
+
 
 	public static class StringModel implements IModel<String> {
->>>>>>> ae1e5a48684f04a6f409efbb6ca1d27a16fe4f97:just/src/main/java/de/hypoport/einarbeitung/HomePage.java
+
 		private String text;
 
 		public StringModel(String text) {
