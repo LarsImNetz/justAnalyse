@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LLA just Analyse</title>
+<link
+	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+	title="Stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+</head>
+<body>
+	<style>
+.tableborder {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 0 15px 0 15px;
+	border-color: black;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.cellborder {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 10px 0 10px 0;
+	border-color: red;
+	padding: 5px;
+	background-color: #fee;
+}
+
+.buttonlink {
+	border-width: 2px;
+	border-style: dashed;
+	border-radius: 10px 0 10px 0;
+	border-color: green;
+	padding: 10px;
+	background-color: #cdd;
+}
+</style>
+
+	<form wicket:id="form">
+		<table class="tableborder">
+			<tr>
+				<td>Hier kommt ein Label:</td>
+				<td class="cellborder" wicket:id="label"></td>
+			</tr>
+		</table>
+
+		<!--  <button wicket:id="doNothing">Klick hier für neues Datum</button>  -->
+
+		<input type="submit" wicket:id="button" value="Second" />
+		<div>
+			<!-- <input type="range" wicked:id="range" id="r2" value="50" max="100" min="0" /> -->
+			<div wicket:id="slider" id="wrapper-panel-frame"
+				class="ui-corner-all"></div>
+			<!-- http://api.jqueryui.com/slider/ -->
+			<script type="text/javascript">
+				// $( "#wrapper-panel-frame" ).slider();
+				// $(".ui-corner-all").slider({step : 5});
+			</script>
+
+		</div>
+	</form>
+	<br />
+	<br />
+	<a wicket:id="link" class="buttonlink">Mir doch wurst</a>
+
+	<br />
+	<br />
+	<br />
+
+	<div class="box">
+		<div class="tbody">
+			<span class="text">1. Zelle</span>
+		</div>
+		<div class="tbody">
+			<span class="text">2. Zelle</span>
+		</div>
+		<div class="tbody">
+			<span class="text">3. Zelle</span>
+		</div>
+		<div class="tbody">
+			<span class="text">4. Zelle</span>
+		</div>
+	</div>
+	<div class="box">
+		<div class="tbody">
+			<span class="text">1. Zelle</span>
+		</div>
+		<div class="tbody">
+			<span class="text">2. Zelle</span>
+		</div>
+		<div class="tbody">
+			<span class="text">3. Zelle</span>
+		</div>
+		<div class="tbody">
+			<span class="text">4. Zelle</span>
+		</div>
+	</div>
+</body>
+</html>

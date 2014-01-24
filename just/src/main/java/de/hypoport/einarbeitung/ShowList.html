@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en" lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<wicket:panel>
+		<style>
+/* transitionen von Links */
+a {
+	-moz-transition: color 0.2s ease; /* mozilla */
+	-webkit-transition: color 0.2s ease; /* chrom, safari*/
+	-o-transition: color 0.2s ease; /* Opera */
+	-ms-transition: color 0.2s ease; /* microsoft */
+	color: Orange;
+}
+
+a:hover {
+	-moz-transition: color 1s ease;
+	-webkit-transition: color 1s ease;
+	-o-transition: color 1s ease;
+	-ms-transition: color 1s ease;
+	color: firebrick;
+}
+
+/* transitionen von Links */
+h2 {
+	-moz-transition: font-size 1s; /* mozilla */
+	-webkit-transition: font-size 1s /* chrom, safari*/
+	 -o-transition:  font-size 1s; /* Opera */
+	-ms-transition: font-size 1s; /* microsoft */
+	font-size: 16px;
+}
+
+h2:hover {
+	-moz-transition: font-size 1s;
+	-webkit-transition: font-size 1s;
+	-o-transition: font-size 1s;
+	-ms-transition: font-size 1s;
+	font-size: 36px;
+}
+
+/* Farbverlauf für die links spalte */
+table tr td.line {
+ 	background-color: #DACBAC;
+	padding: 2px 10px;
+}
+
+/*
+http://www.mediaevent.de/css/gradient.html
+
+background-image: -webkit-linear-gradient(white 0%, #9FBFD2 100%);
+background-image: -moz-linear-gradient(white 0%, #9FBFD2 100%);
+background-image: -o-linear-gradient(white 0%, #9FBFD2 100%);
+background-image: linear-gradient(white 0%, #9FBFD2 100%);
+*/
+
+table tr:nth-of-type(3n+1) td.line {
+ 	background-image: -moz-linear-gradient(bottom, #DACBAC 0%, #F5E7CC 100%);
+/* 	background-color: #F5E7CC; */
+}
+table tr:nth-of-type(3n) td.line {
+/* 	background-color: #F5E7EC; */
+ 	background-image: -moz-linear-gradient(top, #DACBAC 0%, #F5E7CC 100%);
+/* 	background-image: -moz-linear-gradient(top left, #ccc 25%, #000 75%); */ /* Farbverlauf nach rechts */
+}
+
+/* Farbverlauf für die Rechte spalte */
+table tr td.links {
+ 	background-image: -moz-linear-gradient(left, #DACBAC 0%, #Fff 100%);
+	padding: 2px 10px;
+}
+table tr:nth-of-type(3n+1) td.links {
+ 	background-color: #white;
+}
+table tr:nth-of-type(3n) td.links {
+ 	background-color: #white;
+}
+</style>
+		<h2>Eine Liste als Panel</h2>
+Ein hover Effekt auf den Links.
+<table class="tableborder">
+			<tr wicket:id="list">
+				<td class="line"><span wicket:id="name"></span></td>
+				<td class="links"><a wicket:id="link" href="#"><span wicket:id="name"></span></a></td>
+			</tr>
+		</table>
+	</wicket:panel>
+</body>
+</html>
