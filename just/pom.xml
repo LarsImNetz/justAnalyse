@@ -86,6 +86,14 @@
 			<version>1.84</version>
 		</dependency>
 
+		<!-- Guice -->
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<guice.version>3.0</guice.version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<finalName>just</finalName>
