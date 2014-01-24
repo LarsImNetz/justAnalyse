@@ -7,8 +7,9 @@ import org.junit.Test;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Provider;
 
-public class TestGuice {
+public class TestGuiceWithProvider {
 
 	private static Injector injector;
 
@@ -47,10 +48,16 @@ public class TestGuice {
 
 		@Override
 		protected void configure() {
-			// bind(ITestClass.class).toInstance(new TestClass()); // Der Baut mir einen Singleton
-			bind(ISampleClass.class).to(SampleClass.class);
-			// noop bind(ITestClass.class).to(TestClass.class).in(Singleton.class); // initialisiert erst beim Zugriff auf getInstance
-			// noop bind(ITestClass.class).to(TestClass.class).asEagerSingleton(); // initialisiert so früh wie möglich, noch vor getInstance
+			bind(ISampleClass.class).toProvider(TestClassProvider.class);
+		}
+	}
+
+
+	private static class TestClassProvider implements Provider<SampleClass> {
+
+		@Override
+		public SampleClass get() {
+			return new SampleClass();
 		}
 	}
 

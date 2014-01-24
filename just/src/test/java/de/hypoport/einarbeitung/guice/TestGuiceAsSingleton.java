@@ -7,8 +7,9 @@ import org.junit.Test;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 
-public class TestGuice {
+public class TestGuiceAsSingleton {
 
 	private static Injector injector;
 
@@ -35,12 +36,12 @@ public class TestGuice {
 		System.out.println("test Second Access");
 		ISampleClass iTestClass2 = injector.getInstance(ISampleClass.class);
 
-		Assert.assertNotSame(iTestClass, iTestClass2);
+		Assert.assertSame(iTestClass, iTestClass2);
 
 		Assert.assertNotNull(iTestClass2);
 		iTestClass2.setValue("c");
 		Assert.assertEquals("c", iTestClass2.getValue());
-		Assert.assertEquals("ein", iTestClass.getValue());
+		Assert.assertEquals("c", iTestClass.getValue());
 	}
 
 	private static class MyModule extends AbstractModule {
@@ -48,8 +49,8 @@ public class TestGuice {
 		@Override
 		protected void configure() {
 			// bind(ITestClass.class).toInstance(new TestClass()); // Der Baut mir einen Singleton
-			bind(ISampleClass.class).to(SampleClass.class);
-			// noop bind(ITestClass.class).to(TestClass.class).in(Singleton.class); // initialisiert erst beim Zugriff auf getInstance
+			// bind(ISampleClass.class).to(SampleClass.class);
+			bind(ISampleClass.class).to(SampleClass.class).in(Singleton.class); // initialisiert erst beim Zugriff auf getInstance
 			// noop bind(ITestClass.class).to(TestClass.class).asEagerSingleton(); // initialisiert so früh wie möglich, noch vor getInstance
 		}
 	}
