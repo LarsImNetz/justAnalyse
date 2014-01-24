@@ -90,7 +90,7 @@
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
-			<guice.version>3.0</guice.version>
+			<version>3.0</version>
 		</dependency>
 
 
