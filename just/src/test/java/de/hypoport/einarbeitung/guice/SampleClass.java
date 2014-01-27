@@ -6,7 +6,7 @@ public class SampleClass implements ISampleClass {
 	String value;
 
 	public SampleClass() {
-		value = "ein";
+		value = "something";
 		System.out.println("C'Tor TestClass init value to " + value);
 	}
 

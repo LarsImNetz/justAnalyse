@@ -41,9 +41,20 @@ public class TestGuiceWithProvider {
 		Assert.assertNotNull(iTestClass2);
 		iTestClass2.setValue("c");
 		Assert.assertEquals("c", iTestClass2.getValue());
-		Assert.assertEquals("ein", iTestClass.getValue());
+		Assert.assertEquals("something", iTestClass.getValue());
 	}
 
+	@Test
+	public void testNotSame() {
+		ISampleClass iTestClass2 = injector.getInstance(ISampleClass.class);
+
+		Assert.assertNotSame(iTestClass, iTestClass2);
+
+		ISampleClass iTestClass3 = injector.getInstance(ISampleClass.class);
+
+		Assert.assertNotSame(iTestClass2, iTestClass3);
+
+	}
 	private static class MyModule extends AbstractModule {
 
 		@Override

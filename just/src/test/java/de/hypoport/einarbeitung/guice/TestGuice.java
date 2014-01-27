@@ -26,8 +26,8 @@ public class TestGuice {
 	public void testAccess() {
 		System.out.println("test Access");
 		Assert.assertNotNull(iTestClass);
-		iTestClass.setValue("b");
-		Assert.assertEquals("b", iTestClass.getValue());
+		iTestClass.setValue("other");
+		Assert.assertEquals("other", iTestClass.getValue());
 	}
 
 	@Test
@@ -38,9 +38,9 @@ public class TestGuice {
 		Assert.assertNotSame(iTestClass, iTestClass2);
 
 		Assert.assertNotNull(iTestClass2);
-		iTestClass2.setValue("c");
-		Assert.assertEquals("c", iTestClass2.getValue());
-		Assert.assertEquals("ein", iTestClass.getValue());
+		iTestClass2.setValue("c is other");
+		Assert.assertEquals("c is other", iTestClass2.getValue());
+		Assert.assertEquals("something", iTestClass.getValue());
 	}
 
 	private static class MyModule extends AbstractModule {
