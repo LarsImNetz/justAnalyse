@@ -13,38 +13,61 @@ import net.sf.oval.constraint.Range;
 
 public class Bean implements Serializable, BeanErrorCodes {
 
-	//??? @AssertValid
 	@NotNull(errorCode = VIOLATION_NOTNULL)
 	@MatchPattern(pattern = "^[A-Z].*", errorCode = VIOLATION_GROSSBUCHSTABE)
 	@Length(max = 32, errorCode = VIOLATION_LENGTH)
 	String name;
 
-
 	@NotNull
-	@Min(value = 50000, errorCode = VIOLATION_DARLEHENSBETRAG_TO_LOW)
-	@Max(value = 1000000, errorCode = VIOLATION_DARLEHENSBETRAG_TO_HIGH)
+	@Min(value = 50000, errorCode = VIOLATION_DARLEHENSBETRAG_TOO_LOW)
+	@Max(value = 1000000, errorCode = VIOLATION_DARLEHENSBETRAG_TOO_HIGH)
 	// ! @Range(min = 50000, max = 1000000)
 	Double darlehensbetrag;
 
-	
 	@NotNull
 	@Range(min = 1, max = 1000000)
 	Double immobilienwert;
 
-
-
 	/**
-	 * Die Monatliche Rate
-	 * soll im Bereich darlehensbetrag / 12 / 40 und darlehensbetrag / 12 / 5 liegen
+	 * Die Monatliche Rate soll im Bereich darlehensbetrag / 12 / 40 und
+	 * darlehensbetrag / 12 / 5 liegen
 	 *
 	 * Weitere Infos
-	 * http://oval.sourceforge.net/userguide.html#complex-class-specific-constraints
+	 * http://oval.sourceforge.net/userguide.html#complex-class-specific
+	 * -constraints
 	 */
 
 	@NotNull
-	// @ValidateWithMethod(methodName = "isMonatlicheRateValid", parameterType = Double.class)
+	// / @ValidateWithMethod(methodName = "isMonatlicheRateValid", parameterType
+	// = Double.class)
 	@CheckWith(value = MonatlicheRateCheck.class, errorCode = VIOLATION_MONATLICHE_RATE)
 	Double monatlicheRate;
+
+	// Validation Class
+	public static class MonatlicheRateCheck implements SimpleCheck {
+		public boolean isSatisfied(Object beanObject, Object value) {
+			final Bean bean = ((Bean) beanObject);
+			Double rate = (Double) value;
+
+			// Berechnen, welche Rate min. bezahlt werden sollte
+			double monatsrate = bean.darlehensbetrag / 12;
+
+			// bei 5 Jahren
+			double max = monatsrate / 5;
+			if (rate > max) {
+				return false;
+			}
+
+			// bei 40 Jahren Laufzeit
+			double min = monatsrate / 40;
+			if (rate < min) {
+				return false;
+			}
+			return true;
+		}
+	}
+
+	// Test methode
 
 	@SuppressWarnings("unused")
 	private boolean isMonatlicheRateValid(final Double rate) {
@@ -75,29 +98,6 @@ public class Bean implements Serializable, BeanErrorCodes {
 			return false;
 		}
 		return true;
-	}
-
-	private static class MonatlicheRateCheck implements SimpleCheck {
-		public boolean isSatisfied(Object beanObject, Object value) {
-			final Bean bean = ((Bean) beanObject);
-			Double rate = (Double) value;
-
-			// Berechnen, welche Rate min. bezahlt werden sollte
-			double monatsrate = bean.darlehensbetrag / 12;
-
-			// bei 5 Jahren
-			double max = monatsrate / 5;
-			if (rate > max) {
-				return false;
-			}
-
-			// bei 40 Jahren Laufzeit
-			double min = monatsrate / 40;
-			if (rate < min) {
-				return false;
-			}
-			return true;
-		}
 	}
 
 	public String getName() {

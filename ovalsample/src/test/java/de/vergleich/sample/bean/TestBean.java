@@ -1,6 +1,7 @@
 package de.vergleich.sample.bean;
 
-
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.oval.ConstraintViolation;
@@ -10,11 +11,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map.Entry;
+import java.util.AbstractMap.SimpleEntry;
+
 public class TestBean {
 
 	@Before
 	public void before() {
-
 	}
 
 	@Test
@@ -73,13 +76,12 @@ public class TestBean {
 
 		Assert.assertEquals(2, violations.size());
 		// TODO: in hamcrest?
-		// assertThat(in(violation), oneFunctionCallOf(getErrorCode() returns Bean.VIOLATION_DARLEHENSBETRAG_TO_LOW));
+		// assertThat(in(violation), oneFunctionCallOf(getErrorCode() returns
+		// Bean.VIOLATION_DARLEHENSBETRAG_TO_LOW));
 		for (ConstraintViolation violation : violations) {
-			if (violation.getErrorCode().equals(Bean.VIOLATION_DARLEHENSBETRAG_TO_LOW)) {
-			}
-			else if (violation.getErrorCode().equals(Bean.VIOLATION_MONATLICHE_RATE)) {
-			}
-			else {
+			if (violation.getErrorCode().equals(Bean.VIOLATION_DARLEHENSBETRAG_TOO_LOW)) {
+			} else if (violation.getErrorCode().equals(Bean.VIOLATION_MONATLICHE_RATE)) {
+			} else {
 				Assert.fail("Illegale Violation gefunden: " + violation.getErrorCode());
 			}
 		}
@@ -110,9 +112,10 @@ public class TestBean {
 		Assert.assertEquals(Bean.VIOLATION_MONATLICHE_RATE, violations.get(0).getErrorCode());
 	}
 
+	@SuppressWarnings("unused")
 	private void show(List<ConstraintViolation> violations) {
 		System.out.println("Show current violations");
-		for(ConstraintViolation violation : violations) {
+		for (ConstraintViolation violation : violations) {
 			StringBuffer out = new StringBuffer();
 			final String errorCode = violation.getErrorCode();
 			out.append(errorCode).append(" ");
@@ -123,4 +126,5 @@ public class TestBean {
 			System.out.println(out.toString());
 		}
 	}
+
 }
