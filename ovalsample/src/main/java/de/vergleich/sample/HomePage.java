@@ -24,6 +24,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import de.vergleich.sample.adapter.BeanAdapter;
 import de.vergleich.sample.bean.Bean;
 import de.vergleich.sample.validator.NameStartsWithGreatCharacterValidator;
+import de.vergleich.sample.validator.OValValidator;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -33,11 +34,12 @@ public class HomePage extends WebPage {
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
+		Bean bean = new Bean();
 		if (parameters != null) {
 			beanModel = Model.of(new BeanAdapter().adapt(parameters));
 		}
 		else {
-			beanModel = Model.of(new Bean());
+			beanModel = Model.of(bean);
 		}
 
 		Form<Void> form = new Form<Void>("form") {
@@ -55,21 +57,26 @@ public class HomePage extends WebPage {
 
 		final TextField<String> textField = new TextField<String>("name", new PropertyModel<String>(beanModel, "name"), String.class);
 		textField.setRequired(true);
-		textField.add(new NameStartsWithGreatCharacterValidator());
+		textField.add(new OValValidator(bean, "name"));
+		// textField.add(new NameStartsWithGreatCharacterValidator());
 		textField.add(createFormUpdatingBehavior());
 		form.add(textField);
+
 
 		final TextField<Double> darlehensbetrag = new TextField<Double>("darlehensbetrag", new PropertyModel<Double>(beanModel, "darlehensbetrag"), Double.class);
 		darlehensbetrag.add(createFormUpdatingBehavior());
 		form.add(darlehensbetrag);
 
+
 		final TextField<Double> immobilienwert = new TextField<Double>("immobilienwert", new PropertyModel<Double>(beanModel, "immobilienwert"), Double.class);
 		immobilienwert.add(createFormUpdatingBehavior());
 		form.add(immobilienwert);
 
+
 		final TextField<Double> monatlicheRate = new TextField<Double>("monatlicheRate", new PropertyModel<Double>(beanModel, "monatlicheRate"), Double.class);
 		monatlicheRate.add(createFormUpdatingBehavior());
 		form.add(monatlicheRate);
+
 
 		form.add(new FeedbackPanel("feedback"));
 
@@ -113,7 +120,7 @@ public class HomePage extends WebPage {
 //				}
 			}
 		};
-		form.add(multiFormValidator);
+		//!!! TOD !!! form.add(multiFormValidator);
 	}
 
 	private AjaxFormComponentUpdatingBehavior createFormUpdatingBehavior() {
