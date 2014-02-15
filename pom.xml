@@ -11,6 +11,7 @@
   <modules>
     <module>ovalsample</module>
     <module>just</module>
+    <module>visible_helper</module>
   </modules>
 
 </project>
