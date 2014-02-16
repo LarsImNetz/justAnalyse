@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 
 public class HomePage extends WebPage {
 
+	public static final String GLOBAL_BEAN = "bean";
+
 	private final static Logger logger = LoggerFactory
 			.getLogger(HomePage.class);
 
@@ -46,8 +48,8 @@ public class HomePage extends WebPage {
 		beanModel = Model.of(bean);
 
 		setDefaultModel(beanModel);
-		this.getSession().setAttribute("beanModel", beanModel);
-		this.getSession().setAttribute("bean", bean);
+		// this.getSession().setAttribute("beanModel", beanModel);
+		this.getSession().setAttribute(GLOBAL_BEAN, bean);
 
 		LabelPanel labelPanel = new LabelPanel("label");
 		labelPanel.setOutputMarkupId(true);

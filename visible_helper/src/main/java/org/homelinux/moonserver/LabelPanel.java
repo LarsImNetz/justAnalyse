@@ -54,9 +54,9 @@ public class LabelPanel extends Panel {
 //
 //			System.out.println(attribute);
 //		}
-		Object o = this.getSession().getAttribute("bean");
-		if (o instanceof Bean) {
-			Bean bean = (Bean)o;
+		Object object = this.getSession().getAttribute(HomePage.GLOBAL_BEAN);
+		if (object instanceof Bean) {
+			Bean bean = (Bean)object;
 			labelText.setObject(bean.getA());
 		}
 
