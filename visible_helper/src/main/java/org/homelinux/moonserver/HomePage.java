@@ -4,7 +4,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.event.Broadcast;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -26,7 +25,7 @@ public class HomePage extends WebPage {
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
-		// logger.debug("HomePage of DateViewer");
+		logger.debug("HomePage logger output");
 		//
 		// IModel<String> textToView = new LoadableDetachableModel<String>() {
 		//
@@ -55,7 +54,7 @@ public class HomePage extends WebPage {
 		labelPanel.setOutputMarkupId(true);
 		add(labelPanel);
 
-		add(new AjaxLink("button") {
+		add(new AjaxLink<Void>("button") {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {

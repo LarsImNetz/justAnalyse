@@ -66,7 +66,6 @@ public abstract class ShowList extends Panel {
 			try {
 				Thread.sleep(2 * 1000 / strings.length);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

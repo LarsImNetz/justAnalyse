@@ -1,11 +1,9 @@
 package de.hypoport.einarbeitung.beans;
 
 import net.sf.oval.configuration.annotation.IsInvariant;
-import net.sf.oval.constraint.AssertFieldConstraints;
 import net.sf.oval.constraint.Length;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
-import net.sf.oval.guard.Guarded;
 
 public class JustBean {
 	public JustBean() {

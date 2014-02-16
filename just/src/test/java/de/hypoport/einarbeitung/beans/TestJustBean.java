@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
-import net.sf.oval.guard.Guard;
 
 import org.junit.Assert;
 import org.junit.Before;
