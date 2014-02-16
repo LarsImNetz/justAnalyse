@@ -1,7 +1,6 @@
 package org.homelinux.moonserver.guice;
 
 import org.homelinux.moonserver.visible.ILabelVisibilityHelper;
-import org.homelinux.moonserver.visible.IVisibilityHelper;
 import org.homelinux.moonserver.visible.LabelVisibilityHelper;
 
 import com.google.inject.AbstractModule;

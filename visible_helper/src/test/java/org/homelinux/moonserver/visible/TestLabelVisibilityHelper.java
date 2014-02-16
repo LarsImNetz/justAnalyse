@@ -1,7 +1,5 @@
 package org.homelinux.moonserver.visible;
 
-import static org.junit.Assert.*;
-
 import java.io.Serializable;
 
 import org.apache.wicket.Session;

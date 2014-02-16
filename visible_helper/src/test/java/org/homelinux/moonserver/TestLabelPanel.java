@@ -2,10 +2,8 @@ package org.homelinux.moonserver;
 
 
 import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.event.Broadcast;
 import org.apache.wicket.util.tester.WicketTester;
-import org.homelinux.moonserver.bean.Bean;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
