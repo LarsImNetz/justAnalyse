@@ -12,6 +12,9 @@ public class LabelVisibilityHelper implements ILabelVisibilityHelper {
 	@Override
 	public boolean isVisible(Component component) {
 		Bean bean = getBean(component);
+		if (bean == null) {
+			return false;
+		}
 		int countWords = countWords(bean.getA());
 		if (countWords % 2 == 0) {
 			return true;
