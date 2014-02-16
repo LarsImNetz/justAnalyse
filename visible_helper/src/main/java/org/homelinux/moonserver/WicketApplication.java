@@ -7,6 +7,11 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
+import org.homelinux.moonserver.guice.VisibilityHelperModule;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import org.apache.wicket.guice.GuiceComponentInjector;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -27,14 +32,22 @@ public class WicketApplication extends WebApplication
 	/**
 	 * @see org.apache.wicket.Application#init()
 	 */
+	private transient Injector injector;
+
 	@Override
 	public void init()
 	{
 		super.init();
-
 		// add your configuration here
+
+		initializeInjector();
 	}
-	
+
+	private void initializeInjector() {
+		this.injector = Guice.createInjector(new VisibilityHelperModule());
+		getComponentInstantiationListeners().add(new GuiceComponentInjector(this, this.injector));
+	}
+
 	/**
 	 * Mal auf Deutsch einstellen
 	 */

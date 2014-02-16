@@ -1,18 +1,25 @@
 package org.homelinux.moonserver;
 
 
+import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.event.Broadcast;
 import org.apache.wicket.util.tester.WicketTester;
+import org.homelinux.moonserver.bean.Bean;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class TestLabelPanel {
 
+	
 	WicketTester tester;
 
 	@Before
 	public void before() {
-		tester = new WicketTester();
+		WicketApplication wicketApplication = new WicketApplication();
+		tester = new WicketTester(wicketApplication);
 	}
 
 	@Test
@@ -24,23 +31,18 @@ public class TestLabelPanel {
 	@Test
 	public void testLabelComponent() {
 		LabelPanel component = tester.startComponentInPage(new LabelPanel("panel"));
-		// component.labelText
 		Assert.assertEquals("leer", component.labelText.getObject());
 	}
-	
+
 	@Test
-	public void testCountWords() {
-		int count = LabelPanel.countWords(null);
-		Assert.assertEquals(0, count);
+	public void testButtonPressed() {
+		SimplePayload payloadMock = Mockito.mock(SimplePayload.class);
+		LabelPanel component = tester.startComponentInPage(new LabelPanel("panel"));
 
-		count = LabelPanel.countWords("");
-		Assert.assertEquals(0, count);
-
-		count = LabelPanel.countWords("one");
-		Assert.assertEquals(1, count);
-
-		count = LabelPanel.countWords("one two");
-		Assert.assertEquals(2, count);
+		// press button simulation
+		component.getPage().send(component, Broadcast.DEPTH, payloadMock);
+		
+		Mockito.verify(payloadMock, Mockito.atLeastOnce()).update(Mockito.any(Component.class));
 	}
 
 }

@@ -9,39 +9,42 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
+import org.homelinux.moonserver.bean.Bean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class HomePage extends WebPage {
 
-	private final static Logger logger = LoggerFactory.getLogger(HomePage.class);
+	private final static Logger logger = LoggerFactory
+			.getLogger(HomePage.class);
 
 	IModel<Bean> beanModel;
-	
+
 	@SuppressWarnings("serial")
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
-//		logger.debug("HomePage of DateViewer");
-//
-//		IModel<String> textToView = new LoadableDetachableModel<String>() {
-//
-//			@Override
-//			protected String load() {
-//				final String textToString = "Heute ist " + new Date();
-//				logger.debug("Zu zeigender Text: " + textToString);
-//				return textToString;
-//			}
-//
-//		};
+		// logger.debug("HomePage of DateViewer");
+		//
+		// IModel<String> textToView = new LoadableDetachableModel<String>() {
+		//
+		// @Override
+		// protected String load() {
+		// final String textToString = "Heute ist " + new Date();
+		// logger.debug("Zu zeigender Text: " + textToString);
+		// return textToString;
+		// }
+		//
+		// };
 
-		StringValue value = parameters.get("a");
-	
-		Bean bean = new Bean();
-		bean.setA(value.toString());
-		
+		final StringValue value = parameters.get("a");
+
+		final Bean bean = new Bean();
+		final String string = value.toString();
+		bean.setA(string);
+
 		beanModel = Model.of(bean);
-		
+
 		setDefaultModel(beanModel);
 		this.getSession().setAttribute("beanModel", beanModel);
 		this.getSession().setAttribute("bean", bean);
@@ -49,26 +52,31 @@ public class HomePage extends WebPage {
 		LabelPanel labelPanel = new LabelPanel("label");
 		labelPanel.setOutputMarkupId(true);
 		add(labelPanel);
-		
+
 		add(new AjaxLink("button") {
 
 			@Override
 			public void onClick(AjaxRequestTarget target) {
+				if (beanModel.getObject() == null) {
+					beanModel = Model.of(new Bean());
+					beanModel.getObject().setA("hä");
+				}
 				String a = beanModel.getObject().getA();
-				if ("button pressed".equals(a)) {
+				if (a == null) {
+					a = "leer";
+				} else if ("button pressed".equals(a)) {
 					a = "button pressed again";
-				}
-				else if (a.startsWith("button pressed again")) {
+				} else if (a.startsWith("button pressed again")) {
 					a = a + " again";
-				}
-				else {
+				} else {
 					a = "button pressed";
 				}
 				beanModel.getObject().setA(a);
-				this.getPage().send(getPage(), Broadcast.DEPTH, new SimplePayload(target));
+				this.getPage().send(getPage(), Broadcast.DEPTH,
+						new SimplePayload(target));
 				target.add(this);
 			}
-			
+
 		});
 	}
 }

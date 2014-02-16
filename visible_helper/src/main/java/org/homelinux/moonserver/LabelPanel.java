@@ -1,25 +1,29 @@
 package org.homelinux.moonserver;
 
-import java.util.List;
-import java.util.StringTokenizer;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.homelinux.moonserver.bean.Bean;
+import org.homelinux.moonserver.visible.ILabelVisibilityHelper;
+
+import com.google.inject.Inject;
 
 public class LabelPanel extends Panel {
 
 	IModel<String> labelText;
 	Component label2;
+
+	@Inject
+	private ILabelVisibilityHelper labelVisibilityHelper;
 	
 	public LabelPanel(String id) {
 		super(id);
 		
 		labelText = new Model<String>();
+		labelText.setObject("leer");
 		
 		final Label label = new Label("label", labelText);
 		label.setOutputMarkupId(true);
@@ -43,8 +47,6 @@ public class LabelPanel extends Panel {
 	@Override
 	protected void onConfigure() {
 		super.onConfigure();
-
-		labelText.setObject("leer");
 //		
 //		List<String> attributes = this.getSession().getAttributeNames();
 //		System.out.println("Attributes: ");
@@ -58,39 +60,7 @@ public class LabelPanel extends Panel {
 			labelText.setObject(bean.getA());
 		}
 
-		label2.setVisibilityAllowed(isLabel2Visible(this));
+		label2.setVisibilityAllowed(labelVisibilityHelper.isVisible(this));
 	}
 
-	private boolean isLabel2Visible(Component labelPanel) {
-		Object o = labelPanel.getSession().getAttribute("bean");
-		if (o instanceof Bean) {
-			Bean bean = (Bean)o;
-			int countWords = countWords(bean.getA());
-			if(countWords % 2 == 0) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	protected static int countWords(String a) {
-		if (a == null) {
-			return 0;
-		}
-		StringTokenizer token = new StringTokenizer(a, " ");
-		int count = token.countTokens();
-		return count;
-	}
-
-	
-	
-//	private IModel<String> createLabel() {
-//		return new AbstractReadOnlyModel<String>() {
-//
-//			@Override
-//			public String getObject() {
-//				return "leer";
-//			}
-//		};
-//	}
 }

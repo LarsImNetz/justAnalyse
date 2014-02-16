@@ -1,4 +1,4 @@
-package org.homelinux.moonserver;
+package org.homelinux.moonserver.bean;
 
 import java.io.Serializable;
 
