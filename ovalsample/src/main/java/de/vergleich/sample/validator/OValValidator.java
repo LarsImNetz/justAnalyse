@@ -2,17 +2,12 @@ package de.vergleich.sample.validator;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import net.sf.oval.configuration.annotation.AnnotationCheck;
 import net.sf.oval.configuration.annotation.Constraint;
-import net.sf.oval.constraint.Length;
-import net.sf.oval.constraint.MatchPattern;
 
 import org.apache.wicket.validation.IValidatable;
 import org.apache.wicket.validation.IValidator;
-import org.apache.wicket.validation.ValidationError;
 
 public class OValValidator implements IValidator<String> {
 
@@ -78,10 +73,8 @@ public class OValValidator implements IValidator<String> {
 
 			}
 		} catch (NoSuchFieldException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SecurityException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}

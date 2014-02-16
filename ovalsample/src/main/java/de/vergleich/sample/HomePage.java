@@ -23,7 +23,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import de.vergleich.sample.adapter.BeanAdapter;
 import de.vergleich.sample.bean.Bean;
-import de.vergleich.sample.validator.NameStartsWithGreatCharacterValidator;
 import de.vergleich.sample.validator.OValValidator;
 
 public class HomePage extends WebPage {

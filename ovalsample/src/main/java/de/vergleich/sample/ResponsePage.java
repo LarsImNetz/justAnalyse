@@ -1,14 +1,12 @@
 package de.vergleich.sample;
 
 import org.apache.wicket.Page;
-import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.string.StringValue;
 
 import de.vergleich.sample.adapter.BeanAdapter;
 import de.vergleich.sample.bean.Bean;

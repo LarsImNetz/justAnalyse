@@ -1,7 +1,5 @@
 package de.vergleich.sample.bean;
 
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.oval.ConstraintViolation;
@@ -10,9 +8,6 @@ import net.sf.oval.Validator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Map.Entry;
-import java.util.AbstractMap.SimpleEntry;
 
 public class TestBean {
 
