@@ -60,7 +60,7 @@ public class LabelPanel extends Panel {
 			labelText.setObject(bean.getA());
 		}
 
-		label2.setVisibilityAllowed(labelVisibilityHelper.isVisible(this));
+		label2.setVisibilityAllowed(labelVisibilityHelper.isVisible());
 	}
 
 }

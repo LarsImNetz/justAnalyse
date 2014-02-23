@@ -10,8 +10,8 @@ import org.homelinux.moonserver.bean.Bean;
 public class LabelVisibilityHelper implements ILabelVisibilityHelper {
 
 	@Override
-	public boolean isVisible(Component component) {
-		Bean bean = getBean(component);
+	public boolean isVisible() {
+		Bean bean = getBean();
 		if (bean == null) {
 			return false;
 		}
@@ -22,11 +22,11 @@ public class LabelVisibilityHelper implements ILabelVisibilityHelper {
 		return false;
 	}
 
-	public Bean getBean(Component component) {
-		if (component == null) {
-			throw new IllegalArgumentException("Componente nicht gegeben.");
-		}
-		Session session = component.getSession();
+	public Bean getBean(/*Component component*/) {
+//		if (component == null) {
+//			throw new IllegalArgumentException("Componente nicht gegeben.");
+//		}
+		Session session = Session.get(); // component.getSession();
 		if (session == null) {
 			throw new IllegalArgumentException("Session nicht gegeben.");
 		}
