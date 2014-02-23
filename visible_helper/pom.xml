@@ -77,7 +77,7 @@
 			<artifactId>mockito-all</artifactId>
 			<version>${mockito.version}</version>
 		</dependency>
-		
+
 		<!-- Guice -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
