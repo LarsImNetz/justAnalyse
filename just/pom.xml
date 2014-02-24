@@ -79,12 +79,20 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+
+
+
 		<!-- OVal Validation Framework -->
 		<dependency>
 			<groupId>net.sf.oval</groupId>
 			<artifactId>oval</artifactId>
 			<version>1.84</version>
 		</dependency>
+
+
+
+
 
 		<!-- Guice -->
 		<dependency>
