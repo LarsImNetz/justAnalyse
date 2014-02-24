@@ -12,6 +12,7 @@
     <module>ovalsample</module>
     <module>just</module>
     <module>visible_helper</module>
+    <module>ajaxsample</module>
   </modules>
 
 </project>

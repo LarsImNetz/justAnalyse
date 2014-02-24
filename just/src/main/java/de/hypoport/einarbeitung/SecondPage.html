@@ -1,48 +1,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+	xml:lang="en" lang="en">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-			<title>LLA just Analyzer</title>
-		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-	</head>
+	<title>LLA just Analyzer</title>
+	<link
+		href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+		rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+		title="Stylesheet" />
+</head>
 <style>
-.tableborder  {
+.tableborder {
 	border-width: 1px;
-	border-style:solid;
-	border-radius:0 15px 0 15px;
-	border-color:black;
-	padding:10px;
-	margin-bottom:10px;
+	border-style: solid;
+	border-radius: 0 15px 0 15px;
+	border-color: black;
+	padding: 10px;
+	margin-bottom: 10px;
 }
+
 .cellborder {
 	border-width: 1px;
-	border-style:solid;
-	border-radius:10px 0 10px 0;
-	border-color:red;
+	border-style: solid;
+	border-radius: 10px 0 10px 0;
+	border-color: red;
 	padding: 5px;
 	background-color: #fee;
 }
-
 </style>
 <body>
 
-<form wicket:id="form">
-	<table class="tableborder">
-		<tr>
-			<td>Label:</td>
-			<td  class="cellborder" wicket:id="label"></td>
-		</tr>
-	</table>
+	<form wicket:id="form">
+		<table class="tableborder">
+			<tr>
+				<td>Label:</td>
+				<td class="cellborder" wicket:id="label"></td>
+			</tr>
+		</table>
 
-	<!--  <button wicket:id="doNothing">Klick hier für neues Datum</button>  -->
+		<!--  <button wicket:id="doNothing">Klick hier für neues Datum</button>  -->
 
-	<input type="submit" wicket:id="button" value="Homepage"/>
-</form>
+		<input type="submit" wicket:id="button" value="Homepage" />
+	</form>
 
-<div wicket:id="list"></div>
-<button wicket:id="showlist">drücken um Liste zu füllen</button>
+	<div wicket:id="list"></div>
+	<button wicket:id="showlist">drücken um Liste zu füllen</button>
 
 </body>
 </html>

@@ -43,13 +43,13 @@ public class TestHomePage {
 		Component component = tester.getComponentFromLastRenderedPage("button");
 		Assert.assertNotNull(component);
 
-		Bean bean = visibilityHelper.getBean(component);
+		Bean bean = visibilityHelper.getBean();
 		Assert.assertNotNull(bean);
 		Assert.assertNull(bean.getA());
 
 		tester.executeAjaxEvent(component, "click");
 
-		Bean bean2 = visibilityHelper.getBean(component);
+		Bean bean2 = visibilityHelper.getBean();
 		Assert.assertEquals("leer", bean2.getA());
 
 		Assert.assertSame(bean,  bean2);

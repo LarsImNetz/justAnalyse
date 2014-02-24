@@ -15,10 +15,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.homelinux.moonserver</groupId>
-	<artifactId>justAnalyse</artifactId>
+	<artifactId>ajaxsample</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>Ein paar Simple Analysen</name>
+	<name>Ajax Sample</name>
 	<description></description>
 	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
 	<licenses>
@@ -29,11 +29,14 @@
 		</license>
 	</licenses>
 	<properties>
-		<wicket.version>6.12.0</wicket.version>
-		<jetty.version>7.6.9.v20130131</jetty.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+		<wicket.version>6.13.0</wicket.version>
+		<jetty.version>7.6.3.v20120416</jetty.version>
+		<mockito.version>1.9.5</mockito.version>
 
+		<!-- Project settings -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 	<dependencies>
 		<!-- WICKET DEPENDENCIES -->
 		<dependency>
@@ -41,13 +44,10 @@
 			<artifactId>wicket-core</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
-		<!-- OPTIONAL DEPENDENCY <dependency> <groupId>org.apache.wicket</groupId> 
-			<artifactId>wicket-extensions</artifactId> <version>${wicket.version}</version> 
-			</dependency> -->
-
+		<!-- OPTIONAL DEPENDENCY -->
 		<dependency>
-			<groupId>com.googlecode.wicket-jquery-ui</groupId>
-			<artifactId>wicket-jquery-ui</artifactId>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-extensions</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
 
@@ -71,6 +71,32 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Mockito -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+		</dependency>
+
+		<!-- Guice -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-guice</artifactId>
+			<version>${wicket.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>3.0</version>
+		</dependency>
+
 		<!-- JETTY DEPENDENCIES FOR TESTING -->
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
@@ -78,33 +104,9 @@
 			<version>${jetty.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
-
-
-
-
-		<!-- OVal Validation Framework -->
-		<dependency>
-			<groupId>net.sf.oval</groupId>
-			<artifactId>oval</artifactId>
-			<version>1.84</version>
-		</dependency>
-
-
-
-
-
-		<!-- Guice -->
-		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<version>3.0</version>
-		</dependency>
-
-
 	</dependencies>
 	<build>
-		<finalName>just</finalName>
+		<finalName>ajaxsample</finalName>
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -170,6 +172,26 @@
 						</connector>
 					</connectors>
 				</configuration>
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <id>start-jetty</id> -->
+				<!-- <phase>pre-integration-test</phase> -->
+				<!-- <goals> -->
+				<!-- <goal>run</goal> -->
+				<!-- </goals> -->
+				<!-- <configuration> -->
+				<!-- <scanIntervalSeconds>0</scanIntervalSeconds> -->
+				<!-- <daemon>false</daemon> -->
+				<!-- </configuration> -->
+				<!-- </execution> -->
+				<!-- <execution> -->
+				<!-- <id>stop-jetty</id> -->
+				<!-- <phase>post-integration-test</phase> -->
+				<!-- <goals> -->
+				<!-- <goal>stop</goal> -->
+				<!-- </goals> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
