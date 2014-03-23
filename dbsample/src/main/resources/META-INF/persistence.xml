@@ -9,7 +9,7 @@
 		<!-- Wird hier ein Entity eingetragen MUSS unbedingt: -->
 		<!-- mvn clean install -->
 		<!-- ausgeführt werden, sonst werden die Sourcen nicht generiert -->
-		<class>de.vergleich.baugeld.komas.persistence.BaugeldZinsHistoryEntity</class>
+                <class>org.linuxx.moonserver.db.persistence.TryEntity</class>
 		 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver" />
