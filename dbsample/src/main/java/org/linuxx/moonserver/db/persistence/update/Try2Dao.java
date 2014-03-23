@@ -1,4 +1,4 @@
-package org.linuxx.moonserver.db.persistence;
+package org.linuxx.moonserver.db.persistence.update;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -12,19 +12,19 @@ import org.slf4j.Logger;
 
 import com.google.inject.Inject;
 
-public class TryDao implements ITryDao {
+public class Try2Dao implements ITry2Dao {
 
-	private static Logger LOGGER = org.slf4j.LoggerFactory.getLogger(TryDao.class);
+	private static Logger LOGGER = org.slf4j.LoggerFactory.getLogger(Try2Dao.class);
 	@Inject
 	private EntityManager em;
 
 	@Override
-	public TryEntity fetch(Integer id) {
+	public Try2Entity fetch(Integer id) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-		CriteriaQuery<TryEntity> query = criteriaBuilder.createQuery(TryEntity.class);
+		CriteriaQuery<Try2Entity> query = criteriaBuilder.createQuery(Try2Entity.class);
 
-		Root<TryEntity> table = query.from(TryEntity.class);
-		Path<Integer> column = table.get(TryEntity_.id);
+		Root<Try2Entity> table = query.from(Try2Entity.class);
+		Path<Integer> column = table.get(Try2Entity_.id);
 
 		Predicate criteria = criteriaBuilder.equal(column, id);
 		query.where(criteria);
@@ -40,7 +40,7 @@ public class TryDao implements ITryDao {
 	
 	}
 
-	public void save(final TryEntity entity) {
+	public void save(final Try2Entity entity) {
 		em.getTransaction().begin();
 		em.persist(entity);
 		em.getTransaction().commit();

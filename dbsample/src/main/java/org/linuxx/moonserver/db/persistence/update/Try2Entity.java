@@ -1,4 +1,4 @@
-package org.linuxx.moonserver.db.persistence;
+package org.linuxx.moonserver.db.persistence.update;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Try")
 // @Cacheable(false)
-public class TryEntity {
+public class Try2Entity {
 
 	@Id
 	// @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,8 @@ public class TryEntity {
 	@Column(name="name", nullable = false, length = 255)
 	private String name;
 
-	@Column(name="vorname", nullable = true, length = 255)
-	private String vorname;
+//	@Column(name="vorname", nullable = true, length = 255)
+//	private String vorname;
 	
 	
 
@@ -30,6 +30,7 @@ public class TryEntity {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 
 	public String getName() {
 		return name;
@@ -55,19 +56,19 @@ public class TryEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TryEntity other = (TryEntity) obj;
+		Try2Entity other = (Try2Entity) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
 
-	public String getVorname() {
-		return vorname;
-	}
-
-	public void setVorname(String vorname) {
-		this.vorname = vorname;
-	}
+//	public String getVorname() {
+//		return vorname;
+//	}
+//
+//	public void setVorname(String vorname) {
+//		this.vorname = vorname;
+//	}
 
 	
 }

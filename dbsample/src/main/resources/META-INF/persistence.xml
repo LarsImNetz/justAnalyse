@@ -9,8 +9,9 @@
 		<!-- Wird hier ein Entity eingetragen MUSS unbedingt: -->
 		<!-- mvn clean install -->
 		<!-- ausgeführt werden, sonst werden die Sourcen nicht generiert -->
-                <class>org.linuxx.moonserver.db.persistence.TryEntity</class>
-		 
+		<class>org.linuxx.moonserver.db.persistence.TryEntity</class>
+		<class>org.linuxx.moonserver.db.persistence.update.Try2Entity</class>
+
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="net.sourceforge.jtds.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
