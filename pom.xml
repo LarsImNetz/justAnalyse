@@ -13,6 +13,7 @@
     <module>just</module>
     <module>visible_helper</module>
     <module>ajaxsample</module>
+    <module>dbsample</module>
   </modules>
 
 </project>
