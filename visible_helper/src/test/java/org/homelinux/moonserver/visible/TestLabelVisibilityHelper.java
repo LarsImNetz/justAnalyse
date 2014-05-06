@@ -54,7 +54,7 @@ public class TestLabelVisibilityHelper {
 		if (attribute instanceof Bean) {
 			Bean bean = (Bean)attribute;
 			String a = bean.getA();
-			Assert.assertEquals("ein Label", a);			
+			Assert.assertEquals("ein Label", a);
 		}
 		else {
 			Assert.fail("attribute ist kein Bean, sollte es aber sein");
