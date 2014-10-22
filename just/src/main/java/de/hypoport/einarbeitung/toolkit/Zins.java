@@ -8,6 +8,10 @@ public class Zins {
 		this.zins = zins;		
 	}
 	
+	public double getZins() {
+		return zins;
+	}
+	
 	public static Zins valueOf(double zins) {
 		return new Zins(zins);
 	}
