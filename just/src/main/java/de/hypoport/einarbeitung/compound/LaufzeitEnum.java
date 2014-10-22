@@ -1,4 +1,4 @@
-package de.vergleich.toolkit.type.enumeration;
+package de.hypoport.einarbeitung.compound;
 
 public enum LaufzeitEnum {
 	FUENF_JAHRE(5),

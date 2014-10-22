@@ -1,7 +1,6 @@
-package de.vergleich.baushup;
+package de.hypoport.einarbeitung.compound;
 
-import de.vergleich.toolkit.type.enumeration.LaufzeitEnum;
-import de.vergleich.toolkit.type.enumeration.TilgungEnum;
+
 
 public class CompoundKey {
 

@@ -1,6 +1,7 @@
-package de.vergleich.toolkit.type.enumeration;
+package de.hypoport.einarbeitung.compound;
 
-import de.vergleich.toolkit.type.Zins;
+import de.hypoport.einarbeitung.toolkit.Zins;
+
 
 public enum TilgungEnum {
 	EIN_PROZENT(1),

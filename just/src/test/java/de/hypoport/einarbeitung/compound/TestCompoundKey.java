@@ -1,4 +1,4 @@
-package de.vergleich.baushup;
+package de.hypoport.einarbeitung.compound;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,8 +8,6 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.vergleich.toolkit.type.enumeration.LaufzeitEnum;
-import de.vergleich.toolkit.type.enumeration.TilgungEnum;
 
 public class TestCompoundKey {
 
