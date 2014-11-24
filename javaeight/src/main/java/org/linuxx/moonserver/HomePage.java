@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 public class HomePage extends WebPage {
 
-	private final static Logger logger = LoggerFactory.getLogger(HomePage.class);
+	// private final static Logger logger = LoggerFactory.getLogger(HomePage.class);
 
 	@SuppressWarnings("serial")
 	public HomePage(final PageParameters parameters) {

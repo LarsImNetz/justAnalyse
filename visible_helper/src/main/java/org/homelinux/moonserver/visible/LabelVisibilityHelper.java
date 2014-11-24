@@ -2,7 +2,6 @@ package org.homelinux.moonserver.visible;
 
 import java.util.StringTokenizer;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.Session;
 import org.homelinux.moonserver.HomePage;
 import org.homelinux.moonserver.bean.Bean;

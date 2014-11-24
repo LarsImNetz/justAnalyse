@@ -29,7 +29,7 @@ public class WicketApplication extends WebApplication
 	/**
 	 * @see org.apache.wicket.Application#init()
 	 */
-	private transient Injector injector;
+//	private transient Injector injector;
 
 	@Override
 	public void init()
