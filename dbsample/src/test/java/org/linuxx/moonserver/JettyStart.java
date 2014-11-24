@@ -10,7 +10,10 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 public class JettyStart {
     public static void main(String[] args) throws Exception {
-        int timeout = (int) Duration.ONE_HOUR.getMilliseconds();
+    }
+
+    private void serverstart(String[] args) throws Exception {
+    	int timeout = (int) Duration.ONE_HOUR.getMilliseconds();
 
         Server server = new Server();
         SocketConnector connector = new SocketConnector();
