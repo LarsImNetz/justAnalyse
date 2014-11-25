@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Mon Nov 24 08:45:01 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0149-e0c2-c69c-000007dfabf0 
-on database directory memory:C:\develop\github\justAnalyse\dbsample\test-jpa with class loader sun.misc.Launcher$AppClassLoader@2677622b 
-Loaded from file:/C:/Users/lars.langhans/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+Tue Nov 25 18:09:07 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0149-e7ed-9380-0000020fc618 
+on database directory memory:/home/langha_l/develop/justAnalyse/dbsample/test-jpa with class loader sun.misc.Launcher$AppClassLoader@14481bb 
+Loaded from file:/home/langha_l/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_11-b21
-user.dir=c:\develop\github\justAnalyse\dbsample
-os.name=Windows 7
-os.arch=amd64
-os.version=6.1
+java.runtime.version=1.7.0_45-b18
+user.dir=/home/langha_l/develop/justAnalyse/dbsample
+os.name=Linux
+os.arch=i386
+os.version=3.16.7
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

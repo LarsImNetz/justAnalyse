@@ -20,10 +20,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.linuxx.moonserver</groupId>
+    <artifactId>configPom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../configPom/pom.xml</relativePath>
+  </parent>  
 
   <groupId>org.linuxx.moonserver</groupId>
-  <packaging>war</packaging>
+  <artifactId>javaeight</artifactId>
   <version>1.0.0</version>
+
+  <name>First Java 8 Tests</name>
+  <packaging>war</packaging>
   <description></description>
   <!--
       <organization>
@@ -38,11 +47,7 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  <properties>
-    <wicket.version>6.14.0</wicket.version>
-    <jetty.version>7.6.3.v20120416</jetty.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+
   <dependencies>
     <!--  WICKET DEPENDENCIES -->
     <dependency>
@@ -62,19 +67,19 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.6.4</version>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.16</version>
+      <version>${log4j.version}</version>
     </dependency>
 
     <!--  JUNIT DEPENDENCY FOR TESTING -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -86,6 +91,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+
   <build>
     <finalName>urlchecker</finalName>
     <resources>
@@ -125,7 +131,7 @@
         <inherited>true</inherited>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <version>${compiler-plugin.version}</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -185,18 +191,4 @@
     </plugins>
   </build>
 
-  <repositories>
-    <repository>
-      <id>Apache Nexus</id>
-      <url>https://repository.apache.org/content/repositories/snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-  <artifactId>javaeight</artifactId>
-  <name>First Java 8 Tests</name>
 </project>
