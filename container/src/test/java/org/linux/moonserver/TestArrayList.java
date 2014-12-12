@@ -29,4 +29,10 @@ public class TestArrayList {
 		String first = list.get(0);
 		Assert.assertEquals("a", first);
 	}
+	
+	@Test
+	public void testMoreSize() throws Exception {
+		list.add("d");
+		Assert.assertEquals(4, list.size());
+	}
 }
