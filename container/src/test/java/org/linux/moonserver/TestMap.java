@@ -41,6 +41,15 @@ public class TestMap {
 	}
 
 	@Test
+    public void testOnlyOneKey() throws Exception {
+		// wir überschreiben den Key "1"
+		map.put("1", "auch eins");
+	    
+		String value = map.get("1");
+		Assert.assertEquals("auch eins", value);
+    }
+	
+	@Test
 	public void testAccessForeachValues() throws Exception {
 		String values = "";
 		for (String value : map.values()) {
