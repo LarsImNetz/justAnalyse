@@ -21,6 +21,8 @@
     <module>ovalsample</module>
     <module>rest</module>
     <module>visible_helper</module>
+    <module>jquery</module>
+    <module>javaseven</module>
   </modules>
 
 </project>
