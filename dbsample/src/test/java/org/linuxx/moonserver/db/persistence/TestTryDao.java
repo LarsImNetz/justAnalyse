@@ -2,8 +2,7 @@ package org.linuxx.moonserver.db.persistence;
 
 import javax.persistence.EntityManager;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.linuxx.moonserver.db.persistence.guice.provider.EntityManagerTestProvider;
