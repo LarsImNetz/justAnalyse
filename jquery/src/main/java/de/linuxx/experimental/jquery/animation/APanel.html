@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<wicket:panel>
+<p>Beim Druck auf den entsprechenden Button wird Text eingeblendet oder ausgeblendet.</p>
+<form wicket:id="form">
+<button wicket:id="an">An</button>
+<button wicket:id="aus">Aus</button>
+</form>
+<hr/>
+
+<div wicket:id="entryContainer">
+	<div wicket:id="label"></div>
+</div>
+
+<hr/>
+<span class="labber-font labber-color" wicket:id="label"></span>
+<span class="value-font value-color" wicket:id="value"></span>
+
+</wicket:panel>
+</body>
+</html>

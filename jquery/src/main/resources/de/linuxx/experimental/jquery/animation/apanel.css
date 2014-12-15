@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.labber-color {
+	color: black;
+	background-color: white;
+}
+.labber-font {
+	font-size: 20px;
+	font-weight: bolder;
+}
+

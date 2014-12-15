@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.labber-color {
+	color: red;
+	background-color: yellow;
+}
+.labber-font {
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+
+.value-color {
+	color: green;
+	background-color: black;
+}
+.value-font {
+	font-size: 36px;
+	font-weight: bolder;
+}
+
