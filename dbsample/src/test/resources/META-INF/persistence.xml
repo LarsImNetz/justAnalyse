@@ -21,7 +21,7 @@
 			<property name="eclipselink.debug" value="ALL" />
 			<property name="eclipselink.weaving" value="static" />
 			<property name="eclipselink.logging.level" value="WARNING" />
-			<property name="eclipselink.logging.level.sql" value="FINE" />
+			<property name="eclipselink.logging.level.sql" value="WARNING" /> <!-- FINE -->
 			<property name="eclipselink.logging.parameters" value="true"/>
 			<property name="eclipselink.logging.level.cache" value="WARNING" />
 		</properties>
