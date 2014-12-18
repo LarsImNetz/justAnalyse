@@ -27,8 +27,7 @@ public class TestTryDao {
 		injector.injectMembers(dao);
 
 		dao2 = injector.getInstance(Try2Dao.class);
-		
-		// dao.fetch(1);
+
 		TryEntity entity = new TryEntity();
 		entity.setId(0);
 		entity.setName("testname");
@@ -47,7 +46,7 @@ public class TestTryDao {
 		entity.setId(1);
 		entity.setName("zweiter Name");
 		dao2.save(entity);
-		
+
 		Try2Entity entity2 = dao2.fetch(1);
 		entity2.setName("geändert");
 		dao2.save(entity2);
@@ -56,11 +55,11 @@ public class TestTryDao {
 		Assert.assertEquals("geändert", entity3.getName());
 
 	}
+
 	private static class TryDaoTestModule extends AbstractModule {
 
 		@Override
 		protected void configure() {
-			// TODO Auto-generated method stub
 			bind(EntityManager.class).toProvider(EntityManagerTestProvider.class);
 
 			bind(ITryDao.class).to(TryDao.class);
