@@ -20,15 +20,15 @@
     <relativePath>../configPom/pom.xml</relativePath>
   </parent>
   
-
-	<groupId>org.homelinux.moonserver</groupId>
-	<artifactId>Container</artifactId>
-	<packaging>jar</packaging>
-	<version>1.0.0</version>
-	<name>Ein paar Simple Analysen</name>
-	<description></description>
-	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
-	<licenses>
+  <groupId>org.homelinux.moonserver</groupId>
+  <artifactId>Container</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.0</version>
+  <!-- ".maximale laenge des names...................." -->
+  <name>Ein paar Simple Container Analysen</name>
+  <description></description>
+  <!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
+  <licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>

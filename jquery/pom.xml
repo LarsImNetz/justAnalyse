@@ -25,7 +25,8 @@
 	<artifactId>jquery</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>Ein paar Simple Analysen</name>
+        <!-- ".maximale laenge des names...................." -->
+	<name>Ein paar Simple jQuery Analysen</name>
 	<description></description>
 	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
 	<licenses>
