@@ -37,6 +37,7 @@ public class TestTrySqlDao {
 	}
 
 	public static void createDBContent() {
+		dao.deleteAll();
 		dao.insertInto(1, "Skywalker", "Luke");
 		dao.insertInto(2, "Skywalker", "Anakin");
 		dao.insertInto(3, "Solo", "Han");

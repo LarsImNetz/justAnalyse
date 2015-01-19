@@ -40,4 +40,14 @@ public class TrySqlDao {
 
 		em.getTransaction().commit();
 	}
+
+	public void deleteAll() {
+		em.getTransaction().begin();
+
+		String sql = "DELETE FROM Try";
+		Query query = em.createNativeQuery(sql);
+		query.executeUpdate();
+
+		em.getTransaction().commit();
+	}
 }
