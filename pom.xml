@@ -14,7 +14,6 @@
   <modules>
     <module>ajaxsample</module>
     <module>container</module>
-    <module>dbsample</module>
 <!--    <module>html5tests</module> -->
     <module>javaapplicationsample</module>
     <module>just</module>
@@ -23,6 +22,9 @@
     <module>visible_helper</module>
     <module>jquery</module>
     <module>javaseven</module>
+    <module>pattern</module>
+    <module>miscellaneous</module>
+    <module>dbsample</module>
   </modules>
 
 </project>
