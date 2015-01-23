@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8">
+</head>
+<body ng-init="r=255; g=0; b=123; a=0.7">
+        R:<input type="range" name="color_r" min="0" max="255" step="1" ng-model="r"><span>:{{r}}</span><br>
+        G:<input type="range" name="color_r" min="0" max="255" step="1" ng-model="g"><span>:{{g}}</span><br>
+        B:<input type="range" name="color_r" min="0" max="255" step="1" ng-model="b"><span>:{{b}}</span><br>
+        A:<input type="range" name="color_r" min="0" max="255" step="1" ng-model="a"><span>:{{a}}</span>
+
+    <h1>Hello {{yourName}}!</h1>
+        
+    <div style="width:300px; height: 100px; background-color: rgba({{r}}, {{g}}, {{b}}, {{a}} );">
+        
+    </div>
+
+        <script src="/apps/LLAAngularAnalyse/bower_components/lodash/dist/lodash.min.js"></script>
+        <script src="/apps/LLAAngularAnalyse/bower_components/angular/angular.min.js"></script>
+        <script src="/apps/LLAAngularAnalyse/bower_components/angular-i18n/angular-locale_de-de.js"></script>
+
+    </script>
+    </body>
+</html>
