@@ -1,7 +1,9 @@
 package org.linuxx.moonserver.db.persistence;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,9 +21,11 @@ public class TestTryDao {
 	private static TryDao dao;
 	private static Try2Dao dao2;
 
+	private static Injector injector;
+
 	@BeforeClass
 	public static void beforeClass() {
-		Injector injector = Guice.createInjector(new TryDaoTestModule());
+		injector = Guice.createInjector(new TryDaoTestModule());
 
 		dao = new TryDao();
 		injector.injectMembers(dao);
@@ -32,6 +36,12 @@ public class TestTryDao {
 		entity.setId(0);
 		entity.setName("testname");
 		dao.save(entity);
+	}
+
+	@AfterClass
+	public static void cleanUpAfterClass() {
+		injector.getInstance(EntityManager.class).close();
+		injector.getInstance(EntityManagerFactory.class).close();
 	}
 
 	@Test

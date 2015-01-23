@@ -36,8 +36,14 @@ public class TestTrySqlDao {
 		createDBContent();
 	}
 
+	// @AfterClass
+	// public static void cleanUpAfterClass() {
+	// injector.getInstance(EntityManager.class).close();
+	// injector.getInstance(EntityManagerFactory.class).close();
+	// }
+
 	public static void createDBContent() {
-		dao.deleteAll();
+		// dao.deleteAll();
 		dao.insertInto(1, "Skywalker", "Luke");
 		dao.insertInto(2, "Skywalker", "Anakin");
 		dao.insertInto(3, "Solo", "Han");
