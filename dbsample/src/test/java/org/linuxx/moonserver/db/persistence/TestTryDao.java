@@ -40,8 +40,10 @@ public class TestTryDao {
 
 	@AfterClass
 	public static void cleanUpAfterClass() {
-		injector.getInstance(EntityManager.class).close();
-		injector.getInstance(EntityManagerFactory.class).close();
+		EntityManager em = injector.getInstance(EntityManager.class);
+		EntityManagerFactory factory = em.getEntityManagerFactory();
+		em.close();
+		factory.close();
 	}
 
 	@Test
@@ -71,7 +73,7 @@ public class TestTryDao {
 		@Override
 		protected void configure() {
 			bind(EntityManager.class).toProvider(EntityManagerTestProvider.class);
-
+			
 			bind(ITryDao.class).to(TryDao.class);
 
 			bind(ITry2Dao.class).to(Try2Dao.class);

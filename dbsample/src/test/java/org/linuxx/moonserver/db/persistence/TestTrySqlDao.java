@@ -3,7 +3,9 @@ package org.linuxx.moonserver.db.persistence;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,11 +38,13 @@ public class TestTrySqlDao {
 		createDBContent();
 	}
 
-	// @AfterClass
-	// public static void cleanUpAfterClass() {
-	// injector.getInstance(EntityManager.class).close();
-	// injector.getInstance(EntityManagerFactory.class).close();
-	// }
+	@AfterClass
+	public static void cleanUpAfterClass() {
+		final EntityManager em = injector.getInstance(EntityManager.class);
+		final EntityManagerFactory factory = em.getEntityManagerFactory();
+		em.close();
+		factory.close();
+	}
 
 	public static void createDBContent() {
 		// dao.deleteAll();
