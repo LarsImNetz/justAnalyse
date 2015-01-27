@@ -1,6 +1,7 @@
 package org.linuxx.moonserver.db.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,9 +42,25 @@ public class TestTrySqlDao {
 	@AfterClass
 	public static void cleanUpAfterClass() {
 		final EntityManager em = injector.getInstance(EntityManager.class);
+		System.out.println("Properties of EntityManager");
+		Map<String, Object> properties = em.getProperties();
+		show(properties);
+		
+		System.out.println("Properties of EntityManagerFactory");
 		final EntityManagerFactory factory = em.getEntityManagerFactory();
+		Map<String, Object> properties2 = factory.getProperties();
+		show(properties2);
+		
 		em.close();
 		factory.close();
+	}
+
+	private static void show(Map<String, Object> properties) {
+		for (String key : properties.keySet()) {
+			Object obj = properties.get(key);
+			System.out.println(key + ":=" + obj.toString());
+		}
+		System.out.println();
 	}
 
 	public static void createDBContent() {
