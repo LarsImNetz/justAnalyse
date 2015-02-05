@@ -32,13 +32,18 @@ public class TestExcelColumns {
 
 	@Test
 	public void testBB() {
-		Assert.assertEquals("BB", new ExcelColumns().get(26 + 26 + 1 - 1));
+		Assert.assertEquals("BB", new ExcelColumns().get(26 + 26 + 2 - 1));
+	}
+
+	@Test
+	public void testZZ() {
+		Assert.assertEquals("ZZ", new ExcelColumns().get(702 - 1));
 	}
 
 	// @Test
 	// public void test() {
-	// for (int i = 0; i < 100; i++) {
-	// System.out.println(new ExcelColumns().get(i));
+	// for (int i = 0; i < 26 * 27 + 1; i++) {
+	// System.out.println(i + " " + new ExcelColumns().get(i));
 	// }
 	// }
 }
