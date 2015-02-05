@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 /**
  * Primitiver Differ, der auf CSV (Comma)Semikolon Separated Values arbeitet!
  *
+ * Es ging erstmal um grün ;-) (rot, grün, schön)
  */
 public class CsvDiff {
 
@@ -58,8 +59,12 @@ public class CsvDiff {
 	private void workOnLines(BufferedReader leftReader, BufferedReader rightReader) throws IOException {
 		String leftLine;
 		String rightLine;
+
 		String headLine = leftReader.readLine();
 		rightReader.readLine();
+		++currentLine;
+
+		// TODO: Semikolon hart vergeben
 		headerLine = headLine.split(";");
 		while ((leftLine = leftReader.readLine()) != null && (rightLine = rightReader.readLine()) != null) {
 			currentColumn = 0;
@@ -84,6 +89,8 @@ public class CsvDiff {
 			String leftToken = leftTokenizer.nextToken();
 			String rightToken = rightTokenizer.nextToken();
 			if (!leftToken.equals(rightToken)) {
+				exitStatus = 1;
+				// TODO: Illegal State Output verbesssern, auslagern
 				illegalState(leftToken, rightToken);
 			}
 			++currentColumn;
