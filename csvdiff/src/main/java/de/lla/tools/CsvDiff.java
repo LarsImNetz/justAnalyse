@@ -99,7 +99,8 @@ public class CsvDiff {
 	}
 
 	private void illegalState(String leftToken, String rightToken) {
-		System.out.println("token differ: line=" + currentLine + " column='" + headerLine[currentColumn] + "'");
+		System.out.println("token differ: line=" + currentLine + " column='" + new ExcelColumns().get(currentColumn) + "' headline column='"
+		        + headerLine[currentColumn] + "'");
 		System.out.println(" left='" + leftToken + "'");
 		System.out.println("right='" + rightToken + "'");
 	}
