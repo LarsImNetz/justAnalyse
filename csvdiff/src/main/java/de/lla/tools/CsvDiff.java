@@ -20,7 +20,7 @@ public class CsvDiff {
 	final File right;
 
 	// for Status
-	String[] headerLine;
+	// String[] headerLine;
 
 	int currentLine = 1;
 	int currentColumn;
@@ -60,12 +60,12 @@ public class CsvDiff {
 		String leftLine;
 		String rightLine;
 
-		String headLine = leftReader.readLine();
-		rightReader.readLine();
-		++currentLine;
+		// String headLine = leftReader.readLine();
+		// rightReader.readLine();
+		// ++currentLine;
 
 		// TODO: Semikolon hart vergeben
-		headerLine = headLine.split(";");
+		// headerLine = headLine.split(";");
 		while ((leftLine = leftReader.readLine()) != null && (rightLine = rightReader.readLine()) != null) {
 			currentColumn = 0;
 			workOnOneLine(leftLine, rightLine);
@@ -106,12 +106,14 @@ public class CsvDiff {
 	}
 
 	private void illegalState(String leftToken, String rightToken) {
-		System.out.println("token differ: line=" + currentLine + " column='" + new ExcelColumns().get(currentColumn) + "' headline column='"
-		        + headerLine[currentColumn] + "'");
+		System.out.println("token differ: line=" + currentLine + " column='" + new ExcelColumns().get(currentColumn) + "'");
+		// String headline = "headline column='" + headerLine[currentColumn] +
+		// "'";
 		System.out.println(" left='" + leftToken + "'");
 		System.out.println("right='" + rightToken + "'");
 	}
 
+	// TODO: parameter handling, usage, help
 	public static void main(String[] args) throws IOException {
 		String leftFilename = args[0];
 		File left = new File(leftFilename);
