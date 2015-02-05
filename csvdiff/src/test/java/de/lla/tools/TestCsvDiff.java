@@ -1,4 +1,4 @@
-package org.linuxx.moonserver;
+package de.lla.tools;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +39,7 @@ public class TestCsvDiff {
 
 		CsvDiff app = new CsvDiff(left, right);
 		app.workOnFiles();
-		Assert.assertEquals("org.linuxx.moonserver.CsvDiff", app.getClass().getCanonicalName());
+		Assert.assertEquals("de.lla.tools.CsvDiff", app.getClass().getCanonicalName());
 	}
 
 	@Test

@@ -1,4 +1,4 @@
-package org.linuxx.moonserver;
+package de.lla.tools;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.util.StringTokenizer;
 
 /**
- * Hello world!
+ * Primitiver Differ, der auf CSV (Comma)Semikolon Separated Values arbeitet!
  *
  */
 public class CsvDiff {
@@ -18,9 +18,13 @@ public class CsvDiff {
 	final File left;
 	final File right;
 
+	// for Status
 	String[] headerLine;
-	int currentLine;
+
+	int currentLine = 1;
 	int currentColumn;
+
+	int exitStatus = 0;
 
 	public CsvDiff(final File left, final File right) {
 		this.left = left;
@@ -29,38 +33,50 @@ public class CsvDiff {
 		currentColumn = 0;
 	}
 
+	public int getExitStatus() {
+		return exitStatus;
+	}
+
 	public void workOnFiles() throws IOException {
-		String leftLine;
-		String rightLine;
 		try (InputStream leftfis = new FileInputStream(left);
-				InputStreamReader leftisr = new InputStreamReader(leftfis, Charset.forName("UTF-8"));
-				BufferedReader leftbr = new BufferedReader(leftisr);
-				InputStream rightfis = new FileInputStream(right);
-				InputStreamReader rightisr = new InputStreamReader(rightfis, Charset.forName("UTF-8"));
-				BufferedReader rightbr = new BufferedReader(rightisr);) {
-			String headLine = leftbr.readLine();
-			rightbr.readLine();
-			headerLine = headLine.split(";");
-			while ((leftLine = leftbr.readLine()) != null && (rightLine = rightbr.readLine()) != null) {
-				currentColumn = 0;
-				workOnLine(leftLine, rightLine);
-				++currentLine;
-			}
-			if(leftbr.readLine() != null) {
-				throw new IOException("left has more lines");
-			}
-			if(rightbr.readLine() != null) {
-				throw new IOException("right has more lines");
-			}
-			leftbr.close();
-			rightbr.close();
-		}
-		catch(IOException ex) {
+		        InputStreamReader leftisr = new InputStreamReader(leftfis, Charset.forName("UTF-8"));
+		        BufferedReader leftReader = new BufferedReader(leftisr);
+		        InputStream rightfis = new FileInputStream(right);
+		        InputStreamReader rightisr = new InputStreamReader(rightfis, Charset.forName("UTF-8"));
+		        BufferedReader rightReader = new BufferedReader(rightisr);) {
+
+			workOnLines(leftReader, rightReader);
+
+			leftReader.close();
+			rightReader.close();
+		} catch (IOException ex) {
 			System.out.println("IOException caught " + ex.getMessage());
+			exitStatus = 1;
 		}
 	}
 
-	public void workOnLine(final String leftLine, final String rightLine) {
+	private void workOnLines(BufferedReader leftReader, BufferedReader rightReader) throws IOException {
+		String leftLine;
+		String rightLine;
+		String headLine = leftReader.readLine();
+		rightReader.readLine();
+		headerLine = headLine.split(";");
+		while ((leftLine = leftReader.readLine()) != null && (rightLine = rightReader.readLine()) != null) {
+			currentColumn = 0;
+			workOnOneLine(leftLine, rightLine);
+			++currentLine;
+		}
+		if (leftReader.readLine() != null) {
+			exitStatus = 1;
+			throw new IOException("left has more lines");
+		}
+		if (rightReader.readLine() != null) {
+			exitStatus = 1;
+			throw new IOException("right has more lines");
+		}
+	}
+
+	public void workOnOneLine(final String leftLine, final String rightLine) {
 		StringTokenizer leftTokenizer = new StringTokenizer(leftLine, ";");
 		StringTokenizer rightTokenizer = new StringTokenizer(rightLine, ";");
 
@@ -73,9 +89,11 @@ public class CsvDiff {
 			++currentColumn;
 		}
 		if (leftTokenizer.hasMoreTokens()) {
+			exitStatus = 1;
 			throw new IllegalStateException("left has more token");
 		}
 		if (rightTokenizer.hasMoreTokens()) {
+			exitStatus = 1;
 			throw new IllegalStateException("right has more token");
 		}
 	}
@@ -100,5 +118,6 @@ public class CsvDiff {
 
 		CsvDiff diff = new CsvDiff(left, right);
 		diff.workOnFiles();
+		System.exit(diff.getExitStatus());
 	}
 }
