@@ -85,6 +85,7 @@ public class CsvDiff {
 	}
 
 	public void workOnOneLine(final String leftLine, final String rightLine) {
+		// TODO: ";" hart vergeben
 		StringTokenizer leftTokenizer = new StringTokenizer(leftLine, ";");
 		StringTokenizer rightTokenizer = new StringTokenizer(rightLine, ";");
 
