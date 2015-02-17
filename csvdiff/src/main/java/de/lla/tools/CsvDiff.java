@@ -19,6 +19,8 @@ public class CsvDiff {
 	final File left;
 	final File right;
 
+	private IOption options;
+
 	// for Status
 	// String[] headerLine;
 
@@ -27,9 +29,10 @@ public class CsvDiff {
 
 	int exitStatus = 0;
 
-	public CsvDiff(final File left, final File right) {
+	public CsvDiff(final File left, final File right, final IOption options) {
 		this.left = left;
 		this.right = right;
+		this.options = options;
 		currentLine = 1;
 		currentColumn = 0;
 	}
@@ -96,12 +99,16 @@ public class CsvDiff {
 			++currentColumn;
 		}
 		if (leftTokenizer.hasMoreTokens()) {
-			exitStatus = 1;
-			throw new IllegalStateException("left has more token");
+			if (!options.isIgnoreMoreToken()) {
+				exitStatus = 1;
+				throw new IllegalStateException("left has more token");
+			}
 		}
 		if (rightTokenizer.hasMoreTokens()) {
-			exitStatus = 1;
-			throw new IllegalStateException("right has more token");
+			if (!options.isIgnoreMoreToken()) {
+				exitStatus = 1;
+				throw new IllegalStateException("right has more token");
+			}
 		}
 	}
 
@@ -126,7 +133,10 @@ public class CsvDiff {
 			throw new java.io.FileNotFoundException("right does not exists");
 		}
 
-		CsvDiff diff = new CsvDiff(left, right);
+		Option options = new Option();
+		options.setIgnoreMoreToken(true);
+
+		CsvDiff diff = new CsvDiff(left, right, options);
 		diff.workOnFiles();
 		System.exit(diff.getExitStatus());
 	}

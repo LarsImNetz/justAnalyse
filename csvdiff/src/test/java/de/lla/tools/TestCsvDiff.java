@@ -26,9 +26,9 @@ public class TestCsvDiff {
 	}
 
 	/*
-	 * HINT: Wenn dieser test fehlschlägt, dann weil die class Main umbenannt
+	 * HINT: Wenn dieser Test fehlschlägt, dann weil die class Main umbenannt
 	 * oder verschoben wurde Dann unbedingt auch die pom.xml anpassen
-	 * (maven-assembly-plugin artifact plugin)
+	 * (maven-assembly-Plugin artifact Plugin)
 	 */
 	@Test
 	public void test() throws IOException {
@@ -37,7 +37,10 @@ public class TestCsvDiff {
 		File left = new File(leftFilename);
 		File right = new File(rightFilename);
 
-		CsvDiff app = new CsvDiff(left, right);
+		Option options = new Option();
+		options.setIgnoreMoreToken(true);
+		CsvDiff app = new CsvDiff(left, right, options);
+
 		app.workOnFiles();
 		Assert.assertEquals("de.lla.tools.CsvDiff", app.getClass().getCanonicalName());
 	}
