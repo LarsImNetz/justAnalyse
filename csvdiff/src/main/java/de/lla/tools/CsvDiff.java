@@ -63,29 +63,25 @@ public class CsvDiff {
 		String leftLine;
 		String rightLine;
 
-		// String headLine = leftReader.readLine();
-		// rightReader.readLine();
-		// ++currentLine;
-
-		// TODO: Semikolon hart vergeben
-		// headerLine = headLine.split(";");
 		while ((leftLine = leftReader.readLine()) != null && (rightLine = rightReader.readLine()) != null) {
 			currentColumn = 0;
 			workOnOneLine(leftLine, rightLine);
 			++currentLine;
 		}
 		if (leftReader.readLine() != null) {
+			// TODO ignore more lines
 			exitStatus = 1;
 			throw new IOException("left has more lines");
 		}
 		if (rightReader.readLine() != null) {
+			// TODO ignore more lines
 			exitStatus = 1;
 			throw new IOException("right has more lines");
 		}
 	}
 
 	public void workOnOneLine(final String leftLine, final String rightLine) {
-		// TODO: ";" hart vergeben
+		// TODO: Semikolon ';' hart vergeben
 		StringTokenizer leftTokenizer = new StringTokenizer(leftLine, ";");
 		StringTokenizer rightTokenizer = new StringTokenizer(rightLine, ";");
 
