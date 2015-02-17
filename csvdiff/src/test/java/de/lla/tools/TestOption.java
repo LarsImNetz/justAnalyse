@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TestOption {
 
-	Option options;
+	de.lla.tools.Option options;
 
 	@Before
 	public void setUp() {
