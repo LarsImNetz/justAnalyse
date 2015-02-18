@@ -10,7 +10,7 @@
     <relativePath>../configPom/pom.xml</relativePath>
   </parent>
 
-  <groupId>org.linuxx.moonserver</groupId>
+  <groupId>de.lla.tools</groupId>
   <artifactId>csvdiff</artifactId>
   <version>1.0-SNAPSHOT</version>
 
@@ -20,21 +20,13 @@
 
   <url>http://maven.apache.org</url>
 
-
   <properties>
-    <junit.version>4.12</junit.version>
-    <mockito.version>1.10.19</mockito.version>
-    <compiler-plugin.version>3.2</compiler-plugin.version>
-    <java.version>1.7</java.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <slf4j.version>1.7.10</slf4j.version>
     <assembly-plugin.version>2.5.3</assembly-plugin.version>
   </properties>
 
-
   <dependencies>
     <!-- LOGGING DEPENDENCIES - LOG4J -->
-    <dependency>
+<!--    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>${slf4j.version}</version>
@@ -44,6 +36,7 @@
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
     </dependency>
+-->
 
     <!-- JUNIT DEPENDENCY FOR TESTING -->
     <dependency>
@@ -64,7 +57,7 @@
 
   <build>
     <finalName>csvdiff</finalName>
-    <plugins>
+	<plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
