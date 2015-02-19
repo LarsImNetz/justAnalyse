@@ -25,6 +25,7 @@
     <module>pattern</module>
     <module>miscellaneous</module>
     <module>dbsample</module>
+    <module>csvdiff</module>
   </modules>
 
 </project>
