@@ -47,7 +47,7 @@
     <java.version>1.7</java.version>
     <commons.version>3.3.2</commons.version>
     <guava.version>18.0</guava.version>
-
+    <assembly-plugin.version>2.5.3</assembly-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
