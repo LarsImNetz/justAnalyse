@@ -23,8 +23,15 @@
 
 	<groupId>org.homelinux.moonserver</groupId>
 	<artifactId>justAnalyse</artifactId>
-	<packaging>war</packaging>
 	<version>1.0.0</version>
+
+	<packaging>war</packaging>
+
+        <prerequisites>
+          <maven>2.2.1</maven>
+        </prerequisites>
+        
+
         <!-- ".maximale laenge des names...................." -->
 	<name>Ein paar Simple Analysen (just)</name>
 	<description></description>
