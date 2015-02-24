@@ -2,7 +2,6 @@ package org.homelinux.moonserver;
 
 import java.net.URI;
 
-import org.codehaus.jackson.map.AnnotationIntrospector.Pair;
 import org.homelinux.moonserver.guice.annotation.WebserviceRestClient;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +12,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientHandlerException;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.WebResource.Builder;
@@ -44,7 +42,8 @@ public class TestWebservice {
 			builderMock = Mockito.mock(Builder.class);
 			clientResponseMock = Mockito.mock(ClientResponse.class);
 
-			// Gesamtaufruf: response = restClient.resource(...).accept(...).get(...);
+			// Gesamtaufruf: response =
+			// restClient.resource(...).accept(...).get(...);
 			// client.resource() -> webResource
 			Mockito.doReturn(webResourceMock).when(clientMock).resource(Mockito.any(URI.class));
 			// webResource.accept() -> builder
@@ -54,7 +53,8 @@ public class TestWebservice {
 			// clientResponse.getEntity() -> ""
 			Mockito.doReturn("").when(clientResponseMock).getEntity(Mockito.<Class<?>> any());
 
-			// Gesamtaufruf: response = restClient.resource(...).type(...).accept(...).post(..., ...);
+			// Gesamtaufruf: response =
+			// restClient.resource(...).type(...).accept(...).post(..., ...);
 			Mockito.doReturn(clientResponseMock).when(builderMock).post(Mockito.<Class<?>> any(), Mockito.anyString());
 
 			bind(Client.class).annotatedWith(WebserviceRestClient.class).toInstance(clientMock);
