@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title>LLA URL Checker</title>
+<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
+</head>
+<body>
+	<wicket:panel>
+<style type="text/css">
+.table {
+	border: 1px solid blue;
+	
+	/* 	text-shadow: #bbb 3px 2px; */
+	text-shadow: #bbb 1px 1px;
+	font-family: helvetica;
+	font-size: 2em;
+	color: red;
+}
+</style>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Header</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Cell 1</td>
+					<td><span wicket:id="cell2">Cell 2</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</wicket:panel>
+</body>
+</html>

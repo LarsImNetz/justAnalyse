@@ -34,6 +34,7 @@ public class WicketApplication extends WebApplication {
 		// add your configuration here
 
 		initializeInjector();
+		mountPage("/home", HomePage.class);
 	}
 
 	private void initializeInjector() {
