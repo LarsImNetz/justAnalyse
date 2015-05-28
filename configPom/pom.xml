@@ -36,6 +36,7 @@
 		<jersey-client.version>1.19</jersey-client.version>
 		<jersey-server.version>1.19</jersey-server.version>
 		<jackson.fasterxml.version>2.5.3</jackson.fasterxml.version>
+                <jsonassert.version>1.2.3</jsonassert.version>
 		<!-- <jetty.version>7.6.3.v20120416</jetty.version> -->
 		<!-- <jetty.version>7.6.9.v20130131</jetty.version> -->
 		<!-- <jetty.version>7.6.13.v20130916</jetty.version> -->
