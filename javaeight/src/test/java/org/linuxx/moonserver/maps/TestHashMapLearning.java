@@ -1,4 +1,4 @@
-package experiment.lars.java.maps;
+package org.linuxx.moonserver.maps;
 
 import java.util.HashMap;
 import java.util.Map;
