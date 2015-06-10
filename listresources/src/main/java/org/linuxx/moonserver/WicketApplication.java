@@ -68,6 +68,9 @@ public class WicketApplication extends WebApplication {
 		if (filename.endsWith(".css")) {
 			return false;
 		}
+		// if (filename.endsWith(".png")) {
+		// return false;
+		// }
 		return true;
 	}
 
