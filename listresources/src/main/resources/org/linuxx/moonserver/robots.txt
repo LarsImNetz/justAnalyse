@@ -1,0 +1,6 @@
+# robots.txt zu dieser URL
+
+# gibbets noch nicht!
+
+# LLA: Diese Datei ist komplett frei erfunden und sinnfrei es ging eher um die Machbarkeit.
+# Zu finden in der /resourceprovider.war auf dem BauSHUP QA Server solv149.hypoport.local
