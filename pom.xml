@@ -26,6 +26,7 @@
     <module>miscellaneous</module>
     <module>dbsample</module>
     <module>csvdiff</module>
+    <module>listresources</module>
   </modules>
 
 </project>
