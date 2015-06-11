@@ -2,7 +2,9 @@ package org.linuxx.moonserver.db.persistence;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
@@ -38,6 +40,21 @@ public class TryDao implements ITryDao {
 		return null;
 
 	
+	}
+
+	public void deleteAll() {
+		em.getTransaction().begin();
+
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaDelete<TryEntity> deleteQuery = criteriaBuilder.createCriteriaDelete(TryEntity.class);
+		Root<TryEntity> from = deleteQuery.from(TryEntity.class);
+		// Root<TryEntity> root = deleteQuery.getRoot();
+		// Root<TryEntity> from = deleteQuery.from(TryEntity.class);
+		Query createQuery = em.createQuery(deleteQuery);
+		
+		createQuery.executeUpdate();
+
+		em.getTransaction().commit();
 	}
 
 	public void save(final TryEntity entity) {
