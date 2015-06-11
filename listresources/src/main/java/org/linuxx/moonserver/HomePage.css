@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+h2 {
+	font-family: sans-serif;
+}
+
+ul {
+	font-weight: bold;
+	font-family: sans-serif;
+}
