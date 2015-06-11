@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.linuxx.moonserver.db.persistence.guice.provider.EntityManagerTestProvider;
@@ -29,19 +30,31 @@ public class TestTryDao {
 
 		dao = new TryDao();
 		injector.injectMembers(dao);
+	
+		dao2 = injector.getInstance(Try2Dao.class);	
+	}
 
-		dao2 = injector.getInstance(Try2Dao.class);
-
+	@Before
+	public void fillDB() {
 		TryEntity entity = new TryEntity();
 		entity.setId(0);
 		entity.setName("testname");
 		dao.save(entity);
-	}
 
+		dao.deleteAll();
+		
+		TryEntity entity2 = new TryEntity();
+		entity2.setId(0);
+		entity2.setName("testname");
+		dao.save(entity2);
+		
+	}
 	@AfterClass
 	public static void cleanUpAfterClass() {
 		EntityManager em = injector.getInstance(EntityManager.class);
 		EntityManagerFactory factory = em.getEntityManagerFactory();
+		
+		em.clear();
 		em.close();
 		factory.close();
 	}

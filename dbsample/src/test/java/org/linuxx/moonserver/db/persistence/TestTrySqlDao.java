@@ -35,7 +35,8 @@ public class TestTrySqlDao {
 		});
 		dao = new TrySqlDao();
 		injector.injectMembers(dao);
-
+		dao.deleteAll();
+		
 		createDBContent();
 	}
 
