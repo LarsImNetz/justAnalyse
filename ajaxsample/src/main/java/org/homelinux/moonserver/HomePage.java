@@ -50,12 +50,12 @@ public class HomePage extends WebPage {
 				return "alert('Ajax call was success.')";
 			}
 		});
-
-		TablePanel tablePanel = new TablePanel("table");
-		Behavior tableBehavior = new TableBehavior();
-		tablePanel.add(tableBehavior);
-		Behavior tableClickBehavior = new TableClickBehavior();
-		tablePanel.add(tableClickBehavior);
-		add(tablePanel);
+// TODO rausfinden, was mit der TablePanel gemeint war
+//		TablePanel tablePanel = new TablePanel("table");
+//		Behavior tableBehavior = new TableBehavior();
+//		tablePanel.add(tableBehavior);
+//		Behavior tableClickBehavior = new TableClickBehavior();
+//		tablePanel.add(tableClickBehavior);
+//		add(tablePanel);
 	}
 }
