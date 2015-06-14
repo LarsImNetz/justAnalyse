@@ -95,24 +95,24 @@ public class Webservice implements IWebservice {
 
 	@Override
 	public String hasAnyKontingent(final Integer kundenNr) {
-		final URI uriWithPlz = createUriWithKundenNr(kundenNr);
-		final String entityString = getContentFromURL(uriWithPlz);
+//		final URI uriWithPlz = createUriWithKundenNr(kundenNr);
+//		final String entityString = getContentFromURL(uriWithPlz);
 
 		return "hasAnyKontingent";
 	}
 
 	@Override
 	public String hasKontingent(final Integer kundenNr, final Integer plz) {
-		final URI uriWithPlz = createUriWithKundenNrAndPlz(kundenNr, plz);
-		final String entityString = getContentFromURL(uriWithPlz);
+//		final URI uriWithPlz = createUriWithKundenNrAndPlz(kundenNr, plz);
+//		final String entityString = getContentFromURL(uriWithPlz);
 
 		return "has Kontingent";
 	}
 
 	@Override
 	public String decrementKontingent(final Integer kundenNr, final Integer plz) {
-		final URI uriWithPlz = createDecrementUriWithKundenNrAndPlz(kundenNr, plz);
-		final String entityString = getContentFromURL(uriWithPlz);
+//		final URI uriWithPlz = createDecrementUriWithKundenNrAndPlz(kundenNr, plz);
+//		final String entityString = getContentFromURL(uriWithPlz);
 
 		return "decrement";
 	}
