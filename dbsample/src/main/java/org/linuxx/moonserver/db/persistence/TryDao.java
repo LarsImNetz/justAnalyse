@@ -47,7 +47,7 @@ public class TryDao implements ITryDao {
 
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaDelete<TryEntity> deleteQuery = criteriaBuilder.createCriteriaDelete(TryEntity.class);
-		Root<TryEntity> from = deleteQuery.from(TryEntity.class);
+		// Root<TryEntity> from = deleteQuery.from(TryEntity.class);
 		// Root<TryEntity> root = deleteQuery.getRoot();
 		// Root<TryEntity> from = deleteQuery.from(TryEntity.class);
 		Query createQuery = em.createQuery(deleteQuery);
