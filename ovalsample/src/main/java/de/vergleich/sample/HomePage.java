@@ -87,6 +87,7 @@ public class HomePage extends WebPage {
 		form.add(button);
 		add(form);
 
+		@SuppressWarnings("unused")
 		IFormValidator multiFormValidator = new IFormValidator() {
 
 			@Override

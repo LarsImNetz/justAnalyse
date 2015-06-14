@@ -12,6 +12,7 @@ import org.junit.Test;
 import de.vergleich.sample.validator.OValValidator;
 
 
+@SuppressWarnings("unused")
 public class TestBeanAnnotation {
 
 	@Test
