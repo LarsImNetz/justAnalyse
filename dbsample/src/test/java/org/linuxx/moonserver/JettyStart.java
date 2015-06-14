@@ -10,6 +10,13 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 public class JettyStart {
     public static void main(String[] args) throws Exception {
+    	JettyStart starter = new JettyStart();
+    	try {
+    	starter.serverstart(args);
+    	}
+    	catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
 
     private void serverstart(String[] args) throws Exception {
