@@ -39,8 +39,8 @@
                 <jsonassert.version>1.2.3</jsonassert.version>
 		<!-- <jetty.version>7.6.3.v20120416</jetty.version> -->
 		<!-- <jetty.version>7.6.9.v20130131</jetty.version> -->
-		<!-- <jetty.version>7.6.13.v20130916</jetty.version> -->
-		<jetty.version>[7.6.16.v20140903, 7.99.0-!]</jetty.version>
+		<jetty.version>7.6.13.v20130916</jetty.version>
+<!-- 		<jetty.version>[7.6.16.v20140903, 7.99.0-!]</jetty.version> -->
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
 		<mockito.version>1.10.8</mockito.version>
