@@ -3,6 +3,7 @@ package org.homelinux.moonserver;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.slf4j.Logger;
@@ -49,12 +50,12 @@ public class HomePage extends WebPage {
 				return "alert('Ajax call was success.')";
 			}
 		});
-// TODO rausfinden, was mit der TablePanel gemeint war
-//		TablePanel tablePanel = new TablePanel("table");
-//		Behavior tableBehavior = new TableBehavior();
-//		tablePanel.add(tableBehavior);
-//		Behavior tableClickBehavior = new TableClickBehavior();
-//		tablePanel.add(tableClickBehavior);
-//		add(tablePanel);
+
+		TablePanel tablePanel = new TablePanel("table");
+		Behavior tableBehavior = new TableBehavior();
+		tablePanel.add(tableBehavior);
+		Behavior tableClickBehavior = new TableClickBehavior();
+		tablePanel.add(tableClickBehavior);
+		add(tablePanel);
 	}
 }
