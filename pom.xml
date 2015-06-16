@@ -24,9 +24,10 @@
     <module>javaseven</module>
     <module>pattern</module>
     <module>miscellaneous</module>
-    <module>dbsample</module>
     <module>csvdiff</module>
     <module>listresources</module>
+    <!-- lass die KackDB am Ende! -->
+    <module>dbsample</module>
   </modules>
 
 </project>
