@@ -12,16 +12,14 @@ public class TryEntity {
 
 	@Id
 	// @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private Integer id;
 
-	@Column(name="name", nullable = false, length = 255)
+	@Column(name = "name", nullable = false, length = 255)
 	private String name;
 
-	@Column(name="vorname", nullable = true, length = 255)
+	@Column(name = "vorname", nullable = true, length = 255)
 	private String vorname;
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -69,5 +67,4 @@ public class TryEntity {
 		this.vorname = vorname;
 	}
 
-	
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
 public class TestStringBuffer {
 
 	StringBuffer buffer;
-	
+
 	@Before
 	public void setUp() {
 		buffer = new StringBuffer();
@@ -21,5 +21,5 @@ public class TestStringBuffer {
 		String all = buffer.toString();
 		Assert.assertEquals("abc", all);
 	}
-	
+
 }

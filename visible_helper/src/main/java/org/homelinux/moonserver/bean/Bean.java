@@ -6,24 +6,31 @@ public class Bean implements Serializable {
 	String a;
 	String b;
 	Integer c;
+
 	public String getA() {
 		return a;
 	}
+
 	public void setA(String a) {
 		this.a = a;
 	}
+
 	public String getB() {
 		return b;
 	}
+
 	public void setB(String b) {
 		this.b = b;
 	}
+
 	public Integer getC() {
 		return c;
 	}
+
 	public void setC(Integer c) {
 		this.c = c;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -33,6 +40,7 @@ public class Bean implements Serializable {
 		result = prime * result + ((c == null) ? 0 : c.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -59,10 +67,10 @@ public class Bean implements Serializable {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Bean [a=" + a + ", b=" + b + ", c=" + c + "]";
 	}
-	
-	
+
 }

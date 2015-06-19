@@ -1,6 +1,5 @@
 package de.vergleich.sample;
 
-
 import org.apache.wicket.Component;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Assert;

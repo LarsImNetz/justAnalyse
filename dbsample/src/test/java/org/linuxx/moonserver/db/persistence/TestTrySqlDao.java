@@ -36,7 +36,7 @@ public class TestTrySqlDao {
 		dao = new TrySqlDao();
 		injector.injectMembers(dao);
 		dao.deleteAll();
-		
+
 		createDBContent();
 	}
 
@@ -46,12 +46,12 @@ public class TestTrySqlDao {
 		System.out.println("Properties of EntityManager");
 		Map<String, Object> properties = em.getProperties();
 		show(properties);
-		
+
 		System.out.println("Properties of EntityManagerFactory");
 		final EntityManagerFactory factory = em.getEntityManagerFactory();
 		Map<String, Object> properties2 = factory.getProperties();
 		show(properties2);
-		
+
 		em.close();
 		factory.close();
 	}

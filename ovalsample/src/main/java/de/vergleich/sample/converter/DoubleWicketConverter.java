@@ -12,8 +12,7 @@ public class DoubleWicketConverter extends AbstractConverter<Double> {
 	public Double convertToObject(String value, Locale locale) {
 		try {
 			return converter.convert(value, locale);
-		}
-		catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			throw newConversionException(e.getMessage(), value, locale);
 		}
 	}

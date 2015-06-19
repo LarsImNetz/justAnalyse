@@ -19,7 +19,7 @@ public class TestHomePage {
 	private WicketTester tester;
 
 	private ILabelVisibilityHelper visibilityHelper;
-	
+
 	@Before
 	public void setUp() {
 		tester = new WicketTester(new WicketApplication());
@@ -36,7 +36,7 @@ public class TestHomePage {
 		// assert rendered page class
 		tester.assertRenderedPage(HomePage.class);
 	}
-	
+
 	@Test
 	public void testOnClick() {
 		tester.startPage(HomePage.class);
@@ -52,7 +52,7 @@ public class TestHomePage {
 		Bean bean2 = visibilityHelper.getBean();
 		Assert.assertEquals("leer", bean2.getA());
 
-		Assert.assertSame(bean,  bean2);
+		Assert.assertSame(bean, bean2);
 
 	}
 }

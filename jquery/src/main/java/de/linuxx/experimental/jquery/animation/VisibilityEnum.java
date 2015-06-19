@@ -1,8 +1,7 @@
 package de.linuxx.experimental.jquery.animation;
 
 public enum VisibilityEnum {
-	SHOW(true),
-	HIDE(false);
+	SHOW(true), HIDE(false);
 
 	private boolean visible;
 

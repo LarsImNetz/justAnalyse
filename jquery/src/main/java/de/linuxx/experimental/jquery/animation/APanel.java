@@ -30,7 +30,8 @@ public class APanel extends Panel {
 		super(id);
 		switcher = Model.of(Boolean.TRUE);
 
-		text = Model.of("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
+		text = Model
+				.of("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.");
 
 		Form<Void> form = new Form<Void>("form");
 
@@ -89,11 +90,11 @@ public class APanel extends Panel {
 
 		entryContainer = new SlideDownContainer("entryContainer", VisibilityEnum.HIDE) {
 
-			//			@Override
-			//			protected void onConfigure() {
-			//				super.onConfigure();
-			//				setVisible(text.getObject() != null);
-			//			}
+			// @Override
+			// protected void onConfigure() {
+			// super.onConfigure();
+			// setVisible(text.getObject() != null);
+			// }
 		};
 		entryContainer.add(new Label("label", text));
 
@@ -109,9 +110,11 @@ public class APanel extends Panel {
 	public void renderHead(final IHeaderResponse response) {
 		response.render(new PriorityHeaderItem(CssHeaderItem.forReference(new CssResourceReference(getClass(), "apanel.css"))));
 
-		//		// PriorityHeaderItem spült die css ganz an den Anfang
-		//		response.render(new PriorityHeaderItem(CssHeaderItem.forReference(new CssResourceReference(getClass(), "apage-template.css"))));
-		//		response.render(new PriorityHeaderItem(CssHeaderItem.forReference(new CssResourceReference(getClass(), "apage-template-second.css"))));
+		// // PriorityHeaderItem spült die css ganz an den Anfang
+		// response.render(new PriorityHeaderItem(CssHeaderItem.forReference(new
+		// CssResourceReference(getClass(), "apage-template.css"))));
+		// response.render(new PriorityHeaderItem(CssHeaderItem.forReference(new
+		// CssResourceReference(getClass(), "apage-template-second.css"))));
 	}
 
 	private class ButtonUsabilityBehavior extends Behavior {

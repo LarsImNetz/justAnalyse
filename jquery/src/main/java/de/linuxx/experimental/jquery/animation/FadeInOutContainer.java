@@ -63,7 +63,8 @@ public class FadeInOutContainer extends WebMarkupContainer implements IAnimation
 	@Override
 	public void hide(final AjaxRequestTarget ajax) {
 		if (visibleInJQuery) {
-			// visibleInWicket = false; // ist hier falsch!!! Wir müssen noch gerendert werden
+			// visibleInWicket = false; // ist hier falsch!!! Wir müssen noch
+			// gerendert werden
 			visibleInJQuery = false;
 			ajax.add(this);
 			ajax.appendJavaScript("$('#" + this.getMarkupId() + "').fadeOut('slow');");

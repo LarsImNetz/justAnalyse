@@ -21,10 +21,10 @@ public class LabelVisibilityHelper implements ILabelVisibilityHelper {
 		return false;
 	}
 
-	public Bean getBean(/*Component component*/) {
-//		if (component == null) {
-//			throw new IllegalArgumentException("Componente nicht gegeben.");
-//		}
+	public Bean getBean(/* Component component */) {
+		// if (component == null) {
+		// throw new IllegalArgumentException("Componente nicht gegeben.");
+		// }
 		Session session = Session.get(); // component.getSession();
 		if (session == null) {
 			throw new IllegalArgumentException("Session nicht gegeben.");

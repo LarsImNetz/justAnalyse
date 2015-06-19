@@ -1,6 +1,5 @@
 package de.vergleich.sample.adapter;
 
-
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,14 +20,16 @@ public class TestBeanAdapter {
 		PageParameters params = new PageParameters();
 		params.add("name", "egal");
 		params.add("darlehensbetrag", "123");
-		//TODO lla: das geht nicht! params.add("immobilienwert", new Double(123d));
+		// TODO lla: das geht nicht! params.add("immobilienwert", new
+		// Double(123d));
 
 		Bean bean = new BeanAdapter().adapt(params);
 		Assert.assertNotNull(bean);
 
 		Assert.assertEquals("egal", bean.getName());
 		Assert.assertEquals("123.0", bean.getDarlehensbetrag().toString());
-		// siehe oben: Assert.assertEquals("123.0", bean.getImmobilienwert().toString());
+		// siehe oben: Assert.assertEquals("123.0",
+		// bean.getImmobilienwert().toString());
 	}
 
 	@Test

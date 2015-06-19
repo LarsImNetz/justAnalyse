@@ -29,11 +29,13 @@ public class TestMap {
 		String value = map.get("3");
 		Assert.assertEquals("c", value);
 	}
+
 	@Test
 	public void testAccess2() throws Exception {
 		String value = map.get("2");
 		Assert.assertEquals("b", value);
 	}
+
 	@Test
 	public void testAccess1() throws Exception {
 		String value = map.get("1");
@@ -41,21 +43,22 @@ public class TestMap {
 	}
 
 	@Test
-    public void testOnlyOneKey() throws Exception {
+	public void testOnlyOneKey() throws Exception {
 		// wir überschreiben den Key "1"
 		map.put("1", "auch eins");
-	    
+
 		String value = map.get("1");
 		Assert.assertEquals("auch eins", value);
-    }
-	
+	}
+
 	@Test
 	public void testAccessForeachValues() throws Exception {
 		String values = "";
 		for (String value : map.values()) {
 			values += value;
 		}
-		// Da wir die Reihenfolge nicht kennen, testen wir einfach auf jedes Element
+		// Da wir die Reihenfolge nicht kennen, testen wir einfach auf jedes
+		// Element
 		Assert.assertTrue(values.contains("a"));
 		Assert.assertTrue(values.contains("b"));
 		Assert.assertTrue(values.contains("c"));
@@ -70,7 +73,8 @@ public class TestMap {
 		for (String key : map.keySet()) {
 			values += map.get(key);
 		}
-		// Da wir die Reihenfolge nicht kennen, testen wir einfach auf jedes Element
+		// Da wir die Reihenfolge nicht kennen, testen wir einfach auf jedes
+		// Element
 		Assert.assertTrue(values.contains("a"));
 		Assert.assertTrue(values.contains("b"));
 		Assert.assertTrue(values.contains("c"));
@@ -85,7 +89,8 @@ public class TestMap {
 		for (String key : map.keySet()) {
 			keys += key;
 		}
-		// Da wir die Reihenfolge nicht kennen, testen wir einfach auf jedes Element
+		// Da wir die Reihenfolge nicht kennen, testen wir einfach auf jedes
+		// Element
 		Assert.assertTrue(keys.contains("1"));
 		Assert.assertTrue(keys.contains("2"));
 		Assert.assertTrue(keys.contains("3"));

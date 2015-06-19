@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
 	private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
-	
+
 	static {
 		LOGGER.trace("init static stuff()");
 	}
@@ -17,7 +17,7 @@ public class Main {
 	public Main() {
 		LOGGER.trace("c'tor main()");
 	}
-	
+
 	public static void main(String[] args) {
 		LOGGER.trace("start static main()");
 		Main main = new Main();
@@ -26,17 +26,16 @@ public class Main {
 	}
 
 	public void helloWorld() {
-		LOGGER.trace("start helloWorld()");			
+		LOGGER.trace("start helloWorld()");
 		try {
-			System.out.println("Hello World!");			
+			System.out.println("Hello World!");
 			LOGGER.trace("end helloWorld()");
 			return;
 		} catch (RuntimeException e) {
 			LOGGER.error("Sollte nicht kommen!");
+		} finally {
+			LOGGER.trace("finally try in helloWorld()");
 		}
-		finally {
-			LOGGER.trace("finally try in helloWorld()");			
-		}
-		LOGGER.trace("will not arrive in helloWorld()");			
+		LOGGER.trace("will not arrive in helloWorld()");
 	}
 }

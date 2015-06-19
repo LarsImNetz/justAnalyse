@@ -1,6 +1,5 @@
 package org.homelinux.moonserver;
 
-
 import org.apache.wicket.Component;
 import org.apache.wicket.event.Broadcast;
 import org.apache.wicket.util.tester.WicketTester;
@@ -11,7 +10,6 @@ import org.mockito.Mockito;
 
 public class TestLabelPanel {
 
-	
 	WicketTester tester;
 
 	@Before
@@ -25,7 +23,7 @@ public class TestLabelPanel {
 		LabelPanel component = tester.startComponentInPage(new LabelPanel("panel"));
 		tester.assertUsability(component);
 	}
-	
+
 	@Test
 	public void testLabelComponent() {
 		LabelPanel component = tester.startComponentInPage(new LabelPanel("panel"));
@@ -39,7 +37,7 @@ public class TestLabelPanel {
 
 		// press button simulation
 		component.getPage().send(component, Broadcast.DEPTH, payloadMock);
-		
+
 		Mockito.verify(payloadMock, Mockito.atLeastOnce()).update(Mockito.any(Component.class));
 	}
 

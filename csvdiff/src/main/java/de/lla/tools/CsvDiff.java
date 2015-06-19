@@ -43,11 +43,11 @@ public class CsvDiff {
 
 	public void workOnFiles() throws IOException {
 		try (InputStream leftfis = new FileInputStream(left);
-		        InputStreamReader leftisr = new InputStreamReader(leftfis, Charset.forName("UTF-8"));
-		        BufferedReader leftReader = new BufferedReader(leftisr);
-		        InputStream rightfis = new FileInputStream(right);
-		        InputStreamReader rightisr = new InputStreamReader(rightfis, Charset.forName("UTF-8"));
-		        BufferedReader rightReader = new BufferedReader(rightisr);) {
+				InputStreamReader leftisr = new InputStreamReader(leftfis, Charset.forName("UTF-8"));
+				BufferedReader leftReader = new BufferedReader(leftisr);
+				InputStream rightfis = new FileInputStream(right);
+				InputStreamReader rightisr = new InputStreamReader(rightfis, Charset.forName("UTF-8"));
+				BufferedReader rightReader = new BufferedReader(rightisr);) {
 
 			workOnLines(leftReader, rightReader);
 

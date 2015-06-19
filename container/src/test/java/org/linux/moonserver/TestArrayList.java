@@ -14,14 +14,14 @@ public class TestArrayList {
 	@Before
 	public void setUp() {
 		list = new ArrayList<>();
-        list.add("a");
-        list.add("b");
-        list.add("c");	
+		list.add("a");
+		list.add("b");
+		list.add("c");
 	}
 
 	@Test
 	public void testSize() {
-        Assert.assertEquals(3, list.size());
+		Assert.assertEquals(3, list.size());
 	}
 
 	@Test
@@ -29,7 +29,7 @@ public class TestArrayList {
 		String first = list.get(0);
 		Assert.assertEquals("a", first);
 	}
-	
+
 	@Test
 	public void testMoreSize() throws Exception {
 		list.add("d");

@@ -1,6 +1,5 @@
 package org.linuxx.moonserver.java7;
 
-
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,7 +16,8 @@ public class TestFutures {
 
 		long startTime = System.currentTimeMillis();
 
-		// we start 3 threads in parallel, with a runtime from (1000 + 1500 + 1000) ms but we expect this will no longer run than 1500ms
+		// we start 3 threads in parallel, with a runtime from (1000 + 1500 +
+		// 1000) ms but we expect this will no longer run than 1500ms
 		T1000ms thread1 = new T1000ms();
 		T1500ms thread2 = new T1500ms();
 		T1000ms thread3 = new T1000ms();
@@ -47,8 +47,7 @@ public class TestFutures {
 		public String call() throws Exception {
 			try {
 				Thread.sleep(1000);
-			}
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			return "success";
@@ -61,8 +60,7 @@ public class TestFutures {
 		public String call() throws Exception {
 			try {
 				Thread.sleep(1500);
-			}
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			return "success";

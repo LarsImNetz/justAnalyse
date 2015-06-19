@@ -9,18 +9,17 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 
 /**
- * Application object for your web application. If you want to run this application without deploying, run the Start class.
+ * Application object for your web application. If you want to run this
+ * application without deploying, run the Start class.
  * 
  * @see org.linuxx.moonserver.JettyStart#main(String[])
  */
-public class WicketApplication extends WebApplication
-{    	
+public class WicketApplication extends WebApplication {
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
 	@Override
-	public Class<? extends WebPage> getHomePage()
-	{
+	public Class<? extends WebPage> getHomePage() {
 		return HomePage.class;
 	}
 
@@ -28,21 +27,20 @@ public class WicketApplication extends WebApplication
 	 * @see org.apache.wicket.Application#init()
 	 */
 	@Override
-	public void init()
-	{
+	public void init() {
 		super.init();
 
 		// add your configuration here
 	}
-	
+
 	/**
 	 * Mal auf Deutsch einstellen
 	 */
 	@Override
 	public Session newSession(Request request, Response response) {
 		// TODO Auto-generated method stub
-		 Session newSession = super.newSession(request, response);
-		 newSession.setLocale(Locale.GERMANY);
-		 return newSession;
+		Session newSession = super.newSession(request, response);
+		newSession.setLocale(Locale.GERMANY);
+		return newSession;
 	}
 }

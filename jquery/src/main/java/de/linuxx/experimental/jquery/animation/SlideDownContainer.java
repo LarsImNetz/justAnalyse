@@ -58,7 +58,8 @@ public class SlideDownContainer extends WebMarkupContainer implements IAnimation
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see experiment.lars.jquery.animation.IAnimationContainer#show(org.apache.wicket.ajax.AjaxRequestTarget)
+	 * @see experiment.lars.jquery.animation.IAnimationContainer#show(org.apache.
+	 * wicket.ajax.AjaxRequestTarget)
 	 */
 	@Override
 	public void show(AjaxRequestTarget ajax) {
@@ -74,12 +75,14 @@ public class SlideDownContainer extends WebMarkupContainer implements IAnimation
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see experiment.lars.jquery.animation.IAnimationContainer#hide(org.apache.wicket.ajax.AjaxRequestTarget)
+	 * @see experiment.lars.jquery.animation.IAnimationContainer#hide(org.apache.
+	 * wicket.ajax.AjaxRequestTarget)
 	 */
 	@Override
 	public void hide(AjaxRequestTarget ajax) {
 		if (visibleInJQuery) {
-			// visibleInWicket = false; // ist hier falsch!!! Wir müssen noch gerendert werden
+			// visibleInWicket = false; // ist hier falsch!!! Wir müssen noch
+			// gerendert werden
 			visibleInJQuery = false;
 			ajax.add(this);
 			ajax.appendJavaScript("$('#" + this.getMarkupId() + "').slideUp('slow');");
@@ -98,7 +101,7 @@ public class SlideDownContainer extends WebMarkupContainer implements IAnimation
 		super.renderHead(response);
 
 		response.render(JavaScriptReferenceHeaderItem.forReference(Application.get() //
-		.getJavaScriptLibrarySettings() // seit Wicket 6
-		.getJQueryReference()));
+				.getJavaScriptLibrarySettings() // seit Wicket 6
+				.getJQueryReference()));
 	}
 }

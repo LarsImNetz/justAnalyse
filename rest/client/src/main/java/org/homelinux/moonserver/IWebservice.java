@@ -1,7 +1,5 @@
 package org.homelinux.moonserver;
 
-
-
 public interface IWebservice {
 
 	public String hasAnyKontingent(Integer kundenNr);

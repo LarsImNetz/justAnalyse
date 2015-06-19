@@ -16,8 +16,7 @@ public class HomePage extends WebPage {
 
 	public static final String GLOBAL_BEAN = "bean";
 
-	private final static Logger logger = LoggerFactory
-			.getLogger(HomePage.class);
+	private final static Logger logger = LoggerFactory.getLogger(HomePage.class);
 
 	IModel<Bean> beanModel;
 
@@ -73,8 +72,7 @@ public class HomePage extends WebPage {
 					a = "button pressed";
 				}
 				beanModel.getObject().setA(a);
-				this.getPage().send(getPage(), Broadcast.DEPTH,
-						new SimplePayload(target));
+				this.getPage().send(getPage(), Broadcast.DEPTH, new SimplePayload(target));
 				target.add(this);
 			}
 

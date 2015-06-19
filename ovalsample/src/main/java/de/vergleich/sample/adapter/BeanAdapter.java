@@ -16,6 +16,7 @@ public class BeanAdapter implements BeanAdoptee {
 	public final static String NAME = "name";
 
 	private static final DoubleConverter converter = new DoubleConverter();
+
 	@Override
 	public PageParameters adapt(Bean bean) {
 		PageParameters p = new PageParameters();
@@ -34,7 +35,7 @@ public class BeanAdapter implements BeanAdoptee {
 	}
 
 	@Override
-    public Bean adapt(PageParameters params) {
+	public Bean adapt(PageParameters params) {
 		Bean bean = new Bean();
 
 		final StringValue name = params.get(NAME);
@@ -55,5 +56,5 @@ public class BeanAdapter implements BeanAdoptee {
 			bean.setMonatlicheRate(converter.convert(monatlicheRate.toString(), Locale.GERMANY));
 		}
 		return bean;
-    }
+	}
 }

@@ -6,8 +6,8 @@ import org.apache.wicket.protocol.http.WebApplication;
 import de.linuxx.experimental.jquery.animation.APage;
 
 /**
- * Application object for your web application. If you want to run this application without deploying, run the Start
- * class.
+ * Application object for your web application. If you want to run this
+ * application without deploying, run the Start class.
  *
  * @see org.homelinux.moonserver.JettyStart#main(String[])
  */
@@ -19,7 +19,7 @@ public class WicketApplication extends WebApplication {
 	@Override
 	public Class<? extends WebPage> getHomePage() {
 		return HomePage.class;
-//		return null;
+		// return null;
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class WicketApplication extends WebApplication {
 
 		// add your configuration here
 		mountPage("/animation", APage.class);
-//		mountPage("a", HomePage.class);
+		// mountPage("a", HomePage.class);
 		this.getMarkupSettings().setStripWicketTags(true);
 	}
 }

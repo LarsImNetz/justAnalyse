@@ -18,13 +18,13 @@ public class LabelPanel extends Panel {
 
 	@Inject
 	private ILabelVisibilityHelper labelVisibilityHelper;
-	
+
 	public LabelPanel(String id) {
 		super(id);
-		
+
 		labelText = new Model<String>();
 		labelText.setObject("leer");
-		
+
 		final Label label = new Label("label", labelText);
 		label.setOutputMarkupId(true);
 		add(label);
@@ -43,20 +43,20 @@ public class LabelPanel extends Panel {
 		}
 		super.onEvent(event);
 	}
-	
+
 	@Override
 	protected void onConfigure() {
 		super.onConfigure();
-//		
-//		List<String> attributes = this.getSession().getAttributeNames();
-//		System.out.println("Attributes: ");
-//		for(String attribute : attributes) {
-//
-//			System.out.println(attribute);
-//		}
+		//
+		// List<String> attributes = this.getSession().getAttributeNames();
+		// System.out.println("Attributes: ");
+		// for(String attribute : attributes) {
+		//
+		// System.out.println(attribute);
+		// }
 		Object object = this.getSession().getAttribute(HomePage.GLOBAL_BEAN);
 		if (object instanceof Bean) {
-			Bean bean = (Bean)object;
+			Bean bean = (Bean) object;
 			labelText.setObject(bean.getA());
 		}
 

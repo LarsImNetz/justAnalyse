@@ -21,7 +21,7 @@ public class TestLabelVisibilityHelper {
 	private ILabelVisibilityHelper visibilityHelper;
 
 	private WicketTester tester;
-	
+
 	@Before
 	public void before() {
 		WicketApplication app = new WicketApplication();
@@ -31,11 +31,11 @@ public class TestLabelVisibilityHelper {
 		visibilityHelper = injector.getInstance(ILabelVisibilityHelper.class);
 	}
 
-//	@Test(expected=IllegalArgumentException.class)
-//	public void testVisibility_with_NULL() {
-//		boolean visible = visibilityHelper.isVisible();
-//		Assert.assertEquals(false, visible);
-//	}
+	// @Test(expected=IllegalArgumentException.class)
+	// public void testVisibility_with_NULL() {
+	// boolean visible = visibilityHelper.isVisible();
+	// Assert.assertEquals(false, visible);
+	// }
 
 	@Test
 	public void testPage() throws Exception {
@@ -47,30 +47,30 @@ public class TestLabelVisibilityHelper {
 
 		Session session = tester.getSession();
 		Assert.assertNotNull(session);
-		
+
 		Serializable attribute = session.getAttribute(HomePage.GLOBAL_BEAN);
 		Assert.assertNotNull(attribute);
-		
+
 		if (attribute instanceof Bean) {
-			Bean bean = (Bean)attribute;
+			Bean bean = (Bean) attribute;
 			String a = bean.getA();
 			Assert.assertEquals("ein Label", a);
-		}
-		else {
+		} else {
 			Assert.fail("attribute ist kein Bean, sollte es aber sein");
 		}
 	}
-	//	@Test
-//	public void testVisibility_with_Component() {
-//		Mockito 
-//		boolean visible = visibilityHelper.isVisible(null);
-//		Assert.assertEquals(false, visible);
-//	}
-	
+
+	// @Test
+	// public void testVisibility_with_Component() {
+	// Mockito
+	// boolean visible = visibilityHelper.isVisible(null);
+	// Assert.assertEquals(false, visible);
+	// }
+
 	@Test
 	public void testCountWords() {
 		Assert.assertNotNull(visibilityHelper);
-		
+
 		int count = visibilityHelper.countWords(null);
 		Assert.assertEquals(0, count);
 
@@ -83,6 +83,5 @@ public class TestLabelVisibilityHelper {
 		count = visibilityHelper.countWords("one two");
 		Assert.assertEquals(2, count);
 	}
-
 
 }

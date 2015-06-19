@@ -95,24 +95,25 @@ public class Webservice implements IWebservice {
 
 	@Override
 	public String hasAnyKontingent(final Integer kundenNr) {
-//		final URI uriWithPlz = createUriWithKundenNr(kundenNr);
-//		final String entityString = getContentFromURL(uriWithPlz);
+		// final URI uriWithPlz = createUriWithKundenNr(kundenNr);
+		// final String entityString = getContentFromURL(uriWithPlz);
 
 		return "hasAnyKontingent";
 	}
 
 	@Override
 	public String hasKontingent(final Integer kundenNr, final Integer plz) {
-//		final URI uriWithPlz = createUriWithKundenNrAndPlz(kundenNr, plz);
-//		final String entityString = getContentFromURL(uriWithPlz);
+		// final URI uriWithPlz = createUriWithKundenNrAndPlz(kundenNr, plz);
+		// final String entityString = getContentFromURL(uriWithPlz);
 
 		return "has Kontingent";
 	}
 
 	@Override
 	public String decrementKontingent(final Integer kundenNr, final Integer plz) {
-//		final URI uriWithPlz = createDecrementUriWithKundenNrAndPlz(kundenNr, plz);
-//		final String entityString = getContentFromURL(uriWithPlz);
+		// final URI uriWithPlz = createDecrementUriWithKundenNrAndPlz(kundenNr,
+		// plz);
+		// final String entityString = getContentFromURL(uriWithPlz);
 
 		return "decrement";
 	}
@@ -132,12 +133,10 @@ public class Webservice implements IWebservice {
 		try {
 			final ClientResponse clientResponse = restClient.resource(uri).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 			entityString = clientResponse.getEntity(String.class);
-		} 
-		catch (final ClientHandlerException e) {
+		} catch (final ClientHandlerException e) {
 
 			LOGGER.warn("Exception during REST call to uri: " + uri, e);
-		}
-		catch (final UniformInterfaceException e) {
+		} catch (final UniformInterfaceException e) {
 
 			LOGGER.warn("Exception during REST call to uri: " + uri, e);
 		}

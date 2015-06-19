@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import de.vergleich.sample.validator.OValValidator;
 
-
 @SuppressWarnings("unused")
 public class TestBeanAnnotation {
 
@@ -23,7 +22,8 @@ public class TestBeanAnnotation {
 		bean.setImmobilienwert(250000d);
 		bean.setMonatlicheRate(600d);
 
-		// List<Entry<Field,Bean>> annotatedFields = getAnnotatedFields(bean, Bean.class);
+		// List<Entry<Field,Bean>> annotatedFields = getAnnotatedFields(bean,
+		// Bean.class);
 		OValValidator oValValidator = new OValValidator(bean, "name");
 
 	}
@@ -42,7 +42,5 @@ public class TestBeanAnnotation {
 
 		return annotatedFields;
 	}
-
-
 
 }

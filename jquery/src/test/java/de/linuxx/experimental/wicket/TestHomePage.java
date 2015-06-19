@@ -25,8 +25,8 @@ public class TestHomePage {
 	}
 
 	@Test
-    public void testLabel() throws Exception {
-	    Component component = tester.getComponentFromLastRenderedPage("label");
-	    Assert.assertNotNull(component);
+	public void testLabel() throws Exception {
+		Component component = tester.getComponentFromLastRenderedPage("label");
+		Assert.assertNotNull(component);
 	}
 }

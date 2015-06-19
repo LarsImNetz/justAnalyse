@@ -36,8 +36,7 @@ public class HomePage extends WebPage {
 		Bean bean = new Bean();
 		if (parameters != null) {
 			beanModel = Model.of(new BeanAdapter().adapt(parameters));
-		}
-		else {
+		} else {
 			beanModel = Model.of(bean);
 		}
 
@@ -61,21 +60,17 @@ public class HomePage extends WebPage {
 		textField.add(createFormUpdatingBehavior());
 		form.add(textField);
 
-
 		final TextField<Double> darlehensbetrag = new TextField<Double>("darlehensbetrag", new PropertyModel<Double>(beanModel, "darlehensbetrag"), Double.class);
 		darlehensbetrag.add(createFormUpdatingBehavior());
 		form.add(darlehensbetrag);
-
 
 		final TextField<Double> immobilienwert = new TextField<Double>("immobilienwert", new PropertyModel<Double>(beanModel, "immobilienwert"), Double.class);
 		immobilienwert.add(createFormUpdatingBehavior());
 		form.add(immobilienwert);
 
-
 		final TextField<Double> monatlicheRate = new TextField<Double>("monatlicheRate", new PropertyModel<Double>(beanModel, "monatlicheRate"), Double.class);
 		monatlicheRate.add(createFormUpdatingBehavior());
 		form.add(monatlicheRate);
-
 
 		form.add(new FeedbackPanel("feedback"));
 
@@ -111,25 +106,26 @@ public class HomePage extends WebPage {
 					form.error(explanationString.getObject());
 				}
 
-//				// TODO: Hier die Bean prüfen
-//				if (!form.hasError()) {
-//					if (aBean.getName().toLowerCase().equals("asdf")) {
-//						final StringResourceModel explanationString = new StringResourceModel("asdf", HomePage.this, null);
-//						form.error(explanationString.getObject());
-//					}
-//				}
+				// // TODO: Hier die Bean prüfen
+				// if (!form.hasError()) {
+				// if (aBean.getName().toLowerCase().equals("asdf")) {
+				// final StringResourceModel explanationString = new
+				// StringResourceModel("asdf", HomePage.this, null);
+				// form.error(explanationString.getObject());
+				// }
+				// }
 			}
 		};
-		//!!! TOD !!! form.add(multiFormValidator);
+		// !!! TOD !!! form.add(multiFormValidator);
 	}
 
 	private AjaxFormComponentUpdatingBehavior createFormUpdatingBehavior() {
-	    return new AjaxFormComponentUpdatingBehavior("blur") {
+		return new AjaxFormComponentUpdatingBehavior("blur") {
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
 			}
 		};
-    }
+	}
 
 	private static class ImALocalFormComponentForMultifieldValidation extends FormComponent<Bean> {
 

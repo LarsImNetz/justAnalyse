@@ -11,20 +11,19 @@ public class TestSimpleArrays {
 
 	@Before
 	public void setUp() {
-		strings = new String[] {"a", "b", "c"};		
+		strings = new String[] { "a", "b", "c" };
 	}
-	
+
 	@Test
 	public void testLength() {
 		Assert.assertEquals(3, strings.length);
 	}
-	
+
 	@Test
 	public void testAccess() throws Exception {
 		String first = strings[0];
 		Assert.assertEquals("a", first);
 	}
-
 
 	@Test
 	public void testStringUtilsJoin() {

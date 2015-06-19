@@ -26,8 +26,8 @@ public class TestCsvDiff {
 	}
 
 	/*
-	 * HINT: Wenn dieser Test fehlschlägt, dann weil die class Main umbenannt
-	 * oder verschoben wurde Dann unbedingt auch die pom.xml anpassen
+	 * HINT: Wenn dieser Test fehlschlägt, dann weil die class Main umbenannt oder
+	 * verschoben wurde Dann unbedingt auch die pom.xml anpassen
 	 * (maven-assembly-Plugin artifact Plugin)
 	 */
 	@Test

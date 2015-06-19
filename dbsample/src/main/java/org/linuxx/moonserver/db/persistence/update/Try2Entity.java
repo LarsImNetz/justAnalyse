@@ -12,16 +12,14 @@ public class Try2Entity {
 
 	@Id
 	// @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private Integer id;
 
-	@Column(name="name", nullable = false, length = 255)
+	@Column(name = "name", nullable = false, length = 255)
 	private String name;
 
-//	@Column(name="vorname", nullable = true, length = 255)
-//	private String vorname;
-	
-	
+	// @Column(name="vorname", nullable = true, length = 255)
+	// private String vorname;
 
 	public Integer getId() {
 		return id;
@@ -30,7 +28,6 @@ public class Try2Entity {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
@@ -62,13 +59,12 @@ public class Try2Entity {
 		return true;
 	}
 
-//	public String getVorname() {
-//		return vorname;
-//	}
-//
-//	public void setVorname(String vorname) {
-//		this.vorname = vorname;
-//	}
+	// public String getVorname() {
+	// return vorname;
+	// }
+	//
+	// public void setVorname(String vorname) {
+	// this.vorname = vorname;
+	// }
 
-	
 }
