@@ -1,0 +1,39 @@
+-- Eine einfache Tabelle
+create table incrementifnull (
+	ID int NOT NULL, 
+	text varchar(255),
+	nummer int,
+	PRIMARY KEY (ID)
+);
+
+-- Ein paar Werte
+insert into incrementifnull (id, text) values (1,'eins');
+insert into incrementifnull (id, text) values (2,'zwo');
+insert into incrementifnull (id, text) values (3,'drei');
+insert into incrementifnull (id, text) values (4,'vier');
+insert into incrementifnull (id, text) values (6,'sechs');
+insert into incrementifnull (id, text, nummer) values (5,'fuenf', 123);
+insert into incrementifnull (id, text) values (7,'sieben');
+insert into incrementifnull (id, text) values (8,'acht');
+
+select * from incrementifnull;
+
+-- Was wuenschen wir uns
+-- update INCREMENTIFNULL set nummer = 'autoincrement' where NUMMER is null;
+
+-- Anlegen einer Sequence, diese startet bei 1 und wird bei jedem insert rausgezaehlt
+CREATE SEQUENCE incrementifnull_nummer_SEQ START WITH 1 NOCACHE ORDER;
+
+-- Anlegen eines insert triggers, der bei jedem insert ausgefuehrt wird
+CREATE OR REPLACE TRIGGER incrementifnull_nummer_TRG BEFORE
+  INSERT
+    ON INCREMENTIFNULL FOR EACH ROW WHEN
+    (
+      NEW.nummer IS NULL
+    )
+    BEGIN :NEW.nummer := incrementifnull_nummer_SEQ.NEXTVAL;
+END;
+
+-- loeschen der Sequence und des Triggers
+-- DROP SEQUENCE incrementifnull_nummer_SEQ;
+-- DROP TRIGGER incrementifnull_nummer_TRG;
