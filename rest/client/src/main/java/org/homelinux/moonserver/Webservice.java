@@ -39,7 +39,8 @@ public class Webservice implements IWebservice {
 	public Webservice() {
 		try {
 			uri = new URI(QA_REST_URL);
-		} catch (final URISyntaxException e) {
+		}
+		catch (final URISyntaxException e) {
 			LOGGER.error("Beim Setzen der Basis-URI ist ein Fehler aufgetreten", e);
 			uri = null;
 		}
@@ -55,7 +56,8 @@ public class Webservice implements IWebservice {
 				final String path = this.uri.getPath() + REQUEST_PATH + kundenNr;
 
 				return new URI(this.uri.getScheme(), this.uri.getAuthority(), path, null, null);
-			} catch (final URISyntaxException e) {
+			}
+			catch (final URISyntaxException e) {
 				LOGGER.error("Beim Erstellen der URL ist ein Fehler aufgetreten", e);
 			}
 		}
@@ -70,7 +72,8 @@ public class Webservice implements IWebservice {
 				final String path = this.uri.getPath() + REQUEST_PATH + kundenNr + "/" + plzAsString;
 
 				return new URI(this.uri.getScheme(), this.uri.getAuthority(), path, null, null);
-			} catch (final URISyntaxException e) {
+			}
+			catch (final URISyntaxException e) {
 				LOGGER.error("Beim Erstellen der URL ist ein Fehler aufgetreten", e);
 			}
 		}
@@ -85,7 +88,8 @@ public class Webservice implements IWebservice {
 				final String path = this.uri.getPath() + UPDATE_PATH + kundenNr + "/" + plzAsString;
 
 				return new URI(this.uri.getScheme(), this.uri.getAuthority(), path, null, null);
-			} catch (final URISyntaxException e) {
+			}
+			catch (final URISyntaxException e) {
 				LOGGER.error("Beim Erstellen der URL ist ein Fehler aufgetreten", e);
 			}
 		}
@@ -122,7 +126,8 @@ public class Webservice implements IWebservice {
 		Bean response = null;
 		try {
 			response = OBJECT_MAPPER.readValue(entityString, Bean.class);
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			LOGGER.warn("Could not generate bean from response string", e);
 		}
 		return response;
@@ -133,10 +138,12 @@ public class Webservice implements IWebservice {
 		try {
 			final ClientResponse clientResponse = restClient.resource(uri).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 			entityString = clientResponse.getEntity(String.class);
-		} catch (final ClientHandlerException e) {
+		}
+		catch (final ClientHandlerException e) {
 
 			LOGGER.warn("Exception during REST call to uri: " + uri, e);
-		} catch (final UniformInterfaceException e) {
+		}
+		catch (final UniformInterfaceException e) {
 
 			LOGGER.warn("Exception during REST call to uri: " + uri, e);
 		}

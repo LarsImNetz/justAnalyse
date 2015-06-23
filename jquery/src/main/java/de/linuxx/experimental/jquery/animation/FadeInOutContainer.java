@@ -83,7 +83,7 @@ public class FadeInOutContainer extends WebMarkupContainer implements IAnimation
 		super.renderHead(response);
 
 		response.render(JavaScriptReferenceHeaderItem.forReference(Application.get() //
-				.getJavaScriptLibrarySettings() // seit Wicket 6
-				.getJQueryReference()));
+		.getJavaScriptLibrarySettings() // seit Wicket 6
+		.getJQueryReference()));
 	}
 }

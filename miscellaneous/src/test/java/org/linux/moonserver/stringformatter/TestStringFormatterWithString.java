@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestStringFormatterWithString {
+
 	@Test
 	public void testString() {
 		String title1 = "Column 1";

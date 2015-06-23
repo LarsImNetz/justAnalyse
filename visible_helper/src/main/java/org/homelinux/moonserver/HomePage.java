@@ -64,11 +64,14 @@ public class HomePage extends WebPage {
 				String a = beanModel.getObject().getA();
 				if (a == null) {
 					a = "leer";
-				} else if ("button pressed".equals(a)) {
+				}
+				else if ("button pressed".equals(a)) {
 					a = "button pressed again";
-				} else if (a.startsWith("button pressed again")) {
+				}
+				else if (a.startsWith("button pressed again")) {
 					a = a + " again";
-				} else {
+				}
+				else {
 					a = "button pressed";
 				}
 				beanModel.getObject().setA(a);

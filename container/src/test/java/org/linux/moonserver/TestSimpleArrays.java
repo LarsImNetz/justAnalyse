@@ -11,7 +11,7 @@ public class TestSimpleArrays {
 
 	@Before
 	public void setUp() {
-		strings = new String[] { "a", "b", "c" };
+		strings = new String[] {"a", "b", "c"};
 	}
 
 	@Test

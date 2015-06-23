@@ -3,6 +3,7 @@ package org.homelinux.moonserver.bean;
 import java.io.Serializable;
 
 public class Bean implements Serializable {
+
 	String a;
 	String b;
 	Integer c;
@@ -35,9 +36,15 @@ public class Bean implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((a == null) ? 0 : a.hashCode());
-		result = prime * result + ((b == null) ? 0 : b.hashCode());
-		result = prime * result + ((c == null) ? 0 : c.hashCode());
+		result = prime * result + ((a == null)
+				? 0
+				: a.hashCode());
+		result = prime * result + ((b == null)
+				? 0
+				: b.hashCode());
+		result = prime * result + ((c == null)
+				? 0
+				: c.hashCode());
 		return result;
 	}
 
@@ -53,17 +60,20 @@ public class Bean implements Serializable {
 		if (a == null) {
 			if (other.a != null)
 				return false;
-		} else if (!a.equals(other.a))
+		}
+		else if (!a.equals(other.a))
 			return false;
 		if (b == null) {
 			if (other.b != null)
 				return false;
-		} else if (!b.equals(other.b))
+		}
+		else if (!b.equals(other.b))
 			return false;
 		if (c == null) {
 			if (other.c != null)
 				return false;
-		} else if (!c.equals(other.c))
+		}
+		else if (!c.equals(other.c))
 			return false;
 		return true;
 	}

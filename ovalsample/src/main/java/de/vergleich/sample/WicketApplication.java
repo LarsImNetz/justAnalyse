@@ -19,6 +19,7 @@ import de.vergleich.sample.converter.DoubleWicketConverter;
  * @see de.vergleich.sample.Start#main(String[])
  */
 public class WicketApplication extends WebApplication {
+
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */

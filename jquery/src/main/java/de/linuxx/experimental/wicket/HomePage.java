@@ -18,12 +18,14 @@ public class HomePage extends WebPage {
 		final Count count = new Count(); // simple counter object
 
 		Link<Void> buttonLink = new Link<Void>("link1") {
+
 			public void onClick() {
 				count.increment();
 			}
 		};
 
 		buttonLink.add(new Label("label1", new Model<String>() {
+
 			public String getObject() {
 				return count.toString();
 			}
@@ -31,6 +33,7 @@ public class HomePage extends WebPage {
 		add(buttonLink);
 
 		Link<Void> buttonToJQueryAnimation = new Link<Void>("button-to-jquery-animation") {
+
 			public void onClick() {
 				setResponsePage(APage.class);
 			}
@@ -39,6 +42,7 @@ public class HomePage extends WebPage {
 	}
 
 	private static class Count implements Serializable {
+
 		int i = 0;
 
 		public Count() {

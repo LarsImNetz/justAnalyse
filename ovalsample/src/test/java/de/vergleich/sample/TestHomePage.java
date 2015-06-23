@@ -10,6 +10,7 @@ import org.junit.Test;
  * Simple test using the WicketTester
  */
 public class TestHomePage {
+
 	private WicketTester tester;
 
 	@Before

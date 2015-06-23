@@ -47,7 +47,7 @@ public class TestGuiceConstructorInjection {
 		}
 	}
 
-	public interface IReal2  extends IReal {
+	public interface IReal2 extends IReal {
 	}
 
 	private static class RealImpl implements IReal2 {

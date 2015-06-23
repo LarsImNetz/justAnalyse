@@ -42,7 +42,8 @@ public class CsvDiff {
 	}
 
 	public void workOnFiles() throws IOException {
-		try (InputStream leftfis = new FileInputStream(left);
+		try (
+				InputStream leftfis = new FileInputStream(left);
 				InputStreamReader leftisr = new InputStreamReader(leftfis, Charset.forName("UTF-8"));
 				BufferedReader leftReader = new BufferedReader(leftisr);
 				InputStream rightfis = new FileInputStream(right);
@@ -53,7 +54,8 @@ public class CsvDiff {
 
 			leftReader.close();
 			rightReader.close();
-		} catch (IOException ex) {
+		}
+		catch (IOException ex) {
 			System.out.println("IOException caught " + ex.getMessage());
 			exitStatus = 1;
 		}

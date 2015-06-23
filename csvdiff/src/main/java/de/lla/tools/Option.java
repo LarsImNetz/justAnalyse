@@ -1,6 +1,7 @@
 package de.lla.tools;
 
 public class Option implements IOption {
+
 	private boolean ignoreMoreToken = false;
 
 	public Option() {

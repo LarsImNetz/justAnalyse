@@ -6,6 +6,7 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 
 public class TableBehavior extends Behavior {
+
 	public TableBehavior() {
 	}
 

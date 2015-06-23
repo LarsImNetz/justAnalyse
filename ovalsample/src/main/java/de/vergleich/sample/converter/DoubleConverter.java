@@ -12,7 +12,8 @@ public class DoubleConverter implements Converter<Double> {
 		final Double num;
 		try {
 			num = DecimalFormat.getInstance(locale).parse(text).doubleValue();
-		} catch (ParseException e) {
+		}
+		catch (ParseException e) {
 			throw new IllegalArgumentException("Could not parse String:" + text + " to Double", e);
 		}
 

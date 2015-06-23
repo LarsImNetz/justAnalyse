@@ -29,6 +29,7 @@ public class ResponsePage extends WebPage {
 		form.add(new FeedbackPanel("feedback"));
 
 		Button button = new Button("button") {
+
 			public void onSubmit() {
 				PageParameters p = new BeanAdapter().adapt(bean);
 				Page home = new HomePage(p);

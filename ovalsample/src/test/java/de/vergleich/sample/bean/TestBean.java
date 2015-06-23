@@ -75,8 +75,10 @@ public class TestBean {
 		// Bean.VIOLATION_DARLEHENSBETRAG_TO_LOW));
 		for (ConstraintViolation violation : violations) {
 			if (violation.getErrorCode().equals(Bean.VIOLATION_DARLEHENSBETRAG_TOO_LOW)) {
-			} else if (violation.getErrorCode().equals(Bean.VIOLATION_MONATLICHE_RATE)) {
-			} else {
+			}
+			else if (violation.getErrorCode().equals(Bean.VIOLATION_MONATLICHE_RATE)) {
+			}
+			else {
 				Assert.fail("Illegale Violation gefunden: " + violation.getErrorCode());
 			}
 		}

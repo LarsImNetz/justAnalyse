@@ -44,7 +44,8 @@ public class OValValidator implements IValidator<String> {
 					System.out.println(annotation);
 					System.out.println("PropertyKey: immobilienwert." + annotation.annotationType().getSimpleName());
 					System.out.println("Satisfied: " + satisfied);
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 				}
 
 				// if (annotation.annotationType().equals(Length.class)) {
@@ -72,9 +73,11 @@ public class OValValidator implements IValidator<String> {
 				// }
 
 			}
-		} catch (NoSuchFieldException e1) {
+		}
+		catch (NoSuchFieldException e1) {
 			e1.printStackTrace();
-		} catch (SecurityException e1) {
+		}
+		catch (SecurityException e1) {
 			e1.printStackTrace();
 		}
 	}

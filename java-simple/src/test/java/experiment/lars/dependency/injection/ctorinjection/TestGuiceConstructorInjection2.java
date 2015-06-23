@@ -39,19 +39,21 @@ public class TestGuiceConstructorInjection2 {
 	}
 
 	interface HelloService {
+
 		public String sayHello();
 	}
-	
+
 	static class HelloServiceImpl implements HelloService {
 
 		@Override
 		public String sayHello() {
 			return "hello world";
 		}
-		
+
 	}
 
 	interface Person {
+
 		public String doGreeting();
 	}
 
@@ -68,6 +70,6 @@ public class TestGuiceConstructorInjection2 {
 		public String doGreeting() {
 			return this.service.sayHello();
 		}
-		
+
 	}
 }

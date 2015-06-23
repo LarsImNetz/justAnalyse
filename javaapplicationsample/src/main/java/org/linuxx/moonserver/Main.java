@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class Main {
+
 	private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
 	static {
@@ -31,9 +32,11 @@ public class Main {
 			System.out.println("Hello World!");
 			LOGGER.trace("end helloWorld()");
 			return;
-		} catch (RuntimeException e) {
+		}
+		catch (RuntimeException e) {
 			LOGGER.error("Sollte nicht kommen!");
-		} finally {
+		}
+		finally {
 			LOGGER.trace("finally try in helloWorld()");
 		}
 		LOGGER.trace("will not arrive in helloWorld()");

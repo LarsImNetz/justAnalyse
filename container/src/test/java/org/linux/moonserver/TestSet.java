@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestSet {
+
 	Set<String> set;
 
 	@Before

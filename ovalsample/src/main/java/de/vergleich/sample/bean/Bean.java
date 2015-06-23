@@ -45,6 +45,7 @@ public class Bean implements Serializable, BeanErrorCodes {
 
 	// Validation Class
 	public static class MonatlicheRateCheck implements SimpleCheck {
+
 		public boolean isSatisfied(Object beanObject, Object value) {
 			final Bean bean = ((Bean) beanObject);
 			Double rate = (Double) value;

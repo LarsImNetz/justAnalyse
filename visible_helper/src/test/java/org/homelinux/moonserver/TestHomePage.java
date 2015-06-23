@@ -16,6 +16,7 @@ import com.google.inject.Injector;
  * Simple test using the WicketTester
  */
 public class TestHomePage {
+
 	private WicketTester tester;
 
 	private ILabelVisibilityHelper visibilityHelper;

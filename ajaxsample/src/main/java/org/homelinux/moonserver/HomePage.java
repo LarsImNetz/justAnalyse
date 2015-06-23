@@ -19,6 +19,7 @@ public class HomePage extends WebPage {
 		logger.debug("HomePage of Ajax Sample");
 
 		add(new AjaxLink<Void>("ajaxLink") {
+
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				target.appendJavaScript("alert('hello world!');");
@@ -28,6 +29,7 @@ public class HomePage extends WebPage {
 		Label label = new Label("ajaxText", "Ajax Clickable Text");
 		add(label);
 		label.add(new AjaxEventBehavior("onclick") {
+
 			@Override
 			protected void onEvent(AjaxRequestTarget target) {
 				target.appendJavaScript("alert('clicked')");

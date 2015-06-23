@@ -26,7 +26,8 @@ public class WebserviceQAProvider implements Provider<IWebservice> {
 
 		try {
 			webservice.setUri(new URI(Webservice.QA_REST_URL));
-		} catch (final URISyntaxException e) {
+		}
+		catch (final URISyntaxException e) {
 			LOGGER.error("Beim Setzen der URI fuer den Webservice ist ein Fehler aufgetreten", e);
 		}
 

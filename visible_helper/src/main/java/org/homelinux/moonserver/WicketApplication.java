@@ -20,6 +20,7 @@ import org.apache.wicket.guice.GuiceComponentInjector;
  * @see org.homelinux.moonserver.JettyStart#main(String[])
  */
 public class WicketApplication extends WebApplication {
+
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */

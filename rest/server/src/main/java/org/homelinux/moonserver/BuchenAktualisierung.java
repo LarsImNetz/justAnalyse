@@ -32,7 +32,8 @@ public class BuchenAktualisierung {
 		String jsonString = "";
 		try {
 			jsonString = OBJECT_MAPPER.writer().writeValueAsString(list);
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			LOGGER.warn("Could not serialize bean into JSON string", e);
 			return "";
 		}

@@ -10,10 +10,10 @@ public class TestSwitchWithString {
 		final String a = "hallo";
 
 		switch (a) { // switch mit Strings
-		case "hallo":
-			break;
-		default:
-			Assert.fail("Sollte in java7 funktionieren.");
+			case "hallo":
+				break;
+			default:
+				Assert.fail("Sollte in java7 funktionieren.");
 		}
 	}
 

@@ -26,6 +26,7 @@ import de.vergleich.sample.bean.Bean;
 import de.vergleich.sample.validator.OValValidator;
 
 public class HomePage extends WebPage {
+
 	private static final long serialVersionUID = 1L;
 
 	private final IModel<Bean> beanModel;
@@ -36,11 +37,13 @@ public class HomePage extends WebPage {
 		Bean bean = new Bean();
 		if (parameters != null) {
 			beanModel = Model.of(new BeanAdapter().adapt(parameters));
-		} else {
+		}
+		else {
 			beanModel = Model.of(bean);
 		}
 
 		Form<Void> form = new Form<Void>("form") {
+
 			protected void onSubmit() {
 				final Bean aBean = beanModel.getObject();
 
@@ -75,6 +78,7 @@ public class HomePage extends WebPage {
 		form.add(new FeedbackPanel("feedback"));
 
 		Button button = new Button("button") {
+
 			public void onSubmit() {
 				info("Button wurde gedrückt.");
 			}
@@ -121,6 +125,7 @@ public class HomePage extends WebPage {
 
 	private AjaxFormComponentUpdatingBehavior createFormUpdatingBehavior() {
 		return new AjaxFormComponentUpdatingBehavior("blur") {
+
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
 			}
