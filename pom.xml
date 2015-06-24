@@ -22,12 +22,15 @@
     <module>visible_helper</module>
     <module>jquery</module>
     <module>javaseven</module>
+    <module>java-simple</module>
     <module>pattern</module>
     <module>miscellaneous</module>
     <module>csvdiff</module>
     <module>listresources</module>
     <!-- lass die KackDB am Ende! -->
     <module>dbsample</module>
+    <module>unit-tests</module>
+    <module>pattern</module>
   </modules>
 
 </project>
