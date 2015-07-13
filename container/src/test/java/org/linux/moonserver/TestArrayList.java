@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.hasItems;
+
 public class TestArrayList {
 
 	List<String> list;
@@ -26,7 +28,7 @@ public class TestArrayList {
 
 	@Test
 	public void testGet() {
-		String first = list.get(0);
+		final String first = list.get(0);
 		Assert.assertEquals("a", first);
 	}
 
@@ -34,5 +36,10 @@ public class TestArrayList {
 	public void testMoreSize() throws Exception {
 		list.add("d");
 		Assert.assertEquals(4, list.size());
+	}
+	
+	@Test
+	public void testAllElements() {
+		Assert.assertThat(list, hasItems("a", "b", "c"));
 	}
 }
