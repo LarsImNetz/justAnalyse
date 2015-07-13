@@ -8,7 +8,7 @@ import org.junit.Test;
  * 
  * Jede öffentliche (nicht private) Funktion sollte getestet werden
  * 
- * Damit is Tests nicht ausufern, sollte so programmiert werden, das intere Funktionalität einfachst abgeschnitten werden kann, z.B. durch Mockito
+ * Damit Tests nicht ausufern, sollte so programmiert werden, das interne Funktionalität einfachst abgeschnitten werden kann, z.B. durch Mockito
  * Unit Tests sollen nur die eigentliche Unit testen, nicht gleich die ganze Umgebung dazu.
  */
 public class TestWithEquals {
@@ -24,20 +24,20 @@ public class TestWithEquals {
 
 	@Test
 	public void testSubString_with_start_end_param() {
-		String value = "subStringTest";
+		final String value = "subStringTest";
 
-		String expected = "bStr";
-		String actual = value.substring(2, 4 + 2);
+		final String expected = "bStr";
+		final String actual = value.substring(2, 4 + 2);
 
 		Assert.assertEquals(expected, actual);
 	}
 
 	@Test
 	public void testSubString_with_start_param() {
-		String value = "subStringTest";
+		final String value = "subStringTest";
 
-		String expected = "Test";
-		String actual = value.substring(9);
+		final String expected = "Test";
+		final String actual = value.substring(9);
 
 		Assert.assertEquals(expected, actual);
 	}
