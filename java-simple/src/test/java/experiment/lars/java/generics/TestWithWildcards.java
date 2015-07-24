@@ -1,6 +1,7 @@
 package experiment.lars.java.generics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Assert;
@@ -78,6 +79,7 @@ public class TestWithWildcards {
 
 		// übergeben die Liste
 		strings.setList(list);
+		Assert.assertEquals(1, strings.getExtendsList().size());
 
 		// löschen die Liste
 		list.clear();
@@ -103,6 +105,11 @@ public class TestWithWildcards {
 
 		public List<? extends T> getExtendsList() {
 			return container;
+		}
+
+		// Other way!
+		public List<T> getUnmodifiableList() {
+			return Collections.unmodifiableList(container);
 		}
 
 		// DON'T give back the list, damit können wir die Liste ändern
