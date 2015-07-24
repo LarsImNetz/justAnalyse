@@ -23,7 +23,6 @@
     <module>jquery</module>
     <module>javaseven</module>
     <module>java-simple</module>
-    <module>pattern</module>
     <module>miscellaneous</module>
     <module>csvdiff</module>
     <module>listresources</module>
