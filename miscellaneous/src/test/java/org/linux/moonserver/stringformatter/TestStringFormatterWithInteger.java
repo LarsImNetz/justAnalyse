@@ -6,8 +6,8 @@ import org.junit.Test;
 public class TestStringFormatterWithInteger {
 
 	@Test
-	public void testInteger() {
-		Integer integerValue = 32767;
+	public void testIntegerAlign() {
+		final Integer integerValue = 32767;
 		Assert.assertEquals("32767", String.format("%d", integerValue));
 		Assert.assertEquals("  32767", String.format("%7d", integerValue));
 		Assert.assertEquals("32767  ", String.format("%-7d", integerValue));
