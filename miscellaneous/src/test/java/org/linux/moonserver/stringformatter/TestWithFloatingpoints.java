@@ -23,12 +23,12 @@ public class TestWithFloatingpoints {
 	}
 	@Test
 	public void testStringFormatFloatF() {			
-		Assert.assertEquals("1000", String.format(Locale.GERMANY, "%.0f", Double.valueOf(1000d)));
+		Assert.assertEquals("1000", String.format(Locale.GERMANY, "%.0f", Double.valueOf(1000.123d)));
 		Assert.assertEquals("1000,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(1000d)));
 		Assert.assertEquals("100000,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(100000d)));
 		Assert.assertEquals("10000000,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(10000000d)));
 		Assert.assertEquals("1000000000,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(1000000000d)));
-		Assert.assertEquals("100000000000,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(100000000000d)));
+		Assert.assertEquals("100000000001,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(100000000001d)));
 		Assert.assertEquals("1000,000000", String.format(Locale.GERMANY, "%f", Double.valueOf(1000d))); // default
 
 		// Auf- Abrunden
