@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>LLA Responsive Design Checker</title>
+<link
+	href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+	title="Stylesheet" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<style>
+.button {
+	height: 100px;
+	border: 1px solid black;
+	padding: 1em;
+	margin: 1px;
+}
+
+.white {
+	height: 100px;
+	border: 1px solid black;
+	padding: 1em;
+	margin: 1px;
+}
+
+.green {
+	height: 100px;
+	border: 1px solid black;
+	padding: 1em;
+	margin: 1px;
+	background-color: green;
+}
+
+.red {
+	height: 100px;
+	border: 1px solid black;
+	padding: 1em;
+	margin: 1px;
+	background-color: red;
+}
+
+.blue {
+	height: 100px;
+	border: 1px solid black;
+	padding: 1em;
+	margin: 1px;
+	background-color: blue;
+}
+</style>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 visible-xs">
+				<h1>eXtra Small Überschrift</h1>
+			</div>
+			<div class="visible-sm col-md-8 col-md-offset-2">
+				<h1>Eine Überschrift in Small</h1>
+			</div>
+			<div class="visible-md col-md-8 col-md-offset-2">
+				<h1>Dies ist eine Überschrift in Medium</h1>
+			</div>
+			<div class="visible-lg col-md-10 col-md-offset-2">
+				<h1>Dies ist eine Überschrift für Large Desktop Devices</h1>
+			</div>
+		</div>
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-1"></div>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+					<!--  <button class="button" wicket:id="ajaxLink">Press me</button> -->
+					<a class="button btn btn-lg btn-success" role="button"
+						wicket:id="ajaxLink">Press me</a>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+					<div class="white" wicket:id="ajaxText"></div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+					<div class="red" wicket:id="label1"></div>
+				</div>
+				<div class="hidden-xs col-sm-6 col-md-4 col-lg-2">
+					<div class="green" wicket:id="label2"></div>
+				</div>
+				<div class="hidden-xs hidden-sm col-md-4 col-lg-2">
+					<div class="blue" wicket:id="label3"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
