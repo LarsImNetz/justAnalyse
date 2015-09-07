@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<wicket:panel>
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>Ein paar Typography Beispiele</h2>
+				<h3>Body</h3>
+				<p>Schnubbel die wubbel...</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h3>Body with lead</h3>
+				<p class="lead">Schnubbel die wubbel...</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h3>Inline Text elements</h3>
+				<p>
+					Schnubbel die
+					<mark>wubbel</mark>
+					...
+				</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>Lists</h2>
+				<h3>Unordered List</h3>
+				<ul>
+					<li>Item 1</li>
+					<li>Item 2</li>
+					<li>Item 3</li>
+				</ul>
+				<h3>Ordered List</h3>
+				<ol>
+					<li>Item 1</li>
+					<li>Item 2</li>
+					<li>Item 3</li>
+				</ol>
+				<h3>Unstyled List</h3>
+				<ul class="list-unstyled">
+					<li>Item 1</li>
+					<li>Item 2</li>
+					<li>Item 3</li>
+				</ul>
+				<h3>Inline List</h3>
+				<ul class="list-inline">
+					<li>Item 1</li>
+					<li>Item 2</li>
+					<li>Item 3</li>
+				</ul>
+				<h2>Descriptions</h2>
+				<h3>Normal</h3>
+				<dl>
+					<dt>Description list</dt>
+					<dd>A description list is perfect for defining terms</dd>
+					<dt>Blah</dt>
+					<dd>Laber Rababer</dd>
+					<dt>Blah</dt>
+					<dd>Mehr laber Rababer</dd>
+				</dl>
+				<h3>Horizontal</h3>
+				<dl class="dl-horizontal">
+					<dt>Description list</dt>
+					<dd>A description list is perfect for defining terms</dd>
+					<dt>Blah</dt>
+					<dd>Laber Rababer</dd>
+					<dt>Blah</dt>
+					<dd>Mehr laber Rababer</dd>
+				</dl>
+
+				<h2>Code</h2>
+				<h3>Inline</h3>
+				Beispiel:
+				<code>&lt;html&gt;</code>
+				damit startet ein HTML Element.
+
+				<h3>User Input</h3>
+				Um ein Verzeichnis zu wechseln tippe
+				<kbd>cd</kbd>
+				in die Console. To edit settings, press
+				<kbd>
+					<kbd>ctrl</kbd>
+					+
+					<kbd>,</kbd>
+				</kbd>
+				<h3>Basic Block</h3>
+				Beispiel:
+				<pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
+
+				<h2>Tabellen</h2>
+				<table class="table">
+					<caption>Optional table caption.</caption>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Username</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>Mark</td>
+							<td>Otto</td>
+							<td>@mdo</td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>Jacob</td>
+							<td>Thornton</td>
+							<td>@fat</td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td>Larry</td>
+							<td>the Bird</td>
+							<td>@twitter</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3>Striped rows</h3>
+				<table class="table table-striped">
+					<caption>Tabelle mit Streifen</caption>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Username</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>Mark</td>
+							<td>Otto</td>
+							<td>@mdo</td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>Jacob</td>
+							<td>Thornton</td>
+							<td>@fat</td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td>Larry</td>
+							<td>the Bird</td>
+							<td>@twitter</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3>Bordered Table</h3>
+				<table class="table table-bordered">
+					<caption>Tabelle mit Rahmen.</caption>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Username</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>Mark</td>
+							<td>Otto</td>
+							<td>@mdo</td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td>Jacob</td>
+							<td>Thornton</td>
+							<td>@fat</td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td>Larry</td>
+							<td>the Bird</td>
+							<td>@twitter</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Column heading</th>
+								<th>Column heading</th>
+								<th>Column heading</th>
+								<th>Column heading</th>
+								<th>Column heading</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="active">
+								<th scope="row">1</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr class="success">
+								<th scope="row">3</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr>
+								<th scope="row">4</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr class="info">
+								<th scope="row">5</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr>
+								<th scope="row">6</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr class="warning">
+								<th scope="row">7</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr>
+								<th scope="row">8</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+							<tr class="danger">
+								<th scope="row">9</th>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+								<td>Column content</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</wicket:panel>
+</body>
+</html>

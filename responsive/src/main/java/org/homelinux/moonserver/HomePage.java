@@ -61,5 +61,7 @@ public class HomePage extends WebPage {
 		final Label dritterLabel = new Label("label3", "noch ein Label");
 		add(dritterLabel);
 
+		final TypographyPanel panel = new TypographyPanel("typography");
+		add(panel);
 	}
 }
