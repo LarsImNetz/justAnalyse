@@ -26,9 +26,10 @@ public class TestHomePage {
 	}
 
 	@Test
-	public void homepageContainsTable() {
+	public void homepageContainsComponents() {
 		tester.startPage(HomePage.class);
 		tester.debugComponentTrees();
+		tester.assertContains("title");
 		tester.assertContains("ajaxLink");
 		tester.assertContains("ajaxText");
 	}

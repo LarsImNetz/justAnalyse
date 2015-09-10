@@ -17,6 +17,9 @@ public class HomePage extends WebPage {
 
 		logger.debug("HomePage of Responsive Design Sample");
 
+		add(new TitlePanel("title"));
+		
+		// TODO: Das folgende auch noch auslagern!
 		add(new AjaxLink<Void>("ajaxLink") {
 
 			@Override

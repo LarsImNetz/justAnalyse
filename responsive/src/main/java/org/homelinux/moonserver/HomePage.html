@@ -69,32 +69,19 @@
 
 <!-- http://getbootstrap.com/css/ -->
 <body>
-	<div class="container-fluid">
+	<div class="jumbotron">
+		<div class="container-fluid">
 
-		<!-- Sample of a own title for each grid layout -->
+			<!-- Sample of a own title for each grid layout -->
 
-		<div class="row">
-			<div class="col-xs-12 visible-xs">
-				<h1>eXtra Small Überschrift</h1>
-			</div>
-			<div class="visible-sm col-md-8 col-md-offset-2">
-				<h1>Eine Überschrift in Small</h1>
-			</div>
-			<div class="visible-md col-md-8 col-md-offset-2">
-				<h1>Dies ist eine Überschrift in Medium</h1>
-			</div>
-			<div class="visible-lg col-md-10 col-md-offset-2">
-				<h1>Dies ist eine Überschrift für Large Desktop Devices</h1>
-			</div>
-		</div>
+			<wicket:container wicket:id="title"></wicket:container>
 
-		<!-- 5 simple div container -->
+			<!-- 5 simple div container -->
 
-		<div class="jumbotron">
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-1"></div>
 				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
-					<!--  <button class="button" wicket:id="ajaxLink">Press me</button> -->
+					<!--  <button class="button" wicket:id="oldAjaxLink">Press me</button> -->
 					<a class="button btn btn-lg btn-success" role="button"
 						wicket:id="ajaxLink">Press me</a>
 				</div>
@@ -112,7 +99,7 @@
 				</div>
 			</div>
 
-			<div wicket:id="typography"></div>
+			<wicket:container wicket:id="typography"></wicket:container>
 		</div>
 	</div>
 </body>
