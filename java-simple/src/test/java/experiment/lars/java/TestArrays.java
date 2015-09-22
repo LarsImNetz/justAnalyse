@@ -27,22 +27,24 @@ public class TestArrays {
 		final String[] str = {"eins", "zwei", "drei"};
 
 		final String[] str2 = new StringHelper().cdr(str);
-		
+
 		Assert.assertEquals(2, str2.length);
 		Assert.assertEquals("zwei", str2[0]);
 		Assert.assertEquals("drei", str2[1]);
 	}
-	
+
 	private static class StringHelper {
-		public StringHelper() {}
-		
+
+		public StringHelper() {
+		}
+
 		public String[] cdr(final String... strings) {
 			if (strings == null || strings.length == 0) {
 				throw new IllegalArgumentException("Array sollte mindestens ein Element enthalten");
 			}
 
 			final String[] newStrings = new String[strings.length - 1];
-			for(int i=1;i<strings.length;i++) {
+			for (int i = 1; i < strings.length; i++) {
 				newStrings[i - 1] = strings[i];
 			}
 			return newStrings;
