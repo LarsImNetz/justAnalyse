@@ -6,11 +6,13 @@ cd /tmp
 rm -rf a
 rm -rf b
 
-mkdir -p a/c
+mkdir -p a/c/asterix
 touch a/ich
 touch a/nicht
 touch a/c/nicht
 touch a/c/nicht_doch
+touch a/asterix
+touch a/c/asterix/obelix
 
 mkdir -p b/c
 touch b/bleibt
@@ -20,6 +22,7 @@ touch b/kommt_weg
 cat >.rsyncignore <<__EOF__
 nicht
 /bleibt
+asterix/*
 __EOF__
 
 # Erkenntnisse:
@@ -27,6 +30,8 @@ __EOF__
 # 'nicht_doch' wird kopiert, weil es nicht zum 'nicht' Pattern passt
 # 'bleibt' wird ignoriert, es wird in b nicht geloescht
 # 'b/c/bleibt' wird geloescht, weil es nicht zum '/bleibt' Pattern passt
+# 'asterix/*' das Verzeichnis wird angelegt, aber ist leer
+# 'asterix' die Datei wird mit kopiert, asterix/* ist ein Directory Pattern
 
 echo "---- rsync ----"
 
@@ -60,4 +65,12 @@ fi
 
 if [ -e b/c/bleibt ]; then
     echo "FAIL! b/c/bleibt sollte geloescht werden."
+fi
+
+if [ ! -e b/asterix ]; then
+    echo "FAIL! b/asterix fehlt!"
+fi
+
+if [ ! -d b/c/asterix ]; then
+    echo "FAIL! b/c/asterix directory should create but should empty"
 fi
