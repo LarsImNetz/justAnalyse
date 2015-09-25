@@ -1,5 +1,8 @@
 package experiment.lars.java;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,31 +26,14 @@ public class TestArrays {
 	}
 
 	@Test
-	public void testOneElementArray3() {
-		final String[] str = {"eins", "zwei", "drei"};
-
-		final String[] str2 = new StringHelper().cdr(str);
-
-		Assert.assertEquals(2, str2.length);
-		Assert.assertEquals("zwei", str2[0]);
-		Assert.assertEquals("drei", str2[1]);
+	public void testArrayToArrayList() throws Exception {
+	  final String[] digits = {"one", "two", "three", "for", "five"};
+	  
+    final List<String> digitList = Arrays.asList(digits);
+    Assert.assertEquals(5,  digitList.size());
+    Assert.assertEquals("one", digitList.get(0));
+    Assert.assertEquals("two", digitList.get(1));
+    Assert.assertEquals("five", digitList.get(4));
 	}
 
-	private static class StringHelper {
-
-		public StringHelper() {
-		}
-
-		public String[] cdr(final String... strings) {
-			if (strings == null || strings.length == 0) {
-				throw new IllegalArgumentException("Array sollte mindestens ein Element enthalten");
-			}
-
-			final String[] newStrings = new String[strings.length - 1];
-			for (int i = 1; i < strings.length; i++) {
-				newStrings[i - 1] = strings[i];
-			}
-			return newStrings;
-		}
-	}
 }
