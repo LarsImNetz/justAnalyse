@@ -1,6 +1,13 @@
 #!/bin/bash
 
-DATEI=/c/users/lars.langhans/Documents/Uebersicht_Zugänge_BI_PartnerVoll.csv
+# Guckst Du!
+# http://www.thegeekstuff.com/2010/06/bash-array-tutorial/
+
+
+
+
+
+# DATEI=/c/users/lars.langhans/Documents/Uebersicht_Zugänge_BI_PartnerVoll.csv
 DATEI=test.csv
 DESTFILE=passwords.csv
 SQLFILE=passwords.sql
@@ -30,10 +37,10 @@ declare -a pwarray
 # exit 1
 
 function exists_username() {
-  local j=
-  echo "exists_username $1?" >/dev/stderr
-  for j in ${userarray[@]} ; do
-      if [ "$j" = "$1" ]; then
+  local i
+  # echo "exists_username $1?" >/dev/stderr
+  for i in ${userarray[@]} ; do
+      if [ "$i" = "$1" ]; then
           echo "1"
           # break
       fi
@@ -41,11 +48,12 @@ function exists_username() {
 }
 
 function getpassword() {
-  local USERNAME=$1
+  local USERNAME=${1}
   local count=${#userarray[@]}
   echo "getpassword $1 out of $count ?" >/dev/stderr
-  local i=
+  local i
   for ((i=0; i < $count; i++ )); do
+  # for i in {0..$((count))}; do
     if [ "${userarray[$i]}" == "$USERNAME" ]; then
       echo "${pwarray[$i]}"
     fi
@@ -60,41 +68,41 @@ function eintragen() {
     userarray[${count}]=${USERNAME}
     pwarray[${count}]=${PASSWD}
 
-    echo "eintragen: $USERNAME in userarray $count ${userarray[$count]}" >/dev/stderr
+    # echo "eintragen: $USERNAME in userarray $count ${userarray[$count]}" >/dev/stderr
 }
 
 function createNewPassword() {
-    local USERNAME1=$1
+    local USERNAME=$1
     local passwd=
-    if [ "$(exists_username ${USERNAME1})" ]; then
-        passwd=$(getpassword ${USERNAME1})
+    if [ "$(exists_username ${USERNAME})" ]; then
+        passwd=$(getpassword ${USERNAME})
     else
       local pwlength=10
       # passwd=$(tr -dc 'A-Za-z0-9_\?\.\#\!' < /dev/urandom | head -c $pwlength | xargs)
-      passwd=$(tr -dc 'A-HJ-Za-km-z1-9_' < /dev/urandom | head -c $pwlength | xargs)
+      passwd=$(tr -dc 'A-HJ-Za-km-z1-9_' < /dev/urandom | head -c $pwlength | xargs )
       # passwd="po1bi2LAR"
-      eintragen ${USERNAME1} ${passwd}
+      eintragen ${USERNAME} ${passwd}
     fi
-    echo $passwd
+    echo "$passwd"
   }
 
 function createHash() {
   local passwd=$1
   local hashedpasswd=$(echo -n "$passwd" | md5sum | head -c 32 | xargs)
-  echo $hashedpasswd
+  echo "$hashedpasswd"
 }
 
 function test() {
   local USER="NNT82"
   createNewPassword $USER
   createNewPassword $USER
-  createNewPassword $USER
+#  createNewPassword "NNT82"
 
   #eintragen aa 11
   #eintragen bb 22
   #eintragen cc 33
 
-  if [ "$(exists_username ${USER})" ]; then
+  if [ "$(exists_username NNT82)" ]; then
     echo "existiert!"
     echo $(getpassword 'NNT82')
   else
@@ -103,9 +111,24 @@ function test() {
 
   local USER=hallo
   echo $(echo ${USER}, "${USER}", '${USER}')
-
-  exit 1
 }
+
+# test
+
+# exit 0
+
+# line=";;;;;NNT82;;"
+# USER=$(echo -n $line | awk -F ';' '{print $6;}')
+# echo $USER
+# PASSWD=$(createNewPassword $USER)
+# echo $PASSWD
+# 
+# USER2=$(echo -n $line | awk -F ';' '{print $6;}')
+# echo $USER2
+# PASSWD2=$(createNewPassword $USER2)
+# echo $PASSWD2
+# 
+# exit 0
 
 # test
 
@@ -118,11 +141,14 @@ while read line; do
   line="${line%$'\r'}"
 
   USERNAME=$(echo -n $line | awk -F ';' '{print $6;}' )
+
   # trim multiple spaces afterward
   USERNAME=${USERNAME%% *}
   USERNAME=${USERNAME#* }
+
+  echo "'$USERNAME'"
   if [ -n "$USERNAME" ]; then
-    PASSWD=$(createNewPassword ${USERNAME})
+    PASSWD=$(createNewPassword "${USERNAME}")
     HASHEDPASSWORD=$(createHash ${PASSWD})
 #    echo "$USERNAME"
 
