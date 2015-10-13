@@ -8,23 +8,42 @@ SQLFILE=passwords.sql
 rm -f $DESTFILE
 rm -f $SQLFILE
 
-#set -x
+# set -x
 
-userarray=
-pwarray=
+declare -a userarray
+declare -a pwarray
+
+# userarray[0]="nix"
+# userarray[1]="auch_nix"
+# pwarray[0]="nix"
+# pwarray[1]="auch_nix"
+
+# echo "USERARRAY:  $userarray"
+# echo "USERARRAY:  ${userarray[0]} ${userarray[1]} "
+# echo "COUNT: ${#userarray[@]}"
+# 
+# 
+# for j in ${userarray[@]}; do
+#     echo "- $j"
+# done
+# 
+# exit 1
 
 function exists_username() {
-  local i=
-  for i in ${userarray[@]}; do
-    if [ "$i" == "$1" ]; then
-      echo "1"
-    fi
+  local j=
+  echo "exists_username $1?" >/dev/stderr
+  for j in ${userarray[@]} ; do
+      if [ "$j" = "$1" ]; then
+          echo "1"
+          # break
+      fi
   done
 }
 
 function getpassword() {
   local USERNAME=$1
   local count=${#userarray[@]}
+  echo "getpassword $1 out of $count ?" >/dev/stderr
   local i=
   for ((i=0; i < $count; i++ )); do
     if [ "${userarray[$i]}" == "$USERNAME" ]; then
@@ -37,22 +56,24 @@ function eintragen() {
     local USERNAME=$1
     local PASSWD=$2
 
-    local count=${#userarray[@]}
-    userarray[$count]=${USERNAME}
-    pwarray[$count]=${PASSWD}
+    count=${#userarray[@]}
+    userarray[${count}]=${USERNAME}
+    pwarray[${count}]=${PASSWD}
+
+    echo "eintragen: $USERNAME in userarray $count ${userarray[$count]}" >/dev/stderr
 }
 
 function createNewPassword() {
-    local USERNAME=$1
+    local USERNAME1=$1
     local passwd=
-    if [ "$(exists_username ${USERNAME})" ]; then
-        passwd=$(getpassword ${USERNAME})
+    if [ "$(exists_username ${USERNAME1})" ]; then
+        passwd=$(getpassword ${USERNAME1})
     else
       local pwlength=10
       # passwd=$(tr -dc 'A-Za-z0-9_\?\.\#\!' < /dev/urandom | head -c $pwlength | xargs)
       passwd=$(tr -dc 'A-HJ-Za-km-z1-9_' < /dev/urandom | head -c $pwlength | xargs)
       # passwd="po1bi2LAR"
-      eintragen ${USERNAME} ${passwd}
+      eintragen ${USERNAME1} ${passwd}
     fi
     echo $passwd
   }
