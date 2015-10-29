@@ -10,4 +10,10 @@ public class TestWithException {
 
 		new StringUtils().reverse(null);
 	}
+	
+	@Test(expected=IllegalStateException.class)
+	public void testIllegalStateException() throws Exception {
+		throw new IllegalStateException("egal");
+	}	
+
 }
