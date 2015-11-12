@@ -13,7 +13,7 @@ public class BeanAdapter implements BeanAdoptee {
 	public static final String MONATLICHERATE = "monatlicherate";
 	public static final String IMMOBILIENWERT = "immobilienwert";
 	public static final String DARLEHENSBETRAG = "darlehensbetrag";
-	public final static String NAME = "name";
+	public static final String NAME = "name";
 
 	private static final DoubleConverter converter = new DoubleConverter();
 

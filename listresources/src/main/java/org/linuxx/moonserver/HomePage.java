@@ -11,7 +11,7 @@ import org.apache.wicket.request.resource.CssResourceReference;
 
 public class HomePage extends WebPage {
 
-	// private final static Logger logger =
+	// private static final Logger LOGGER =
 	// LoggerFactory.getLogger(HomePage.class);
 
 	public HomePage(final PageParameters parameters) {

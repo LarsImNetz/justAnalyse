@@ -8,13 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ClientInfo {
-	private static final Logger logger = LoggerFactory.getLogger(ClientInfo.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClientInfo.class);
 
 	public static String getOrigIPAddress() {
 		WebSession session = WebSession.get();
 		WebClientInfo info = (WebClientInfo) session.getClientInfo();
 		final String remoteAddress = info.getProperties().getRemoteAddress();
-		logger.info("ClientInfo: " + remoteAddress);
+		LOGGER.info("ClientInfo: " + remoteAddress);
 		return remoteAddress;
 	}
 
@@ -23,17 +23,17 @@ public class ClientInfo {
 		// http://stackoverflow.com/questions/7769203/wicket-how-to-get-clients-ip-address
 		WebRequest req = (WebRequest) RequestCycle.get().getRequest();
 		if (req == null) {
-			logger.info("WebRequest is null");
+			LOGGER.info("WebRequest is null");
 			return getOrigIPAddress();
 		}
 
 		String ip = req.getHeader("ClientIP");
 		if (ip == null) {
-			logger.info("Header for ClientIP not found");
+			LOGGER.info("Header for ClientIP not found");
 			return getOrigIPAddress();
 		}
 
-		logger.info("clientip: " + ip);
+		LOGGER.info("clientip: " + ip);
 		if (ip.contains(" ")) {
 			return ip.split(" ")[0]; // uns interessiert nur der vordere Teil
 		}

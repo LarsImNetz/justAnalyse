@@ -7,21 +7,21 @@ import org.apache.wicket.util.string.StringValue;
 
 public class HomePage extends WebPage {
 
-	// private final static Logger logger =
+	// private static final Logger LOGGER =
 	// LoggerFactory.getLogger(HomePage.class);
 
 	@SuppressWarnings("serial")
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
-		// logger.debug("HomePage of DateViewer");
+		// LOGGER.debug("HomePage of DateViewer");
 		//
 		// IModel<String> textToView = new LoadableDetachableModel<String>() {
 		//
 		// @Override
 		// protected String load() {
 		// final String textToString = "Heute ist " + new Date();
-		// logger.debug("Zu zeigender Text: " + textToString);
+		// LOGGER.debug("Zu zeigender Text: " + textToString);
 		// return textToString;
 		// }
 		//

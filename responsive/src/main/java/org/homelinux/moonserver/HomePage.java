@@ -10,12 +10,12 @@ import org.slf4j.LoggerFactory;
 
 public class HomePage extends WebPage {
 
-	private final static Logger logger = LoggerFactory.getLogger(HomePage.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
 
 	@SuppressWarnings("serial")
 	public HomePage() {
 
-		logger.debug("HomePage of Responsive Design Sample");
+		LOGGER.debug("HomePage of Responsive Design Sample");
 
 		add(new TitlePanel("title"));
 		
