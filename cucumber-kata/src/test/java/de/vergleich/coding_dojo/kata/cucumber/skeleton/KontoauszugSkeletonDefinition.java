@@ -4,7 +4,6 @@ import org.junit.Assert;
 
 import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
-import cucumber.api.java.de.Wenn;
 
 /**
  * <pre>
@@ -53,7 +52,7 @@ public class KontoauszugSkeletonDefinition {
 	private Bankkonto konto;
 
 	@Angenommen("^es existiert ein Bankkonto mit (\\d+) Transaktionen$")
-	public void es_existiert_ein_Bankkonto_mit_Transaktionen(int arg1) throws Throwable {
+	public void es_existiert_ein_Bankkonto_mit_Transaktionen(final int arg1) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 		konto = new Bankkonto();
 		konto.deposit(100);
@@ -66,7 +65,7 @@ public class KontoauszugSkeletonDefinition {
 	}
 
 	@Dann("^enthält mein Kontoauszug (\\d+) Einträge$")
-	public void enthält_mein_Kontoauszug_Einträge(int transaktionen) throws Throwable {
+	public void enthält_mein_Kontoauszug_Einträge(final int transaktionen) throws Throwable {
 		Assert.assertEquals(transaktionen, auszug.getAnzahlTransaktionen());
 	}
 }
