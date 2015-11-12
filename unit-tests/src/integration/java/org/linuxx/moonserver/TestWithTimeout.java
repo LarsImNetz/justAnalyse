@@ -12,7 +12,7 @@ public class TestWithTimeout {
 
 	@Test(timeout = 1000)
 	public void testReallyStupid() {
-		final long BIGVALUE = 2500000000L;
+		final long BIGVALUE = 250000000L;
 		long j = 0;
 		for (long i=0;i<BIGVALUE;i++) {
 			j++;
