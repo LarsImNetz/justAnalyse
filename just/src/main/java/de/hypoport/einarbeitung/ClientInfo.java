@@ -8,10 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ClientInfo {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientInfo.class);
 
-	private ClientInfo() {}
-	
+	private ClientInfo() {
+	}
+
 	public static String getOrigIPAddress() {
 		final WebSession session = WebSession.get();
 		final WebClientInfo info = session.getClientInfo();
