@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 
 public class SecondPage extends WebPage {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(SecondPage.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SecondPage.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -155,7 +155,6 @@ public class SecondPage extends WebPage {
 				if (getThread().isReady()) {
 					LOGGER.debug("was ready");
 					listeModel.setObject(getThread().getListe());
-					//					this.remove(ajaxSelfUpdatingTimerBehavior);
 				}
 			}
 		};
@@ -178,7 +177,7 @@ public class SecondPage extends WebPage {
 	}
 
 	/**
-	 * Threaqd der eine Liste erstellt
+	 * Thread der eine Liste erstellt
 	 */
 	private class SOAPEmulatingThread implements Runnable {
 
