@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("serial")
 public class SinglePage extends WebPage {
 
-	Logger LOGGER = LoggerFactory.getLogger(SinglePage.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SinglePage.class);
 
 	public SinglePage(final PageParameters parameters)  {
 		super(parameters);
@@ -54,10 +54,10 @@ public class SinglePage extends WebPage {
 
 
 	@Override
-	public void renderHead(IHeaderResponse response) {
+	public void renderHead(final IHeaderResponse response) {
 		LOGGER.info("renderHead()");
 		super.renderHead(response);
 
-		HeaderContributorListenerCollection x = Application.get().getHeaderContributorListenerCollection();
+		final HeaderContributorListenerCollection x = Application.get().getHeaderContributorListenerCollection();
 	}
 }

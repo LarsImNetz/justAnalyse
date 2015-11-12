@@ -10,9 +10,11 @@ import org.slf4j.LoggerFactory;
 public class ClientInfo {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientInfo.class);
 
+	private ClientInfo() {}
+	
 	public static String getOrigIPAddress() {
-		WebSession session = WebSession.get();
-		WebClientInfo info = (WebClientInfo) session.getClientInfo();
+		final WebSession session = WebSession.get();
+		final WebClientInfo info = session.getClientInfo();
 		final String remoteAddress = info.getProperties().getRemoteAddress();
 		LOGGER.info("ClientInfo: " + remoteAddress);
 		return remoteAddress;
@@ -21,13 +23,13 @@ public class ClientInfo {
 	public static String getIPAddress() {
 
 		// http://stackoverflow.com/questions/7769203/wicket-how-to-get-clients-ip-address
-		WebRequest req = (WebRequest) RequestCycle.get().getRequest();
+		final WebRequest req = (WebRequest) RequestCycle.get().getRequest();
 		if (req == null) {
 			LOGGER.info("WebRequest is null");
 			return getOrigIPAddress();
 		}
 
-		String ip = req.getHeader("ClientIP");
+		final String ip = req.getHeader("ClientIP");
 		if (ip == null) {
 			LOGGER.info("Header for ClientIP not found");
 			return getOrigIPAddress();
