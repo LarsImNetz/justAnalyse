@@ -1,35 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>de.vergleich</groupId>
-  <artifactId>justAnalyse</artifactId>
-  <version>1.0-SNAPSHOT</version>
+	<groupId>de.vergleich</groupId>
+	<artifactId>justAnalyse</artifactId>
+	<version>1.0-SNAPSHOT</version>
 
-  <name>just Analyse Tests</name>
+	<name>just Analyse Tests</name>
 
-  <packaging>pom</packaging>
+	<packaging>pom</packaging>
 
-  <modules>
-    <module>ajaxsample</module>
-    <module>container</module>
-<!--    <module>html5tests</module> -->
-    <module>javaapplicationsample</module>
-    <module>just</module>
-    <module>ovalsample</module>
-    <module>rest</module>
-    <module>visible_helper</module>
-    <module>jquery</module>
-    <module>javaseven</module>
-    <module>java-simple</module>
-    <module>miscellaneous</module>
-    <module>csvdiff</module>
-    <module>listresources</module>
-    <!-- lass die KackDB am Ende! -->
-    <module>dbsample</module>
-    <module>unit-tests</module>
-    <module>pattern</module>
-  </modules>
+	<modules>
+		<module>ajaxsample</module>
+		<!-- <module>angular</module> -->
+		<!-- <module>aspectj</module> -->
+		<!-- <module>bash-analyse</module> -->
+		<!-- <module>configPom</module> -->
+		<module>container</module>
+		<module>csvdiff</module>
+		<module>cucumber-kata</module>
+		<module>eclipse-analyse</module>
+		<!-- <module>halde</module> -->
+		<!-- <module>html5tests</module> -->
+		<module>java-simple</module>
+		<module>javaapplicationsample</module>
+		<!-- <module>javaeight</module> -->
+		<!-- <module>javascript</module> -->
+		<module>javaseven</module>
+		<module>jquery</module>
+		<module>just</module>
+		<module>listresources</module>
+		<module>miscellaneous</module>
+		<module>ovalsample</module>
+		<module>pattern</module>
+		<module>responsive</module>
+		<module>rest</module>
+		<!-- <module>rsync</module> -->
+		<module>unit-tests</module>
+		<module>visible_helper</module>
+		<!-- lass die KackDB am Ende! -->
+		<module>dbsample</module>
+		<!-- <module>xtend/first-tests</module> -->
+	</modules>
 
 </project>
