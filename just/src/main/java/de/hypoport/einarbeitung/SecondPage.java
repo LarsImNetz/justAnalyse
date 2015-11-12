@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 
 public class SecondPage extends WebPage {
 
-	private final static Logger logger = LoggerFactory.getLogger(SecondPage.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(SecondPage.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class SecondPage extends WebPage {
 	}
 
 	public SecondPage() {
-		logger.debug("SecondPage() ctor");
+		LOGGER.debug("SecondPage() ctor");
 		setResponsePage(HomePage.class);
 	}
 
@@ -48,38 +48,38 @@ public class SecondPage extends WebPage {
 	public SecondPage(final PageParameters parameters) {
 		super(parameters);
 
-		logger.debug("SecondPage() with parameters");
+		LOGGER.debug("SecondPage() with parameters");
 
 		HomePage.sleep();
 
-		Form<Void> form = new Form<Void>("form") {
+		final Form<Void> form = new Form<Void>("form") {
 
 			@Override
 			public void onError() {
-				logger.debug("Form Error");
+				LOGGER.debug("Form Error");
 				super.onError();
 			}
 
 			@Override
 			public void onSubmit() {
-				logger.debug("Form Submit");
+				LOGGER.debug("Form Submit");
 				super.onSubmit();
 			}
 
 		};
 
-		IModel<String> labelModel = new AbstractReadOnlyModel<String>() {
+		final IModel<String> labelModel = new AbstractReadOnlyModel<String>() {
 
 			@Override
 			public String getObject() {
 				++counter;
-				logger.debug("SecondPage() set label");
-				String label = parameters.get("label").toString();
+				LOGGER.debug("SecondPage() set label");
+				final String label = parameters.get("label").toString();
 				return label + " " + String.valueOf(counter);
 			}
 		};			
 
-		Label label = new Label("label", labelModel) {
+		final Label label = new Label("label", labelModel) {
 				
 			@Override
 			protected void onConfigure() {
@@ -95,13 +95,13 @@ public class SecondPage extends WebPage {
 
 			@Override
 			public void onError() {
-				logger.debug("Button Error");
+				LOGGER.debug("Button Error");
 				super.onError();
 			}
 
 			@Override
 			public void onSubmit() {
-				logger.debug("Button Submit");
+				LOGGER.debug("Button Submit");
 				setResponsePage(HomePage.class);
 				super.onSubmit();
 			}
@@ -109,7 +109,7 @@ public class SecondPage extends WebPage {
 
 		add(form);
 
-		List<String> liste = new ArrayList<String>();
+		final List<String> liste = new ArrayList<String>();
 		listeModel = new ListModel<String>(liste);
 
 		/*
@@ -121,12 +121,12 @@ public class SecondPage extends WebPage {
 				Duration.ONE_SECOND) {
 
 			@Override
-			protected void onPostProcessTarget(AjaxRequestTarget target) {
+			protected void onPostProcessTarget(final AjaxRequestTarget target) {
 				super.onPostProcessTarget(target);
 
-				logger.debug("post process target");
+				LOGGER.debug("post process target");
 				if (getThread().isReady()) {
-					logger.debug("post process target was ready");
+					LOGGER.debug("post process target was ready");
 
 					this.stop(target);
 				}
@@ -139,10 +139,10 @@ public class SecondPage extends WebPage {
 		final ShowList showList = new ShowList("list", listeModel) {
 
 			@Override
-			public Page getZielPageHook(PageParameters p) {
-				String gewaehlt = p.get("name").toString();
+			public Page getZielPageHook(final PageParameters p) {
+				final String gewaehlt = p.get("name").toString();
 				p.add("label", gewaehlt);
-				Page newPage = new SecondPage(p);
+				final Page newPage = new SecondPage(p);
 				return newPage;
 			}
 
@@ -150,10 +150,10 @@ public class SecondPage extends WebPage {
 			protected void onConfigure() {
 				super.onConfigure();
 
-				logger.debug("onConfigure");
+				LOGGER.debug("onConfigure");
 
 				if (getThread().isReady()) {
-					logger.debug("was ready");
+					LOGGER.debug("was ready");
 					listeModel.setObject(getThread().getListe());
 					//					this.remove(ajaxSelfUpdatingTimerBehavior);
 				}
@@ -169,8 +169,8 @@ public class SecondPage extends WebPage {
 		add(new AjaxLink<String>("showlist", Model.of("Klick mich")) {
 
 			@Override
-			public void onClick(AjaxRequestTarget target) {
-				logger.debug("showlist");
+			public void onClick(final AjaxRequestTarget target) {
+				LOGGER.debug("showlist");
 				new Thread(getThread()).start();
 			}
 
@@ -183,13 +183,13 @@ public class SecondPage extends WebPage {
 	private class SOAPEmulatingThread implements Runnable {
 
 		private boolean ready = false;
-		private Integer mutexReady = new Integer(4);
-		private Integer mutex = new Integer(5);
+		private final Integer mutexReady = new Integer(4);
+		private final Integer mutex = new Integer(5);
 		private List<String> liste;
 
 		@Override
 		public void run() {
-			logger.debug("run");
+			LOGGER.debug("run");
 			synchronized (mutexReady) {
 				ready = false;
 			}
@@ -201,7 +201,7 @@ public class SecondPage extends WebPage {
 			synchronized (mutexReady) {
 				ready = true;
 			}
-			logger.debug("run ready");
+			LOGGER.debug("run ready");
 		}
 
 		public boolean isReady() {
