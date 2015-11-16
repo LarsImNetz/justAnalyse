@@ -1,6 +1,8 @@
-package org.homelinux.moonserver;
+package org.homelinux.moonserver.r12s_in_html;
 
 import org.apache.wicket.util.tester.WicketTester;
+import org.homelinux.moonserver.WicketApplication;
+import org.homelinux.moonserver.r12s_in_html.HomePage;
 import org.junit.Before;
 import org.junit.Test;
 

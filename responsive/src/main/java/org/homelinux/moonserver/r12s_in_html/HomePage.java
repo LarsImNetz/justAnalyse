@@ -1,4 +1,4 @@
-package org.homelinux.moonserver;
+package org.homelinux.moonserver.r12s_in_html;
 
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
