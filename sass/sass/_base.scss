@@ -1,0 +1,28 @@
+body > header, body > section, body > footer  {
+	// Nur jeweils das erste Element muss ein Container sein deshalb '>'
+
+		@include make-content-container;
+	
+}
+
+.breite-xs-100 {
+	@include make-xs-column(12);
+}
+.breite-sm-100 {
+	@include make-sm-column(12);
+}
+.breite-sm-50 {
+	@include make-sm-column(6);
+}
+.breite-md-100 {
+	@include make-md-column(12);
+}
+.breite-md-66 {
+	@include make-md-column(8);
+}
+.breite-md-50 {
+	@include make-md-column(6);
+}
+.breite-md-33 {
+	@include make-md-column(4);
+}
