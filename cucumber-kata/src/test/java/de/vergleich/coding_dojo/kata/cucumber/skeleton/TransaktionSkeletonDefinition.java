@@ -2,7 +2,6 @@ package de.vergleich.coding_dojo.kata.cucumber.skeleton;
 
 import org.junit.Assert;
 
-import cucumber.api.java.de.Angenommen;
 import cucumber.api.java.de.Dann;
 import cucumber.api.java.de.Wenn;
 
@@ -62,12 +61,12 @@ public class TransaktionSkeletonDefinition {
 	private Transaktion transaktion;
 
 	@Wenn("^ich (\\d+) Euro in ein Konto einzahle$")
-	public void ich_Euro_in_ein_Konto_einzahle(int arg1) throws Throwable {
+	public void ich_Euro_in_ein_Konto_einzahle(final int arg1) throws Throwable {
 		transaktion = new Transaktion(arg1);
 	}
 
 	@Dann("^habe ich (\\d+) Euro in einer Transaktion$")
-	public void habe_ich_Euro_in_einer_Transaktion(int arg1) throws Throwable {
+	public void habe_ich_Euro_in_einer_Transaktion(final int arg1) throws Throwable {
 		Assert.assertEquals(arg1, transaktion.getWert());
 	}
 

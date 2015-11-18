@@ -2,9 +2,6 @@ package helper;
 
 public class StringHelper {
 
-    public StringHelper() {
-    }
-
     /**
      * ist dem cdr aus Scheme nachempfunden
      * @param strings

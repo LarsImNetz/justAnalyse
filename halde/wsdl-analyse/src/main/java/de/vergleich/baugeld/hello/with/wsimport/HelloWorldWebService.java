@@ -22,8 +22,8 @@ public class HelloWorldWebService
     extends Service
 {
 
-    private final static URL HELLOWORLDWEBSERVICE_WSDL_LOCATION;
-    private final static Logger logger = Logger.getLogger(de.vergleich.baugeld.hello.with.wsimport.HelloWorldWebService.class.getName());
+    private static final URL HELLOWORLDWEBSERVICE_WSDL_LOCATION;
+    private static final Logger LOGGER = Logger.getLogger(de.vergleich.baugeld.hello.with.wsimport.HelloWorldWebService.class.getName());
 
     static {
         URL url = null;
@@ -32,8 +32,8 @@ public class HelloWorldWebService
             baseUrl = de.vergleich.baugeld.hello.with.wsimport.HelloWorldWebService.class.getResource(".");
             url = new URL(baseUrl, "file:/C:/develop/vgl_bv_second/de.vergleich.baushup--parentPom/interhyp-interface/src/main/resources/de/vergleich/baugeld/webservices/HelloWorld.wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'file:/C:/develop/vgl_bv_second/de.vergleich.baushup--parentPom/interhyp-interface/src/main/resources/de/vergleich/baugeld/webservices/HelloWorld.wsdl', retrying as a local file");
-            logger.warning(e.getMessage());
+            LOGGER.warning("Failed to create URL for the wsdl Location: 'file:/C:/develop/vgl_bv_second/de.vergleich.baushup--parentPom/interhyp-interface/src/main/resources/de/vergleich/baugeld/webservices/HelloWorld.wsdl', retrying as a local file");
+            LOGGER.warning(e.getMessage());
         }
         HELLOWORLDWEBSERVICE_WSDL_LOCATION = url;
     }

@@ -18,32 +18,32 @@ import org.slf4j.LoggerFactory;
 
 public class HomePage extends WebPage {
 
-	private final static Logger logger = LoggerFactory.getLogger(HomePage.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
 
 	private static final long serialVersionUID = 1L;
 
-	private Label label;
-	private StringModel labelText;
+	private final Label label;
+	private final StringModel labelText;
 
 	@SuppressWarnings("serial")
 	public HomePage(final PageParameters parameters) throws InterruptedException, IOException {
 		super(parameters);
 
-		logger.debug("HomePage() with parameters");
+		LOGGER.debug("HomePage() with parameters");
 
 		sleep();
 
-		Form<Void> form = new Form<Void>("form") {
+		final Form<Void> form = new Form<Void>("form") {
 
 			@Override
 			public void onError() {
-				logger.debug("Form Error");
+				LOGGER.debug("Form Error");
 				super.onError();
 			}
 
 			@Override
 			public void onSubmit() {
-				logger.debug("Form Submit");
+				LOGGER.debug("Form Submit");
 				super.onSubmit();
 			}
 
@@ -73,8 +73,8 @@ public class HomePage extends WebPage {
 
 			@Override
 			public void onSubmit() {
-				logger.debug("Submit");
-				PageParameters params = new PageParameters();
+				LOGGER.debug("Submit");
+				final PageParameters params = new PageParameters();
 				params.add("label", "hier steht etwas");
 				setResponsePage(SecondPage.class, params);
 				super.onSubmit();
@@ -87,11 +87,11 @@ public class HomePage extends WebPage {
 		add(createLink("link"));
 	}
 
-	private AjaxLink<Void> createLink(String wicketId) {
-		AjaxLink<Void> ajaxLink = new AjaxLink<Void>(wicketId) {
+	private AjaxLink<Void> createLink(final String wicketId) {
+		final AjaxLink<Void> ajaxLink = new AjaxLink<Void>(wicketId) {
 
 			@Override
-			public void onClick(AjaxRequestTarget target) {
+			public void onClick(final AjaxRequestTarget target) {
 				// DisplayAnbieter current = getModelObject();
 				// setModelObject(current.swap());
 				// Events.send(this, new
@@ -107,14 +107,14 @@ public class HomePage extends WebPage {
 	public static void sleep() {
 		try {
 			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		} catch (final InterruptedException e) {
+			LOGGER.error(e.getMessage());
 		}
 	}
 
 	
 	@Override
-	public void renderHead(IHeaderResponse response) {
+	public void renderHead(final IHeaderResponse response) {
 		response.render(CssHeaderItem.forReference(new CssResourceReference(this.getClass(), "HomePage.css")));
 	}
 
@@ -123,7 +123,7 @@ public class HomePage extends WebPage {
 
 		private String text;
 
-		public StringModel(String text) {
+		public StringModel(final String text) {
 			this.text = text;
 		}
 
@@ -138,7 +138,7 @@ public class HomePage extends WebPage {
 		}
 
 		@Override
-		public void setObject(String object) {
+		public void setObject(final String object) {
 			text = object;
 		}
 	}

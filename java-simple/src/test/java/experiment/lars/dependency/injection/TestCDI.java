@@ -32,8 +32,6 @@ public class TestCDI {
 	public void test() {
 		injector.injectMembers(this);
 
-		// FooClient f = injector.getInstance(FooClient.class);
-		// Assert.assertNotNull(f);
 		Assert.assertNotNull(client);
 		Assert.assertEquals("a", client.get());
 		Assert.assertEquals(30, value);
@@ -46,9 +44,9 @@ public class TestCDI {
 
 	private static class FooModule extends AbstractModule {
 
-		private String fooServerAddress;
+		private final String fooServerAddress;
 
-		public FooModule(String fooServerAddress) {
+		public FooModule(final String fooServerAddress) {
 			this.fooServerAddress = fooServerAddress;
 		}
 
@@ -68,10 +66,10 @@ public class TestCDI {
 
 	private static class FooClient implements IFooClient {
 
-		private String fooServerAddress;
+		private final String fooServerAddress;
 
 		@Inject
-		public FooClient(@FooServerAddress String fooServerAddress) {
+		public FooClient(@FooServerAddress final String fooServerAddress) {
 			System.out.println("c'tor " + fooServerAddress);
 			this.fooServerAddress = fooServerAddress;
 		}

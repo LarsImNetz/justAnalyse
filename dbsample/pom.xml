@@ -10,428 +10,310 @@
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.linuxx.moonserver</groupId>
-    <artifactId>configPom</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <relativePath>../configPom/pom.xml</relativePath>
-  </parent>
-  
-  <groupId>org.linuxx.moonserver</groupId>
-  <artifactId>dbsample</artifactId>
-  <packaging>war</packaging>
-  <version>1.0.0</version>
-  <name>Database Beispielchen</name>
-  <description></description>
-  <!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.linuxx.moonserver</groupId>
+		<artifactId>configPom</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../configPom/pom.xml</relativePath>
+	</parent>
 
-  <dependencies>
-    <!-- WICKET DEPENDENCIES -->
-    <dependency>
-      <groupId>org.apache.wicket</groupId>
-      <artifactId>wicket-core</artifactId>
-      <version>${wicket.version}</version>
-    </dependency>
-    <!-- OPTIONAL DEPENDENCY <dependency> <groupId>org.apache.wicket</groupId> 
-	 <artifactId>wicket-extensions</artifactId> <version>${wicket.version}</version> 
-	 </dependency> -->
+	<groupId>org.linuxx.moonserver</groupId>
+	<artifactId>dbsample</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0</version>
+	<name>Database Beispielchen</name>
+	<description></description>
+	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
-    <!-- LOGGING DEPENDENCIES - LOG4J -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${log4j.version}</version>
-    </dependency>
+	<dependencies>
+		<!-- WICKET DEPENDENCIES -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-core</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<!-- OPTIONAL DEPENDENCY <dependency> <groupId>org.apache.wicket</groupId> 
+			<artifactId>wicket-extensions</artifactId> <version>${wicket.version}</version> 
+			</dependency> -->
 
-    <!-- JUNIT DEPENDENCY FOR TESTING -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
+		<!-- LOGGING DEPENDENCIES - LOG4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
 
-    <!-- JETTY DEPENDENCIES FOR TESTING -->
-    <dependency>
-      <groupId>org.eclipse.jetty.aggregate</groupId>
-      <artifactId>jetty-all-server</artifactId>
-      <version>${jetty.version}</version>
-      <scope>provided</scope>
-    </dependency>
+		<!-- JUNIT DEPENDENCY FOR TESTING -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-    <!-- Mockito -->
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>${mockito.version}</version>
-    </dependency>
+		<!-- JETTY DEPENDENCIES FOR TESTING -->
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all-server</artifactId>
+			<version>${jetty.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
-    <!-- Guice -->
-    <dependency>
-      <groupId>org.apache.wicket</groupId>
-      <artifactId>wicket-guice</artifactId>
-      <version>${wicket.version}</version>
-      <exclusions>
-	<exclusion>
-	  <groupId>org.slf4j</groupId>
-	  <artifactId>slf4j-api</artifactId>
-	</exclusion>
-      </exclusions>
-    </dependency>
+		<!-- Mockito -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+		</dependency>
 
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <version>${guice.version}</version>
-    </dependency>
+		<!-- Guice -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-guice</artifactId>
+			<version>${wicket.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
-    <dependency>
-      <groupId>org.eclipse.persistence</groupId>
-      <artifactId>eclipselink</artifactId>
-      <version>${eclipselink.version}</version>
-    </dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
 
-    <dependency>
-      <groupId>org.eclipse.persistence</groupId>
-      <artifactId>javax.persistence</artifactId>
-      <version>${javax-persistence.version}</version>
-    </dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>${eclipselink.version}</version>
+		</dependency>
 
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-      <version>${derby.version}</version>
-      <scope>test</scope>
-    </dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>${javax-persistence.version}</version>
+		</dependency>
 
-    <!-- Hibernate Dependencies -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>${derby.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-<!--
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
+		<!-- Hibernate Dependencies -->
 
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-annotations</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId> 
+			<version>${hibernate.version}</version> </dependency> <dependency> <groupId>org.hibernate</groupId> 
+			<artifactId>hibernate-annotations</artifactId> <version>${hibernate.version}</version> 
+			</dependency> <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
+			<version>${hibernate.version}</version> </dependency> -->
 
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-      <version>${hibernate.version}</version>
-    </dependency>
--->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-jpamodelgen</artifactId>
-      <version>${hibernate.version}</version>
-      <scope>provided</scope>
-    </dependency>
+		<!-- <dependency> <groupId>org.eclipse.persistence</groupId> <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId> 
+			<version>${eclipselink.version}</version> <scope>provided</scope> </dependency> -->
 
-<!--
-<dependency>
-  <groupId>org.eclipse.persistence</groupId>
-  <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-  <version>${eclipselink.version}</version>
-  <scope>provided</scope>
-</dependency>
--->
-
-  </dependencies>
+	</dependencies>
 
 
-  <build>
-    <finalName>dbsampler</finalName>
-    <resources>
-      <resource>
-	<filtering>false</filtering>
-	<directory>src/main/resources</directory>
-      </resource>
-      <resource>
-	<filtering>false</filtering>
-	<directory>src/main/java</directory>
-	<includes>
-	  <include>**</include>
-	</includes>
-	<excludes>
-	  <exclude>**/*.java</exclude>
-	</excludes>
-      </resource>
-    </resources>
-    <testResources>
-      <testResource>
-	<filtering>false</filtering>
-	<directory>src/test/resources</directory>
-      </testResource>
-      <testResource>
-	<filtering>false</filtering>
-	<directory>src/test/java</directory>
-	<includes>
-	  <include>**</include>
-	</includes>
-	<excludes>
-	  <exclude>**/*.java</exclude>
-	</excludes>
-      </testResource>
-    </testResources>
+	<build>
+		<finalName>dbsampler</finalName>
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/test/resources</directory>
+			</testResource>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/test/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>
 
-    <plugins>
-<!--
-	<plugin>
-		<groupId>org.mortbay.jetty</groupId>
-		<artifactId>jetty-maven-plugin</artifactId>
-		<version>${jetty.version}</version>
-		<configuration>
-			<connectors>
-				<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-					<port>8080</port>
-					<maxIdleTime>3600000</maxIdleTime>
-				</connector>
-				<connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
-					<port>8443</port>
-					<maxIdleTime>3600000</maxIdleTime>
-					<keystore>${project.build.directory}/test-classes/keystore</keystore>
-					<password>wicket</password>
-					<keyPassword>wicket</keyPassword>
-				</connector>
-			</connectors>
-		</configuration>
-		<executions>
-			<execution>
-				<id>start-jetty</id>
-				<phase>pre-integration-test</phase>
-				<goals>
-					<goal>run</goal>
-				</goals>
+		<plugins>
+			<!-- <plugin> <groupId>org.mortbay.jetty</groupId> <artifactId>jetty-maven-plugin</artifactId> 
+				<version>${jetty.version}</version> <configuration> <connectors> <connector 
+				implementation="org.eclipse.jetty.server.nio.SelectChannelConnector"> <port>8080</port> 
+				<maxIdleTime>3600000</maxIdleTime> </connector> <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector"> 
+				<port>8443</port> <maxIdleTime>3600000</maxIdleTime> <keystore>${project.build.directory}/test-classes/keystore</keystore> 
+				<password>wicket</password> <keyPassword>wicket</keyPassword> </connector> 
+				</connectors> </configuration> <executions> <execution> <id>start-jetty</id> 
+				<phase>pre-integration-test</phase> <goals> <goal>run</goal> </goals> <configuration> 
+				<scanIntervalSeconds>0</scanIntervalSeconds> <daemon>false</daemon> </configuration> 
+				</execution> <execution> <id>stop-jetty</id> <phase>post-integration-test</phase> 
+				<goals> <goal>stop</goal> </goals> </execution> </executions> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
 				<configuration>
-					<scanIntervalSeconds>0</scanIntervalSeconds>
-					<daemon>false</daemon>
+					<downloadSources>true</downloadSources>
 				</configuration>
-			</execution>
-			<execution>
-				<id>stop-jetty</id>
-				<phase>post-integration-test</phase>
-				<goals>
-					<goal>stop</goal>
-				</goals>
-			</execution>
-		</executions>
-	</plugin>
--->
-	<plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-eclipse-plugin</artifactId>
-		<version>2.9</version>
-		<configuration>
-			<downloadSources>true</downloadSources>
-		</configuration>
-	</plugin>
+			</plugin>
 
-	<plugin>
-		<!-- <inherited>true</inherited> -->
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-compiler-plugin</artifactId>
-		<version>${compiler-plugin.version}</version>
-<!--
-	<executions>
-	  <execution>
-            <id>generate-entity-metamodel</id>
-            <phase>generate-sources</phase>
-             <goals>
-                <goal>compile</goal>
-            </goals>
--->
-	    <configuration>
-	      <source>1.7</source>
-	      <target>1.7</target>
-<!--
-              <optimize>true</optimize>
-              <showDeprecation>true</showDeprecation>
-              <showWarnings>true</showWarnings>
-              <proc>only</proc>
--->
-<!--
-              <compilerArgument>-Aopenjpa.metamodel=true</compilerArgument>
-              <generatedSourcesDirectory>${project.build.directory}/generated-sources/annotations</generatedSourcesDirectory>
--->
-<!--
-	      <encoding>UTF-8</encoding>
-	      <showWarnings>true</showWarnings>
-	      <showDeprecation>true</showDeprecation>
-	      <verbose>true</verbose>
-	      <compilerVersion>1.7</compilerVersion>
--->
-              <compilerArgument>-proc:none</compilerArgument>
- 
-	    </configuration>
-<!--
-	  </execution>
-           <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <goals>
-                <goal>compile</goal>
-            </goals>
-            <configuration>
-                <source>1.7</source>
-                <target>1.7</target>
-            </configuration>
-        </execution>
-	</executions>
--->
-      </plugin>
+			<plugin>
+				<!-- <inherited>true</inherited> -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler-plugin.version}</version>
+				<!-- <executions> <execution> <id>generate-entity-metamodel</id> <phase>generate-sources</phase> 
+					<goals> <goal>compile</goal> </goals> -->
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<!-- <optimize>true</optimize> <showDeprecation>true</showDeprecation> 
+						<showWarnings>true</showWarnings> <proc>only</proc> -->
+					<!-- <compilerArgument>-Aopenjpa.metamodel=true</compilerArgument> <generatedSourcesDirectory>${project.build.directory}/generated-sources/annotations</generatedSourcesDirectory> -->
+					<!-- <encoding>UTF-8</encoding> <showWarnings>true</showWarnings> <showDeprecation>true</showDeprecation> 
+						<verbose>true</verbose> <compilerVersion>1.7</compilerVersion> -->
+					<compilerArgument>-proc:none</compilerArgument>
+
+				</configuration>
+				<!-- </execution> <execution> <id>compile</id> <phase>compile</phase> 
+					<goals> <goal>compile</goal> </goals> <configuration> <source>1.7</source> 
+					<target>1.7</target> </configuration> </execution> </executions> -->
+			</plugin>
 
 
-      <plugin>
-        <groupId>org.bsc.maven</groupId>
-        <artifactId>maven-processor-plugin</artifactId>
-        <version>2.2.4</version>
-        <executions>
-          <execution>
-            <id>process</id>
-            <goals>
-              <goal>process</goal>
-            </goals>
-            <phase>generate-sources</phase>
-            <configuration>
-<!--
-              <compilerArguments>-Aopenjpa.source=7 -Aopenjpa.metamodel=true</compilerArguments>
-              <processors>
-                <processor>org.apache.openjpa.persistence.meta.AnnotationProcessor6</processor>
-              </processors>
--->
-             <!-- source output directory -->
-             <outputDirectory>${project.build.directory}/generated-sources/annotations</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-<!--
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.openjpa</groupId>
-            <artifactId>openjpa</artifactId>
-            <version>${openjpa.version}</version>
-          </dependency>
-        </dependencies>
--->
-      </plugin>
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>2.2.4</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<!-- <compilerArguments>-Aopenjpa.source=7 -Aopenjpa.metamodel=true</compilerArguments> 
+								<processors> <processor>org.apache.openjpa.persistence.meta.AnnotationProcessor6</processor> 
+								</processors> -->
+							<!-- source output directory -->
+							<outputDirectory>${project.build.directory}/generated-sources/annotations</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<!-- <dependencies> <dependency> <groupId>org.apache.openjpa</groupId> 
+					<artifactId>openjpa</artifactId> <version>${openjpa.version}</version> </dependency> 
+					</dependencies> -->
+			</plugin>
 
-      <!--
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-jar-plugin</artifactId>
-	<version>${jar-plugin.version}</version>
-	<executions>
-	  <execution>
-	    <goals>
-	      <goal>test-jar</goal>
-	    </goals>
-	  </execution>
-	</executions>
-      </plugin>
--->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
+				<version>${jar-plugin.version}</version> <executions> <execution> <goals> 
+				<goal>test-jar</goal> </goals> </execution> </executions> </plugin> -->
 
-      <plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>build-helper-maven-plugin</artifactId>
-	<version>${build-helper-plugin.version}</version>
-	<executions>
-	  <execution>
-	    <id>add-source</id>
-	    <phase>generate-sources</phase>
-	    <goals>
-	      <goal>add-source</goal>
-	    </goals>
-	    <configuration>
-	      <sources>
-		<source>${project.build.directory}/generated-sources/annotations</source>
-	      </sources>
-	    </configuration>
-	  </execution>
-	</executions>
-      </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>${build-helper-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/annotations</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 
-    </plugins>
-    
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings 
-            only. It has no influence on the Maven build itself. -->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-<!--                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>
-                      org.codehaus.mojo
-                    </groupId>
-                    <artifactId>
-                      build-helper-maven-plugin
-                    </artifactId>
-                    <versionRange>
-                      [1.5,)
-                    </versionRange>
-                    <goals>
-                      <goal>add-source</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
--->
-                <!--                 <pluginExecution> -->
-                <!--                   <pluginExecutionFilter> -->
-                <!--                     <groupId> -->
-                <!--                       org.apache.maven.plugins -->
-                <!--                     </groupId> -->
-                <!--                     <artifactId> -->
-                <!--                       maven-checkstyle-plugin -->
-                <!--                     </artifactId> -->
-                <!--                     <versionRange> -->
-                <!--                       [2.10,) -->
-                <!--                     </versionRange> -->
-                <!--                     <goals> -->
-                <!--                       <goal>check</goal> -->
-                <!--                     </goals> -->
-                <!--                   </pluginExecutionFilter> -->
-                <!--                   <action> -->
-                <!--                     <ignore></ignore> -->
-                <!--                   </action> -->
-                <!--                 </pluginExecution> -->
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    
-    
-  </build>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<!-- <pluginExecution> <pluginExecutionFilter> <groupId> org.codehaus.mojo 
+									</groupId> <artifactId> build-helper-maven-plugin </artifactId> <versionRange> 
+									[1.5,) </versionRange> <goals> <goal>add-source</goal> </goals> </pluginExecutionFilter> 
+									<action> <ignore></ignore> </action> </pluginExecution> -->
+								<!-- <pluginExecution> -->
+								<!-- <pluginExecutionFilter> -->
+								<!-- <groupId> -->
+								<!-- org.apache.maven.plugins -->
+								<!-- </groupId> -->
+								<!-- <artifactId> -->
+								<!-- maven-checkstyle-plugin -->
+								<!-- </artifactId> -->
+								<!-- <versionRange> -->
+								<!-- [2.10,) -->
+								<!-- </versionRange> -->
+								<!-- <goals> -->
+								<!-- <goal>check</goal> -->
+								<!-- </goals> -->
+								<!-- </pluginExecutionFilter> -->
+								<!-- <action> -->
+								<!-- <ignore></ignore> -->
+								<!-- </action> -->
+								<!-- </pluginExecution> -->
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+
+	</build>
 
 </project>
