@@ -15,9 +15,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>justAnalyse</artifactId>
-		<groupId>de.vergleich</groupId>
+		<groupId>org.linuxx.moonserver</groupId>
+		<artifactId>configPom</artifactId>
 		<version>1.0-SNAPSHOT</version>
+		<relativePath>../configPom/pom.xml</relativePath>
 	</parent>
 
 	<groupId>org.linuxx.moonserver</groupId>
@@ -25,7 +26,7 @@
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<!-- TODO project name -->
-	<name>quickstart</name>
+	<name>wicket7-test</name>
 	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
 	<licenses>
 		<license>
@@ -38,7 +39,7 @@
 		<wicket.version>7.1.0</wicket.version>
 		<jetty9.version>9.2.13.v20150730</jetty9.version>
 		<log4j.version>2.4</log4j.version>
-		<junit.version>4.12</junit.version>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
 		<wtp.version>none</wtp.version>
@@ -101,6 +102,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+	<finalName>wicket7-test</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -134,7 +136,7 @@
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>${compiler-plugin.version}</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -160,7 +162,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
+				<version>${eclipse-plugin.version}</version>
 				<configuration>
 					<downloadSources>true</downloadSources>
 					<wtpversion>${wtp.version}</wtpversion>
@@ -169,6 +171,7 @@
 		</plugins>
 	</build>
 
+<!-- 
 	<repositories>
 		<repository>
 			<id>Apache Nexus</id>
@@ -180,4 +183,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
+-->
 </project>
