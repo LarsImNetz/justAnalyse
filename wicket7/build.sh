@@ -1,0 +1,1 @@
+mvn archetype:generate -DarchetypeGroupId=org.apache.wicket -DarchetypeArtifactId=wicket-archetype-quickstart -DarchetypeVersion=7.1.0 -DgroupId=org.linuxx.moonserver -DartifactId=wicket7 -DarchetypeRepository=https://repository.apache.org/ -DinteractiveMode=false
