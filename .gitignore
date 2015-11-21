@@ -10,3 +10,5 @@ target
 derby.log
 *~
 
+npm-debug.log
+C:\nppdf32Log\debuglog.txt
