@@ -34,7 +34,7 @@
 		<module>miscellaneous</module>
 		<module>ovalsample</module>
 		<module>pattern</module>
-		<module>responsive</module>
+<!--		<module>responsive</module> -->
 		<module>rest</module>
 		<!-- <module>rsync</module> -->
 		<module>unit-tests</module>
