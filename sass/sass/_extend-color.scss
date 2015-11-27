@@ -1,0 +1,26 @@
+
+// This is a sample of a very bad name
+// because we know that #f00 is red!
+.color-red {
+	color: #f00;
+}
+
+.normal-color {
+	color: #000;
+	background-color: #fff;
+}
+
+.warning-color {
+	color: #f00;
+	background-color: #fff;
+}
+
+.color-button {
+	@extend .normal-red;
+}
+
+.color-border {
+	@extend .warning-color;
+
+	color: #f0f;
+}

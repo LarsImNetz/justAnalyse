@@ -1,0 +1,10 @@
+@mixin content-block($color) {
+	@content;
+	@content;
+
+	color: $color;
+}
+
+@include content-block(#001) {
+	border-color: #000;
+}

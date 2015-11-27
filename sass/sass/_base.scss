@@ -2,8 +2,14 @@ body > header, body > section, body > footer  {
 	// Nur jeweils das erste Element muss ein Container sein deshalb '>'
 
 		@include make-content-container;
-	
+
 }
+
+// Es gibt:
+// xs - extra small
+// sm - small
+// md - medium
+// lg - large
 
 .breite-xs-100 {
 	@include make-xs-column(12);

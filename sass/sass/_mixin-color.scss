@@ -1,0 +1,8 @@
+@mixin m-color($color) {
+	border-color: #000;
+	color: $color;
+	background-color: #fff;
+}
+
+@include m-color(#123);
+@include m-color(#987);
