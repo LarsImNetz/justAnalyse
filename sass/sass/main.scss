@@ -1,3 +1,10 @@
-@import "bootstrap";
-@import "mixins";
-@import "base";
+// @import "external/bootstrap";
+// @import "mixins";
+// @import "base";
+
+/* Mixin Tests */
+@import "mixin-content-block";
+@import "mixin-color";
+
+/* extend Tests */
+@import "extend-color";
