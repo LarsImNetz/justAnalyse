@@ -51,9 +51,9 @@ public class PathProvider {
 			}
 		}
 
-				if (directory.getParentFile() != null) {
-					return determineJobDirectory(directory.getParentFile(), job);
-				}
+		if (directory.getParentFile() != null) {
+			return determineJobDirectory(directory.getParentFile(), job);
+		}
 
 		return null;
 	}
