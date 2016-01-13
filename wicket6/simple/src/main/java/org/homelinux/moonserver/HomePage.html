@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title>LLA URL Checker</title>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+	title="Stylesheet" />
+</head>
+<body>
+
+<h1>Wie verhält es sich in einen echen System</h1>
+
+	<table>
+		<tr>
+			<td><span>Großes Bild /large.png</span><br><img src="/large.png" alt="großes Bild"></td>
+		</tr>
+		<tr>
+			<td><span>Weites Bild //qa.vgl.hypoport.local/medium.png</span><br><img src="//qa.vgl.hypoport.local/medium.png" alt="weites Bild">
+			</td>
+		</tr>
+		<tr>
+			<td><span>kleines Bild https://qa.vgl.hypoport.local/small.png</span><br><img src="https://qa.vgl.hypoport.local/small.png"
+				alt="kleines Bild"></td>
+		</tr>
+		<tr>
+			<td><span>http weitergeleitetes Bild //qa.vgl.hypoport.local/http-weitergeleitet.png</span><br><img src="//qa.vgl.hypoport.local/http-weitergeleitet.png"
+				alt="per http weitergeleitetes Bild"></td>
+		</tr>
+		<tr>
+			<td><span>https weitergeleitetes Bild //qa.vgl.hypoport.local/https-weitergeleitet.png</span><br><img src="//qa.vgl.hypoport.local/https-weitergeleitet.png"
+				alt="per https weitergeleitetes Bild"></td>
+		</tr>
+	</table>
+</body>
+</html>

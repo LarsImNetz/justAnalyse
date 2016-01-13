@@ -7,16 +7,18 @@
 	<artifactId>justAnalyse</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>Just Analyse Projects</name>
-
+	<!-- <name>Just Analyse Projects</name> -->
+	<name>Obermufti Projekt zu justAnalyse</name>
+	
 	<properties>
 		<sonar.host.url>http://sonar.hypoport.local:9000</sonar.host.url>
 	</properties>
 
 	<packaging>pom</packaging>
-
+	
 	<modules>
 		<module>ajaxsample</module>
+		<module>wicket6/simple</module>
 		<!-- <module>angular</module> -->
 		<!-- <module>aspectj</module> -->
 		<!-- <module>bash-analyse</module> -->
