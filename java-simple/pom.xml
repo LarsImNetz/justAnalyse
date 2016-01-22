@@ -58,6 +58,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Guice -->
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -76,8 +83,6 @@
 			<artifactId>guice-assistedinject</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
-
-
 
 
 		<!-- Mockito -->
