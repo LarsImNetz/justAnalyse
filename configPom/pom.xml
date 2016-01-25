@@ -53,7 +53,8 @@
 		<commons.version>3.3.2</commons.version>
 		<commons-lang3.version>3.1</commons-lang3.version>
 		<guava.version>18.0</guava.version>
-
+		<httpclient.version>4.3.1</httpclient.version>
+		
 		<!-- Plugin Versions -->
 		<build-helper-plugin.version>1.9.1</build-helper-plugin.version>
 		<compiler-plugin.version>3.2</compiler-plugin.version>
