@@ -1,10 +1,11 @@
 package org.homenet.moonserver.cookies;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.StringHeaderItem;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,8 +30,8 @@ public class CookiePage extends WebPage {
 	@Override
 	public void renderHead(final IHeaderResponse response) {
 		super.renderHead(response);
-		final StringHeaderItem item = StringHeaderItem.forString("<title>CookiePage Title</title>");
-		response.render(item);
+		final JavaScriptResourceReference nutzungVonCookiesJScript = new JavaScriptResourceReference(CookiePage.class, "NutzungVonCookies.js");
+		response.render(JavaScriptHeaderItem.forReference(nutzungVonCookiesJScript));
 	}
 
 }
