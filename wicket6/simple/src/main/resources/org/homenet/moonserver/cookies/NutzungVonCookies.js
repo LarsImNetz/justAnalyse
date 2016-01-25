@@ -1,7 +1,8 @@
+"use strict";
 
 // http://stackoverflow.com/questions/9899372/pure-javascript-equivalent-to-jquerys-ready-how-to-call-a-function-when-the
  $(document).ready(function() {
-
+    
 	$("head").append(
 	    $("<style></style>").text(
 	    ".data-protection__layer{"
@@ -83,9 +84,46 @@
 				)
 			 .append("<a class=\"data-protection__layer-ok\">OK</a>").click(function(){
 				$(".data-protection__layer").removeAttr("style");
+				// $.cookie("vergleich.de-cookie-check", 1);
+				createCookie("vergleich.de-cookie-check", 1, 365);
 			 })
 			);
 	$(".data-protection__layer-ok");
+	// var cookieValue = $.cookie("vergleich.de-cookie-check");
 
-	$( "body" ).append( dataProtection );
+	// eraseCookie("vergleich.de-cookie-check");
+
+	var cookieValue = readCookie("vergleich.de-cookie-check");
+	if (cookieValue != 1) {
+		$( "body" ).append( dataProtection );
+	}
+	
+	// http://stackoverflow.com/questions/1458724/how-do-i-set-unset-cookie-with-jquery
+	function createCookie(name, value, days) {
+	    var expires;
+	
+	    if (days) {
+	        var date = new Date();
+	        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+	        expires = "; expires=" + date.toGMTString();
+	    } else {
+	        expires = "";
+	    }
+	    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+	}
+
+	function readCookie(name) {
+	    var nameEQ = encodeURIComponent(name) + "=";
+	    var ca = document.cookie.split(';');
+	    for (var i = 0; i < ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+	        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+	    }
+	    return null;
+	}
+
+	function eraseCookie(name) {
+	    createCookie(name, "", -1);
+	}
  });
