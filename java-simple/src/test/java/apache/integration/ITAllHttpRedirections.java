@@ -102,6 +102,10 @@ public class ITAllHttpRedirections {
 	public void test() {
 		Assert.assertNotNull(virtualHost);
 		final String serverAliasUrl = "http://" + serverAlias;
+		tester.init(serverAliasUrl);
+		if (tester.getStatusCode() != 301) {
+			System.out.println("HINWEIS: http://" + serverAlias + " zeigt auf " + redirectionUrl + " liefert nicht 301 sondern: " + tester.getStatusCode());
+		}
 		tester.assertRedirectPermanently(serverAliasUrl, redirectionUrl);
 	}
 

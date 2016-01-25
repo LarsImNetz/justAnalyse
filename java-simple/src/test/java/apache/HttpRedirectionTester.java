@@ -14,20 +14,27 @@ public class HttpRedirectionTester {
 	public HttpRedirectionTester() {
 	}
 
+	
 	public void assertRedirectPermanently(final String url, final String newLocation) {
-		initialize(url);
+		init(url);
 		Assert.assertEquals(HttpStatus.SC_MOVED_PERMANENTLY, getStatusCode());
 		Assert.assertEquals(newLocation, getLocation());
 	}
 
 	public void assertRedirectTemporarily(final String url, final String newLocation) {
-		initialize(url);
+		init(url);
 		Assert.assertEquals(HttpStatus.SC_MOVED_TEMPORARILY, getStatusCode());
 		Assert.assertEquals(newLocation, getLocation());
 	}
 
 	private CloseableHttpResponse response;
-
+	
+	public void init(final String url) {
+		if (response == null) {
+			initialize(url);
+		}
+	}
+	
 	private void initialize(final String url) {
 		final CloseableHttpClient httpclient = HttpClients.createDefault();
 
