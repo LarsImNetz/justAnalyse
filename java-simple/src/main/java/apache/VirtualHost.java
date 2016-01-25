@@ -15,6 +15,21 @@ public class VirtualHost {
 		this.redirect = redirect;
 	}
 	
+	public String getServerName() {
+		return serverName;
+	}
+	
+	public List<String> getServerAliases() {
+		return serverAliases;
+	}
+	
+	public String getRedirection() {
+		if (redirect == null) {
+			return "";
+		}
+		return redirect.getUrl();
+	}
+	
 	public static class Redirect {
 		final String filter;
 		final String state;
@@ -24,6 +39,10 @@ public class VirtualHost {
 			this.filter = filter;
 			this.state = state;
 			this.url = url;
+		}
+		
+		public String getUrl() {
+			return url;
 		}
 	}
 }
