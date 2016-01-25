@@ -7,6 +7,8 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
+import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.homenet.moonserver.cookies.CookiePage;
 
 /**
  * Application object for your web application. If you want to run this
@@ -36,6 +38,8 @@ public class WicketApplication extends WebApplication {
 
 		initializeInjector();
 		mountPage("/home", HomePage.class);
+		mountPage("/cookie", CookiePage.class);
+		mountResource("/js", new JavaScriptResourceReference(CookiePage.class, "NutzungVonCookies.js"));
 	}
 
 	private void initializeInjector() {
@@ -48,9 +52,9 @@ public class WicketApplication extends WebApplication {
 	 * Mal auf Deutsch einstellen
 	 */
 	@Override
-	public Session newSession(Request request, Response response) {
+	public Session newSession(final Request request, final Response response) {
 		// TODO Auto-generated method stub
-		Session newSession = super.newSession(request, response);
+		final Session newSession = super.newSession(request, response);
 		newSession.setLocale(Locale.GERMANY);
 		return newSession;
 	}
