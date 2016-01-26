@@ -1,11 +1,20 @@
+/*!
+ * JavaScript
+ */
+
 "use strict";
 
 // http://stackoverflow.com/questions/9899372/pure-javascript-equivalent-to-jquerys-ready-how-to-call-a-function-when-the
  $(document).ready(function() {
-    
+
+	var cookieValidation = "data-Protection";
+	var cookieValidationLayer = cookieValidation + "__layer";
+	var cookieValidationLayerInner = cookieValidationLayer + "-inner";
+	var cookieValidationLayerOk = cookieValidationLayer + "-ok";
+	
 	$("head").append(
 	    $("<style></style>").text(
-	    ".data-protection__layer{"
+	    "." + cookieValidationLayer + "{"
 		+"box-sizing: border-box;"
 	    +"margin:0;"
 	    +"background-color:#f4f4f4;"
@@ -19,13 +28,13 @@
 	    +"display:none;"
 	    +"}"
 	    
-		+".data-protection__layer p {"
+		+ "." + cookieValidationLayer +" p {"
 		+"margin: 0px;"
 	    +"padding: 0px 50px 0px 0px;"
 	    +"font-size:11px;"
-	    +"font-family: Verdana,Arial,sans-serif;"		
+	    +"font-family: Verdana,Helvetica,Arial,sans-serif;"
 		+"}"
-		+".data-protection__layer a {"
+		+ "." + cookieValidationLayer + " a {"
 		+"margin: 0px;"
 	    +"padding: 0px 0px 0px 0px;"
 	    +"font-size:11px;"
@@ -33,13 +42,13 @@
 		+"}"
 
 		+"@media only screen and (min-width: 47.8125em)"
-		+".data-protection__layer-inner {"
+		+"." + cookieValidationLayerInner + " {"
 		+"padding-left: 30px;"
     	+"padding-right: 30px;"
     	+"padding-bottom: 15px;"
 		+"}"
 
-	    +".data-protection__layer-inner {"
+	    +"." + cookieValidationLayerInner + " {"
 	    +"max-width: 1020px;"
 	    +"margin: 0 auto;"
 	    +"position: relative;"
@@ -47,7 +56,7 @@
 	    +"}"
 	    
 	    +"@media only screen and (min-width: 47.8125em)"
-		+".data-protection__layer-ok {"
+		+"." + cookieValidationLayerOk + " {"
 	    +"text-indent: 0;"
 	    +"padding-right: 20px;"
 	    +"width: auto;"
@@ -58,11 +67,11 @@
 	    +"bottom: 15px;"
 		+"}"
 
-	    +".data-protection__layer-ok {"
+	    +"."+cookieValidationLayerOk + " {"
 	    +"text-decoration:underline;"
 		+"}"
 		
-	    +".data-protection__layer-ok {"
+	    +"."+cookieValidationLayerOk + " {"
 	    +"cursor: pointer;"
 	    +"position: absolute;"
 	    +"bottom: 0;"
@@ -73,59 +82,29 @@
 	    +"}" )
 	);
 	
-	var cookieName = "vergleich.de-cookie-check";
+	var cookieName = "Ich_bin_damit_einverstanden_das_www.vergleich.de_Cookies_verwendet.";
 	
-	var dataProtection = $("<div class=\"data-protection__layer\" style=\"display: block;\"></div>")
+	var dataProtection = $("<div class=\"" + cookieValidationLayer + "\" style=\"display: block;\"></div>")
 	.append(
-		$("<div class=\"data-protection__layer-inner\"></div>")
+		$("<div class=\"" + cookieValidationLayerInner + "\"></div>")
 		.append(
 			$("<p></p>")
 				.append("www.vergleich.de verwendet Cookies, um Ihre Benutzererfahrung zu verbessern. Wenn Sie auf der Seite weitersurfen, stimmen Sie der ")
 				.append("<a href=\"//www.vergleich.de/informationen/ueber-vergleichde/datenschutz.html\">Cookie-Nutzung</a>")
 				.append(" zu.")
 				)
-			 .append("<a class=\"data-protection__layer-ok\">OK</a>").click(function(){
-				$(".data-protection__layer").removeAttr("style");
+			 .append("<a class=\"" + cookieValidationLayerOk + "\">OK</a>").click(function(){
+				$("." + cookieValidationLayer ).removeAttr("style");
 				// $.cookie(cookieName, 1);
-				createCookie(cookieName, 1, 365);
+				Cookies.set(cookieName, 1, { expires: 365} );
 			 })
 			);
-	// $(".data-protection__layer-ok");
-	// var cookieValue = $.cookie(cookieName);
 
-	eraseCookie(cookieName);
+	// Cookies.remove(cookieName);
 
-	var cookieValue = readCookie(cookieName);
+	var cookieValue = Cookies.get(cookieName);
 	if (cookieValue != 1) {
 		$( "body" ).append( dataProtection );
 	}
 	
-	// http://stackoverflow.com/questions/1458724/how-do-i-set-unset-cookie-with-jquery
-	function createCookie(name, value, days) {
-	    var expires;
-	
-	    if (days) {
-	        var date = new Date();
-	        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-	        expires = "; expires=" + date.toGMTString();
-	    } else {
-	        expires = "";
-	    }
-	    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
-	}
-
-	function readCookie(name) {
-	    var nameEQ = encodeURIComponent(name) + "=";
-	    var ca = document.cookie.split(';');
-	    for (var i = 0; i < ca.length; i++) {
-	        var c = ca[i];
-	        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-	        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-	    }
-	    return null;
-	}
-
-	function eraseCookie(name) {
-	    createCookie(name, "", -1);
-	}
  });

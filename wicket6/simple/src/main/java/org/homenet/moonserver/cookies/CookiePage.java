@@ -31,13 +31,14 @@ public class CookiePage extends WebPage {
 	@Override
 	public void renderHead(final IHeaderResponse response) {
 		super.renderHead(response);
-		// response.render(OnDomReadyHeaderItem.forScript("(function(){})();"));
 
-		// wir brauchen jQuery
 		response.render(JavaScriptHeaderItem.forReference(getApplication().getJavaScriptLibrarySettings().getJQueryReference()));
 
 		// on dom ready, braucht jQuery
-		final JavaScriptResourceReference nutzungVonCookiesJScript = new JavaScriptResourceReference(CookiePage.class, "NutzungVonCookies.js");
+		final JavaScriptResourceReference jsCookieScript = new JavaScriptResourceReference(CookiePage.class, "js.cookie.js");
+		response.render(JavaScriptHeaderItem.forReference(jsCookieScript));
+
+		final JavaScriptResourceReference nutzungVonCookiesJScript = new JavaScriptResourceReference(CookiePage.class, "nutzung.von.cookies.js");
 		response.render(JavaScriptHeaderItem.forReference(nutzungVonCookiesJScript));
 	}
 
