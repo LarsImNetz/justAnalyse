@@ -7,7 +7,6 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.homenet.moonserver.cookies.CookiePage;
 
 /**
@@ -39,7 +38,7 @@ public class WicketApplication extends WebApplication {
 		initializeInjector();
 		mountPage("/home", HomePage.class);
 		mountPage("/cookie", CookiePage.class);
-		mountResource("/js", new JavaScriptResourceReference(CookiePage.class, "NutzungVonCookies.js"));
+		// mountResource("/js", new JavaScriptResourceReference(CookiePage.class, "NutzungVonCookies.js"));
 	}
 
 	private void initializeInjector() {
