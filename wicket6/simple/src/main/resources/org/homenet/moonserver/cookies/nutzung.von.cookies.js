@@ -2,12 +2,12 @@
  * JavaScript
  */
 
-"use strict";
+'use strict';
 
 // http://stackoverflow.com/questions/9899372/pure-javascript-equivalent-to-jquerys-ready-how-to-call-a-function-when-the
- $(document).ready(function() {
+$(document).ready(function() {
 
-	var cookieValidation = "data-Protection";
+	var cookieValidation = "cookie-line";
 	var cookieValidationLayer = cookieValidation + "__layer";
 	var cookieValidationLayerInner = cookieValidationLayer + "-inner";
 	var cookieValidationLayerOk = cookieValidationLayer + "-ok";
@@ -67,11 +67,11 @@
 	    +"bottom: 15px;"
 		+"}"
 
-	    +"."+cookieValidationLayerOk + " {"
+	    +"." + cookieValidationLayerOk + " {"
 	    +"text-decoration:underline;"
 		+"}"
 		
-	    +"."+cookieValidationLayerOk + " {"
+	    +"." + cookieValidationLayerOk + " {"
 	    +"cursor: pointer;"
 	    +"position: absolute;"
 	    +"bottom: 0;"
@@ -83,8 +83,9 @@
 	);
 	
 	var cookieName = "Ich_bin_damit_einverstanden_das_www.vergleich.de_Cookies_verwendet.";
+	var cookieExpireDays = 365;
 	
-	var dataProtection = $("<div class=\"" + cookieValidationLayer + "\" style=\"display: block;\"></div>")
+	var cookieLineMarkup = $("<div class=\"" + cookieValidationLayer + "\" style=\"display: block;\"></div>")
 	.append(
 		$("<div class=\"" + cookieValidationLayerInner + "\"></div>")
 		.append(
@@ -95,8 +96,7 @@
 				)
 			 .append("<a class=\"" + cookieValidationLayerOk + "\">OK</a>").click(function(){
 				$("." + cookieValidationLayer ).removeAttr("style");
-				// $.cookie(cookieName, 1);
-				Cookies.set(cookieName, 1, { expires: 365} );
+				Cookies.set(cookieName, 1, { expires: cookieExpireDays } );
 			 })
 			);
 
@@ -104,7 +104,6 @@
 
 	var cookieValue = Cookies.get(cookieName);
 	if (cookieValue != 1) {
-		$( "body" ).append( dataProtection );
+		$( "body" ).append( cookieLineMarkup );
 	}
-	
  });
