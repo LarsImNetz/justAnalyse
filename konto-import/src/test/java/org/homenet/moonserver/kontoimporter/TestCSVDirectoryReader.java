@@ -9,16 +9,16 @@ import org.junit.Test;
 public class TestCSVDirectoryReader {
 	@Test
 	public void testFindConfigurationFiles() throws Exception {
-		final CSVDirectoryReader interpreter = new CSVDirectoryReader(
+		final CSVDirectoryReader reader = new CSVDirectoryReader(
 				"src/test/resources/org/homenet/moonserver/kontoimporter");
-		final Collection<Object[]> configurationFiles = interpreter.findAllVHostFiles();
+		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
-		Assert.assertEquals(1, configurationFiles.size());
+		Assert.assertEquals(1, csvFiles.size());
 
-		final Object firstConfigurationFile = configurationFiles.iterator().next()[0];
-		Assert.assertTrue(firstConfigurationFile instanceof File);
+		final Object firstCSVFile = csvFiles.iterator().next()[0];
+		Assert.assertTrue(firstCSVFile instanceof File);
 
-		final Object firstConfigurationName = configurationFiles.iterator().next()[1];
-		Assert.assertTrue(firstConfigurationName instanceof String);
+		final Object firstCSVName = csvFiles.iterator().next()[1];
+		Assert.assertTrue(firstCSVName instanceof String);
 	}
 }

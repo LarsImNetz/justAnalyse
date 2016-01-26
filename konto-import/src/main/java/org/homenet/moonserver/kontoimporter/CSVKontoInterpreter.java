@@ -8,6 +8,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.homenet.moonserver.kontoimporter.buchung.Buchung;
+import org.homenet.moonserver.kontoimporter.buchung.CSVLineSplitter;
+import org.homenet.moonserver.kontoimporter.buchung.LineHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,10 +20,14 @@ public class CSVKontoInterpreter {
 
 	private final File file;
 
+	private final LineHandler lineHandler;
+	
 	public CSVKontoInterpreter(final File file) {
 		this.file = file;
+		this.lineHandler = new LineHandler(new CSVLineSplitter());
 	}
 
+	
 	private int lineNumber = 1;
 
 	public List<Buchung> interpret() {
@@ -33,9 +40,9 @@ public class CSVKontoInterpreter {
 			while ((currentLine = reader.readLine()) != null) {
 				final String trimmedLine = currentLine.trim();
 
-				final Buchung virtualHost = handleCurrentLine(trimmedLine);
-				if (virtualHost != null) {
-					buchungen.add(virtualHost);
+				final Buchung buchung = lineHandler.handleCurrentLine(trimmedLine, lineNumber);
+				if (buchung != null) {
+					buchungen.add(buchung);
 				}
 				lineNumber++;
 			}
@@ -49,14 +56,10 @@ public class CSVKontoInterpreter {
 		return null;
 	}
 
-	private Buchung handleCurrentLine(final String line) {
-		Buchung buchung = null;
-		final String lowercaseLine = line.toLowerCase();
-		String[] split = line.split(";");
-		if (lowercaseLine.startsWith("")) {
-		} else {
-			LOGGER.warn("Unbekannter State (" + split[0] + ") in Zeile: " + lineNumber + " Content: " + line);
-		}
-		return buchung;
+	
+	// TODO: Das funktioniert nur solange bis im String ein Semikolon vorkommt.
+	// TODO: Test nötig!
+	String[] linesplitter(final String line) {
+		return line.split(";");
 	}
 }

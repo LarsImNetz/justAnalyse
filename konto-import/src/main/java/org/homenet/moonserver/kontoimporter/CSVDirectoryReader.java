@@ -12,7 +12,7 @@ public class CSVDirectoryReader {
 		BASE_FOLDER = baseFolder;
 	}
 
-	public Collection<Object[]> findAllVHostFiles() {
+	public Collection<Object[]> findAllCSVFiles() {
 		final File baseFolder = new File(BASE_FOLDER);
 		final List<Object[]> csvFiles = new ArrayList<>();
 
