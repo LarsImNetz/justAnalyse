@@ -73,6 +73,8 @@
 	    +"}" )
 	);
 	
+	var cookieName = "vergleich.de-cookie-check";
+	
 	var dataProtection = $("<div class=\"data-protection__layer\" style=\"display: block;\"></div>")
 	.append(
 		$("<div class=\"data-protection__layer-inner\"></div>")
@@ -84,16 +86,16 @@
 				)
 			 .append("<a class=\"data-protection__layer-ok\">OK</a>").click(function(){
 				$(".data-protection__layer").removeAttr("style");
-				// $.cookie("vergleich.de-cookie-check", 1);
-				createCookie("vergleich.de-cookie-check", 1, 365);
+				// $.cookie(cookieName, 1);
+				createCookie(cookieName, 1, 365);
 			 })
 			);
-	$(".data-protection__layer-ok");
-	// var cookieValue = $.cookie("vergleich.de-cookie-check");
+	// $(".data-protection__layer-ok");
+	// var cookieValue = $.cookie(cookieName);
 
-	// eraseCookie("vergleich.de-cookie-check");
+	eraseCookie(cookieName);
 
-	var cookieValue = readCookie("vergleich.de-cookie-check");
+	var cookieValue = readCookie(cookieName);
 	if (cookieValue != 1) {
 		$( "body" ).append( dataProtection );
 	}
