@@ -17,6 +17,7 @@ $(document).ready(function() {
 	    "." + cookieValidationLayer + "{"
 		+"box-sizing: border-box;"
 	    +"margin:0;"
+	    +"color:#666;"
 	    +"background-color:#f4f4f4;"
 	    +"box-shadow: 0 0 10px rgba(0,0,0,.5);"
 	    +"z-index:11;"
