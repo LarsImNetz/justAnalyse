@@ -1,7 +1,3 @@
-/*!
- * JavaScript
- */
-
 'use strict';
 
 // http://stackoverflow.com/questions/9899372/pure-javascript-equivalent-to-jquerys-ready-how-to-call-a-function-when-the
@@ -105,6 +101,8 @@ $(document).ready(function() {
 
 	var cookieValue = Cookies.get(cookieName);
 	if (cookieValue != 1) {
-		$( "body" ).append( cookieLineMarkup );
+		$("body").append("<div class=\"impressum-must-be-visible\"></div>").append( cookieLineMarkup );
+		var height = $( "."+cookieValidationLayer ).height();
+		$(".impressum-must-be-visible").css("height", height);
 	}
  });
