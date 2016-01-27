@@ -34,4 +34,20 @@ public class TestCSVLineSplitter {
 		Assert.assertEquals(expected[0], actual[0] );
 		Assert.assertEquals(expected[1], actual[1] );
 	}
+
+	@Test
+	public void testSingleQuotesValue() throws Exception {
+		final String[] expected = {"value"};
+		final String[] actual = splitter.split("\"value\"");
+		Assert.assertEquals(expected[0], actual[0] );
+	}
+
+	@Test
+	public void testSingleEmptyQuotesValue() throws Exception {
+		final String[] expected = {""};
+		final String[] actual = splitter.split("\"\"");
+		Assert.assertEquals(expected[0], actual[0] );
+	}
+
+
 }

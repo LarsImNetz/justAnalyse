@@ -21,12 +21,30 @@ public class LineHandler {
 			if (line.equals("Buchungstag;Wert;Verwendungszweck;Soll;Haben;Waehrung")) {
 				format = BuchungFormatEnum.format1;
 			}
+			else if (line.equals("Buchungstag;Wert;Verwendungszweck;Soll;Haben;Währung")) {
+				format = BuchungFormatEnum.format2012;
+			}
+			else if (line.equals("Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Soll;Haben;Währung")) {
+				format = BuchungFormatEnum.format2014;
+			}
+			else if (line.equals("Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Anzahl der Aufträge;Soll;Haben;Währung")) {
+				format = BuchungFormatEnum.format2015;
+			}
 			else if (format == null) {
 				// das ist jetzt zwar illegal, sollte aber erstmal nicht weiter stören
 				LOGGER.warn("Format noch nicht erkannt. Zeile: " + lineNumber + " Content: " + line);
 			}
 			else if (format == BuchungFormatEnum.format1) {
 				buchung = new CSVBuchungFormat1(linesplitter.split(line));
+			}
+			else if (format == BuchungFormatEnum.format2012) {
+				buchung = new CSVBuchungFormat1(linesplitter.split(line));
+			}
+			else if (format == BuchungFormatEnum.format2014) {
+				buchung = new CSVBuchungFormat2014(linesplitter.split(line));
+			}
+			else if (format == BuchungFormatEnum.format2015) {
+				buchung = new CSVBuchungFormat2015(linesplitter.split(line));
 			}
 			return buchung;
 		}

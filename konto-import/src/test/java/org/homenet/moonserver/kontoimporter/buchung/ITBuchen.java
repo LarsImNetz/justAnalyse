@@ -21,7 +21,7 @@ public class ITBuchen {
 				"src/test/resources/org/homenet/moonserver/kontoimporter");
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
-		Assert.assertEquals(1, csvFiles.size());
+		Assert.assertEquals(4, csvFiles.size());
 
 		final Iterator<Object[]> iterator = csvFiles.iterator();
 		while (iterator.hasNext()) {
@@ -29,6 +29,7 @@ public class ITBuchen {
 			final File csvFile = (File)csvFileObject[0];		
 		
 			final CSVKontoInterpreter interpreter = new CSVKontoInterpreter(csvFile);
+			// TODO: Warum liefere ich eine Buchung, wenn es nicht wirklich importiert werden kann? 
 			final List<Buchung> buchungen = interpreter.interpret();
 
 			Assert.assertNotNull(buchungen);

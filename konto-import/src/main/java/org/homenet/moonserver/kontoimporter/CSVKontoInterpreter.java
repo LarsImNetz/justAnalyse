@@ -31,7 +31,7 @@ public class CSVKontoInterpreter {
 	private int lineNumber = 1;
 
 	public List<Buchung> interpret() {
-		final List<Buchung> buchungen = new ArrayList<>();
+		List<Buchung> buchungen = null;
 
 		try (FileInputStream inputStream = new FileInputStream(file);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -42,6 +42,9 @@ public class CSVKontoInterpreter {
 
 				final Buchung buchung = lineHandler.handleCurrentLine(trimmedLine, lineNumber);
 				if (buchung != null) {
+					if (buchungen == null) {
+						buchungen = new ArrayList<>();
+					}
 					buchungen.add(buchung);
 				}
 				lineNumber++;
