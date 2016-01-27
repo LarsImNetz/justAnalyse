@@ -9,8 +9,8 @@
 		</layout>
 	</appender>
 	
- 	<logger name="org.linuxx.moonserver">
-		<level value="trace" />
+ 	<logger name="org.homenet.moonserver">
+		<level value="warn" />
 	</logger>
 
 	<!-- Alles: WARN -->

@@ -20,7 +20,7 @@ public class Test2014CSVKontoInterpreter {
 
 
 	@Test
-	public void test2012KannLesen() {
+	public void test2014KannLesen() {
 		final List<IBuchung> buchungen = interpreter2014.interpret();
 
 		Assert.assertEquals(3, buchungen.size());

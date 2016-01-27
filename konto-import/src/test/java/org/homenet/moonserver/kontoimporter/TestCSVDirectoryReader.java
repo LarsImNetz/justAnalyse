@@ -12,7 +12,7 @@ public class TestCSVDirectoryReader {
 	@Test
 	public void testCountConfigurationFiles() throws Exception {
 		final CSVDirectoryReader reader = new CSVDirectoryReader(
-				"src/test/resources/org/homenet/moonserver/kontoimporter");
+				"src/test/resources/org/homenet/moonserver/kontoimporter", new SimpleCSVFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
 		Assert.assertEquals(4, csvFiles.size());

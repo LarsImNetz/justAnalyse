@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.homenet.moonserver.kontoimporter.CSVDirectoryReader;
 import org.homenet.moonserver.kontoimporter.CSVKontoInterpreter;
+import org.homenet.moonserver.kontoimporter.SimpleCSVFilter;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,10 +16,11 @@ public class ITBuchen {
 
 	// Wir laufen alles durch, es gibt in jeder Datei in jedem Format Buchungen
 	
+	
 	@Test
 	public void testBuchen() {
 		final CSVDirectoryReader reader = new CSVDirectoryReader(
-				"src/test/resources/org/homenet/moonserver/kontoimporter");
+				"src/test/resources/org/homenet/moonserver/kontoimporter", new SimpleCSVFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
 		Assert.assertEquals(4, csvFiles.size());

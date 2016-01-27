@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,23 +22,23 @@ public class CSVKontoInterpreter {
 	private final File file;
 
 	private final LineHandler lineHandler;
-	
+
 	public CSVKontoInterpreter(final File file) {
 		this.file = file;
 		this.lineHandler = new LineHandler(new CSVLineSplitter());
 	}
 
-	
 	private int lineNumber = 1;
 
 	public List<IBuchung> interpret() {
 		List<IBuchung> buchungen = null;
 
 		try (FileInputStream inputStream = new FileInputStream(file);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream /* , "ISO-8859-1" */))) {
 
 			String currentLine;
 			while ((currentLine = reader.readLine()) != null) {
+				currentLine = reformat(currentLine);
 				final String trimmedLine = currentLine.trim();
 
 				final IBuchung buchung = lineHandler.handleCurrentLine(trimmedLine, lineNumber);
@@ -59,7 +60,23 @@ public class CSVKontoInterpreter {
 		return null;
 	}
 
-	
+	private String reformat(final String line) {
+		// currentLine = new String(currentLine.getBytes(), "ISO-8859-1");
+		if (line.contains("ä") || line.contains("ö") || line.contains("ü") || line.contains("ß") || line.contains("Ä")
+				|| line.contains("Ö") || line.contains("Ü")) {
+			return line;
+		}
+
+		String currentLine;
+		try {
+			currentLine = new String(line.getBytes(), "ISO-8859-1");
+			return currentLine;
+		} catch (UnsupportedEncodingException e) {
+			LOGGER.warn("can't convert ISO-8859 to UTF-8: " + line);
+		}
+		return line;
+	}
+
 	// TODO: Das funktioniert nur solange bis im String ein Semikolon vorkommt.
 	// TODO: Test nötig!
 	String[] linesplitter(final String line) {

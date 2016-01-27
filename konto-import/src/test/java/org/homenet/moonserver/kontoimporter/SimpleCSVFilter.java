@@ -3,17 +3,18 @@ package org.homenet.moonserver.kontoimporter;
 import java.io.File;
 import java.io.FilenameFilter;
 
-public class CSVFilenameFilter implements FilenameFilter {
+public class SimpleCSVFilter implements FilenameFilter{
 
 	@Override
-	public boolean accept(final File f, final String s) {
-		final File currentFile = new File(f, s);
+	public boolean accept(File dir, String name) {
+		final File currentFile = new File(dir, name);
 
 		// Hier koennen bestimmte Tests von der Ausfuehrung ausgenommen werden
 		//		if (currentFile.isFile() && s.toLowerCase().endsWith("immobilienbesitz.xml")) {
 		//			return false;
 		//		}
 
-		return currentFile.isFile() && s.toLowerCase().endsWith(".csv");
+		return currentFile.isFile() && name.toLowerCase().endsWith(".csv");
 	}
+
 }
