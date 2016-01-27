@@ -15,9 +15,9 @@ public class LineHandler {
 
 	private BuchungFormatEnum format = null;
 
-	public Buchung handleCurrentLine(final String line, final int lineNumber) {
+	public IBuchung handleCurrentLine(final String line, final int lineNumber) {
 		try {
-			Buchung buchung = null;
+			IBuchung buchung = null;
 			if (line.equals("Buchungstag;Wert;Verwendungszweck;Soll;Haben;Waehrung")) {
 				format = BuchungFormatEnum.format1;
 			}

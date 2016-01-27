@@ -30,7 +30,7 @@ public class ITBuchen {
 		
 			final CSVKontoInterpreter interpreter = new CSVKontoInterpreter(csvFile);
 			// TODO: Warum liefere ich eine Buchung, wenn es nicht wirklich importiert werden kann? 
-			final List<Buchung> buchungen = interpreter.interpret();
+			final List<IBuchung> buchungen = interpreter.interpret();
 
 			Assert.assertNotNull(buchungen);
 		}

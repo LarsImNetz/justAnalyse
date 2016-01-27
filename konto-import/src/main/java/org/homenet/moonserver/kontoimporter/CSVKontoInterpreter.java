@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.homenet.moonserver.kontoimporter.buchung.Buchung;
+import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 import org.homenet.moonserver.kontoimporter.buchung.CSVLineSplitter;
 import org.homenet.moonserver.kontoimporter.buchung.LineHandler;
 import org.slf4j.Logger;
@@ -30,8 +30,8 @@ public class CSVKontoInterpreter {
 	
 	private int lineNumber = 1;
 
-	public List<Buchung> interpret() {
-		List<Buchung> buchungen = null;
+	public List<IBuchung> interpret() {
+		List<IBuchung> buchungen = null;
 
 		try (FileInputStream inputStream = new FileInputStream(file);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -40,7 +40,7 @@ public class CSVKontoInterpreter {
 			while ((currentLine = reader.readLine()) != null) {
 				final String trimmedLine = currentLine.trim();
 
-				final Buchung buchung = lineHandler.handleCurrentLine(trimmedLine, lineNumber);
+				final IBuchung buchung = lineHandler.handleCurrentLine(trimmedLine, lineNumber);
 				if (buchung != null) {
 					if (buchungen == null) {
 						buchungen = new ArrayList<>();
