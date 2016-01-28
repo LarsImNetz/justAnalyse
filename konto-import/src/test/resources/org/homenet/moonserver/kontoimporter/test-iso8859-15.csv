@@ -1,0 +1,2 @@
+Buchungstag;Wert;Verwendungszweck;Soll;Haben;Währung
+28.01.2016;28.01.2016;"Dies ist eine Testzeile für Umlaute:äöü ÄÖÜ Eszet:ß EUR:€ sollten einmal vorkommen";;;EUR
