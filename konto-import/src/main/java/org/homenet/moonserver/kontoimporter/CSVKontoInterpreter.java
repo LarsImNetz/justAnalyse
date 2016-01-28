@@ -9,9 +9,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 import org.homenet.moonserver.kontoimporter.buchung.CSVLineSplitter;
+import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 import org.homenet.moonserver.kontoimporter.buchung.LineHandler;
+import org.homenet.moonserver.kontoimporter.filehelper.CharsetIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,8 +34,11 @@ public class CSVKontoInterpreter {
 	public List<IBuchung> interpret() {
 		List<IBuchung> buchungen = null;
 
+		final CharsetIdentifier charsetIdentifier = new CharsetIdentifier(file);
+		final String charset = charsetIdentifier.identify();
+		
 		try (FileInputStream inputStream = new FileInputStream(file);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream /* , "ISO-8859-1" */))) {
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset /* "ISO-8859-1" */))) {
 
 			String currentLine;
 			while ((currentLine = reader.readLine()) != null) {
@@ -71,7 +75,7 @@ public class CSVKontoInterpreter {
 		try {
 			currentLine = new String(line.getBytes(), "ISO-8859-1");
 			return currentLine;
-		} catch (UnsupportedEncodingException e) {
+		} catch (final UnsupportedEncodingException e) {
 			LOGGER.warn("can't convert ISO-8859 to UTF-8: " + line);
 		}
 		return line;

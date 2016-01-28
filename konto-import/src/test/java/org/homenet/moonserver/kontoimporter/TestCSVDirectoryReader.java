@@ -15,7 +15,7 @@ public class TestCSVDirectoryReader {
 				"src/test/resources/org/homenet/moonserver/kontoimporter", new SimpleCSVFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
-		Assert.assertEquals(4, csvFiles.size());
+		Assert.assertEquals(5, csvFiles.size());
 
 		final Object firstCSVFile = csvFiles.iterator().next()[0];
 		Assert.assertTrue(firstCSVFile instanceof File);

@@ -23,7 +23,7 @@ public class ITBuchen {
 				"src/test/resources/org/homenet/moonserver/kontoimporter", new SimpleCSVFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
-		Assert.assertEquals(4, csvFiles.size());
+		Assert.assertEquals(5, csvFiles.size());
 
 		final Iterator<Object[]> iterator = csvFiles.iterator();
 		while (iterator.hasNext()) {

@@ -4,13 +4,13 @@ import java.io.File;
 import java.util.List;
 
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
+import org.homenet.moonserver.kontoimporter.filehelper.CharsetIdentifier;
 import org.junit.Assert;
 import org.junit.Test;
 
+public class TestCSVKontoInterpreterISO8859 {
 
-public class TestCSVKontoInterpreter {
-
-	private final File testFile = new File("src/test/resources/org/homenet/moonserver/kontoimporter/test.csv");
+	private final File testFile = new File("src/test/resources/org/homenet/moonserver/kontoimporter/test-iso8859-15.csv");
 	private final CSVKontoInterpreter interpreter = new CSVKontoInterpreter(testFile);
 
 	@Test
@@ -22,7 +22,13 @@ public class TestCSVKontoInterpreter {
 	public void testKannLesen() {
 		final List<IBuchung> buchungen = interpreter.interpret();
 
-		Assert.assertEquals(3, buchungen.size());
+		Assert.assertEquals(1, buchungen.size());
+	}
+
+	@Test
+	public void testName() throws Exception {
+		final CharsetIdentifier identifier = new CharsetIdentifier(testFile);
+		Assert.assertEquals("ISO-8859-1", identifier.identify());
 	}
 
 }
