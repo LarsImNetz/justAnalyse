@@ -18,37 +18,47 @@
 	
 	<modules>
 		<module>ajaxsample</module>
-		<module>wicket6/simple</module>
 		<!-- <module>angular</module> -->
 		<!-- <module>aspectj</module> -->
 		<!-- <module>bash-analyse</module> -->
+
 		<!-- <module>configPom</module> -->
 		<module>container</module>
 		<module>csvdiff</module>
 		<module>cucumber-kata</module>
+
+
 		<module>eclipse-analyse</module>
-		<!-- <module>halde</module> -->
+
+
+                <!-- <module>halde</module> -->
 		<!-- <module>html5tests</module> -->
-		<module>java-simple</module>
 		<module>javaapplicationsample</module>
 		<!-- <module>javaeight</module> -->
 		<!-- <module>javascript</module> -->
 		<module>javaseven</module>
+		<module>java-simple</module>
 		<module>jquery</module>
 		<module>just</module>
+		<module>konto-import</module>
 		<module>listresources</module>
 		<module>miscellaneous</module>
 		<module>ovalsample</module>
 		<module>pattern</module>
-		<!--		<module>responsive</module> -->
+
+
+                <!--		<module>responsive</module> -->
 		<module>rest</module>
 		<!-- <module>rsync</module> -->
+
+
 		<module>unit-tests</module>
 		<module>visible_helper</module>
+		<!-- <module>xtend/first-tests</module> -->
+		<module>wicket6/simple</module>
+		<module>wicket7</module>
 		<!-- lass die KackDB am Ende! -->
 		<module>dbsample</module>
-		<!-- <module>xtend/first-tests</module> -->
-		<module>wicket7</module>
 	</modules>
 
 	<build>
