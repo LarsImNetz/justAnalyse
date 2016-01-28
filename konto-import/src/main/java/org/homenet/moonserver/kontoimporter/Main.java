@@ -6,19 +6,14 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
-import org.junit.Assert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Main {
-
-	private static Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
 	public Main() {
 	}
 
-	public static void main(String[] args) {
-		Main main = new Main();
+	public static void main(final String[] args) {
+		final Main main = new Main();
 		main.importing();
 	}
 
@@ -34,7 +29,8 @@ public class Main {
 		
 			final CSVKontoInterpreter interpreter = new CSVKontoInterpreter(csvFile);
 			final List<IBuchung> buchungen = interpreter.interpret();
-
+			// TODO: alle Buchungen in einer Liste halten
+			// TODO: für alle Buchungen Zugriffe per Datum erlauben
 		}
 		
 	}
