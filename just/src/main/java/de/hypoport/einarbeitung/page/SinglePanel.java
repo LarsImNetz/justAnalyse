@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 
 public class SinglePanel extends Panel {
 
-	Logger LOGGER = LoggerFactory.getLogger(SinglePanel.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(SinglePanel.class);
 
-	public SinglePanel(String id, IModel<String> model) {
+	public SinglePanel(final String id, final IModel<String> model) {
 		super(id, model);
 
 		add(new Label("label", "Hier auch nix zu sehen."));
@@ -48,7 +48,7 @@ public class SinglePanel extends Panel {
 	}
 
 	@Override
-	public void renderHead(IHeaderResponse response) {
+	public void renderHead(final IHeaderResponse response) {
 		LOGGER.info("renderHead()");
 		super.renderHead(response);
 	}
