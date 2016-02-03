@@ -33,12 +33,17 @@ public class CSVKontoInterpreter {
 
 	public List<IBuchung> interpret() {
 		List<IBuchung> buchungen = null;
-
-		final CharsetIdentifier charsetIdentifier = new CharsetIdentifier(file);
-		final String charset = charsetIdentifier.identify();
-		
+		String charset = null;
+		try {
+			final CharsetIdentifier charsetIdentifier = new CharsetIdentifier(file);
+			charset = charsetIdentifier.identify();
+		} catch (IOException e) {
+			LOGGER.error("Can't read file: " + file.getAbsolutePath() + " with " + e.getMessage());
+			return null;
+		}
 		try (FileInputStream inputStream = new FileInputStream(file);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset /* "ISO-8859-1" */))) {
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(inputStream, charset /* "ISO-8859-1" */))) {
 
 			String currentLine;
 			while ((currentLine = reader.readLine()) != null) {
