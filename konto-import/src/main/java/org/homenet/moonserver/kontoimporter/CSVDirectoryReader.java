@@ -7,16 +7,15 @@ import java.util.Collection;
 import java.util.List;
 
 public class CSVDirectoryReader {
-	private final String BASE_FOLDER;
+	private final File baseFolder;
 	private final FilenameFilter filter;
 	
-	public CSVDirectoryReader(String baseFolder, FilenameFilter filter) {
-		BASE_FOLDER = baseFolder;
+	public CSVDirectoryReader(File baseFolder, FilenameFilter filter) {
+		this.baseFolder = baseFolder;
 		this.filter = filter;
 	}
 
 	public Collection<Object[]> findAllCSVFiles() {
-		final File baseFolder = new File(BASE_FOLDER);
 		final List<Object[]> csvFiles = new ArrayList<>();
 
 		for (final File csvFile : baseFolder.listFiles(this.filter)) {

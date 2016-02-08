@@ -19,8 +19,10 @@ public class ITBuchen {
 	
 	@Test
 	public void testBuchen() {
+		String string = "src/test/resources/org/homenet/moonserver/kontoimporter";
+		File baseFolderFile = new File(string);
 		final CSVDirectoryReader reader = new CSVDirectoryReader(
-				"src/test/resources/org/homenet/moonserver/kontoimporter", new SimpleCSVFilter());
+				baseFolderFile, new SimpleCSVFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
 		Assert.assertEquals(5, csvFiles.size());

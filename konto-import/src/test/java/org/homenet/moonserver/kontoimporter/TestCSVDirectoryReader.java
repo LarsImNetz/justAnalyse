@@ -8,11 +8,13 @@ import org.junit.Test;
 
 public class TestCSVDirectoryReader {
 
-	// Dieser Test wird fehlschlagen, sobald mehr test*.csv Dateien in den resourcen untergebracht werden
+	// Dieser Test wird fehlschlagen, sobald mehr test*.csv Dateien in den
+	// resourcen untergebracht werden
 	@Test
 	public void testCountConfigurationFiles() throws Exception {
-		final CSVDirectoryReader reader = new CSVDirectoryReader(
-				"src/test/resources/org/homenet/moonserver/kontoimporter", new SimpleCSVFilter());
+		String baseFolder = "src/test/resources/org/homenet/moonserver/kontoimporter";
+		File baseFolderFile = new File(baseFolder);
+		final CSVDirectoryReader reader = new CSVDirectoryReader(baseFolderFile, new SimpleCSVFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
 		Assert.assertEquals(5, csvFiles.size());
