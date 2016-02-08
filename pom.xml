@@ -10,6 +10,8 @@
 	<!-- <name>Just Analyse Projects</name> -->
 	<name>Obermufti Projekt zu justAnalyse</name>
 	
+        <!-- Um Sonar zu benutzen: -->
+        <!-- mvn -fn clean package cobertura:cobertura -Dcobertura.report.format=xml sonar:sonar -->
 	<properties>
 		<sonar.host.url>http://sonar.hypoport.local:9000</sonar.host.url>
 	</properties>
