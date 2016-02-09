@@ -11,14 +11,25 @@ import org.homenet.moonserver.kontoimporter.SimpleCSVFilter;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ITBuchen {
+/**
+ * Integrationstest für kontoimporter
+ * Wir laufen alles durch, es gibt in jeder Datei in jedem Format Buchungen
+ *
+ */
 
-	// Wir laufen alles durch, es gibt in jeder Datei in jedem Format Buchungen
+public class ITestBuchen {
+
+	private static String baseFolder = "src/test/resources/org/homenet/moonserver/kontoimporter";
 
 	@Test
+	public void testExistance() throws Exception {
+		final File baseFolderFile = new File(baseFolder);
+		Assert.assertTrue("base folder must exist.", baseFolderFile.exists());
+	}
+	
+	@Test
 	public void testBuchen() {
-		String string = "src/test/resources/org/homenet/moonserver/kontoimporter";
-		File baseFolderFile = new File(string);
+		final File baseFolderFile = new File(baseFolder);
 		final CSVDirectoryReader reader = new CSVDirectoryReader(baseFolderFile, new SimpleCSVFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
@@ -30,6 +41,7 @@ public class ITBuchen {
 			final File csvFile = (File) csvFileObject[0];
 
 			final CSVKontoInterpreter interpreter = new CSVKontoInterpreter(csvFile);
+
 			// TODO: Warum liefere ich eine Buchung, wenn es nicht wirklich importiert werden kann? 
 			final List<IBuchung> buchungen = interpreter.interpret();
 

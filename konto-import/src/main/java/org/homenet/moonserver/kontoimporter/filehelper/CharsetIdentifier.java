@@ -17,7 +17,7 @@ public class CharsetIdentifier {
 		readFileToByteArray = FileUtils.readFileToByteArray(file);
 	}
 
-	public CharsetIdentifier(byte[] byteArray) {
+	public CharsetIdentifier(final byte[] byteArray) {
 		this.readFileToByteArray = byteArray;
 	}
 
