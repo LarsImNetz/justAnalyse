@@ -26,10 +26,10 @@ public class Test2012CSVKontoInterpreter {
 
 		// 31.10.2011;31.10.2011;"GA NR07303311 BLZ2307070008 29.10/10.52UHR LUEBECK 33";-20,00;;EUR
 		final IBuchung buchung = buchungen.get(0);
-		Assert.assertEquals(new DateTime(2011, 10, 31,0,0), buchung.getBuchungsdatum());
+		Assert.assertEquals(new DateTime(2011, 10, 31, 0, 0), buchung.getBuchungsdatum());
 		Assert.assertEquals("GA NR07303311 BLZ2307070008 29.10/10.52UHR LUEBECK 33", buchung.getVerwendungszweck());
 		Assert.assertEquals(-20d, buchung.getSoll(), 0.001);
 		Assert.assertEquals(null, buchung.getHaben());
 	}
-	
+
 }

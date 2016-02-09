@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 public class CSVLineSplitter {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(CSVLineSplitter.class);
-	
+
 	public String[] split(final String line) {
 		if (line == null) {
 			return null;
@@ -14,10 +14,10 @@ public class CSVLineSplitter {
 		final String[] split = line.split(";");
 		return reformat(split);
 	}
-	
+
 	private String[] reformat(final String[] split) {
-		
-		for (int i=0; i<split.length;i++) {
+
+		for (int i = 0; i < split.length; i++) {
 			final String current = split[i];
 			if (current.startsWith("\"") && current.endsWith("\"")) {
 				split[i] = current.substring(1, current.length() - 1);

@@ -18,19 +18,18 @@ public class Test2014CSVKontoInterpreter {
 		Assert.assertTrue(testFile2014.exists());
 	}
 
-
 	@Test
 	public void test2014KannLesen() {
 		final List<IBuchung> buchungen = interpreter2014.interpret();
 
 		Assert.assertEquals(3, buchungen.size());
 
-	// 16.06.2014;16.06.2014;;;1246683090258355 AMAZON *MKTPLCE EU-DE LARS LANGHANS;;;;;;;;;-5,84;;EUR
+		// 16.06.2014;16.06.2014;;;1246683090258355 AMAZON *MKTPLCE EU-DE LARS LANGHANS;;;;;;;;;-5,84;;EUR
 		final IBuchung buchung = buchungen.get(0);
-		Assert.assertEquals(new DateTime(2014, 6, 16,0,0), buchung.getBuchungsdatum());
+		Assert.assertEquals(new DateTime(2014, 6, 16, 0, 0), buchung.getBuchungsdatum());
 		Assert.assertEquals("1246683090258355 AMAZON *MKTPLCE EU-DE LARS LANGHANS", buchung.getVerwendungszweck());
 		Assert.assertEquals(-5.84, buchung.getSoll(), 0.001);
 		Assert.assertEquals(null, buchung.getHaben());
 	}
-	
+
 }

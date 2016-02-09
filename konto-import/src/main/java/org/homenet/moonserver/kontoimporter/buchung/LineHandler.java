@@ -24,10 +24,12 @@ public class LineHandler {
 			else if (line.equals("Buchungstag;Wert;Verwendungszweck;Soll;Haben;Währung")) {
 				format = BuchungFormatEnum.format2012;
 			}
-			else if (line.equals("Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Soll;Haben;Währung")) {
+			else if (line.equals(
+					"Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Soll;Haben;Währung")) {
 				format = BuchungFormatEnum.format2014;
 			}
-			else if (line.equals("Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Anzahl der Aufträge;Soll;Haben;Währung")) {
+			else if (line.equals(
+					"Buchungstag;Wert;Umsatzart;Begünstigter / Auftraggeber;Verwendungszweck;IBAN;BIC;Kundenreferenz;Mandatsreferenz ;Gläubiger ID;Fremde Gebühren;Betrag;Abweichender Empfänger;Anzahl der Aufträge;Soll;Haben;Währung")) {
 				format = BuchungFormatEnum.format2015;
 			}
 			else if (format == null) {

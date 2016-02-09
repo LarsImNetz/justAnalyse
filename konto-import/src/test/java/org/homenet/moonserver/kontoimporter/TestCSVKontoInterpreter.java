@@ -7,7 +7,6 @@ import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class TestCSVKontoInterpreter {
 
 	private final File testFile = new File("src/test/resources/org/homenet/moonserver/kontoimporter/test.csv");

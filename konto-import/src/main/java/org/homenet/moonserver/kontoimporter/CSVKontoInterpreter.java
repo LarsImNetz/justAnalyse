@@ -37,13 +37,14 @@ public class CSVKontoInterpreter {
 		try {
 			final CharsetIdentifier charsetIdentifier = new CharsetIdentifier(file);
 			charset = charsetIdentifier.identify();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			LOGGER.error("Can't read file: " + file.getAbsolutePath() + " with " + e.getMessage());
 			return null;
 		}
-		try (FileInputStream inputStream = new FileInputStream(file);
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(inputStream, charset /* "ISO-8859-1" */))) {
+		try (
+				FileInputStream inputStream = new FileInputStream(file);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset /* "ISO-8859-1" */))) {
 
 			String currentLine;
 			while ((currentLine = reader.readLine()) != null) {
@@ -63,7 +64,8 @@ public class CSVKontoInterpreter {
 			reader.close();
 			inputStream.close();
 			return buchungen;
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -71,8 +73,8 @@ public class CSVKontoInterpreter {
 
 	private String reformat(final String line) {
 		// currentLine = new String(currentLine.getBytes(), "ISO-8859-1");
-		if (line.contains("ä") || line.contains("ö") || line.contains("ü") || line.contains("ß") || line.contains("Ä")
-				|| line.contains("Ö") || line.contains("Ü")) {
+		if (line.contains("ä") || line.contains("ö") || line.contains("ü") || line.contains("ß") || line.contains("Ä") || line.contains("Ö")
+				|| line.contains("Ü")) {
 			return line;
 		}
 
@@ -80,7 +82,8 @@ public class CSVKontoInterpreter {
 		try {
 			currentLine = new String(line.getBytes(), "ISO-8859-1");
 			return currentLine;
-		} catch (final UnsupportedEncodingException e) {
+		}
+		catch (final UnsupportedEncodingException e) {
 			LOGGER.warn("can't convert ISO-8859 to UTF-8: " + line);
 		}
 		return line;

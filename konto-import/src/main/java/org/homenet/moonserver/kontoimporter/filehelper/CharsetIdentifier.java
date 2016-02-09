@@ -26,7 +26,8 @@ public class CharsetIdentifier {
 			if (determineISO_8859()) {
 				return "ISO-8859-1";
 			}
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			LOGGER.warn("Kann mit dem übergebenen File nichts anfangen: " + e.getMessage());
 		}
 		return "UTF-8";
@@ -52,23 +53,32 @@ public class CharsetIdentifier {
 			final byte aByte = readFileToByteArray[i];
 			if (aByte == ae) {
 				umlaut++;// System.out.println("ä erkannt");
-			} else if (aByte == oe) {
+			}
+			else if (aByte == oe) {
 				umlaut++; // System.out.println("ö erkannt");
-			} else if (aByte == ue) {
+			}
+			else if (aByte == ue) {
 				umlaut++; // System.out.println("ü erkannt");
-			} else if (aByte == Ae) {
+			}
+			else if (aByte == Ae) {
 				umlaut++; // System.out.println("Ä erkannt");
-			} else if (aByte == Oe) {
+			}
+			else if (aByte == Oe) {
 				umlaut++;// System.out.println("Ö erkannt");
-			} else if (aByte == Ue) {
+			}
+			else if (aByte == Ue) {
 				umlaut++; // System.out.println("Ü erkannt");
-			} else if (aByte == SZ) {
+			}
+			else if (aByte == SZ) {
 				umlaut++; // System.out.println("ß erkannt");
-			} else if (aByte == EUR) {
+			}
+			else if (aByte == EUR) {
 				umlaut++; // System.out.println("€ erkannt");
-			} else if (aByte >= 0 && aByte <= 127) {
+			}
+			else if (aByte >= 0 && aByte <= 127) {
 				ascii++;
-			} else {
+			}
+			else {
 				nonAscii++;
 			}
 		}

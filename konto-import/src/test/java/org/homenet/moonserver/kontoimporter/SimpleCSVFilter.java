@@ -3,7 +3,7 @@ package org.homenet.moonserver.kontoimporter;
 import java.io.File;
 import java.io.FilenameFilter;
 
-public class SimpleCSVFilter implements FilenameFilter{
+public class SimpleCSVFilter implements FilenameFilter {
 
 	@Override
 	public boolean accept(File dir, String name) {

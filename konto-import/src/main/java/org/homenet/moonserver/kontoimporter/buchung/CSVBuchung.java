@@ -47,7 +47,7 @@ class CSVBuchung implements IBuchung {
 		final DateTime dt = formatter.parseDateTime(value);
 		return dt;
 	}
-	
+
 	static Double getLocaleValue(final String value) {
 		final NumberFormat format = NumberFormat.getInstance(Locale.GERMANY);
 		try {
