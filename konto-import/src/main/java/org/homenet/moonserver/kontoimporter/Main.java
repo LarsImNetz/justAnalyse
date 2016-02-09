@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 
+import com.google.common.base.Preconditions;
+
 public class Main {
 
 	public Main() {
@@ -18,8 +20,10 @@ public class Main {
 	}
 
 	public void importing() {
-		String baseFolder = System.getProperty("user.home") + "/download/konto";
-		File baseFolderFile = new File(baseFolder);
+		final String baseFolder = System.getProperty("user.home") + "/download/konto";
+		final File baseFolderFile = new File(baseFolder);
+		Preconditions.checkState(baseFolderFile.exists(), "Base folder (" + baseFolder + ") not found.");
+		
 		final CSVDirectoryReader reader = new CSVDirectoryReader(baseFolderFile, new DBCSVFilenameFilter());
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
