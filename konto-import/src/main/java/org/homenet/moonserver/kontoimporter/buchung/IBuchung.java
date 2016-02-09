@@ -2,7 +2,7 @@ package org.homenet.moonserver.kontoimporter.buchung;
 
 import org.joda.time.DateTime;
 
-public interface IBuchung {
+public interface IBuchung extends Comparable<IBuchung> {
 
 	Double getSoll();
 
@@ -11,4 +11,8 @@ public interface IBuchung {
 	DateTime getBuchungsdatum();
 
 	String getVerwendungszweck();
+	
+	public int compareTo(IBuchung other);
+	
+	String toString();
 }

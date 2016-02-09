@@ -44,7 +44,15 @@ class CSVBuchung implements IBuchung {
 
 	static DateTime getLocaleDate(final String value) {
 		final DateTimeFormatter formatter = DateTimeFormat.forPattern("dd.MM.yyyy");
-		final DateTime dt = formatter.parseDateTime(value);
+		DateTime dt = formatter.parseDateTime(value);
+		int year = dt.getYear();
+		// Patch für zu kleine Jahre
+		if (year < 20) {
+			year += 2000;
+			int month = dt.getMonthOfYear();
+			int day = dt.getDayOfMonth();
+			dt = new DateTime(year, month, day, 0,0);
+		}
 		return dt;
 	}
 
@@ -79,6 +87,89 @@ class CSVBuchung implements IBuchung {
 	@Override
 	public String getVerwendungszweck() {
 		return verwendungszweck;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((buchungsdatum == null)
+				? 0
+				: buchungsdatum.hashCode());
+		result = prime * result + ((haben == null)
+				? 0
+				: haben.hashCode());
+		result = prime * result + ((soll == null)
+				? 0
+				: soll.hashCode());
+		result = prime * result + ((verwendungszweck == null)
+				? 0
+				: verwendungszweck.hashCode());
+		result = prime * result + ((waehrung == null)
+				? 0
+				: waehrung.hashCode());
+		result = prime * result + ((wert == null)
+				? 0
+				: wert.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CSVBuchung other = (CSVBuchung) obj;
+		if (buchungsdatum == null) {
+			if (other.buchungsdatum != null)
+				return false;
+		}
+		else if (!buchungsdatum.equals(other.buchungsdatum))
+			return false;
+		if (haben == null) {
+			if (other.haben != null)
+				return false;
+		}
+		else if (!haben.equals(other.haben))
+			return false;
+		if (soll == null) {
+			if (other.soll != null)
+				return false;
+		}
+		else if (!soll.equals(other.soll))
+			return false;
+		if (verwendungszweck == null) {
+			if (other.verwendungszweck != null)
+				return false;
+		}
+		else if (!verwendungszweck.equals(other.verwendungszweck))
+			return false;
+		if (waehrung == null) {
+			if (other.waehrung != null)
+				return false;
+		}
+		else if (!waehrung.equals(other.waehrung))
+			return false;
+		if (wert == null) {
+			if (other.wert != null)
+				return false;
+		}
+		else if (!wert.equals(other.wert))
+			return false;
+		return true;
+	}
+
+	@Override
+	public int compareTo(IBuchung other) {
+		return buchungsdatum.compareTo(other.getBuchungsdatum());
+	}
+
+	@Override
+	public String toString() {
+		return "CSVBuchung [buchungsdatum=" + buchungsdatum + ", verwendungszweck=" + verwendungszweck + ", soll=" + soll + ", haben=" + haben + "]";
 	}
 
 }
