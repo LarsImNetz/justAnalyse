@@ -20,13 +20,14 @@ public class MyClicker {
 		Robot robot = new Robot();
 
 		Thread.sleep(3000);
+int WAIT=0;
 
-		int n = (1000 / (4 + 3)) * 60 * 60 * 24;
+		int n = (1000 / (4 + 3 + WAIT)) * 60 * 60 * 24;
 		while (n > 0) {
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			Thread.sleep(4);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
-			Thread.sleep(3);
+			Thread.sleep(3 + WAIT);
 			n--;
 		}
 		System.out.println("fertig!");
