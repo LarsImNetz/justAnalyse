@@ -1,7 +1,5 @@
 package experiment.lars.java;
 
-import static org.junit.Assert.*;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +10,7 @@ public class TestSets {
 
 	@Test
 	public void testSingleString() throws Exception {
-		Set<String> stringSet = new HashSet<>();
+		final Set<String> stringSet = new HashSet<>();
 		stringSet.add("eins");
 
 		Assert.assertTrue(stringSet.contains("eins"));
@@ -20,7 +18,7 @@ public class TestSets {
 
 	@Test
 	public void testTwoStrings() throws Exception {
-		Set<String> stringSet = new HashSet<>();
+		final Set<String> stringSet = new HashSet<>();
 		stringSet.add("eins");
 		stringSet.add("zwo");
 
@@ -30,28 +28,30 @@ public class TestSets {
 
 	@Test
 	public void testSetWithMyStrings() throws Exception {
-		MyStrings my = new MyStrings("first", "second");
-		MyStrings my2 = new MyStrings("first", "second");
-		Set<MyStrings> stringSet = new HashSet<>();
+		final MyStrings my = new MyStrings("first", "second");
+		final MyStrings my2 = new MyStrings("first", "second");
+		final Set<MyStrings> stringSet = new HashSet<>();
 		stringSet.add(my);
 		stringSet.add(my2);
 
 		// will only be 1, if we implement equals and hashcode by our self
 		Assert.assertEquals(1, stringSet.size());
 	}
-	
+
 	private static class MyStrings {
+
 		private final String one;
 		private final String two;
-		
-		MyStrings(String first, String second) {
+
+		MyStrings(final String first, final String second) {
 			one = first;
 			two = second;
 		}
-		
+
 		String getOne() {
 			return one;
 		}
+
 		String getTwo() {
 			return two;
 		}
@@ -70,29 +70,35 @@ public class TestSets {
 		}
 
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
+		public boolean equals(final Object obj) {
+			if (this == obj) {
 				return true;
-			if (obj == null)
+			}
+			if (obj == null) {
 				return false;
-			if (getClass() != obj.getClass())
+			}
+			if (getClass() != obj.getClass()) {
 				return false;
-			MyStrings other = (MyStrings) obj;
+			}
+			final MyStrings other = (MyStrings) obj;
 			if (one == null) {
-				if (other.one != null)
+				if (other.one != null) {
 					return false;
+				}
 			}
-			else if (!one.equals(other.one))
+			else if (!one.equals(other.one)) {
 				return false;
+			}
 			if (two == null) {
-				if (other.two != null)
+				if (other.two != null) {
 					return false;
+				}
 			}
-			else if (!two.equals(other.two))
+			else if (!two.equals(other.two)) {
 				return false;
+			}
 			return true;
 		}
-		
-		
+
 	}
 }
