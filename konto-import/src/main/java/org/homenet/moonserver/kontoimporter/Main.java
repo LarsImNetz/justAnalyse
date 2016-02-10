@@ -1,9 +1,7 @@
 package org.homenet.moonserver.kontoimporter;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +10,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
-import org.joda.time.DateTime;
 
 import com.google.common.base.Preconditions;
 
@@ -36,7 +33,7 @@ public class Main {
 
 		final Iterator<Object[]> iterator = csvFiles.iterator();
 
-		Set<IBuchung> buchungenSet = new HashSet<>();
+		final Set<IBuchung> buchungenSet = new HashSet<>();
 
 		while (iterator.hasNext()) {
 			final Object[] csvFileObject = iterator.next();
@@ -48,17 +45,33 @@ public class Main {
 			// TODO: für alle Buchungen Zugriffe per Datum erlauben
 			buchungenSet.addAll(buchungen);
 		}
-		Set<IBuchung> sortedSet = getSortedSet(buchungenSet);
 		
-		for(IBuchung buchung : sortedSet) {
-			System.out.println(buchung.toString());
+		// sortiert ausgeben
+		final Set<IBuchung> sortedSet = getSortedSet(buchungenSet);
+		
+		for(final IBuchung buchung : sortedSet) {
+			// nur Buchungen ausgeben, die im Dezember 2015 getätigt wurden
+			if (amGebucht(buchung, 2015, 12)) {
+				if (einkaufen(buchung)) {
+					System.out.println(buchung.toString());
+				}
+			}
 		}
 	}
 
-	public static Set<IBuchung> getSortedSet(Set<IBuchung> unsortedSet) {
-		SortedSet<IBuchung> set = new TreeSet<IBuchung>();
+	private boolean amGebucht(final IBuchung buchung, final int year, final int month) {
+		return buchung.getBuchungsdatum().getYear() == year && buchung.getBuchungsdatum().getMonthOfYear() == month;
+	}
 
-		for (IBuchung buchung : unsortedSet) {
+	public boolean einkaufen(final IBuchung buchung) {
+		// TODO: mit einem Pattern drüber gucken, was getan wurde...
+		return true;
+	}
+
+	public static Set<IBuchung> getSortedSet(final Set<IBuchung> unsortedSet) {
+		final SortedSet<IBuchung> set = new TreeSet<IBuchung>();
+
+		for (final IBuchung buchung : unsortedSet) {
 			set.add(buchung);
 		}
 
