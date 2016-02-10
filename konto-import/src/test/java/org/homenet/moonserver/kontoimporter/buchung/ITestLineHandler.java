@@ -11,7 +11,7 @@ public class ITestLineHandler {
 
 	@Before
 	public void setUp() {
-		lineHandlerSUT = new LineHandler(new CSVLineSplitter());
+		lineHandlerSUT = new LineHandler(new CSVLineSplitter(), new CSVBuchungFactory());
 		// TODO: ich wünsche mir, das hier die CSVBuchungen zum lineHandler hinzugefügt werden können
 		// lineHandler.add(new CSVBuchungFormat1());
 		// lineHandler.add(new CSVBuchungFormat2014());

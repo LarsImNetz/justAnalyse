@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.homenet.moonserver.kontoimporter.buchung.CSVBuchungFactory;
 import org.homenet.moonserver.kontoimporter.buchung.CSVLineSplitter;
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 import org.homenet.moonserver.kontoimporter.buchung.LineHandler;
@@ -26,7 +27,7 @@ public class CSVKontoInterpreter {
 
 	public CSVKontoInterpreter(final File file) {
 		this.file = file;
-		this.lineHandler = new LineHandler(new CSVLineSplitter());
+		this.lineHandler = new LineHandler(new CSVLineSplitter(), new CSVBuchungFactory());
 	}
 
 	private int lineNumber = 1;
@@ -38,7 +39,7 @@ public class CSVKontoInterpreter {
 			final CharsetIdentifier charsetIdentifier = new CharsetIdentifier(file);
 			charset = charsetIdentifier.identify();
 		}
-		catch (IOException e) {
+		catch (final IOException e) {
 			LOGGER.error("Can't read file: " + file.getAbsolutePath() + " with " + e.getMessage());
 			return null;
 		}

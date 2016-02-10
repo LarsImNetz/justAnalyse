@@ -1,9 +1,12 @@
 package org.homenet.moonserver.kontoimporter.buchung;
 
-public class CSVBuchungFactory {
-	private CSVBuchungFactory() {}
+public class CSVBuchungFactory implements ICSVBuchungFactory {
 
-	public static BuchungFormatEnum create(final String headerLine) {
+	public CSVBuchungFactory() {
+	}
+
+	@Override
+	public BuchungFormatEnum create(final String headerLine) {
 		BuchungFormatEnum format = CSVBuchungFormat1.check(headerLine);
 		if (format != null) {
 			return format;
@@ -18,9 +21,10 @@ public class CSVBuchungFactory {
 		}
 		return null;
 	}
-	
-	public static IBuchung create(BuchungFormatEnum format, final String[] split) {
-		switch(format) {
+
+	@Override
+	public IBuchung create(final BuchungFormatEnum format, final String[] split) {
+		switch (format) {
 			case format1:
 				return new CSVBuchungFormat1(split);
 			case format2012:
