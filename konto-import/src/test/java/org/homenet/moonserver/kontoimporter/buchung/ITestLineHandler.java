@@ -32,7 +32,7 @@ public class ITestLineHandler {
 		Assert.assertEquals(new DateTime(2014, 1, 1, 0, 0), currentBuchung.getBuchungsdatum());
 		Assert.assertEquals(Double.valueOf(10), currentBuchung.getHaben());
 		Assert.assertEquals("verwendungszweck", currentBuchung.getVerwendungszweck());
-		Assert.assertNull(currentBuchung.getSoll());
+		Assert.assertEquals(Double.valueOf(0), currentBuchung.getSoll());
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class ITestLineHandler {
 		Assert.assertEquals(new DateTime(2014, 1, 1, 0, 0), currentBuchung.getBuchungsdatum());
 		Assert.assertEquals(Double.valueOf(10), currentBuchung.getHaben());
 		Assert.assertEquals("verwendungszweck", currentBuchung.getVerwendungszweck());
-		Assert.assertNull(currentBuchung.getSoll());
+		Assert.assertEquals(Double.valueOf(0), currentBuchung.getSoll());
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class ITestLineHandler {
 		Assert.assertEquals(new DateTime(2014, 1, 1, 0, 0), currentBuchung.getBuchungsdatum());
 		Assert.assertEquals(Double.valueOf(10), currentBuchung.getHaben());
 		Assert.assertEquals("verwendungszweck", currentBuchung.getVerwendungszweck());
-		Assert.assertNull(currentBuchung.getSoll());
+		Assert.assertEquals(Double.valueOf(0), currentBuchung.getSoll());
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class ITestLineHandler {
 		Assert.assertEquals(new DateTime(2014, 1, 1, 0, 0), currentBuchung.getBuchungsdatum());
 		Assert.assertEquals(Double.valueOf(10), currentBuchung.getHaben());
 		Assert.assertEquals("verwendungszweck", currentBuchung.getVerwendungszweck());
-		Assert.assertNull(currentBuchung.getSoll());
+		Assert.assertEquals(Double.valueOf(0), currentBuchung.getSoll());
 	}
 
 }

@@ -50,15 +50,21 @@ public class Main {
 		
 		// sortiert ausgeben
 		final Set<IBuchung> sortedSet = getSortedSet(buchungenSet);
-		
+
+		double soll = 0;
+		double haben = 0;
 		for(final IBuchung buchung : sortedSet) {
 			// nur Buchungen ausgeben, die im Dezember 2015 getätigt wurden
-			if (amGebucht(buchung, 2015, 12)) {
+			if (amGebucht(buchung, 2015, 4)) {
 				if (einkaufen(buchung)) {
 					System.out.println(buchung.toString());
+					soll += buchung.getSoll();
+					haben += buchung.getHaben();
 				}
 			}
 		}
+		System.out.println("Haben: " + haben);
+		System.out.println(" Soll: " + soll);		
 	}
 
 	private boolean amGebucht(final IBuchung buchung, final int year, final int month) {

@@ -29,7 +29,7 @@ public class Test2014CSVKontoInterpreter {
 		Assert.assertEquals(new DateTime(2014, 6, 16, 0, 0), buchung.getBuchungsdatum());
 		Assert.assertEquals("1246683090258355 AMAZON *MKTPLCE EU-DE LARS LANGHANS", buchung.getVerwendungszweck());
 		Assert.assertEquals(-5.84, buchung.getSoll(), 0.001);
-		Assert.assertEquals(null, buchung.getHaben());
+		Assert.assertEquals(Double.valueOf(0), buchung.getHaben());
 	}
 
 }

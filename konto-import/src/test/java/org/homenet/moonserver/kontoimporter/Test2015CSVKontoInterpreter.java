@@ -29,13 +29,13 @@ public class Test2015CSVKontoInterpreter {
 		Assert.assertEquals(new DateTime(2015, 10, 1, 0, 0), buchung.getBuchungsdatum());
 		Assert.assertEquals("300913567084074181200008100 ELV65409121 30.09 13.56 ME7 SKY MARKT 810 SAGT DANKE 5084074", buchung.getVerwendungszweck());
 		Assert.assertEquals(-45.95, buchung.getSoll(), 0.001);
-		Assert.assertEquals(null, buchung.getHaben());
+		Assert.assertEquals(Double.valueOf(0), buchung.getHaben());
 
 		// 07.12.2015;07.12.2015;;;Restbetrag Rechner;;;;;;;;;;;135,00;EUR
 		final IBuchung buchung7 = buchungen.get(7);
 		Assert.assertEquals(new DateTime(2015, 12, 7, 0, 0), buchung7.getBuchungsdatum());
 		Assert.assertEquals("Restbetrag Rechner", buchung7.getVerwendungszweck());
-		Assert.assertEquals(null, buchung7.getSoll());
+		Assert.assertEquals(Double.valueOf(0), buchung7.getSoll());
 		Assert.assertEquals(135d, buchung7.getHaben(), 0.001);
 	}
 

@@ -66,7 +66,7 @@ class CSVBuchung implements IBuchung {
 		catch (final ParseException e) {
 			// e.printStackTrace();
 		}
-		return null;
+		return 0d;
 	}
 
 	@Override
