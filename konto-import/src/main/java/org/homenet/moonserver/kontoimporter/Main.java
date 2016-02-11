@@ -8,14 +8,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
+import org.junit.Assert;
 
 import com.google.common.base.Preconditions;
 
 public class Main {
 
-	public Main() {
+	protected Main() {
 	}
 
 	public static void main(final String[] args) {
@@ -65,6 +68,13 @@ public class Main {
 
 	public boolean einkaufen(final IBuchung buchung) {
 		// TODO: mit einem Pattern drüber gucken, was getan wurde...
+		final String verwendungszweck = buchung.getVerwendungszweck();
+		final String classToCheck = "(.* )?ALDI( .*)?";
+
+		final Pattern pattern = Pattern.compile(classToCheck);
+		final Matcher matcher = pattern.matcher(verwendungszweck);
+
+		Assert.assertTrue(matcher.matches());
 		return true;
 	}
 
