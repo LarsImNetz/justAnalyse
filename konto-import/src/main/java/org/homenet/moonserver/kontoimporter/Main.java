@@ -12,7 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
-import org.junit.Assert;
 
 import com.google.common.base.Preconditions;
 
@@ -74,7 +73,7 @@ public class Main {
 		final Pattern pattern = Pattern.compile(classToCheck);
 		final Matcher matcher = pattern.matcher(verwendungszweck);
 
-		Assert.assertTrue(matcher.matches());
+		// Assert.assertTrue(matcher.matches());
 		return true;
 	}
 
