@@ -16,7 +16,6 @@ import com.google.common.collect.Lists;
 @RunWith(Parameterized.class)
 public class TestMorePattern {
 
-	
 	/*
 	 * Parameter die getestet werden sollen
 	 */
@@ -40,9 +39,21 @@ public class TestMorePattern {
 		list.add(new Object[] {"X+", "XX", true, "X kommt keinmal oder beliebig oft vor: 2X"});
 		list.add(new Object[] {"X+", "XXX", true, "X kommt keinmal oder beliebig oft vor: 3X"});
 		list.add(new Object[] {"X+Y+", "XXXY", true, "X kommt keinmal oder beliebig oft vor: 3X und 1Y"});
+
+		list.add(new Object[] {"\\d", "1", true, "a digit 1"});
+		list.add(new Object[] {"\\d", "2", true, "a digit 2"});
+		list.add(new Object[] {"\\d", "3", true, "a digit 3"});
+		list.add(new Object[] {"\\d", "4", true, "a digit 4"});
+		list.add(new Object[] {"\\d", "5", true, "a digit 5"});
+		list.add(new Object[] {"\\d", "6", true, "a digit 6"});
+		list.add(new Object[] {"\\d", "7", true, "a digit 7"});
+		list.add(new Object[] {"\\d", "8", true, "a digit 8"});
+		list.add(new Object[] {"\\d", "9", true, "a digit 9"});
+		list.add(new Object[] {"\\d", "0", true, "a digit 0"});
+
 		return list;
 	}
-	
+
 	public TestMorePattern(final String regex, final String input, final boolean result, final String testName) {
 		this.regex = regex;
 		this.input = input;
@@ -52,7 +63,7 @@ public class TestMorePattern {
 	private final String regex;
 	private final String input;
 	private final boolean result;
-	
+
 	/*
 	 * Der eigentliche Test, der mit den Parametern zurecht kommen sollte.
 	 */
