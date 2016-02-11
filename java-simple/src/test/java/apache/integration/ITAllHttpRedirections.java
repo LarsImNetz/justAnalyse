@@ -54,9 +54,17 @@ public class ITAllHttpRedirections {
 					if (serverAliases != null) {
 						// jeder ServerAlias in einer <VirtualHost *> Definition
 						for (final String serverAlias : serverAliases) {
-							if (vhost.getRedirection() != null) {
-								if (vhost.getRedirection().contains("www.vergleich.de")) {
-									append(list, serverAlias, vhost, vhost.getRedirection(), vhostName);
+							final String redirection = vhost.getRedirection();
+							if (redirection != null) {
+								// if (redirection.contains("www.vergleich.de")) {
+								if (
+										redirection.contains("www.grundbuch.de") ||
+										redirection.contains("www.drklein.de") ||
+										redirection.contains("www.finanzpartnernetz.de") ||
+										redirection.contains("www.zinsentwicklung.de") ||
+										redirection.contains("www.hypoweb.de")
+										) {
+									append(list, serverAlias, vhost, redirection, vhostName);
 								}
 							}
 						}
@@ -70,7 +78,10 @@ public class ITAllHttpRedirections {
 		return list;
 	}
 
-	private static void append(final List<Object[]> list, final String serverAlias, final VirtualHost vhost, final String redirectionUrl, final String name) {
+	private static void append(final List<Object[]> list, final String serverAlias, final VirtualHost vhost, String redirectionUrl, final String name) {
+		if (redirectionUrl.startsWith("https:")) {
+			redirectionUrl = redirectionUrl.replace("https://", "http://");
+		}
 		list.add(new Object[] {serverAlias, name, vhost, redirectionUrl});
 	}
 
