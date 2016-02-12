@@ -49,8 +49,8 @@ class CSVBuchung implements IBuchung {
 		// Patch für zu kleine Jahre
 		if (year < 20) {
 			year += 2000;
-			int month = dt.getMonthOfYear();
-			int day = dt.getDayOfMonth();
+			final int month = dt.getMonthOfYear();
+			final int day = dt.getDayOfMonth();
 			dt = new DateTime(year, month, day, 0,0);
 		}
 		return dt;
@@ -115,61 +115,85 @@ class CSVBuchung implements IBuchung {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(final Object obj) {
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
-		CSVBuchung other = (CSVBuchung) obj;
+		}
+		final CSVBuchung other = (CSVBuchung) obj;
 		if (buchungsdatum == null) {
-			if (other.buchungsdatum != null)
+			if (other.buchungsdatum != null) {
 				return false;
+			}
 		}
-		else if (!buchungsdatum.equals(other.buchungsdatum))
+		else if (!buchungsdatum.equals(other.buchungsdatum)) {
 			return false;
+		}
 		if (haben == null) {
-			if (other.haben != null)
+			if (other.haben != null) {
 				return false;
+			}
 		}
-		else if (!haben.equals(other.haben))
+		else if (!haben.equals(other.haben)) {
 			return false;
+		}
 		if (soll == null) {
-			if (other.soll != null)
+			if (other.soll != null) {
 				return false;
+			}
 		}
-		else if (!soll.equals(other.soll))
+		else if (!soll.equals(other.soll)) {
 			return false;
+		}
 		if (verwendungszweck == null) {
-			if (other.verwendungszweck != null)
+			if (other.verwendungszweck != null) {
 				return false;
+			}
 		}
-		else if (!verwendungszweck.equals(other.verwendungszweck))
+		else if (!verwendungszweck.equals(other.verwendungszweck)) {
 			return false;
+		}
 		if (waehrung == null) {
-			if (other.waehrung != null)
+			if (other.waehrung != null) {
 				return false;
+			}
 		}
-		else if (!waehrung.equals(other.waehrung))
+		else if (!waehrung.equals(other.waehrung)) {
 			return false;
+		}
 		if (wert == null) {
-			if (other.wert != null)
+			if (other.wert != null) {
 				return false;
+			}
 		}
-		else if (!wert.equals(other.wert))
+		else if (!wert.equals(other.wert)) {
 			return false;
+		}
 		return true;
 	}
 
 	@Override
-	public int compareTo(IBuchung other) {
-		return buchungsdatum.compareTo(other.getBuchungsdatum());
+	public int compareTo(final IBuchung other) {
+		final int sortOrder = buchungsdatum.compareTo(other.getBuchungsdatum()); 
+		if (sortOrder < 0) {
+			return -1;
+		}
+		else if (sortOrder > 0) {
+			return 1;
+		}
+		return verwendungszweck.compareTo(other.getVerwendungszweck());
 	}
+
+	private static DateTimeFormatter dtfOut = DateTimeFormat.forPattern("dd.MM.yyyy");
 
 	@Override
 	public String toString() {
-		return "CSVBuchung [buchungsdatum=" + buchungsdatum + ", verwendungszweck=" + verwendungszweck + ", soll=" + soll + ", haben=" + haben + "]";
+		return "CSVBuchung [buchungsdatum=" + dtfOut.print(buchungsdatum) + ", verwendungszweck=" + verwendungszweck + ", soll=" + soll + ", haben=" + haben + "]";
 	}
 
 }
