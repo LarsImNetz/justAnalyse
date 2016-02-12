@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 // TODO: schlechte Implementierung, hier sollte ich mir etwas anderes überlegen
-// TODO: CSVBuchungFactory in ein Objekt legen und dies mit übergeben, zum Mocken
 public class LineHandler {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(LineHandler.class);

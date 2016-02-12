@@ -6,11 +6,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.homenet.moonserver.kontoimporter.buchung.BuchungSorter;
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
+import org.homenet.moonserver.kontoimporter.classification.Classification;
 
 import com.google.common.base.Preconditions;
 
@@ -25,6 +24,7 @@ public class Main {
 	}
 
 	private final BuchungSorter sorter = new BuchungSorter();
+	private final Classification classification = new Classification();
 	
 	public void importing() {
 		final String baseFolder = System.getProperty("user.home") + "/download/konto";
@@ -47,6 +47,9 @@ public class Main {
 			buchungenSet.addAll(buchungen);
 		}
 		
+		// klassifizierung
+		classification.classify(buchungenSet);
+		
 		// sortiert ausgeben
 		final Set<IBuchung> sortedSet = sorter.getSortedSet(buchungenSet);
 
@@ -54,12 +57,12 @@ public class Main {
 		double haben = 0;
 		for(final IBuchung buchung : sortedSet) {
 			// nur Buchungen ausgeben, die im Oktober 2015 getätigt wurden
-			if (amGebucht(buchung, 2015, 10)) {
-				if (einkaufen(buchung)) {
+			if (amGebucht(buchung, 2015, 10) || amGebucht(buchung, 2015, 11)) {
+				// if (einkaufen(buchung)) {
 					System.out.println(buchung.toString());
 					soll += buchung.getSoll();
 					haben += buchung.getHaben();
-				}
+				// }
 			}
 		}
 		System.out.println("Haben: " + haben);
@@ -70,17 +73,6 @@ public class Main {
 		return buchung.getBuchungsdatum().getYear() == year && buchung.getBuchungsdatum().getMonthOfYear() == month;
 	}
 
-	public boolean einkaufen(final IBuchung buchung) {
-		// TODO: mit einem Pattern drüber gucken, was getan wurde...
-		final String verwendungszweck = buchung.getVerwendungszweck();
-		final String classToCheck = "(.* )?ALDI( .*)?";
-
-		final Pattern pattern = Pattern.compile(classToCheck);
-		final Matcher matcher = pattern.matcher(verwendungszweck);
-
-		// Assert.assertTrue(matcher.matches());
-		return true;
-	}
 
 
 }

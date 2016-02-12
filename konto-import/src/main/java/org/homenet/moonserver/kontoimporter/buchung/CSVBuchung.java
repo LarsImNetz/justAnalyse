@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-class CSVBuchung implements IBuchung {
+public class CSVBuchung implements IBuchung {
 	// Buchungstag;Wert;Verwendungszweck;Soll;Haben;Waehrung
 
 	private final DateTime buchungsdatum;
