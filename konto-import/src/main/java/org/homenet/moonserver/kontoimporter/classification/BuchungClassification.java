@@ -3,7 +3,7 @@ package org.homenet.moonserver.kontoimporter.classification;
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 import org.joda.time.DateTime;
 
-public class BuchungClassification implements IBuchung {
+public class BuchungClassification implements IBuchungClassification {
 
 	private final IBuchung buchung;
 	private final ClassificationEnum classification;
@@ -41,4 +41,11 @@ public class BuchungClassification implements IBuchung {
 	public int compareTo(final IBuchung other) {
 		return buchung.compareTo(other);
 	}
+
+	@Override
+	public String toString() {
+		return "BuchungClassification [class=" + classification + ", buchung=" + buchung + "]";
+	}
+	
+	
 }
