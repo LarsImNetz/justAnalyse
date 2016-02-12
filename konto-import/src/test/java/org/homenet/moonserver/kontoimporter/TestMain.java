@@ -2,7 +2,6 @@ package org.homenet.moonserver.kontoimporter;
 
 import java.io.File;
 
-import org.homenet.moonserver.kontoimporter.Main;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,7 +14,7 @@ public class TestMain {
 	 */
 	@Test
 	public void test() {
-		Main app = new Main();
+		final Main app = new Main();
 		Assert.assertEquals("org.homenet.moonserver.kontoimporter.Main", app.getClass().getCanonicalName());
 	}
 
@@ -25,7 +24,7 @@ public class TestMain {
 	}
 
 	private File getPwd() {
-		File aFile = new File("target/test-classes", this.getClass().getName().replace('.', '/') + ".class");
+		final File aFile = new File("target/test-classes", this.getClass().getName().replace('.', '/') + ".class");
 		return aFile.getParentFile();
 	}
 

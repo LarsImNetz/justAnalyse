@@ -6,11 +6,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.homenet.moonserver.kontoimporter.buchung.BuchungSorter;
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
 
 import com.google.common.base.Preconditions;
@@ -25,6 +24,8 @@ public class Main {
 		main.importing();
 	}
 
+	private final BuchungSorter sorter = new BuchungSorter();
+	
 	public void importing() {
 		final String baseFolder = System.getProperty("user.home") + "/download/konto";
 		final File baseFolderFile = new File(baseFolder);
@@ -43,19 +44,17 @@ public class Main {
 
 			final CSVKontoInterpreter interpreter = new CSVKontoInterpreter(csvFile);
 			final List<IBuchung> buchungen = interpreter.interpret();
-			// TODO: alle Buchungen in einer Liste halten
-			// TODO: für alle Buchungen Zugriffe per Datum erlauben
 			buchungenSet.addAll(buchungen);
 		}
 		
 		// sortiert ausgeben
-		final Set<IBuchung> sortedSet = getSortedSet(buchungenSet);
+		final Set<IBuchung> sortedSet = sorter.getSortedSet(buchungenSet);
 
 		double soll = 0;
 		double haben = 0;
 		for(final IBuchung buchung : sortedSet) {
-			// nur Buchungen ausgeben, die im Dezember 2015 getätigt wurden
-			if (amGebucht(buchung, 2015, 4)) {
+			// nur Buchungen ausgeben, die im Oktober 2015 getätigt wurden
+			if (amGebucht(buchung, 2015, 10)) {
 				if (einkaufen(buchung)) {
 					System.out.println(buchung.toString());
 					soll += buchung.getSoll();
@@ -83,14 +82,5 @@ public class Main {
 		return true;
 	}
 
-	public static Set<IBuchung> getSortedSet(final Set<IBuchung> unsortedSet) {
-		final SortedSet<IBuchung> set = new TreeSet<IBuchung>();
-
-		for (final IBuchung buchung : unsortedSet) {
-			set.add(buchung);
-		}
-
-		return set;
-	}
 
 }
