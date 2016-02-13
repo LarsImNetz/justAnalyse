@@ -1,18 +1,20 @@
 package org.homenet.moonserver.kontoimporter;
 
 import java.io.File;
+import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.homenet.moonserver.kontoimporter.buchung.BuchungSorter;
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
-import org.homenet.moonserver.kontoimporter.classification.BuchungClassification;
 import org.homenet.moonserver.kontoimporter.classification.Classification;
 import org.homenet.moonserver.kontoimporter.classification.ClassificationEnum;
 import org.homenet.moonserver.kontoimporter.classification.IBuchungClassification;
+import org.homenet.moonserver.kontoimporter.classification.LarsClassification;
 
 import com.google.common.base.Preconditions;
 
@@ -27,7 +29,7 @@ public class Main {
 	}
 
 	private final BuchungSorter sorter = new BuchungSorter();
-	private final Classification classification = new Classification();
+	private Classification classification;
 
 	public void importing() {
 		final String baseFolder = System.getProperty("user.home") + "/download/konto";
@@ -50,35 +52,76 @@ public class Main {
 			buchungenSet.addAll(buchungen);
 		}
 
+		classification =  new Classification(new LarsClassification());
 		// klassifizierung
-		Set<IBuchungClassification> classifiedBuchungen = classification.classify(buchungenSet);
+		Set<IBuchungClassification> classifiedBuchungen = classification.classifyAll(buchungenSet);
 
 		// sortiert ausgeben
 		final Set<IBuchung> sortedSet = sorter.getSortedSet(classifiedBuchungen);
 
+		double gesamtSoll = 0;
+		double gesamtHaben = 0;
+		for (ClassificationEnum classification : ClassificationEnum.values()) {
+			SollHaben sollHaben = showAusgaben(sortedSet, classification);
+
+			System.out.println();
+			System.out.println("Classification: " + classification.name());
+			System.out.println("Haben: " + outputBetrag(sollHaben.haben));
+			System.out.println(" Soll: " + outputBetrag(sollHaben.soll));
+
+			gesamtHaben += sollHaben.haben;
+			gesamtSoll += sollHaben.soll;
+		}
+
+		System.out.println();
+		System.out.println("Haben: " + outputBetrag(gesamtHaben));
+		System.out.println(" Soll: " + outputBetrag(gesamtSoll));
+	}
+
+	private static class SollHaben {
+
+		public final double soll;
+		public final double haben;
+
+		public SollHaben(double soll, double haben) {
+			this.soll = soll;
+			this.haben = haben;
+		}
+	}
+
+	private SollHaben showAusgaben(final Set<IBuchung> sortedSet, ClassificationEnum classification4Interest) {
 		double soll = 0;
 		double haben = 0;
 		for (final IBuchung buchung : sortedSet) {
 			// nur Buchungen ausgeben, die im Oktober 2015 getätigt wurden
 			// if (amGebucht(buchung, 2015, 10) || amGebucht(buchung, 2015, 11)) {
-				if (amGebucht(buchung, 2015)) {
+			if (amGebucht(buchung, 2015)) {
 				if (buchung instanceof IBuchungClassification) {
 					IBuchungClassification classification = (IBuchungClassification) buchung;
-					if (classification.getClassification() == ClassificationEnum.TELEFON) {
-						System.out.println(buchung.toString());
+					if (classification.getClassification() == classification4Interest) {
+						// if (classification.getClassification() == ClassificationEnum.UNKNOWN) {
+							System.out.println(buchung.toString());
+						// }
 						soll += buchung.getSoll();
 						haben += buchung.getHaben();
 					}
 				}
 			}
 		}
-		System.out.println("Haben: " + haben);
-		System.out.println(" Soll: " + soll);
+		return new SollHaben(soll, haben);
+	}
+
+	private String outputBetrag(double betrag) {
+		NumberFormat instance = NumberFormat.getInstance(Locale.GERMAN);
+		instance.setMaximumFractionDigits(2);
+		String format = instance.format(betrag);
+		return format;
 	}
 
 	private boolean amGebucht(final IBuchung buchung, final int year, final int month) {
 		return buchung.getBuchungsdatum().getYear() == year && buchung.getBuchungsdatum().getMonthOfYear() == month;
 	}
+
 	private boolean amGebucht(final IBuchung buchung, final int year) {
 		return buchung.getBuchungsdatum().getYear() == year;
 	}
