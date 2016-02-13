@@ -64,7 +64,7 @@ public class Main {
 				if (amGebucht(buchung, 2015)) {
 				if (buchung instanceof IBuchungClassification) {
 					IBuchungClassification classification = (IBuchungClassification) buchung;
-					if (classification.getClassification() == ClassificationEnum.UNKNOWN) {
+					if (classification.getClassification() == ClassificationEnum.TELEFON) {
 						System.out.println(buchung.toString());
 						soll += buchung.getSoll();
 						haben += buchung.getHaben();
