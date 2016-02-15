@@ -8,6 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestVHostDirectoryReader {
+
 	@Ignore
 	@Test
 	public void testFindConfigurationFiles() throws Exception {

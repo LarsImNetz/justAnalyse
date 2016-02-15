@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 public class BuchungSorter {
 
-	public Set<IBuchung> getSortedSet(final Set<IBuchung> unsortedSet) {
+	public Set<IBuchung> getSortedSet(final Set<? extends IBuchung> unsortedSet) {
 		final SortedSet<IBuchung> set = new TreeSet<IBuchung>();
 
 		for (final IBuchung buchung : unsortedSet) {

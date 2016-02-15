@@ -41,12 +41,13 @@ public class TestTryDao {
 		// tipp: versuche es nicht mit '0' als ID, das geht schief
 		// http://stackoverflow.com/questions/22026715/jpa-null-or-zero-primary-key-encountered-in-unit-of-work-clone
 		// <property name="eclipselink.allow-zero-id" value="true"/>
+		dao.deleteAll();
+
 		TryEntity entity = new TryEntity();
 		entity.setId(1);
 		entity.setName("testname");
 		dao.save(entity);
 
-		dao.deleteAll();
 
 		TryEntity entity2 = new TryEntity();
 		entity2.setId(1);

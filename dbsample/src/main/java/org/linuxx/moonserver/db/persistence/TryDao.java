@@ -33,7 +33,8 @@ public class TryDao implements ITryDao {
 
 		try {
 			return em.createQuery(query).getSingleResult();
-		} catch (NoResultException e) {
+		}
+		catch (NoResultException e) {
 			LOGGER.error("Exception: " + e.getMessage());
 		}
 		return null;

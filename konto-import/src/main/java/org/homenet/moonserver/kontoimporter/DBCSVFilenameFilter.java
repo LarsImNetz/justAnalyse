@@ -15,5 +15,6 @@ public class DBCSVFilenameFilter implements FilenameFilter {
 		//		}
 
 		return currentFile.isFile() && s.startsWith("Kontoumsaetze_730_624768800") && s.toLowerCase().endsWith(".csv");
+		// return currentFile.isFile() && s.startsWith("Kontoumsaetze_730_836660100") && s.toLowerCase().endsWith(".csv");
 	}
 }
