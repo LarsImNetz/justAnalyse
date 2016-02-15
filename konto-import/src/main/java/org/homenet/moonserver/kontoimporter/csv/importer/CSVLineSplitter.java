@@ -1,4 +1,4 @@
-package org.homenet.moonserver.kontoimporter.buchung;
+package org.homenet.moonserver.kontoimporter.csv.importer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

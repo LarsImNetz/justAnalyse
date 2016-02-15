@@ -1,6 +1,7 @@
 package org.homenet.moonserver.kontoimporter;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,14 +12,17 @@ import java.util.Set;
 
 import org.homenet.moonserver.kontoimporter.buchung.BuchungSorter;
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
+import org.homenet.moonserver.kontoimporter.classification.AnjaClassification;
 import org.homenet.moonserver.kontoimporter.classification.Classification;
 import org.homenet.moonserver.kontoimporter.classification.ClassificationEnum;
 import org.homenet.moonserver.kontoimporter.classification.IBuchungClassification;
-import org.homenet.moonserver.kontoimporter.classification.LarsClassification;
 
 import com.google.common.base.Preconditions;
 
 public class Main {
+
+	private static final FilenameFilter CSV_FILENAME_FILTER = new AnjaDeutscheBankCSVFilenameFilter();
+	private final Classification classification =  new Classification(new AnjaClassification());
 
 	protected Main() {
 	}
@@ -29,14 +33,13 @@ public class Main {
 	}
 
 	private final BuchungSorter sorter = new BuchungSorter();
-	private Classification classification;
 
 	public void importing() {
 		final String baseFolder = System.getProperty("user.home") + "/download/konto";
 		final File baseFolderFile = new File(baseFolder);
 		Preconditions.checkState(baseFolderFile.exists(), "Base folder (" + baseFolder + ") not found.");
 
-		final CSVDirectoryReader reader = new CSVDirectoryReader(baseFolderFile, new DBCSVFilenameFilter());
+		final CSVDirectoryReader reader = new CSVDirectoryReader(baseFolderFile, CSV_FILENAME_FILTER);
 		final Collection<Object[]> csvFiles = reader.findAllCSVFiles();
 
 		final Iterator<Object[]> iterator = csvFiles.iterator();
@@ -52,17 +55,16 @@ public class Main {
 			buchungenSet.addAll(buchungen);
 		}
 
-		classification =  new Classification(new LarsClassification());
 		// klassifizierung
-		Set<IBuchungClassification> classifiedBuchungen = classification.classifyAll(buchungenSet);
+		final Set<IBuchungClassification> classifiedBuchungen = classification.classifyAll(buchungenSet);
 
 		// sortiert ausgeben
 		final Set<IBuchung> sortedSet = sorter.getSortedSet(classifiedBuchungen);
 
 		double gesamtSoll = 0;
 		double gesamtHaben = 0;
-		for (ClassificationEnum classification : ClassificationEnum.values()) {
-			SollHaben sollHaben = showAusgaben(sortedSet, classification);
+		for (final ClassificationEnum classification : ClassificationEnum.values()) {
+			final SollHaben sollHaben = showAusgaben(sortedSet, classification);
 
 			System.out.println();
 			System.out.println("Classification: " + classification.name());
@@ -83,13 +85,13 @@ public class Main {
 		public final double soll;
 		public final double haben;
 
-		public SollHaben(double soll, double haben) {
+		public SollHaben(final double soll, final double haben) {
 			this.soll = soll;
 			this.haben = haben;
 		}
 	}
 
-	private SollHaben showAusgaben(final Set<IBuchung> sortedSet, ClassificationEnum classification4Interest) {
+	private SollHaben showAusgaben(final Set<IBuchung> sortedSet, final ClassificationEnum classification4Interest) {
 		double soll = 0;
 		double haben = 0;
 		for (final IBuchung buchung : sortedSet) {
@@ -97,7 +99,7 @@ public class Main {
 			// if (amGebucht(buchung, 2015, 10) || amGebucht(buchung, 2015, 11)) {
 			if (amGebucht(buchung, 2015)) {
 				if (buchung instanceof IBuchungClassification) {
-					IBuchungClassification classification = (IBuchungClassification) buchung;
+					final IBuchungClassification classification = (IBuchungClassification) buchung;
 					if (classification.getClassification() == classification4Interest) {
 						// if (classification.getClassification() == ClassificationEnum.UNKNOWN) {
 							System.out.println(buchung.toString());
@@ -111,10 +113,10 @@ public class Main {
 		return new SollHaben(soll, haben);
 	}
 
-	private String outputBetrag(double betrag) {
-		NumberFormat instance = NumberFormat.getInstance(Locale.GERMAN);
+	private String outputBetrag(final double betrag) {
+		final NumberFormat instance = NumberFormat.getInstance(Locale.GERMAN);
 		instance.setMaximumFractionDigits(2);
-		String format = instance.format(betrag);
+		final String format = instance.format(betrag);
 		return format;
 	}
 

@@ -115,7 +115,7 @@ public class LarsClassification implements IClassification {
 
 		if (verwendungszweck.contains("Rossmann") || verwendungszweck.contains("ROSSMANN") || verwendungszweck.contains("DOUGLAS") || verwendungszweck.contains("PARFUEMERIE SCHUBAC")
 				|| verwendungszweck.contains("DER MODE SALON") || verwendungszweck.contains("APOTHEKE")) {
-			classification = ClassificationEnum.KOSMETIC;
+			classification = ClassificationEnum.KOSMETIK;
 		}
 	}
 

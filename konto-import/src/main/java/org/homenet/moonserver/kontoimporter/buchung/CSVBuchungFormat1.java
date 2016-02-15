@@ -1,6 +1,6 @@
 package org.homenet.moonserver.kontoimporter.buchung;
 
-class CSVBuchungFormat1 extends CSVBuchung /* implements CSVBuchungspruefung */  {
+final class CSVBuchungFormat1 extends CSVBuchung /* implements CSVBuchungspruefung */  {
 	// Buchungstag;Wert;Verwendungszweck;Soll;Haben;Waehrung
 	// Buchungstag;Wert;Verwendungszweck;Soll;Haben;Währung
 

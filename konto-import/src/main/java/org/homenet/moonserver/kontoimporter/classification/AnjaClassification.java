@@ -6,9 +6,15 @@ public class AnjaClassification implements IClassification {
 
 	private ClassificationEnum classification;
 
+	public ClassificationEnum getClassification() {
+		return classification;
+	}
+	
+	@Override
 	public ClassificationEnum classify(final IBuchung buchung) {
 		classification = ClassificationEnum.UNKNOWN;
 		final String verwendungszweck = buchung.getVerwendungszweck();
+
 		geldautomat(verwendungszweck);
 		if (classification != ClassificationEnum.UNKNOWN) {
 			return classification;
@@ -77,19 +83,23 @@ public class AnjaClassification implements IClassification {
 		if (classification != ClassificationEnum.UNKNOWN) {
 			return classification;
 		}
+		kindergeld(verwendungszweck);
+		if (classification != ClassificationEnum.UNKNOWN) {
+			return classification;
+		}
 		return ClassificationEnum.UNKNOWN;
 	}
 
 	// TODO Klassifizierung!
 	private void geldautomat(final String verwendungszweck) {
-		String[] all = {"GA NR"};
+		final String[] all = {"GA NR"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.GELDAUTOMAT;
 		}
 	}
 
-	private boolean checkStrings(String verwendungszweck, String[] all) {
-		for (String one : all) {
+	private boolean checkStrings(final String verwendungszweck, final String[] all) {
+		for (final String one : all) {
 			if (verwendungszweck.contains(one)) {
 				return true;
 			}
@@ -97,14 +107,21 @@ public class AnjaClassification implements IClassification {
 		return false;
 	}
 	private void gehalt(final String verwendungszweck) {
-		String[] all = {"GEHALT"};
+		final String[] all = {"GEHALT"};
+		if (checkStrings(verwendungszweck, all)) {
+			classification = ClassificationEnum.GEHALT;
+		}
+	}
+
+	private void kindergeld(final String verwendungszweck) {
+		final String[] all = {"Bundesagentur füer Arbeit - Familienkasse KG"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.GEHALT;
 		}
 	}
 
 	private void buecher(final String verwendungszweck) {
-		String[] all = {"HUENECKE GMBH", "HUENICKE", "HUGENDUBEL"};
+		final String[] all = {"HUENECKE GMBH", "HUENICKE", "HUGENDUBEL", "hugendubel.de", "buecher.de"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.BUECHER;
 		}
@@ -117,23 +134,31 @@ public class AnjaClassification implements IClassification {
 		}
 	}
 
+	
 	private void telefon(final String verwendungszweck) {
 		
-		if (verwendungszweck.contains("TELEKOM")) {
+		if (verwendungszweck.contains("Telekom Deutschland")) {
 			classification = ClassificationEnum.TELEFON;
 		}
 	}
 
+	private void herrentunnel(final String verwendungszweck) {
+		
+		if (verwendungszweck.contains("Herrentunnel Luebeck")) {
+			classification = ClassificationEnum.HERRENTUNNEL;
+		}
+	}
+
 	private void kosmetik(final String verwendungszweck) {
-		String[] all = {"Rossmann", "ROSSMANN", "DOUGLAS", "DER MODE SALON", "APOTHEKE", "PARFUEMERIE SCHUBAC", "DM FIL"};
+		final String[] all = {"Rossmann", "ROSSMANN", "DOUGLAS", "DER MODE SALON", "APOTHEKE", "PARFUEMERIE SCHUBAC", "DM FIL"};
 		if (checkStrings(verwendungszweck, all)) {
-			classification = ClassificationEnum.KOSMETIC;
+			classification = ClassificationEnum.KOSMETIK;
 		}
 	}
 
 	private void klamotten(final String verwendungszweck) {
 		
-		String[] all = {"MANCHESTER-GROSSE", "S.OLIVER", "KARSTADT", "DEICHMANN",
+		final String[] all = {"MANCHESTER-GROSSE", "S.OLIVER", "KARSTADT", "DEICHMANN",
 				"GOERTZ", "ZERO", "zero Fil.", "ERNSTINGS", "P&C", "C&A", "SCHUHBODE", "CB MODE", "GERRY WEBER", "TORKUHL GMBH"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.KLAMOTTEN;
@@ -148,63 +173,66 @@ public class AnjaClassification implements IClassification {
 	}
 
 	private void sport(final String verwendungszweck) {
-		String[] all = {"TuS Luebeck" /*, "Mitgliedsbeitrag"*/};
+		final String[] all = {"TuS Luebeck" /*, "Mitgliedsbeitrag"*/};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.SPORT;
 		}
 	}
 
 	private void haus(final String verwendungszweck) {
-		String[] all = {"Baufinanzierung", "Grundsteuer", "Schildfarneck 10a Abschlag", "Schildfarneck 10a", "04 SPAR", "05 ZINS", "05 SPAR"};
+		final String[] all = {"Baufinanzierung", "Grundsteuer", "Schildfarneck 10a Abschlag", "Schildfarneck 10a", "04 SPAR", "05 ZINS", "05 SPAR"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.HAUS;
 		}
 	}
 
 	private void ear(final String verwendungszweck) {
-		String[] all = {"EAR", "EaR"};
+		final String[] all = {"EAR", "EaR"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.EAR;
 		}
 	}
 
 	private void zeitschriften(final String verwendungszweck) {
-		String[] all = {"STERN", "TV Movie", "LNL", "ct Gesamtbetrag", "TIERFREUND", "Lisa Kochen Backen", "Rundfunk"};
+		final String[] all = {"STERN", "TV Movie", "LNL", "ct Gesamtbetrag", "TIERFREUND", "Lisa Kochen Backen", "Rundfunk"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.ZEITSCHRIFTEN;
 		}
 	}
 
 	private void versicherungen(final String verwendungszweck) {
-		String[] all = {"MULTIPLUS", "VERS-NR: 01AV", "VERS-NR: 01FL", "VERS-NR: 01LV", "KV22305", "LV 1711"};
+		final String[] all = {"MULTIPLUS", "VERS-NR: 01AV", "VERS-NR: 01FL", "VERS-NR: 01LV", "KV22305", "LV 1711", "Sterbekasse Deutsche Bank", "Vita34"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.VERSICHERUNG;
 		}
 	}
 
 	private void sparenKinder(final String verwendungszweck) {
-		String[] all = {"DWS Verm."};
+		final String[] all = {"DWS Verm."};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.SPARENKINDER;
 		}
 	}
 
 	private void schule(final String verwendungszweck) {
-		String[] all = {"5502"};
+		final String[] all = {"5502"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.BETREUUNG;
 		}
 	}
 
+	private void amazon(final String verwendungszweck) {
+	}
+
 	private void garten(final String verwendungszweck) {
-		String[] all = {"OBI", "FLORA", "AESCHLIMANN", "BLUMENHAUS PIEL", "IKEA"};
+		final String[] all = {"OBI", "FLORA", "AESCHLIMANN", "BLUMENHAUS PIEL", "IKEA"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.BAUMARKT;
 		}
 	}
 
 	private void einkaufen(final String verwendungszweck) {
-		String[] all = {"ARKO FRANCHISE", "ALDI", "FAMILA", "SKY MARKT", "BOFROST", "IHR LIDL", "MA-ANTEIL"};
+		final String[] all = {"ARKO FRANCHISE", "ALDI", "FAMILA", "SKY MARKT", "BOFROST", "IHR LIDL", "MA-ANTEIL"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.EINKAUFEN;
 		}
