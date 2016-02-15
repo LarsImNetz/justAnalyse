@@ -10,7 +10,10 @@ final class CSVBuchungFormat2015 extends CSVBuchung /* implements CSVBuchungspru
 
 	private static String createVerwendungszweck(final String[] split) {
 		final StringBuilder buf = new StringBuilder();
-		buf.append(split[3]).append(" ").append(split[4]);
+		if (!split[3].isEmpty()) {
+			buf.append(split[3]).append(" ");
+		}
+		buf.append(split[4]);
 		return buf.toString();
 	}
 	
