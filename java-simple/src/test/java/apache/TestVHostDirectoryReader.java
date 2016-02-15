@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.Collection;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestVHostDirectoryReader {
+	@Ignore
 	@Test
 	public void testFindConfigurationFiles() throws Exception {
 		final VHostDirectoryReader interpreter = new VHostDirectoryReader();
