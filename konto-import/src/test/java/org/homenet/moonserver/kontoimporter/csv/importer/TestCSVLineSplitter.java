@@ -1,5 +1,6 @@
-package org.homenet.moonserver.kontoimporter.buchung;
+package org.homenet.moonserver.kontoimporter.csv.importer;
 
+import org.homenet.moonserver.kontoimporter.csv.importer.CSVLineSplitter;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -2,7 +2,7 @@ package org.homenet.moonserver.kontoimporter.classification;
 
 public enum ClassificationEnum {
 	EINKAUFEN,
-	KOSMETIC,
+	KOSMETIK,
 	GELDAUTOMAT,
 	GEHALT,
 	AMAZON,
@@ -19,5 +19,5 @@ public enum ClassificationEnum {
 	EAR,
 	HAUS,
 	VERSICHERUNG,
-	BETREUUNG
+	BETREUUNG, HERRENTUNNEL
 }

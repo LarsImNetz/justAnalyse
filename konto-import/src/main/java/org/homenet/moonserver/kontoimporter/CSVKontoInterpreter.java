@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.homenet.moonserver.kontoimporter.buchung.CSVBuchungFactory;
-import org.homenet.moonserver.kontoimporter.buchung.CSVLineSplitter;
 import org.homenet.moonserver.kontoimporter.buchung.IBuchung;
-import org.homenet.moonserver.kontoimporter.buchung.LineHandler;
+import org.homenet.moonserver.kontoimporter.csv.importer.CSVLineSplitter;
+import org.homenet.moonserver.kontoimporter.csv.importer.LineHandler;
 import org.homenet.moonserver.kontoimporter.filehelper.CharsetIdentifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
