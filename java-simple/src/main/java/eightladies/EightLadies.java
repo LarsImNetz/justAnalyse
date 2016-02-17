@@ -4,10 +4,10 @@ public class EightLadies {
 
 	int[][] field;
 	int nSolutions = 0;
-	
+
 	public EightLadies() {
 		field = new int[8][8];
-		
+
 	}
 
 	public void findSolution() {
@@ -38,49 +38,49 @@ public class EightLadies {
 																		// 8 Damen richtig gesetzt!
 																		nSolutions++;
 																		showField();
-																		unset(7,h);
+																		unset(7, h);
 																	}
 																	else {
 																		unset(7, h);
 																	}
 																}
-																unset(6,g);
+																unset(6, g);
 															}
 															else {
 																unset(6, g);
 															}
 														}
-														unset(5,f);
+														unset(5, f);
 													}
 													else {
 														unset(5, f);
 													}
 												}
-												unset(4,e);
+												unset(4, e);
 											}
 											else {
 												unset(4, e);
 											}
 										}
-										unset(3,d);
+										unset(3, d);
 									}
 									else {
 										unset(3, d);
 									}
 								}
-								unset(2,c);
+								unset(2, c);
 							}
 							else {
 								unset(2, c);
 							}
 						}
-						unset(1,b);
+						unset(1, b);
 					}
 					else {
 						unset(1, b);
 					}
 				}
-				unset(0,a);
+				unset(0, a);
 			}
 			else {
 				unset(0, a);
@@ -89,6 +89,14 @@ public class EightLadies {
 	}
 
 	public void showField() {
+		showField2();
+
+		// Schicker Output für PmWiki
+		//		final EightLadiesTable table = new EightLadiesTable(field);
+		//			System.out.println(table.output());
+	}
+
+	public void showField2() {
 		System.out.println("Solution: " + nSolutions);
 		for (int x = 0; x < 8; x++) {
 			for (int y = 0; y < 8; y++) {
