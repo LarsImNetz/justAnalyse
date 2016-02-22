@@ -1,0 +1,151 @@
+10 REM Die reinen BASIC Routinen
+20 REM GET_SYMBOL und INIT
+30 REM falls sie noch mal gebraucht
+40 REM werden.
+50 REM written by 'The Atari Team' 1989
+60 ------------------------------
+6020 REM Hole Befehl
+6030 PROC GET_SYMBOL
+6040   IDNUM=%0
+6050   # REPEAT_GETSYM
+6060   REM Leerzeichen entfernen
+6070   IF ZEIGER+%1<LEN(PRG$)
+6080     WHILE PRG$(ZEIGER,ZEIGER)=" " OR PRG$(ZEIGER,ZEIGER)=CHR$($9B)
+6090       ZEIGER=ZEIGER+%1
+6100     WEND 
+6110   ENDIF 
+6120   REM Kommentarzeichen?
+6130   IF ZEIGER+%1<LEN(PRG$)
+6140     IF PRG$(ZEIGER,ZEIGER+%1)="(*"
+6150       ZEIGER=INSTR(PRG$,"*)",ZEIGER+%2)+%2
+6160       GO# REPEAT_GETSYM
+6170     ENDIF 
+6180   ENDIF 
+6190   REM Suche Reservierte Befehle
+6200   FOR A=%0 TO RESERVE
+6210     P1=RESERVED_BEF(A,%0)
+6220     P2=RESERVED_BEF(A,%1)
+6230     L=P2-P1
+6240     IF ZEIGER+L<LEN(PRG$)
+6250       IF UINSTR(PRG$(ZEIGER,ZEIGER+L),RESERVE$(P1,P2))
+6260         ZEIGER=ZEIGER+L+%1
+6270         A$=RESERVE$(P1,P2)
+6280         ID=%1
+6290         IDNUM=A+%1
+6300         POP 
+6310         GO# GET_EXIT
+6320       ENDIF 
+6330     ENDIF 
+6340   NEXT A
+6350   REM Kein Befehl! also Variable?
+6360   A$=PRG$(ZEIGER,ZEIGER)
+6370   IF (A$>="A" AND A$<="Z") OR (A$>="a" AND A$<="z")
+6380     REM Variable
+6390     P1=ZEIGER
+6400     ZEIGER=ZEIGER+%1
+6410     A$=PRG$(ZEIGER,ZEIGER)
+6420     WHILE (A$>="A" AND A$<="Z") OR (A$>="a" AND A$<="z") OR (A$>="0" AND A$<="9") OR A$="."
+6430       ZEIGER=ZEIGER+%1
+6440       A$=PRG$(ZEIGER,ZEIGER)
+6450     WEND 
+6460     A$=PRG$(P1,ZEIGER-%1)
+6470     ID=%2
+6480   ELSE 
+6490     REM Vielleicht Zahl
+6500     IF A$>="0" AND A$<="9" OR A$="$"
+6510       REM Zusammenbasteln der Zahlen-Konst.
+6520       P1=ZEIGER
+6530       REPEAT 
+6540         ZEIGER=ZEIGER+%1
+6550         A$=PRG$(ZEIGER,ZEIGER)
+6560       UNTIL NOT ((A$>="0" AND A$<="9") OR (A$>="A" AND A$<="F") OR (A$>="a" AND A$<="f"))
+6570       A$=PRG$(P1,ZEIGER-%1)
+6580       ID=%3
+6590     ELSE 
+6600       IF INSTR("+-*/=^<>()[].,:;#$",A$)
+6610         REM Zeichen!
+6620         P1=ZEIGER
+6630         IF INSTR(";=.+-*/()[],",A$)
+6640           ZEIGER=ZEIGER+%1
+6650         ELSE 
+6660           REPEAT 
+6670             ZEIGER=ZEIGER+%1
+6680             A$=PRG$(ZEIGER,ZEIGER)
+6690           UNTIL NOT INSTR("<>=",A$)
+6700           A$=PRG$(P1,ZEIGER-%1)
+6710         ENDIF 
+6720         ID=4
+6730         IF A$="=" OR A$="<>" OR A$="<" OR A$="<=" OR A$=">" OR A$=">="
+6740           ID=5
+6750         ENDIF 
+6760       ELSE 
+6770         REM Zeichenkette (String)
+6780         IF A$="'"
+6790           P1=ZEIGER
+6800           REPEAT 
+6810             ZEIGER=ZEIGER+%1
+6820           UNTIL PRG$(ZEIGER,ZEIGER)="'"
+6830           A$=PRG$(P1,ZEIGER)
+6840           ID=6
+6850           ZEIGER=ZEIGER+%1
+6860         ENDIF 
+6870       ENDIF 
+6880     ENDIF 
+6890   ENDIF 
+6900   # GET_EXIT
+6910   REM Reservierte worte und Variablen in Grossbuchstaben setzen!
+6920   IF ID=%1 OR ID=%2 OR ID=%3
+6930     FOR A=%1 TO LEN(A$)
+6940       C=ASC(A$(A))
+6950       IF C>=97 AND C<=122 THEN C=C-32
+6960       A$(A,A)=CHR$(C)
+6970     NEXT A
+6980   ENDIF 
+6990 ENDPROC 
+7000 ------------------------------
+7010 PROC INIT
+7020   A=FRE(%0)
+7030   REM Dimensionierung
+7040   DIM PRG$(1000):REM Programm
+7050   DIM A$(80),B$(33),C$(33):REM Hilfsstring
+7060   DIM RESERVED_BEF(25,%1)
+7070   DIM RESERVE$(115):REM Reservebefs
+7080   DIM VAR(50,%3)
+7090   DIM VAR$(500):REM Variablen
+7100   DIM OP$(%2),FILE$(15),FILE2$(15)
+7110   DIM P_CODE(100)
+7120   DIM ST(36),MNE$(5)
+7130   DIM SCHACHTELSTACK(20),CONDI$(10)
+7140   GRAPHICS %0
+7150   ? "Variablenspeicher:";A-FRE(%0)
+7160   ? "Restspeicher.....:";FRE(%0)
+7170   REM Konstanten
+7180   TRUE=%1:FALSE=%0
+7190   WORD=ASC("W")
+7200   BYTE=ASC("B")
+7210   ARRAY_W=ASC("w")
+7220   ARRAY_B=ASC("b")
+7230   STAPEL=%0
+7240   REM Reservierte Befehle holen
+7250   RESTORE #RESERVED_BEFS
+7260   RESERVE=%0
+7270   REPEAT 
+7280     READ A$
+7290     IF A$<>"X"
+7300       RESERVED_BEF(RESERVE,%0)=LEN(RESERVE$)+%1
+7310       RESERVE$(LEN(RESERVE$)+%1)=A$
+7320       RESERVED_BEF(RESERVE,%1)=LEN(RESERVE$)
+7330       RESERVE=RESERVE+%1
+7340     ENDIF 
+7350   UNTIL A$="X"
+7360   RESERVE=RESERVE-%1
+7370   REM Datentabellen
+7380   # RESERVED_BEFS
+7390   DATA begin,end,repeat,until
+7400   DATA while,downto,if,then,else
+7410   DATA for,to,do
+7420   DATA procedure,program
+7430   DATA write,read
+7440   DATA or,xor,and,shl,shr
+7450   DATA X
+7460 ENDPROC 
