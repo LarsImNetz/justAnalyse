@@ -3,6 +3,7 @@ package org.homenet.moonserver.kontoimporter.classification;
 import java.lang.reflect.Method;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestAnjaClassification {
@@ -33,7 +34,8 @@ public class TestAnjaClassification {
 		}
 
 	}
-	
+
+	@Ignore
 	@Test
 	public void testCallMethod() throws Exception {
 		final Method method = classificationSUT.getClass().getMethod("herrentunnel", String.class);
