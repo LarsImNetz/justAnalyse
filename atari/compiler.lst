@@ -1,0 +1,1481 @@
+1 REM Compiler version v1.352 23.4.90
+2 EXEC INIT
+3 INPUT "Sourcecode (Dn:name) ?",A$
+4 EXEC LOADPRG
+5 ZEIGER=%1
+6 ------------------------------
+7 KAN=%0
+8 ? "compilieren auf Disk? ";:GET A:? 
+9 IF A=ASC("J") THEN KAN=%1
+10 TIME$= "000000"
+11 EXEC PROGRAM:GO# SCHLUSS
+12 ------------------------------
+13 ------------------------------
+14 PROC PROGRAM
+15   EXEC GET_SYMBOL
+16   IF A$<>"PROGRAM" THEN E=%1:EXEC FEHLER
+17   FILE$="D:"
+18   ? "Programmname =>";
+19   EXEC GET_SYMBOL:REM File-Name
+20   ? A$;
+21   FILE$(LEN(FILE$)+%1)=A$
+22   ? 
+23   ? "Filename ";FILE$
+24   FILE2$=FILE$
+25   FILE$(LEN(FILE$)+%1)=".TMP"
+26   FILE2$(LEN(FILE2$)+%1)=".EDT"
+27   IF KAN THEN OPEN #KAN,K8,%0,FILE$
+28   ? #KAN;";Compilerprogramm"
+29   ? #KAN;";erstellt durch den EGAL Compiler"
+30   ? #KAN;";cdw by 'The Atari Team' 1990"
+31   ORG$="$3000":X=ZEIGER
+32   EXEC GET_SYMBOL
+33   IF A$="LOMEM"
+34     EXEC GET_SYMBOL:REM =
+35     EXEC GET_SYMBOL:REM adresse
+36     IF ID<>%3 THEN E=%2:EXEC FEHLER
+37     ORG$=A$:X=ZEIGER
+38   ENDIF 
+39   ZEIGER=X
+40   ? #KAN;" .OPT NO LIST"
+41   ? #KAN;" .TITLE """;FILE$(%1,LEN(FILE$)-K4);""""
+42   ? #KAN;";"
+43   ? #KAN;" .INCLUDE #D:MACROS.M65"
+44   ? #KAN;" *=";ORG$
+45   ? #KAN;" JMP @MAIN"
+46   REM Include verarbeitung?
+47   X=ZEIGER
+48   EXEC GET_SYMBOL
+49   IF A$="INCLUDE"
+50     WHILE A$="INCLUDE"
+51       EXEC GET_SYMBOL:REM Filename
+52       ST(STACK)=LEN(PRG$)+%1:ST(STACK+%1)=ZEIGER:STACK=STACK+%2
+53       REM Include laden
+54       A$=A$(%2,LEN(A$)-%1):A$(LEN(A$)+%1)=".INC"
+55       EXEC LOADPRG
+56       ZEIGER=A+%1:INCLUDE=%1
+57       EXEC BLOCK
+58       STACK=STACK-%2:PRG$(ST(STACK))="":ZEIGER=ST(STACK+%1)
+59       X=ZEIGER
+60       EXEC GET_SYMBOL
+61     WEND 
+62   ENDIF 
+63   ZEIGER=X:INCLUDE=%0
+64   EXEC BLOCK
+65   ? "Fertig."
+66   ? #KAN;" RTS"
+67 ENDPROC 
+68 ------------------------------
+69 ------------------------------
+70 REM Block
+71 PROC BLOCK
+72   ? #KAN;";"
+73   EXEC GET_SYMBOL
+74   IF A$="DEFINE"
+75     REPEAT 
+76       EXEC GET_SYMBOL:REM old
+77       B$=A$
+78       EXEC GET_SYMBOL:REM =
+79       EXEC GET_SYMBOL:REM neu
+80       C$=A$(%2,LEN(A$)-%1)
+81       E=ZEIGER
+82       B=LEN(B$)
+83       C=LEN(C$)
+84       D=C-B
+85       ? "Ersetze ";B$;" durch ";C$
+86       REPEAT 
+87         EXEC GET_SYMBOL
+88         IF A$=B$
+89           A=ZEIGER-B
+90           IF B=C THEN PRG$(A,A+C-%1)=C$
+91           IF B>C
+92             PRG$(A,A+C-%1)=C$
+93             PRG$(A+C)=PRG$(A+B)
+94           ENDIF 
+95           IF B<C
+96             PRG$(LEN(PRG$)+%1)=C$(%1,D)
+97             -MOVE ADR(PRG$(A)),ADR(PRG$(A))+D,LEN(PRG$(A))
+98             PRG$(A,A+C-%1)=C$
+99           ENDIF 
+100           ZEIGER=A+C
+101         ENDIF :? ZEIGER;""
+102       UNTIL A$=""
+103       ZEIGER=E
+104       EXEC GET_SYMBOL:REM , Bef
+105     UNTIL A$<>","
+106   ENDIF 
+107   EXEC GLOBAL_VARIABLEN
+108   EXEC PROCEDURE
+109   IF NOT INCLUDE
+110     ? #KAN;"; ----<<<< Hauptroutine >>>>----"
+111     ? #KAN;"@MAIN"
+112     EXEC STATEMENT
+113   ENDIF 
+114 ENDPROC 
+115 ------------------------------
+116 PROC GLOBAL_VARIABLEN
+117   WHILE A$="BYTE" OR A$="WORD"
+118     IF A$="WORD"
+119       TYP=WORD:VARLEN=%2:MNE$=".WORD"
+120     ELSE 
+121       IF A$="BYTE"
+122         TYP=BYTE:VARLEN=%1:MNE$=".BYTE"
+123       ENDIF 
+124     ENDIF 
+125     ARRAY=%0
+126     EXEC GET_SYMBOL:REM Var or Array
+127     IF A$="ARRAY"
+128       TYP=TYP+32:ARRAY=%1
+129       EXEC GET_SYMBOL:REM Var
+130     ENDIF 
+131     REPEAT 
+132       IF A$="," THEN EXEC GET_SYMBOL
+133       B$=A$
+134       EXEC PUT_VAR:REM -> tab
+135       EXEC GET_SYMBOL:REM .,=(
+136       ANZ=%0
+137       IF ARRAY AND A$="(":REM Array
+138         EXEC GET_SYMBOL:REM Anzahl
+139         ANZ=VAL(A$)
+140         IF TYP=ARRAY_B AND ANZ<256
+141           TYP=TYP+128:VAR(VARIS-%1,%2)=TYP
+142         ENDIF 
+143         EXEC GET_SYMBOL:REM )
+144         EXEC GET_SYMBOL:REM Trennz.
+145       ELSE 
+146         IF ARRAY THEN ANZ=-%1:REM Keine Anzahl
+147       ENDIF 
+148       ? #KAN;B$;" ";
+149       IF A$="="
+150         EXEC GET_SYMBOL:REM [ or =
+151         IF A$="[":REM Direktbytes
+152           EXEC DIREKTBYTE
+153         ELSE 
+154           ? #KAN;"=";A$;:REM Adr/Var
+155           B=ZEIGER
+156           EXEC GET_SYMBOL:REM Zeichen
+157           WHILE INSTR("+-*/()",A$)
+158             ? #KAN;A$;
+159             EXEC GET_SYMBOL:REM Var/Zahl
+160             ? #KAN;A$;
+161             B=ZEIGER
+162             EXEC GET_SYMBOL:REM Zeichen
+163           WEND 
+164           ZEIGER=B
+165           ? #KAN
+166         ENDIF 
+167         EXEC GET_SYMBOL:REM Trennz.
+168       ELSE 
+169         ? #KAN;"*=*+";(ANZ+%1)*VARLEN
+170       ENDIF 
+171     UNTIL A$<>","
+172   WEND 
+173 ENDPROC 
+174 ------------------------------
+175 PROC DIREKTBYTE
+176   B=%0:? #KAN;"; Direktbyte"
+177   EXEC GET_SYMBOL:REM Wert
+178   WHILE A$<>"]"
+179     IF B=%0 THEN ? #KAN;" ";MNE$;" ";
+180     IF ID=5
+181       ? #KAN;"""";A$(%2,LEN(A$)-%1);"""";
+182     ELSE 
+183       IF ID=%3
+184         ? #KAN;A$;
+185       ELSE 
+186         ? "Schwerer Fehler bei Direktbyte"
+187         STOP 
+188       ENDIF 
+189     ENDIF 
+190     B=B+%1
+191     EXEC GET_SYMBOL:REM Wert or ]
+192     IF B=10
+193       B=%0
+194       ? #KAN
+195     ELSE 
+196       IF A$<>"]" THEN ? #KAN;",";
+197     ENDIF 
+198   WEND 
+199   IF B<>%0 THEN ? #KAN
+200 ENDPROC 
+201 ------------------------------
+202 PROC PROCEDURE
+203   WHILE A$="PROCEDURE"
+204     EXEC GET_SYMBOL:REM Procname
+205     ? #KAN;"; Procedure Routine"
+206     TYP=ASC("P"):VARLEN=%0
+207     EXEC PUT_VAR
+208     ? #KAN;A$
+209     REM Locale Variablen
+210     REM noch nicht implentiert!
+211     EXEC GET_SYMBOL:REM (
+212     REGCOUNT=%0
+213     IF A$<>"(" THEN E=15:EXEC FEHLER
+214     WHILE A$<>")"
+215       X=ZEIGER
+216       EXEC GET_SYMBOL:REM var
+217       IF A$<>")"
+218         ZEIGER=X
+219         EXEC GET_SYMBOL
+220         EXEC CHECK_VAR
+221         ? #KAN;" LDY @REG+";REGCOUNT
+222         ? #KAN;" STY ";A$
+223         IF TYP=WORD
+224           ? #KAN;" LDX @REG+";REGCOUNT+%1
+225           ? #KAN;" STX ";A$;"+1"
+226         ENDIF 
+227         REGCOUNT=REGCOUNT+%2
+228         EXEC GET_SYMBOL:REM ,)
+229       ENDIF 
+230     WEND 
+231     EXEC GET_SYMBOL
+232     ? #KAN;"; eigentliche Procedure"
+233     EXEC STATEMENT
+234     ? #KAN;" RTS"
+235     EXEC GET_SYMBOL
+236   WEND 
+237 ENDPROC 
+238 ------------------------------
+239 ------------------------------
+240 PROC STATEMENT
+241   ? "[";FRE(%0);"]->";A$
+242   IF A$="BEGIN"
+243     EXEC BEGIN
+244   ELSE 
+245     IF A$="IF"
+246       EXEC IF
+247     ELSE 
+248       IF A$="WHILE"
+249         EXEC WHILE
+250       ELSE 
+251         IF A$="REPEAT"
+252           EXEC REPEAT
+253         ELSE 
+254           IF A$="FOR"
+255             EXEC FOR
+256           ELSE 
+257             IF A$="READ"
+258               EXEC READ
+259             ELSE 
+260               IF A$="WRITE"
+261                 EXEC WRITE
+262               ELSE 
+263                 IF A$="-<"
+264                   EXEC MASCHINE_DIREKT
+265                 ELSE 
+266                   IF A$="["
+267                     MNE$=".BYTE"
+268                     EXEC DIREKTBYTE
+269                   ELSE 
+270                     IF ID=%2:REM Variable
+271                       TYP=%0
+272                       EXEC CHECK_VAR
+273                       IF TYP=ASC("P") OR TYP=%0
+274                         EXEC PROC_AUFRUF
+275                       ELSE 
+276                         EXEC VARIABLE
+277                         EXEC WERTZUWEISUNG
+278                       ENDIF 
+279                     ENDIF 
+280                   ENDIF 
+281                 ENDIF 
+282               ENDIF 
+283             ENDIF 
+284           ENDIF 
+285         ENDIF 
+286       ENDIF 
+287     ENDIF 
+288   ENDIF 
+289   ? #KAN;";"
+290 ENDPROC 
+291 ------------------------------
+292 PROC BEGIN
+293   EXEC GET_SYMBOL
+294   REPEAT 
+295     IF A$<>"END"
+296       EXEC STATEMENT
+297       EXEC GET_SYMBOL
+298     ENDIF 
+299   UNTIL A$="END"
+300 ENDPROC 
+301 ------------------------------
+302 PROC IF
+303   SCHLEIF_NR=SCHLEIF_NR+%1
+304   SCHACHTELSTACK(TIEFE)=SCHLEIF_NR
+305   TIEFE=TIEFE+%1
+306   ? #KAN;"; If-Anweisung"
+307   CONDI=SCHLEIF_NR
+308   CONDI$="@THEN"
+309   EXEC CONDITION
+310   ? #KAN;" .IF .NOT .DEF @ELSE";CONDI
+311   ? #KAN;" JMP @EXIT";CONDI
+312   ? #KAN;" .ELSE"
+313   ? #KAN;" JMP @ELSE";CONDI
+314   ? #KAN;" .ENDIF"
+315   IF A$<>"THEN" THEN E=K4:EXEC FEHLER
+316   ? #KAN;"@THEN";CONDI
+317   EXEC GET_SYMBOL
+318   EXEC STATEMENT
+319   B=ZEIGER
+320   EXEC GET_SYMBOL
+321   IF A$="ELSE"
+322     CONDI=SCHACHTELSTACK(TIEFE-%1)
+323     ? #KAN;" JMP @EXIT";CONDI
+324     ? #KAN;"@ELSE";CONDI
+325     EXEC GET_SYMBOL
+326     EXEC STATEMENT
+327   ELSE 
+328     ZEIGER=B
+329   ENDIF 
+330   TIEFE=TIEFE-%1
+331   ? #KAN;"@EXIT";SCHACHTELSTACK(TIEFE)
+332 ENDPROC 
+333 ------------------------------
+334 PROC WHILE
+335   SCHLEIF_NR=SCHLEIF_NR+%1
+336   SCHACHTELSTACK(TIEFE)=SCHLEIF_NR
+337   TIEFE=TIEFE+%1
+338   CONDI=SCHLEIF_NR
+339   CONDI$="@THEN"
+340   ? #KAN;"; While Schleife"
+341   ? #KAN;"@WHILE";CONDI
+342   EXEC CONDITION
+343   ? #KAN;" JMP @EXIT";CONDI
+344   ? #KAN;"@THEN";CONDI
+345   IF A$<>"DO" THEN E=5:EXEC FEHLER
+346   EXEC GET_SYMBOL
+347   EXEC STATEMENT
+348   TIEFE=TIEFE-%1
+349   ? #KAN;" JMP @WHILE";SCHACHTELSTACK(TIEFE)
+350   ? #KAN;"; While ende"
+351   ? #KAN;"@EXIT";CONDI
+352 ENDPROC 
+353 ------------------------------
+354 PROC REPEAT
+355   SCHLEIF_NR=SCHLEIF_NR+%1
+356   SCHACHTELSTACK(TIEFE)=SCHLEIF_NR
+357   TIEFE=TIEFE+%1
+358   ? #KAN;"; Repeat Schleife"
+359   ? #KAN;"@REPEAT";SCHLEIF_NR
+360   REPEAT 
+361     EXEC GET_SYMBOL
+362     EXEC STATEMENT
+363   UNTIL A$="UNTIL"
+364   TIEFE=TIEFE-%1
+365   CONDI=SCHACHTELSTACK(TIEFE)
+366   CONDI$="@EXIT"
+367   EXEC CONDITION
+368   ZEIGER=X
+369   ? #KAN;" JMP @REPEAT";CONDI
+370   ? #KAN;"; Repeat ende"
+371   ? #KAN;"@EXIT";CONDI
+372 ENDPROC 
+373 ------------------------------
+374 PROC FOR
+375   ? #KAN;"; For-Schleife"
+376   SCHLEIF_NR=SCHLEIF_NR+%1
+377   SCHACHTELSTACK(TIEFE)=SCHLEIF_NR
+378   TIEFE=TIEFE+%1
+379   EXEC GET_SYMBOL:REM Var
+380   EXEC CHECK_VAR
+381   IF TYP<>BYTE AND TYP<>WORD THEN E=%3:EXEC FEHLER
+382   ST(STACK)=NUM
+383   STACK=STACK+%1
+384   EXEC GET_SYMBOL:REM :=
+385   IF A$<>":=" THEN E=6:EXEC FEHLER
+386   VERLANGT=TYP
+387   EXEC EXPRESSION
+388   EXEC OPTIMIERUNG
+389   NUM=ST(STACK-%1)
+390   EXEC GET_VAR
+391   ? #KAN;" STY ";A$
+392   IF TYP=WORD
+393     IF ERGEBNIS=WORD
+394       ? #KAN;" STX ";A$;"+1"
+395     ELSE 
+396       ? #KAN;" LDX #0"
+397       ? #KAN;" STX ";A$;"+1"
+398     ENDIF 
+399   ENDIF 
+400   EXEC GET_SYMBOL:REM to/downto
+401   IF A$="TO"
+402     STEP=%1
+403   ELSE 
+404     IF A$="DOWNTO"
+405       STEP=-%1
+406     ELSE 
+407       E=K7:EXEC FEHLER
+408     ENDIF 
+409   ENDIF 
+410   EXEC EXPRESSION
+411   EXEC OPTIMIERUNG
+412   NUM=ST(STACK-%1)
+413   EXEC GET_VAR
+414   CONDI=SCHACHTELSTACK(TIEFE-%1)
+415   ? #KAN;" STY @FOR";CONDI
+416   IF TYP=WORD
+417     IF ERGEBNIS=BYTE
+418       ? #KAN;" LDX #0"
+419     ENDIF 
+420     ? #KAN;" STX @FOR";CONDI;"+1"
+421   ENDIF 
+422   ? #KAN;"; am Anfang schon ende?"
+423   IF STEP=%1
+424     ? #KAN;" LDA @FOR";CONDI
+425     ? #KAN;" CMP ";A$
+426     IF TYP=BYTE
+427       ? #KAN;" BCS @GO";CONDI
+428     ELSE 
+429       ? #KAN;" LDA @FOR";CONDI;"+1"
+430       ? #KAN;" SBC ";A$;"+1"
+431       ? #KAN;" BCS @GO";CONDI
+432     ENDIF 
+433   ELSE 
+434     ? #KAN;" LDA ";A$
+435     ? #KAN;" CMP @FOR";CONDI
+436     IF TYP=BYTE
+437       ? #KAN;" BCS @GO";CONDI
+438     ELSE 
+439       ? #KAN;" LDA ";A$;"+1"
+440       ? #KAN;" SBC @FOR";CONDI;"+1"
+441       ? #KAN;" BCS @GO";CONDI
+442     ENDIF 
+443   ENDIF 
+444   ? #KAN;" JMP @EXIT";CONDI
+445   ? #KAN;"@FOR";CONDI;" .WORD 0"
+446   ? #KAN;"; Schleifeninhalt"
+447   ? #KAN;"@GO";CONDI
+448   ST(STACK)=STEP
+449   STACK=STACK+%1
+450   EXEC GET_SYMBOL:REM do
+451   IF A$<>"DO" THEN E=5:EXEC FEHLER
+452   EXEC GET_SYMBOL
+453   EXEC STATEMENT
+454   STACK=STACK-%2
+455   STEP=ST(STACK+%1)
+456   NUM=ST(STACK)
+457   EXEC GET_VAR
+458   TIEFE=TIEFE-%1
+459   CONDI=SCHACHTELSTACK(TIEFE)
+460   ? #KAN;"; Ende erreicht?"
+461   IF TYP=WORD
+462     ? #KAN;" LDA ";A$;"+1"
+463     ? #KAN;" CMP @FOR";CONDI;"+1"
+464     ? #KAN;" BNE @NEXT";CONDI
+465   ENDIF 
+466   ? #KAN;" LDA ";A$
+467   ? #KAN;" CMP @FOR";CONDI
+468   ? #KAN;" BEQ @EXIT";CONDI
+469   ? #KAN;"@NEXT";CONDI
+470   ? #KAN;"; Richtung der Schleife ";STEP
+471   IF STEP=%1
+472     ? #KAN;" INC ";A$
+473     IF TYP=WORD
+474       ? #KAN;" BNE @LOOP";CONDI
+475       ? #KAN;" INC ";A$;"+1"
+476       ? #KAN;"@LOOP";CONDI
+477     ENDIF 
+478   ELSE 
+479     IF TYP=WORD
+480       ? #KAN;" LDA ";A$
+481       ? #KAN;" BNE @LOOP";CONDI
+482       ? #KAN;" DEC ";A$;"+1"
+483       ? #KAN;"@LOOP";CONDI
+484     ENDIF 
+485     ? #KAN;" DEC ";A$
+486   ENDIF 
+487   ? #KAN;" JMP @GO";CONDI
+488   ? #KAN;"; For ende"
+489   ? #KAN;"@EXIT";CONDI
+490 ENDPROC 
+491 ------------------------------
+492 PROC MASCHINE_DIREKT
+493   A=ZEIGER
+494   IF PRG$(A,A)<>CHR$($9B) THEN E=10:EXEC FEHLER
+495   A=A+%1
+496   WHILE PRG$(A,A+%1)<>">-"
+497     B=INSTR(PRG$,CHR$($9B),A)
+498     ? #KAN;PRG$(A,B-%1)
+499     A=B+%1
+500   WEND 
+501   ZEIGER=A+%2
+502 ENDPROC 
+503 ------------------------------
+504 PROC VARIABLE
+505   EXEC CHECK_VAR
+506   ST(STACK)=NUM:STACK=STACK+%1
+507   ? #KAN;"; Hole Variable"
+508   B=ZEIGER
+509   ARRAY=%0:FUNKTION=%0
+510   EXEC GET_SYMBOL:REM (
+511   IF A$="("
+512     IF TYP>90:REM Array?
+513       ARRAY=%1:TYP=TYP-32:VERLANGT=TYP-32
+514     ENDIF 
+515     IF TYP>128 THEN VERLANGT=BYTE:REM Byte Array mit x
+516     EXEC EXPRESSION
+517     EXEC OPTIMIERUNG
+518     NUM=ST(STACK-%1)
+519     EXEC GET_VAR
+520     IF ERGEBNIS=BYTE AND TYP<128
+521       ? #KAN;" LDX #0"
+522     ENDIF 
+523     IF TYP=ARRAY_W
+524       ? #KAN;" PUTARRAYW ";A$
+525     ENDIF 
+526     IF TYP=ARRAY_B
+527       ? #KAN;" PUTARRAYB ";A$
+528     ENDIF 
+529     IF TYP>128
+530       ? #KAN;" STY @ERG"
+531     ENDIF 
+532     EXEC GET_SYMBOL:REM )
+533   ELSE 
+534     ZEIGER=B
+535   ENDIF 
+536   STACK=STACK-%1:NUM=ST(STACK)
+537 ENDPROC 
+538 ------------------------------
+539 PROC WERTZUWEISUNG
+540   EXEC GET_SYMBOL:REM :=
+541   ST(STACK)=NUM:STACK=STACK+%1
+542   IF A$=":="
+543     ? #KAN;"; Ausdruck"
+544     IF TYP<128
+545       VERLANGT=TYP-32*ARRAY
+546     ELSE :VERLANGT=BYTE
+547     ENDIF 
+548     EXEC EXPRESSION
+549     EXEC OPTIMIERUNG
+550     REM Set Variable
+551     STACK=STACK-%1:NUM=ST(STACK)
+552     ? #KAN;"; Zuweisung"
+553     EXEC GET_VAR
+554     IF NOT ARRAY
+555       ? #KAN;" STY ";A$
+556       IF VERLANGT=WORD
+557         IF ERGEBNIS=WORD
+558           ? #KAN;" STX ";A$;"+1"
+559         ELSE 
+560           ? #KAN;" LDX #0"
+561           ? #KAN;" STX ";A$;"+1"
+562         ENDIF 
+563       ENDIF 
+564     ELSE 
+565       IF TYP>128
+566         ? #KAN;" TYA"
+567         ? #KAN;" LDX @ERG"
+568         ? #KAN;" STA ";A$;",X"
+569       ELSE 
+570         REM Array:=(x,y)
+571         ? #KAN;" TYA"
+572         ? #KAN;" LDY #0"
+573         ? #KAN;" STA (@ERG),Y"
+574         IF VERLANGT=WORD
+575           IF ERGEBNIS=WORD
+576             ? #KAN;" INY"
+577             ? #KAN;" TXA"
+578             ? #KAN;" STA (@ERG),Y"
+579           ELSE 
+580             ? #KAN;" INY"
+581             ? #KAN;" LDA #0"
+582             ? #KAN;" STA (@ERG),Y"
+583           ENDIF 
+584         ENDIF 
+585       ENDIF 
+586     ENDIF 
+587   ELSE 
+588     E=6:EXEC FEHLER
+589   ENDIF 
+590 ENDPROC 
+591 ------------------------------
+592 PROC PROC_AUFRUF
+593   FKT$=A$
+594   EXEC GET_PARAMETER
+595   ? #KAN;" JSR ";FKT$;" ;--> proc"
+596 ENDPROC 
+597 ------------------------------
+598 PROC READ
+599   EXEC GET_SYMBOL:REM (
+600   REPEAT 
+601     ? #KAN;" JSR @INPUT ;Hole Zahl(y,x)"
+602     EXEC GET_SYMBOL:REM Variable
+603     EXEC VARIABLE
+604     TYP=TYP-32*ARRAY
+605     ? #KAN;" READ"
+606     IF NOT ARRAY
+607       EXEC GET_VAR
+608       ? #KAN;" STY ";A$
+609       IF TYP=WORD
+610         ? #KAN;" STX ";A$;"+1"
+611       ENDIF 
+612     ELSE 
+613       IF TYP>128
+614         EXEC GET_VAR
+615         ? #KAN;" TYA"
+616         ? #KAN;" LDX @ERG"
+617         ? #KAN;" STA ";A$;",X"
+618       ELSE 
+619         ? #KAN;" TYA"
+620         ? #KAN;" LDY #0"
+621         ? #KAN;" STA (@ERG),Y"
+622         IF TYP=WORD
+623           ? #KAN;" INY"
+624           ? #KAN;" TXA"
+625           ? #KAN;" STA (@ERG),Y"
+626         ENDIF 
+627       ENDIF 
+628     ENDIF 
+629     EXEC GET_SYMBOL:REM ,)
+630   UNTIL A$=")"
+631 ENDPROC 
+632 ------------------------------
+633 PROC WRITE
+634   LINE_FEED=%0
+635   EXEC GET_SYMBOL:REM ln oder (
+636   IF A$="LN"
+637     LINE_FEED=%1:B=ZEIGER
+638     EXEC GET_SYMBOL:REM (
+639   ENDIF 
+640   IF A$="("
+641     REPEAT 
+642       B=ZEIGER
+643       EXEC GET_SYMBOL
+644       IF ID=5:REM String
+645         ? #KAN;" JSR @PRINT ;text(string)"
+646         ? #KAN;" .BYTE """;A$(%2,LEN(A$)-%1);""",$FF"
+647       ELSE :REM Expression
+648         IF A$<>")"
+649           ZEIGER=B
+650           EXEC EXPRESSION
+651           EXEC OPTIMIERUNG
+652           IF ERGEBNIS=BYTE
+653             ? #KAN;" LDX #0"
+654           ENDIF 
+655           ? #KAN;" JSR @DECOUT ;Zahl(y,x)"
+656         ENDIF 
+657       ENDIF 
+658       EXEC GET_SYMBOL:REM REM ,)
+659     UNTIL A$=")"
+660   ELSE 
+661     ZEIGER=B
+662   ENDIF 
+663   IF LINE_FEED
+664     ? #KAN;" JSR @EOLOUT ;Linefeed"
+665   ENDIF 
+666 ENDPROC 
+667 ------------------------------
+668 REM Hole Befehl
+669 PROC GET_SYMBOL
+670   IF LEN(PRG$)<=ZEIGER
+671     A$=""
+672   ELSE 
+673     DPOKE 203,ADR(PRG$(ZEIGER))
+674     DPOKE 205,ADR(PRG$(LEN(PRG$)))
+675     A=USR($362A)
+676     ZEIGER=DPEEK(203)-ADR(PRG$)+%1
+677     IDNUM=PEEK(207)
+678     ID=PEEK(208):A=PEEK(209)
+679     A$(A)=" ":MOVE DPEEK(205),ADR(A$),A
+680     ZEIGER=ZEIGER+A
+681   ENDIF 
+682 ENDPROC 
+683 ------------------------------
+684 PROC INIT
+685   A=FRE(%0)
+686   REM Dimensionierung
+687   DIM A$(80),B$(33),C$(33):REM Hilfsstring
+688   DIM FKT$(33),VARI$(200)
+689   DIM VAR$(500):REM Variablen
+690   DIM OP$(%3),BD$(%2),FILE$(15),FILE2$(15)
+691   DIM P_CODE(60),ORG$(5)
+692   DIM ST(50),MNE$(5)
+693   DIM SCHACHTELSTACK(30),CONDI$(10)
+694   PRGLEN=(FRE(%0)-500)
+695   DIM PRG$(PRGLEN):REM Programm
+696   GRAPHICS %0:POKE 710,176:POKE 709,15
+697   ? "Variablenspeicher:";A-FRE(%0)
+698   ? "Programmspeicher.:";PRGLEN
+699   REM Konstanten
+700   TRUE=%1:FALSE=%0
+701   WORD=ASC("W"):BYTE=ASC("B")
+702   ARRAY_W=ASC("w"):ARRAY_B=ASC("b")
+703   STAPEL=%0
+704   K4=%3+%1:K7=7:K8=K7+%1:K167=167
+705   ? "Nachladen ?";:GET A:? 
+706   IF A&95=ASC("J")
+707     ? "Loading D1:GETSYM.ASM"
+708     BLOAD "D:GETSYM.ASM"
+709   ENDIF :PRG$=""
+710 ENDPROC 
+711 ------------------------------
+712 # SCHLUSS
+713 REM Includes?
+714 EXEC GET_SYMBOL
+715 WHILE A$="INCLUDE"
+716   IF A$="INCLUDE"
+717     EXEC GET_SYMBOL:REM Fname
+718     ? #KAN;" .INCLUDE #";A$(%2,LEN(A$)-%1)
+719   ENDIF 
+720   EXEC GET_SYMBOL
+721 WEND 
+722 ? #KAN;" .INCLUDE #D:RUNTIME.M65"
+723 ? #KAN;" .END"
+724 ? :? "Benoetigte Zeit ";TIME/50;" sec."
+725 POKE 766,%0
+726 IF KAN=%0 THEN STOP 
+727 CLOSE #KAN
+728 REM Zeilennummern erstellen
+729 ? "Erstelle Zeilennummern"
+730 OPEN #KAN,K4,%0,FILE$
+731 OPEN #KAN+%1,K8,%0,FILE2$
+732 A=%0:B=%0:D=%0
+733 REPEAT :PRG$="":REPEAT 
+734     INPUT #KAN,A$
+735     IF A$<>CHR$($9B)
+736       PRG$(LEN(PRG$)+%1)=A$
+737       PRG$(LEN(PRG$)+%1)=CHR$($9B)
+738       A=A+%1
+739     ENDIF 
+740   UNTIL A$=" .END" OR LEN(PRG$)>PRGLEN-200
+741   IF A$=" .END" THEN B=%1
+742   Z=%1:REPEAT 
+743     C=INSTR(PRG$,CHR$($9B),Z)
+744     ? #KAN+%1;D;" ";PRG$(Z,C-%1)
+745     Z=C+%1:D=D+%1
+746   UNTIL A=D
+747 UNTIL B
+748 CLOSE 
+749 REM Temp.file loeschen
+750 ? "Delete ";FILE$:DELETE FILE$
+751 REM Executefile erstellen
+752 FILE2$=FILE2$(%1,LEN(FILE$)-K4)
+753 FILE$=FILE2$
+754 FILE2$(LEN(FILE2$)+%1)=".EXC"
+755 X=INSTR(FILE$,":")+%1:? "Executefile @";FILE$(X)
+756 OPEN #KAN,K8,%0,FILE2$
+757 ? #KAN;"MAC65 ";FILE$;".EDT E: ";FILE$;".COM -A"
+758 IF APPEND THEN ? #KAN;"APPEND D:RUNTIME.COM ";FILE$;".COM"
+759 ? #KAN;FILE$(X)
+760 CLOSE #KAN
+761 END 
+762 ------------------------------
+763 PROC CONDITION
+764   CONDI$(LEN(CONDI$)+%1)=STR$(CONDI)
+765   REPEAT 
+766     EXEC EXPRESSION
+767     EXEC OPTIMIERUNG
+768     ? #KAN;" STY @ERG"
+769     IF ERGEBNIS<>BYTE
+770       ? #KAN;" STX @ERG+1"
+771     ENDIF 
+772     ERGEBNIS2=ERGEBNIS
+773     EXEC GET_SYMBOL:REM Bedingung
+774     BD$=A$
+775     EXEC EXPRESSION
+776     EXEC OPTIMIERUNG
+777     ? #KAN;"; Bedingung (a";BD$;"b)"
+778     IF ERGEBNIS2=BYTE AND ERGEBNIS<>BYTE
+779       ? #KAN;" LDA #0"
+780       ? #KAN;" STA @ERG+1"
+781     ELSE 
+782       IF ERGEBNIS=BYTE AND ERGEBNIS2<>BYTE
+783         ? #KAN;" LDX #0"
+784       ENDIF 
+785     ENDIF 
+786     IF ERGEBNIS2=BYTE AND ERGEBNIS=BYTE:REM Vergleichsauswertung BYTE
+787       ? #KAN;" CPY @ERG"
+788       IF BD$="<>"
+789         ? #KAN;" BEQ @FA";CT
+790       ENDIF 
+791       IF BD$="="
+792         ? #KAN;" BNE @FA";CT
+793       ENDIF 
+794       IF BD$="<"
+795         ? #KAN;" BEQ @FA";CT
+796         ? #KAN;" BCC @FA";CT
+797       ENDIF 
+798       IF BD$=">="
+799         ? #KAN;" BEQ @TR";CT
+800         ? #KAN;" BCS @FA";CT
+801         ? #KAN;"@TR";CT
+802       ENDIF 
+803       IF BD$=">"
+804         ? #KAN;" BCS @FA";CT
+805       ENDIF 
+806       IF BD$="<="
+807         ? #KAN;" BCC @FA";CT
+808       ENDIF 
+809     ELSE 
+810       REM Vergleichsauswertung WORD
+811       IF BD$="="
+812         ? #KAN;" CPY @ERG"
+813         ? #KAN;" BNE @FA";CT
+814         ? #KAN;" CPX @ERG+1"
+815         ? #KAN;" BNE @FA";CT
+816       ENDIF 
+817       IF BD$="<>"
+818         ? #KAN;" CPY @ERG"
+819         ? #KAN;" BNE @TR";CT
+820         ? #KAN;" CPX @ERG+1"
+821         ? #KAN;" BEQ @FA";CT
+822         ? #KAN;"@TR";CT
+823       ENDIF 
+824       IF BD$="<="
+825         ? #KAN;" CPX @ERG+1"
+826         ? #KAN;" BNE @NE";CT
+827         ? #KAN;" CPY @ERG"
+828         ? #KAN;"@NE";CT
+829         ? #KAN;" BCC @FA";CT
+830       ENDIF 
+831       IF BD$=">"
+832         ? #KAN;" CPY @ERG"
+833         ? #KAN;" TXA"
+834         ? #KAN;" SBC @ERG+1"
+835         ? #KAN;" BCS @FA";CT
+836       ENDIF 
+837       IF BD$="<"
+838         ? #KAN;" CPX @ERG+1"
+839         ? #KAN;" BNE @NE";CT
+840         ? #KAN;" CPY @ERG"
+841         ? #KAN;"@NE";CT
+842         ? #KAN;" BEQ @FA";CT
+843         ? #KAN;" BCC @FA";CT
+844       ENDIF 
+845       IF BD$=">="
+846         ? #KAN;" CPX @ERG+1"
+847         ? #KAN;" BEQ @EQ";CT
+848         ? #KAN;" BCS @FA";CT
+849         ? #KAN;"@EQ";CT
+850         ? #KAN;" CPY @ERG"
+851         ? #KAN;" BEQ @TR";CT
+852         ? #KAN;" BCS @FA";CT
+853         ? #KAN;"@TR";CT
+854       ENDIF 
+855     ENDIF 
+856     X=ZEIGER
+857     EXEC GET_SYMBOL
+858     IF A$="OR"
+859       ? #KAN;" JMP ";CONDI$;" ;fuer OR"
+860       ? #KAN;"@FA";CT
+861       CT=CT+%1
+862     ENDIF 
+863   UNTIL A$<>"OR" AND A$<>"AND"
+864   ? #KAN;" JMP ";CONDI$
+865   ? #KAN;"@FA";CT
+866   CT=CT+%1
+867 ENDPROC 
+868 ------------------------------
+869 PROC PUT_VAR
+870   REM Variable Merken
+871   EXEC CHECK_VAR
+872   IF FEHLER
+873     VARI$(VARIS*K4+%1)=CHR$((LEN(VAR$)+%1) MOD 256)
+874     VARI$(VARIS*K4+%2)=CHR$((LEN(VAR$)+%1) DIV 256)
+875     VARI$(VARIS*K4+%3)=CHR$(LEN(A$))
+876     VARI$(VARIS*K4+K4)=CHR$(TYP)
+877     VAR$(LEN(VAR$)+%1)=A$
+878     VARIS=VARIS+%1
+879   ENDIF 
+880   FEHLER=%0
+881 ENDPROC 
+882 ------------------------------
+883 PROC CHECK_VAR
+884   REM Test ob Variable vorhanden
+885   FEHLER=K4
+886   IF VARIS
+887     FOR A=%0 TO VARIS-%1
+888       P1=DPEEK(ADR(VARI$(A*K4+%1)))
+889       P2=P1+ASC(VARI$(A*K4+%3))-%1
+890       IF UINSTR(VAR$(P1,P2),A$) AND LEN(A$)=P2-P1+%1
+891         FEHLER=%0
+892         TYP=ASC(VARI$(A*K4+K4))
+893         NUM=A
+894       ENDIF 
+895     NEXT A
+896   ENDIF 
+897 ENDPROC 
+898 ------------------------------
+899 PROC FEHLER
+900   FOR A=15 TO %0 STEP -%1:SOUND %0,255,10,A:PAUSE %1:NEXT A
+901   ? "---- Fehler (";E;") ----"
+902   ? "Druecke eine Taste!";
+903   ? #KAN;"; Fehler hier aufgetreten!"
+904   GET E:? 
+905 ENDPROC 
+906 ------------------------------
+907 REM berechnet eine Formel in FKT$
+908 PROC EXPRESSION
+909   Z=%0:ERGEBNIS=%0
+910   EXEC GET_SYMBOL
+911   IF A$="W"
+912     B=ZEIGER:EXEC GET_SYMBOL
+913     IF A$=":"
+914       EXEC GET_SYMBOL
+915       ERGEBNIS=WORD
+916     ELSE 
+917       ZEIGER=B
+918     ENDIF 
+919   ENDIF 
+920   IF A$="@"
+921     IF FUNKTION THEN E=11:EXEC FEHLER
+922     FUNKTION=%1
+923     EXEC FUNKTION
+924     FUNKTION=%1
+925   ELSE 
+926     EXEC EINF_AUSDRUCK
+927     ZEIGER=B:FUNKTION=%0
+928   ENDIF 
+929 ENDPROC 
+930 ------------------------------
+931 PROC EINF_AUSDRUCK
+932   ST(STACK)=ASC(OP$):STACK=STACK+%1
+933   EXEC TERM
+934   WHILE A$="+" OR A$="-" OR A$="!" OR A$="XOR" OR A$="&"
+935     IF A$="XOR" THEN A$="X"
+936     OP$=A$
+937     EXEC GET_SYMBOL
+938     EXEC PUSH:EXEC TERM:EXEC PULL
+939     IF OP$="+" THEN A=K8:REM add
+940     IF OP$="-" THEN A=9:REM sub
+941     IF OP$="!" THEN A=12:REM or
+942     IF OP$="X" THEN A=13:REM xor
+943     IF OP$="&" THEN A=14:REM and
+944     P_CODE(Z)=A:Z=Z+%1
+945   WEND 
+946   STACK=STACK-%1:OP$=CHR$(ST(STACK))
+947 ENDPROC 
+948 ------------------------------
+949 PROC TERM
+950   ST(STACK)=ASC(OP$):STACK=STACK+%1
+951   EXEC FAKTOR
+952   WHILE A$="*" OR A$="/" OR A$="DIV" OR A$="MOD"
+953     OP$=A$
+954     IF A$="MOD" THEN OP$="M"
+955     IF A$="DIV" THEN OP$="/"
+956     EXEC GET_SYMBOL
+957     EXEC PUSH:EXEC FAKTOR:EXEC PULL
+958     IF OP$="*" THEN A=10:REM mul
+959     IF OP$="/" THEN A=11:REM div
+960     IF OP$="M" THEN A=15:REM mod
+961     P_CODE(Z)=A:Z=Z+%1
+962   WEND 
+963   STACK=STACK-%1:OP$=CHR$(ST(STACK))
+964 ENDPROC 
+965 ------------------------------
+966 PROC FAKTOR
+967   ST(STACK)=I:ST(STACK+%1)=ASC(OP$):STACK=STACK+%2
+968   IF A$="-" THEN EXEC GET_SYMBOL:B$="-":B$(%2)=A$:A$=B$
+969   IF ID=%3:REM Zahlenkonstante
+970     IF A$(%1,%1)="$"
+971       F=DEC(A$(%2))
+972     ELSE 
+973       F=VAL(A$)
+974     ENDIF 
+975     P_CODE(Z)=160
+976     P_CODE(Z+%1)=INT(F)
+977     Z=Z+%2
+978     REM lege Ergebnis fest
+979     IF ERGEBNIS<>WORD
+980       IF F>=%0 AND F<=255
+981         ERGEBNIS=BYTE
+982       ELSE 
+983         IF F>=-32768 AND F<=65535
+984           ERGEBNIS=WORD
+985         ELSE 
+986           E=K8:EXEC FEHLER
+987         ENDIF 
+988       ENDIF 
+989     ENDIF 
+990   ELSE 
+991     IF A$="("
+992       EXEC GET_SYMBOL
+993       IF A$<>")"
+994         EXEC EINF_AUSDRUCK
+995       ENDIF 
+996       IF A$<>")"
+997         E=9:EXEC FEHLER
+998       ENDIF 
+999     ELSE 
+1000       IF ID=%2:REM Variable
+1001         AD=%0
+1002         IF A$="V"
+1003           B=ZEIGER
+1004           EXEC GET_SYMBOL
+1005           IF A$=":"
+1006             EXEC GET_SYMBOL
+1007             AD=%1
+1008           ELSE 
+1009             ZEIGER=B
+1010           ENDIF 
+1011         ENDIF 
+1012         EXEC CHECK_VAR
+1013         IF FEHLER=K4
+1014           REM Funktion
+1015           E=17:EXEC FEHLER
+1016         ENDIF 
+1017         REM adresse der Variable
+1018         IF AD
+1019           P_CODE(Z)=254:Z=Z+%1
+1020           P_CODE(Z)=171
+1021           ERGEBNIS=WORD
+1022         ELSE 
+1023           REM Welcher Var Typ
+1024           IF TYP=ARRAY_W:REM Array Word
+1025             EXEC GET_SYMBOL:REM (
+1026             I=NUM:EXEC FAKTOR:NUM=I
+1027             P_CODE(Z)=169
+1028             ERGEBNIS=WORD:ZEIGER=B
+1029           ELSE 
+1030             IF TYP=ARRAY_B OR TYP>128:REM Array Byte
+1031               EXEC GET_SYMBOL:REM (
+1032               I=NUM:EXEC FAKTOR:NUM=I
+1033               P_CODE(Z)=170:ZEIGER=B
+1034               IF ERGEBNIS<>WORD THEN ERGEBNIS=BYTE
+1035             ELSE 
+1036               REM Hier war Funktion
+1037               IF TYP=WORD OR TYP=BYTE
+1038                 P_CODE(Z)=168:REM Word
+1039                 IF ERGEBNIS<>WORD
+1040                   ERGEBNIS=TYP
+1041                 ENDIF 
+1042               ENDIF 
+1043             ENDIF 
+1044           ENDIF 
+1045         ENDIF 
+1046         P_CODE(Z+%1)=NUM:Z=Z+%2
+1047       ENDIF 
+1048     ENDIF 
+1049   ENDIF 
+1050   FAKTOR=F
+1051   STACK=STACK-%2:I=ST(STACK):OP$=CHR$(ST(STACK+%1))
+1052   B=ZEIGER
+1053   EXEC GET_SYMBOL
+1054 ENDPROC 
+1055 ------------------------------
+1056 PROC PUSH
+1057   P_CODE(Z)=162:Z=Z+%1
+1058 ENDPROC 
+1059 ------------------------------
+1060 PROC PULL
+1061   P_CODE(Z)=163:Z=Z+%1
+1062 ENDPROC 
+1063 ------------------------------
+1064 PROC OPTIMIERUNG
+1065   IF NOT FUNKTION
+1066     REM Wenn Ergebnis=Word Wandle Zahl(x) in Izahl(x)
+1067     IF ERGEBNIS=WORD OR ERGEBNIS=BYTE
+1068       FOR A=%0 TO Z
+1069         IF P_CODE(A)=160:REM Zahl(x)
+1070           P_CODE(A)=K167:REM Izahl(x)
+1071           A=A+%1
+1072         ENDIF 
+1073       NEXT A
+1074     ENDIF 
+1075     P_CODE(Z)=255
+1076     FOR A=%0 TO Z
+1077       IF P_CODE(A)=162:REM push
+1078         P1=P_CODE(A+%1)
+1079         IF P1=160 OR P1=161 OR P1=168 OR P1=K167:REM zahl/var/Ivar/Izahl
+1080           IF P_CODE(A+%3)=163:REM movepull
+1081             IF P_CODE(A+K4)&$F8=K8:REM arithmetik
+1082               P_CODE(A)=P_CODE(A+K4)&K7!16
+1083               P1=%3:P2=%2
+1084               EXEC Z_ANPASS
+1085             ENDIF 
+1086           ENDIF 
+1087         ENDIF 
+1088       ENDIF 
+1089     NEXT A
+1090     REM ?"P-Code";:F.A=%0TOZ:?P_CODE(A);" ";:N.A:?
+1091     EXEC ASS_AUSDRUCK
+1092   ENDIF 
+1093 ENDPROC 
+1094 ------------------------------
+1095 REM Z fuer Optimierung anpassen
+1096 PROC Z_ANPASS
+1097   FOR C=A+P1 TO Z
+1098     P_CODE(C)=P_CODE(C+P2)
+1099   NEXT C:Z=Z-P2
+1100 ENDPROC 
+1101 ------------------------------
+1102 REM P_code in Assembler wandeln
+1103 PROC ASS_AUSDRUCK
+1104   A=%0
+1105   REPEAT 
+1106     B=P_CODE(A+%1):REM wert
+1107     IF P_CODE(A)=K167 AND P_CODE(A+%2)=162:REM Izahl und push
+1108       ? #KAN;" LDA #<";B;" ;Push Zahl"
+1109       ? #KAN;" PHA"
+1110       IF ERGEBNIS<>BYTE
+1111         ? #KAN;" LDA #>";B
+1112         ? #KAN;" PHA"
+1113       ENDIF :A=A+%3
+1114     ELSE :------------------------------
+1115       IF P_CODE(A)=168 AND P_CODE(A+%2)=162:REM Ivar und push
+1116         NUM=B:EXEC GET_VAR
+1117         ? #KAN;" LDA ";A$;" ;Push Var"
+1118         ? #KAN;" PHA"
+1119         IF ERGEBNIS<>BYTE
+1120           MNE$="LDA"
+1121           EXEC GET_TYP
+1122           ? #KAN;" PHA"
+1123         ENDIF :A=A+%3
+1124       ELSE :------------------------------
+1125         X=P_CODE(A+%2)
+1126         IF (P_CODE(A)=K167 OR P_CODE(A)=168) AND (X=16 OR X=17 OR X=20 OR X=21 OR X=22):REM add/sub/or/xor/and
+1127           C=P_CODE(A+K4)
+1128           EXEC CLC_SEC
+1129           REM Low byte
+1130           IF P_CODE(A)=K167:REM Izahl
+1131             ? #KAN;" LDA #<";B;" ;Izahl"
+1132           ELSE 
+1133             NUM=B:EXEC GET_VAR:B$=A$:TYP2=TYP
+1134             ? #KAN;" LDA ";B$
+1135           ENDIF 
+1136           EXEC FILL_MNE
+1137           IF P_CODE(A+%3)=K167:REM Izahl
+1138             ? #KAN;" ";MNE$;" #<";C
+1139           ELSE 
+1140             NUM=C:EXEC GET_VAR
+1141             ? #KAN;" ";MNE$;" ";A$
+1142           ENDIF 
+1143           ? #KAN;" TAY"
+1144           IF ERGEBNIS<>BYTE
+1145             REM High byte
+1146             IF P_CODE(A)=K167
+1147               ? #KAN;" LDA #>";B
+1148             ELSE 
+1149               IF TYP2=BYTE
+1150                 ? #KAN;" LDA #0"
+1151               ELSE 
+1152                 ? #KAN;" LDA ";B$;"+1"
+1153               ENDIF 
+1154             ENDIF 
+1155             IF P_CODE(A+%3)=K167:REM Izahl
+1156               ? #KAN;" ";MNE$;" #>";C
+1157             ELSE 
+1158               EXEC GET_TYP
+1159             ENDIF 
+1160             ? #KAN;" TAX"
+1161           ENDIF :A=A+5
+1162         ELSE :------------------------------
+1163           REM Imult Idiv Imod
+1164           IF (P_CODE(A)=K167 OR P_CODE(A)=168) AND (P_CODE(A+%2)=18 OR P_CODE(A+%2)=19 OR P_CODE(A+%2)=23)
+1165             C=P_CODE(A+K4):D=%0
+1166             IF P_CODE(A)=K167:REM Izahl
+1167               ? #KAN;" LDY #<";B;" ;Izahl"
+1168               IF ERGEBNIS<>BYTE THEN ? #KAN;" LDX #>";B
+1169             ELSE :REM Ivar
+1170               NUM=B:EXEC GET_VAR
+1171               ? #KAN;" LDY ";A$;" ;Ivar"
+1172               IF ERGEBNIS<>BYTE
+1173                 MNE$="LDX"
+1174                 EXEC GET_TYP
+1175               ENDIF 
+1176             ENDIF 
+1177             IF P_CODE(A+%3)=K167 AND P_CODE(A+%2)<>23:REM Izahl
+1178               X=C:Y=P_CODE(A+%2)
+1179               EXEC PUNKT_ROTATE
+1180             ELSE :REM Ivar
+1181               NUM=C:EXEC GET_VAR
+1182               ? #KAN;" LDA ";A$
+1183               ? #KAN;" STA @OP"
+1184               IF ERGEBNIS<>BYTE
+1185                 MNE$="LDA"
+1186                 EXEC GET_TYP
+1187                 ? #KAN;" STA @OP+1"
+1188               ENDIF 
+1189             ENDIF 
+1190             X=P_CODE(A+%2)
+1191             EXEC WHICH_JUMP
+1192             A=A+5
+1193           ELSE :------------------------------
+1194             IF P_CODE(A)=K167:REM Izahl
+1195               ? #KAN;" LDY #<";B;" ;Izahl"
+1196               IF ERGEBNIS<>BYTE
+1197                 ? #KAN;" LDX #>";B
+1198               ENDIF :A=A+%2
+1199             ELSE :REM Ivar
+1200               IF P_CODE(A)=168
+1201                 NUM=B:EXEC GET_VAR
+1202                 ? #KAN;" LDY ";A$;" ;Ivar"
+1203                 IF ERGEBNIS<>BYTE
+1204                   MNE$="LDX"
+1205                   EXEC GET_TYP
+1206                 ENDIF :A=A+%2
+1207               ENDIF 
+1208             ENDIF 
+1209           ENDIF 
+1210         ENDIF 
+1211       ENDIF 
+1212     ENDIF :------------------------------
+1213     IF P_CODE(A)=163:REM movepull
+1214       ? #KAN;" STY @OP ;Movepull"
+1215       IF ERGEBNIS<>BYTE
+1216         ? #KAN;" STX @OP+1"
+1217         ? #KAN;" PLA"
+1218         ? #KAN;" TAX"
+1219       ENDIF 
+1220       ? #KAN;" PLA"
+1221       ? #KAN;" TAY"
+1222       ------------------------------
+1223       X=P_CODE(A+%1):D=%0
+1224       IF X=K8 OR X=9 OR X=12 OR X=13 OR X=14
+1225         EXEC CLC_SEC
+1226         EXEC FILL_MNE
+1227         EXEC ADD_SUB
+1228       ELSE :------------------------------
+1229         IF X=10 OR X=11 OR X=15:REM mult or div
+1230           X=X+K8
+1231           EXEC WHICH_JUMP
+1232         ENDIF 
+1233       ENDIF :A=A+%2
+1234     ENDIF :------------------------------
+1235     X=P_CODE(A):Y=P_CODE(A+%1)
+1236     IF X=16 OR X=17 OR X=20 OR X=21 OR X=22:REM add/sub/or/xor/and
+1237       B=P_CODE(A+%2)
+1238       EXEC CLC_SEC
+1239       ? #KAN;" TYA"
+1240       EXEC FILL_MNE
+1241       IF Y=K167:REM Izahl
+1242         ? #KAN;" ";MNE$;" #<";B
+1243       ELSE 
+1244         NUM=B:EXEC GET_VAR
+1245         ? #KAN;" ";MNE$;" ";A$
+1246       ENDIF 
+1247       ? #KAN;" TAY"
+1248       IF ERGEBNIS<>BYTE
+1249         ? #KAN;" TXA"
+1250         IF Y=K167:REM Izahl
+1251           ? #KAN;" ";MNE$;" #>";B
+1252         ELSE 
+1253           EXEC GET_TYP
+1254         ENDIF 
+1255         ? #KAN;" TAX"
+1256       ENDIF :A=A+%3
+1257     ELSE :------------------------------
+1258       IF P_CODE(A)=18 OR P_CODE(A)=19 OR P_CODE(A)=23:REM Imult/Idiv/Imod
+1259         B=P_CODE(A+%2):D=%0
+1260         IF P_CODE(A+%1)=K167:REM Izahl
+1261           X=B:Y=P_CODE(A)
+1262           EXEC PUNKT_ROTATE
+1263         ELSE 
+1264           NUM=B:EXEC GET_VAR
+1265           ? #KAN;" LDA ";A$
+1266           ? #KAN;" STA @OP"
+1267           IF ERGEBNIS<>BYTE
+1268             MNE$="LDA"
+1269             EXEC GET_TYP
+1270             ? #KAN;" STA @OP+1"
+1271           ENDIF 
+1272         ENDIF 
+1273         X=P_CODE(A)
+1274         EXEC WHICH_JUMP
+1275         A=A+%3
+1276       ENDIF 
+1277     ENDIF :------------------------------
+1278     IF P_CODE(A)=254:REM Nonsens
+1279       A=A+%1
+1280     ENDIF :------------------------------
+1281     IF P_CODE(A)=162:REM push
+1282       ? #KAN;" TYA ;Push"
+1283       ? #KAN;" PHA"
+1284       IF ERGEBNIS<>BYTE
+1285         ? #KAN;" TXA"
+1286         ? #KAN;" PHA"
+1287       ENDIF :A=A+%1
+1288     ELSE :------------------------------
+1289       IF P_CODE(A)=169:REM Array_Word
+1290         NUM=P_CODE(A+%1)
+1291         EXEC GET_VAR
+1292         IF ERGEBNIS=BYTE THEN ? #KAN;" LDX #0"
+1293         ? #KAN;" GETARRAYW ";A$;" ;Word-Array"
+1294         A=A+%2
+1295       ELSE :------------------------------
+1296         IF P_CODE(A)=170:REM Array_Byte
+1297           NUM=P_CODE(A+%1)
+1298           EXEC GET_VAR
+1299           IF TYP>128
+1300             ? #KAN;" LDA ";A$;",Y ;B.Array short"
+1301             ? #KAN;" TAY"
+1302           ELSE 
+1303             IF ERGEBNIS=BYTE
+1304               ? #KAN;" LDX #0"
+1305             ENDIF 
+1306             ? #KAN;" GETARRAYB ";A$;" ;Byte-Array"
+1307           ENDIF 
+1308           IF ERGEBNIS=WORD
+1309             ? #KAN;" LDX #0"
+1310           ENDIF :A=A+%2
+1311         ELSE :------------------------------
+1312           IF P_CODE(A)=171:REM Adr(var)
+1313             NUM=P_CODE(A+%1)
+1314             EXEC GET_VAR
+1315             ? #KAN;" LDY #<";A$;" ;Adresse"
+1316             ? #KAN;" LDX #>";A$
+1317             A=A+%2
+1318             REM Funktionstyp nicht vorgesehen
+1319           ENDIF 
+1320         ENDIF 
+1321       ENDIF 
+1322     ENDIF 
+1323   UNTIL P_CODE(A)=255
+1324 ENDPROC 
+1325 ------------------------------
+1326 PROC GET_VAR
+1327   P1=DPEEK(ADR(VARI$(NUM*K4+%1)))
+1328   P2=P1+ASC(VARI$(NUM*K4+%3))-%1
+1329   TYP=ASC(VARI$(NUM*K4+K4))
+1330   A$=VAR$(P1,P2)
+1331 ENDPROC 
+1332 ------------------------------
+1333 PROC ADD_SUB
+1334   ? #KAN;" TYA ;Add/Sub"
+1335   ? #KAN;" ";MNE$;" @OP"
+1336   ? #KAN;" TAY"
+1337   IF ERGEBNIS<>BYTE
+1338     ? #KAN;" TXA"
+1339     ? #KAN;" ";MNE$;" @OP+1"
+1340     ? #KAN;" TAX"
+1341   ENDIF 
+1342 ENDPROC 
+1343 ------------------------------
+1344 PROC PUNKT_ROTATE
+1345   D=INT(LOG(X)/0.69314718+1.0E-05)
+1346   IF %2^D=X
+1347     IF D>8
+1348       ? #KAN;" TXA ;>=8"
+1349       ? #KAN;" TAY"
+1350       D=D-K8
+1351     ENDIF 
+1352     ? #KAN;" TYA ;Mul/Div shiften"
+1353     IF ERGEBNIS<>BYTE THEN ? #KAN;" STX @OP"
+1354     FOR Z=%1 TO D
+1355       IF Y=18:REM Imult
+1356         ? #KAN;" ASL A"
+1357         IF ERGEBNIS<>BYTE THEN ? #KAN;" ROL @OP"
+1358       ELSE :REM Idiv
+1359         IF ERGEBNIS=BYTE
+1360           ? #KAN;" LSR A"
+1361         ELSE 
+1362           ? #KAN;" LSR @OP"
+1363           ? #KAN;" ROR A"
+1364         ENDIF 
+1365       ENDIF 
+1366     NEXT Z
+1367     ? #KAN;" TAY"
+1368     IF ERGEBNIS<>BYTE THEN ? #KAN;" LDX @OP"
+1369   ELSE 
+1370     D=%0:REM Keine Rotation
+1371     ? #KAN;" LDA #<";X;" ;Mul/Div"
+1372     ? #KAN;" STA @OP"
+1373     IF ERGEBNIS<>BYTE
+1374       ? #KAN;" LDA #>";X
+1375       ? #KAN;" STA @OP+1"
+1376     ENDIF 
+1377   ENDIF 
+1378 ENDPROC 
+1379 ------------------------------
+1380 PROC WHICH_JUMP
+1381   IF NOT D:REM Rotation?
+1382     IF ERGEBNIS=BYTE
+1383       ? #KAN;" LDX #0"
+1384       ? #KAN;" STX @OP+1"
+1385     ENDIF 
+1386     IF X=18:REM Imult
+1387       ? #KAN;" JSR @IMULT"
+1388     ELSE 
+1389       IF X=19:REM Idiv
+1390         ? #KAN;" JSR @IDIV"
+1391       ELSE :REM Imod
+1392         ? #KAN;" JSR @IMOD"
+1393       ENDIF 
+1394     ENDIF 
+1395   ENDIF 
+1396 ENDPROC 
+1397 ------------------------------
+1398 PROC GET_TYP
+1399   IF TYP=BYTE
+1400     ? #KAN;" ";MNE$;" #0"
+1401   ELSE 
+1402     ? #KAN;" ";MNE$;" ";A$;"+1"
+1403   ENDIF 
+1404 ENDPROC 
+1405 ------------------------------
+1406 PROC FILL_MNE
+1407   CASE=X&K7
+1408   IF CASE=%0 THEN MNE$="ADC"
+1409   IF CASE=%1 THEN MNE$="SBC"
+1410   IF CASE=K4 THEN MNE$="ORA"
+1411   IF CASE=5 THEN MNE$="EOR"
+1412   IF CASE=6 THEN MNE$="AND"
+1413 ENDPROC 
+1414 ------------------------------
+1415 PROC CLC_SEC
+1416   REM Carry
+1417   CASE=X&K7
+1418   IF CASE=%0
+1419     ? #KAN;" CLC ;Addition"
+1420   ENDIF 
+1421   IF CASE=%1
+1422     ? #KAN;" SEC ;Subtraktion"
+1423   ENDIF 
+1424 ENDPROC 
+1425 ------------------------------
+1426 REM Funktionsaufrufe
+1427 PROC FUNKTION
+1428   EXEC GET_SYMBOL:REM Fktname
+1429   FKT$=A$
+1430   EXEC GET_PARAMETER
+1431   A$=FKT$
+1432   AD=%0
+1433   RESTORE #RUNTAB_
+1434   REPEAT :READ B$,C$
+1435     IF A$=B$ THEN AD=%1
+1436   UNTIL AD OR B$="X"
+1437   ? #KAN;" JSR ";
+1438   IF AD
+1439     ? #KAN;C$;" ;--> ";A$
+1440     APPEND=%1
+1441   ELSE 
+1442     ? #KAN;"@";A$;";--> func"
+1443   ENDIF 
+1444 ENDPROC 
+1445 REM Tabelle fuer Festfunktionen
+1446 # RUNTAB_
+1447 DATA WARMSV,$E474
+1448 DATA COLDSV,$E477
+1449 DATA X,0
+1450 ------------------------------
+1451 PROC GET_PARAMETER
+1452   ? #KAN;" JSR @CLRPARA ;clr Parameter"
+1453   EXEC GET_SYMBOL:REM (
+1454   REGCOUNT=%0
+1455   WHILE A$<>")"
+1456     X=ZEIGER:EXEC GET_SYMBOL
+1457     IF A$<>")"
+1458       ZEIGER=X
+1459       EXEC EXPRESSION
+1460       EXEC OPTIMIERUNG
+1461       ? #KAN;" STY @REG+";REGCOUNT
+1462       IF ERGEBNIS=WORD
+1463         ? #KAN;" STX @REG+";REGCOUNT+%1
+1464       ENDIF 
+1465       REGCOUNT=REGCOUNT+%2
+1466       EXEC GET_SYMBOL:REM , or )
+1467     ENDIF 
+1468   WEND 
+1469 ENDPROC 
+1470 ------------------------------
+1471 PROC LOADPRG
+1472   REM Program einladen
+1473   A$(LEN(A$)+%1)=".HSC"
+1474   OPEN #%2,K4,%0,A$
+1475   A=LEN(PRG$)
+1476   TRAP #LOAD_ERR
+1477   BGET #%2,ADR(PRG$)+A,PRGLEN-%1
+1478   # LOAD_ERR:CLOSE #%2
+1479   TRAP 40000
+1480   PRG$(DPEEK(872)+%1+A)=""
+1481 ENDPROC 
