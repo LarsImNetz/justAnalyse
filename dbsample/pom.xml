@@ -99,7 +99,13 @@
 			<artifactId>guice</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>${jodatime.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>

@@ -12,27 +12,35 @@ public class TrySqlDao {
 	private EntityManager em;
 
 	public List<Object[]> fetchAll() {
-		String sql = "SELECT a.id, a.vorname, a.name FROM Try a";
-		Query nativeQuery = em.createNativeQuery(sql);
+		final String sql = "SELECT a.id, a.vorname, a.name FROM Try a";
+		final Query nativeQuery = em.createNativeQuery(sql);
 		@SuppressWarnings("unchecked")
+		final
 		List<Object[]> resultList = nativeQuery.getResultList();
 		return resultList;
 	}
 
-	public Object fetch(int id) {
-		String sql = "SELECT a.id, a.vorname, a.name FROM Try a WHERE a.id=?";
-		Query nativeQuery = em.createNativeQuery(sql);
+	public Object fetchOther() {
+		final String sql = "SELECT a.id, a.vorname, a.name FROM Try a";
+		final Query nativeQuery = em.createNativeQuery(sql);
+		final Object result = nativeQuery.getResultList();
+		return result;
+	}
+	
+	public Object fetch(final int id) {
+		final String sql = "SELECT a.id, a.vorname, a.name FROM Try a WHERE a.id=?";
+		final Query nativeQuery = em.createNativeQuery(sql);
 		nativeQuery.setParameter(1, id);
-		Object result = nativeQuery.getSingleResult();
+		final Object result = nativeQuery.getSingleResult();
 		return result;
 	}
 
-	public void insertInto(int id, String name, String vorname) {
+	public void insertInto(final int id, final String name, final String vorname) {
 		em.getTransaction().begin();
 
-		String sql = "INSERT INTO Try (id, name, vorname) VALUES (?,?,?)";
+		final String sql = "INSERT INTO Try (id, name, vorname) VALUES (?,?,?)";
 
-		Query query = em.createNativeQuery(sql);
+		final Query query = em.createNativeQuery(sql);
 		query.setParameter(1, id);
 		query.setParameter(2, name);
 		query.setParameter(3, vorname);
@@ -44,8 +52,8 @@ public class TrySqlDao {
 	public void deleteAll() {
 		em.getTransaction().begin();
 
-		String sql = "DELETE FROM Try";
-		Query query = em.createNativeQuery(sql);
+		final String sql = "DELETE FROM Try";
+		final Query query = em.createNativeQuery(sql);
 		query.executeUpdate();
 
 		em.getTransaction().commit();

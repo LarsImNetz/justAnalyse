@@ -44,21 +44,21 @@ public class TestTrySqlDao {
 	public static void cleanUpAfterClass() {
 		final EntityManager em = injector.getInstance(EntityManager.class);
 		System.out.println("Properties of EntityManager");
-		Map<String, Object> properties = em.getProperties();
+		final Map<String, Object> properties = em.getProperties();
 		show(properties);
 
 		System.out.println("Properties of EntityManagerFactory");
 		final EntityManagerFactory factory = em.getEntityManagerFactory();
-		Map<String, Object> properties2 = factory.getProperties();
+		final Map<String, Object> properties2 = factory.getProperties();
 		show(properties2);
 
 		em.close();
 		factory.close();
 	}
 
-	private static void show(Map<String, Object> properties) {
-		for (String key : properties.keySet()) {
-			Object obj = properties.get(key);
+	private static void show(final Map<String, Object> properties) {
+		for (final String key : properties.keySet()) {
+			final Object obj = properties.get(key);
 			System.out.println(key + ":=" + obj.toString());
 		}
 		System.out.println();
@@ -74,12 +74,12 @@ public class TestTrySqlDao {
 	@Test
 	public void test_fetchAll() {
 
-		List<Object[]> resultList = dao.fetchAll();
+		final List<Object[]> resultList = dao.fetchAll();
 
 		Assert.assertNotNull(resultList);
 		Assert.assertEquals(3, resultList.size());
 
-		Object[] objs = resultList.get(0);
+		final Object[] objs = resultList.get(0);
 		Assert.assertEquals(1, objs[0]);
 		Assert.assertEquals("Luke", objs[1]);
 		Assert.assertEquals("Skywalker", objs[2]);
@@ -87,7 +87,7 @@ public class TestTrySqlDao {
 
 	@Test
 	public void test_fetch() {
-		Object[] objs = (Object[]) dao.fetch(1);
+		final Object[] objs = (Object[]) dao.fetch(1);
 
 		Assert.assertNotNull(objs);
 
@@ -95,5 +95,11 @@ public class TestTrySqlDao {
 		Assert.assertEquals("Luke", objs[1]);
 		Assert.assertEquals("Skywalker", objs[2]);
 
+	}
+
+	@Test
+	public void testFetchOther() throws Exception {
+		final Object obj = dao.fetchOther();
+		Assert.assertNotNull(obj);
 	}
 }

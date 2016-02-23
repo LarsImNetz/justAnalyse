@@ -3,6 +3,7 @@ package org.linuxx.moonserver.db.persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -43,15 +44,17 @@ public class TestTryDao {
 		// <property name="eclipselink.allow-zero-id" value="true"/>
 		dao.deleteAll();
 
-		TryEntity entity = new TryEntity();
+		final TryEntity entity = new TryEntity();
 		entity.setId(1);
 		entity.setName("testname");
+		entity.setErstellt(new DateTime(2016,1,1,0,0).toDate());
 		dao.save(entity);
 
 
-		TryEntity entity2 = new TryEntity();
-		entity2.setId(1);
-		entity2.setName("testname");
+		final TryEntity entity2 = new TryEntity();
+		entity2.setId(2);
+		entity2.setName("testname2");
+		entity2.setErstellt(new DateTime(2016,1,2,0,0).toDate());
 		dao.save(entity2);
 	}
 
@@ -62,8 +65,8 @@ public class TestTryDao {
 
 	@AfterClass
 	public static void cleanUpAfterClass() {
-		EntityManager em = injector.getInstance(EntityManager.class);
-		EntityManagerFactory factory = em.getEntityManagerFactory();
+		final EntityManager em = injector.getInstance(EntityManager.class);
+		final EntityManagerFactory factory = em.getEntityManagerFactory();
 
 		em.clear();
 		em.close();
@@ -72,28 +75,28 @@ public class TestTryDao {
 
 	@Test
 	public void testDao() throws Exception {
-		TryEntity entity = dao.fetch(1);
+		final TryEntity entity = dao.fetch(1);
 		Assert.assertEquals("testname", entity.getName());
 	}
 
 	@Test
 	public void testTry2Entity() {
-		Try2Entity entity = new Try2Entity();
+		final Try2Entity entity = new Try2Entity();
 		entity.setId(3);
 		entity.setName("zweiter Name");
 		dao2.save(entity);
 
-		Try2Entity entity2 = dao2.fetch(3);
+		final Try2Entity entity2 = dao2.fetch(3);
 		entity2.setName("geändert");
 		dao2.save(entity2);
 
-		Try2Entity entity3 = dao2.fetch(3);
+		final Try2Entity entity3 = dao2.fetch(3);
 		Assert.assertEquals("geändert", entity3.getName());
 	}
 
 	@Test
 	public void testName() {
-		TryEntity fetch = dao.fetch(1);
+		final TryEntity fetch = dao.fetch(1);
 		Assert.assertEquals("testname", fetch.getName());
 	}
 
