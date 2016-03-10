@@ -26,8 +26,12 @@ public class TryEntity {
 	private String vorname;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "erstelltam", nullable = false)
 	private Date erstellt;
-	
+
+	@Column(name = "zahl", nullable = false)
+	private Double zahl;
+
 	public Integer getId() {
 		return id;
 	}
@@ -44,7 +48,6 @@ public class TryEntity {
 		this.name = name;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "TryEntity [id=" + id + ", name=" + name + ", vorname=" + vorname + ", date=" + erstellt + "]";
@@ -97,6 +100,14 @@ public class TryEntity {
 
 	public void setErstellt(final Date erstellt) {
 		this.erstellt = erstellt;
+	}
+
+	public Double getZahl() {
+		return zahl;
+	}
+
+	public void setZahl(final Double zahl) {
+		this.zahl = zahl;
 	}
 
 }
