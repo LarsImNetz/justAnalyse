@@ -26,10 +26,10 @@ public class TryEntity {
 	private String vorname;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "erstelltam", nullable = false)
+	@Column(name = "erstelltam"/*, nullable = false*/)
 	private Date erstellt;
 
-	@Column(name = "zahl", nullable = false)
+	@Column(name = "zahl"/*, nullable = false*/)
 	private Double zahl;
 
 	public Integer getId() {
