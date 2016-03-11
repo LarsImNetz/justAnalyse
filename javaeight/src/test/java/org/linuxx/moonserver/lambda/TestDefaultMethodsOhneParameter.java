@@ -13,7 +13,7 @@ public class TestDefaultMethodsOhneParameter {
 	public void testNameAlt() {
 		final IName nameFkt = new NutzeDefaultAlt().getUserName();
 
-		Assert.assertEquals("Ich in alt", nameFkt.getName());
+		Assert.assertEquals("Ich bin alt", nameFkt.getName());
 	}
 
 	private interface IName {
@@ -26,7 +26,7 @@ public class TestDefaultMethodsOhneParameter {
 			return new IName() {
 				@Override
 				public String getName() {
-					return "Ich in alt";
+					return "Ich bin alt";
 				}
 			};
 		}
