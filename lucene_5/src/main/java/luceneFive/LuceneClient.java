@@ -32,7 +32,7 @@ import org.apache.lucene.store.RAMDirectory;
 
 public class LuceneClient {
 
-	private static final String PATH_TO_INDEX = "lucene_index_500.txt";
+	private static final String PATH_TO_INDEX = "lucene_index_500";
 
 	public static void main(final String[] args) throws IOException, ParseException {
 		System.out.println("Indexing...");
