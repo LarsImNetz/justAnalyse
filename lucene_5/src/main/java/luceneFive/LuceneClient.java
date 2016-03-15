@@ -1,11 +1,6 @@
 package luceneFive;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.GregorianCalendar;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -32,14 +27,12 @@ import org.apache.lucene.store.RAMDirectory;
 
 public class LuceneClient {
 
-	private static final String PATH_TO_INDEX = "lucene_index_500";
-
 	public static void main(final String[] args) throws IOException, ParseException {
 		System.out.println("Indexing...");
 		index();
-		System.out.println("Searching for the issue LUCENE-5945");
-		// search("versioninfo", "LUCENE-5945");
-		search("versioninfo", "takes");
+		System.out.println();
+		System.out.println("Searching for 'heute'");
+		search("text", "heute");
 	}
 
 	/**
@@ -85,45 +78,56 @@ public class LuceneClient {
 			iwc.setOpenMode(OpenMode.CREATE);
 			writer = new IndexWriter(index, iwc);
 
-			/*
-			 * 4. add a sample document to the index
-			 */
-			final Document doc = new Document();
-
-			// We add  an id field that is searchable, but doesn't trigger tokenization of the content
-			final Field idField = new StringField("id", "Apache Lucene 5.0.0", Field.Store.YES);
-			doc.add(idField);
-
-			// Add the last big lucene version birthday which we don't want to store but to be indexed nevertheless to be filterable
-			doc.add(new LongField("lastVersionBirthday", new GregorianCalendar(2015, 1, 20).getTimeInMillis(), Field.Store.NO));
-
-			// !! Please due to licensing use your copy of release notes and add it to the project root folder:
-			// http://lucene.apache.org/core/5_0_0/changes/Changes.html
-
-			final File bigFile = new FileFinder("CHANGES.txt").getFile();
-			// The version info content should be searchable also be tokens, this is why we use a TextField; as we use a reader, the content is not stored!
-			doc.add(new TextField("versioninfo", new BufferedReader(new InputStreamReader(new FileInputStream(bigFile), StandardCharsets.UTF_8))));
-
-			if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
-				// New index
-				System.out.println("adding current lucene version with changelog info");
-				writer.addDocument(doc);
-			}
-			else {
-				// Existing index 
-				System.out.println("updating index with current lucene version with changelog info");
-				writer.updateDocument(new Term("id", "Apache Lucene 5.0.0"), doc);
-			}
+			addDoc(writer, "heute ist ein guter Tag");
+			addDoc(writer, "heute ist bescheidener Tag");
+			addDoc(writer, "Ich habe heute nichts geschafft");
+			addDoc(writer, "Lieber heute als morgen");
+			addDoc(writer, "gestern ist heute morgen");
+			addDoc(writer, "heute ist heute");
+			addDoc(writer, "heute sollte die Sonne scheinen");
+			addDoc(writer, "heute ist eine Sendung im ZDF");
+			addDoc(writer, "heute mal mit ganz viel Text, der völlig Sinnfrei ist, hauptsache viele Wörter mit heute.");
+			addDoc(writer, "morgen ist gestern heute");
+			addDoc(writer, "übermorgen ist morgen morgen");
+			addDoc(writer, "vorgestern ist gestern gestern");
 		}
 		finally {
 			if (writer != null) {
 				writer.close();
 			}
-			//			if (dir != null) {
-			//				dir.close();
-			//			}
 		}
+	}
 
+	private static void addDoc(final IndexWriter writer, final String text) throws IOException {
+		/*
+		 * 4. add a sample document to the index
+		 */
+		final Document doc = new Document();
+
+		// We add  an id field that is searchable, but doesn't trigger tokenization of the content
+		final Field idField = new StringField("id", "Apache Lucene 5.0.0", Field.Store.YES);
+		doc.add(idField);
+
+		// Add the last big lucene version birthday which we don't want to store but to be indexed nevertheless to be filterable
+		doc.add(new LongField("lastVersionBirthday", new GregorianCalendar(2015, 1, 20).getTimeInMillis(), Field.Store.NO));
+
+		// !! Please due to licensing use your copy of release notes and add it to the project root folder:
+		// http://lucene.apache.org/core/5_0_0/changes/Changes.html
+
+		// final File bigFile = new FileFinder("CHANGES.txt").getFile();
+		// The version info content should be searchable also be tokens, this is why we use a TextField; as we use a reader, the content is not stored!
+		doc.add(new TextField("text", text, Field.Store.YES));
+
+		if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
+			// New index
+			System.out.println("adding current lucene version with changelog info");
+			writer.addDocument(doc);
+		}
+		else {
+			// Existing index 
+			System.out.println("updating index with current lucene version with changelog info");
+			writer.updateDocument(new Term("id", "Apache Lucene 5.0.0"), doc);
+		}
 	}
 
 	/**
@@ -155,7 +159,7 @@ public class LuceneClient {
 		/*
 		 * 5. we trigger the search, interested in the 5 first matches
 		 */
-		final TopDocs results = searcher.search(query, 5);
+		final TopDocs results = searcher.search(query, 10);
 
 		/*
 		 * 6. We get the hit information via the scoreDocs attribute in the TopDocs object
@@ -170,6 +174,13 @@ public class LuceneClient {
 			 */
 			System.out.println("Matching score for first document: " + hits[0].score);
 
+			for (final ScoreDoc hit : hits) {
+				final Document doc = searcher.doc(hit.doc);
+				System.out.print(doc.get("id"));
+				System.out.print(" " + hit.score);
+				System.out.print(" " + doc.get("text"));
+				System.out.println();
+			}
 			/*
 			 * We load the document via the doc id to be found in the ScoreDoc.doc attribute
 			 */
@@ -179,4 +190,3 @@ public class LuceneClient {
 
 	}
 }
-
