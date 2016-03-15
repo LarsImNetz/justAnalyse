@@ -33,6 +33,10 @@ public class LuceneClient {
 		System.out.println();
 		System.out.println("Searching for 'heute'");
 		search("text", "heute");
+		System.out.println("Searching with fuzzy 'meut~'");
+		search("text", "meut~");
+		System.out.println("Searching for \"heute gestern\" within 4 words");
+		search("text", "\"heute gestern\"~4");
 	}
 
 	/**
@@ -79,11 +83,13 @@ public class LuceneClient {
 			writer = new IndexWriter(index, iwc);
 
 			addDoc(writer, "heute ist ein guter Tag");
+			addDoc(writer, "heut nicht");
 			addDoc(writer, "heute ist bescheidener Tag");
 			addDoc(writer, "Ich habe heute nichts geschafft");
 			addDoc(writer, "Lieber heute als morgen");
 			addDoc(writer, "gestern ist heute morgen");
 			addDoc(writer, "heute ist heute");
+			addDoc(writer, "heute ist mir lieber als gestern");
 			addDoc(writer, "heute sollte die Sonne scheinen");
 			addDoc(writer, "heute ist eine Sendung im ZDF");
 			addDoc(writer, "heute mal mit ganz viel Text, der völlig Sinnfrei ist, hauptsache viele Wörter mit heute.");
