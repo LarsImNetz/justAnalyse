@@ -23,17 +23,17 @@ import org.apache.lucene.util.Version;
 
 public class HelloLucene {
 
-	public static void main(String[] args) throws IOException, ParseException {
+	public static void main(final String[] args) throws IOException, ParseException {
 		// 0. Specify the analyzer for tokenizing text.
 		//    The same analyzer should be used for indexing and searching
-		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
+		final StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
 
 		// 1. create the index
-		Directory index = new RAMDirectory();
+		final Directory index = new RAMDirectory();
 
-		IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_40, analyzer);
+		final IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_40, analyzer);
 
-		IndexWriter w = new IndexWriter(index, config);
+		final IndexWriter w = new IndexWriter(index, config);
 		addDoc(w, "Lucene in Action", "193398817");
 		addDoc(w, "Lucene for Dummies", "55320055Z");
 		addDoc(w, "Managing Gigabytes", "55063554A");
@@ -41,30 +41,30 @@ public class HelloLucene {
 		w.close();
 
 		// 2. query
-		String querystr = args.length > 0 ? args[0] : "lucene";
+		final String querystr = args.length > 0 ? args[0] : "lucene";
 
 		// the "title" arg specifies the default field to use
 		// when no field is explicitly specified in the query.
 		Query q = null;
 		try {
 			q = new QueryParser(Version.LUCENE_40, "title", analyzer).parse(querystr);
-		} catch (org.apache.lucene.queryparser.classic.ParseException e) {
+		} catch (final org.apache.lucene.queryparser.classic.ParseException e) {
 			e.printStackTrace();
 		}
 
 		// 3. search
-		int hitsPerPage = 10;
-		IndexReader reader = DirectoryReader.open(index);
-		IndexSearcher searcher = new IndexSearcher(reader);
-		TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);
+		final int hitsPerPage = 10;
+		final IndexReader reader = DirectoryReader.open(index);
+		final IndexSearcher searcher = new IndexSearcher(reader);
+		final TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);
 		searcher.search(q, collector);
-		ScoreDoc[] hits = collector.topDocs().scoreDocs;
+		final ScoreDoc[] hits = collector.topDocs().scoreDocs;
 
 		// 4. display results
 		System.out.println("Found " + hits.length + " hits.");
 		for (int i = 0; i < hits.length; ++i) {
-			int docId = hits[i].doc;
-			Document d = searcher.doc(docId);
+			final int docId = hits[i].doc;
+			final Document d = searcher.doc(docId);
 			System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("title"));
 		}
 
@@ -73,8 +73,8 @@ public class HelloLucene {
 		reader.close();
 	}
 
-	private static void addDoc(IndexWriter w, String title, String isbn) throws IOException {
-		Document doc = new Document();
+	private static void addDoc(final IndexWriter w, final String title, final String isbn) throws IOException {
+		final Document doc = new Document();
 		doc.add(new TextField("title", title, Field.Store.YES));
 
 		// use a string field for isbn because we don't want it tokenized
