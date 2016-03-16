@@ -192,6 +192,7 @@ public class LuceneClient {
 			 */
 			final Document doc = searcher.doc(hits[0].doc);
 			System.out.println("Id of the document: " + doc.get("id"));
+			System.out.println();
 		}
 
 	}
