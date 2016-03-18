@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.macluq</groupId>
-	<artifactId>HelloLucene</artifactId>
+	<artifactId>Lucene-4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>Lucene</name>
