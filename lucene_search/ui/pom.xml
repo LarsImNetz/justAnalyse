@@ -44,11 +44,25 @@
 			<version>${wicket.version}</version>
 		</dependency>
 		<!-- OPTIONAL DEPENDENCY -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.wicket</groupId> -->
-<!-- 			<artifactId>wicket-extensions</artifactId> -->
-<!-- 			<version>${wicket.version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.wicket</groupId> -->
+		<!-- <artifactId>wicket-extensions</artifactId> -->
+		<!-- <version>${wicket.version}</version> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>com.googlecode.wicket-jquery-ui</groupId>
+			<artifactId>wicket-jquery-ui</artifactId>
+			<version>6.22.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.googlecode.wicket-jquery-ui</groupId>
+			<artifactId>wicket-jquery-ui-theme-uilightness</artifactId>
+			<version>6.22.2</version>
+		</dependency>
+
+
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
@@ -71,31 +85,31 @@
 		</dependency>
 
 		<!-- Mockito -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.mockito</groupId> -->
-<!-- 			<artifactId>mockito-all</artifactId> -->
-<!-- 			<version>${mockito.version}</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.mockito</groupId> -->
+		<!-- <artifactId>mockito-all</artifactId> -->
+		<!-- <version>${mockito.version}</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
 
 		<!-- Guice -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.wicket</groupId> -->
-<!-- 			<artifactId>wicket-guice</artifactId> -->
-<!-- 			<version>${wicket.version}</version> -->
-<!-- 			<exclusions> -->
-<!-- 				<exclusion> -->
-<!-- 					<groupId>org.slf4j</groupId> -->
-<!-- 					<artifactId>slf4j-api</artifactId> -->
-<!-- 				</exclusion> -->
-<!-- 			</exclusions> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.wicket</groupId> -->
+		<!-- <artifactId>wicket-guice</artifactId> -->
+		<!-- <version>${wicket.version}</version> -->
+		<!-- <exclusions> -->
+		<!-- <exclusion> -->
+		<!-- <groupId>org.slf4j</groupId> -->
+		<!-- <artifactId>slf4j-api</artifactId> -->
+		<!-- </exclusion> -->
+		<!-- </exclusions> -->
+		<!-- </dependency> -->
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.google.inject</groupId> -->
-<!-- 			<artifactId>guice</artifactId> -->
-<!-- 			<version>${guice.version}</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.google.inject</groupId> -->
+		<!-- <artifactId>guice</artifactId> -->
+		<!-- <version>${guice.version}</version> -->
+		<!-- </dependency> -->
 
 		<!-- JETTY DEPENDENCIES FOR TESTING -->
 		<dependency>
