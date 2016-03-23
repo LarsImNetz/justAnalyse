@@ -6,3 +6,5 @@ Zeigt eine Liste, die per Thread nachgeladen wird und länger braucht als 5 Seku
 
 - in Wicket 6
 - Maven Based
+
+localhost:8080/just/just/a/
