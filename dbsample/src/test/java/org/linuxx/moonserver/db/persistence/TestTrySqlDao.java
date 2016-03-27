@@ -87,7 +87,7 @@ public class TestTrySqlDao {
 	 */
 	private static LocalDateTime getToday() {
 		final LocalDateTime ldt = LocalDateTime.now();
-		return LocalDateTime.of(ldt.getYear(), ldt.getDayOfMonth(), ldt.getDayOfMonth(), 0,0);
+		return LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), 0,0);
 	}
 
 	private static Date getTodayAsDate() {
