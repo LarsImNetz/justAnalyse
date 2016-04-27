@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<wicket:head>
+	<meta charset="utf-8" />
+	<title>LLA Search</title>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen"
+		title="Stylesheet" />
+
+	<style type="text/css">
+.ui-autocomplete {
+	background-color: #6ff;
+	max-height: 200px;
+	/* 	max-width: 300px; */
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-right: 20px;
+	overflow-y: auto;
+}
+
+.ui-front {
+	font-family: sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+</style>
+</wicket:head>
+<body>
+
+	<h1>Was suchst Du heute?</h1>
+
+	<div id="wrapper-panel-frame" class="ui-corner-all">
+		<form wicket:id="form">
+			<div>Choose your favorite rock genre: (that starts with your
+				criteria)</div>
+			<br /> <input wicket:id="autocomplete" type="text" size="30"
+				title="enter your criteria here"></input><br /> <br />
+			<div wicket:id="feedback" style="width: 360px;"></div>
+		</form>
+	</div>
+</body>
+</html>

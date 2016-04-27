@@ -1,5 +1,6 @@
 package org.linuxx.moonserver.db.persistence;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,7 +13,7 @@ public class TrySqlDao {
 	private EntityManager em;
 
 	public List<Object[]> fetchAll() {
-		final String sql = "SELECT a.id, a.vorname, a.name FROM Try a";
+		final String sql = "SELECT a.id, a.vorname, a.name, a.erstelltam,a.zahl FROM Try a";
 		final Query nativeQuery = em.createNativeQuery(sql);
 		@SuppressWarnings("unchecked")
 		final
@@ -35,15 +36,17 @@ public class TrySqlDao {
 		return result;
 	}
 
-	public void insertInto(final int id, final String name, final String vorname) {
+	public void insertInto(final int id, final Date date, final String name, final String vorname, final double zahl) {
 		em.getTransaction().begin();
 
-		final String sql = "INSERT INTO Try (id, name, vorname) VALUES (?,?,?)";
+		final String sql = "INSERT INTO Try (id, erstelltam, name, vorname, zahl) VALUES (?, ?, ?, ?, ?)";
 
 		final Query query = em.createNativeQuery(sql);
 		query.setParameter(1, id);
-		query.setParameter(2, name);
-		query.setParameter(3, vorname);
+		query.setParameter(2, date);
+		query.setParameter(3, name);
+		query.setParameter(4, vorname);
+		query.setParameter(5, zahl);
 		query.executeUpdate();
 
 		em.getTransaction().commit();

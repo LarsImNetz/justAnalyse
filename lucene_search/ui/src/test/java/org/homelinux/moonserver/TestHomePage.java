@@ -1,10 +1,8 @@
-package org.linuxx.moonserver;
+package org.homelinux.moonserver;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
-import org.linuxx.moonserver.HomePage;
-import org.linuxx.moonserver.WicketApplication;
 
 /**
  * Simple test using the WicketTester
@@ -20,10 +18,16 @@ public class TestHomePage {
 
 	@Test
 	public void homepageRendersSuccessfully() {
-		//start and render the test page
+		// start and render the test page
 		tester.startPage(HomePage.class);
 
-		//assert rendered page class
+		// assert rendered page class
 		tester.assertRenderedPage(HomePage.class);
+	}
+
+	@Test
+	public void homepageContainsTable() {
+		tester.startPage(HomePage.class);
+		tester.debugComponentTrees();
 	}
 }
