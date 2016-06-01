@@ -64,4 +64,12 @@ final class SimpleDTO {
 		this.geburtstag = geburtstag;
 	}
 
+	public String getStrasse() {
+		return strasse;
+	}
+
+	public void setStrasse(String strasse) {
+		this.strasse = strasse;
+	}
+
 }
