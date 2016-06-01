@@ -15,10 +15,14 @@ public class HttpRedirectionTester {
 	}
 
 	
-	public void assertRedirectPermanently(final String url, final String newLocation) {
+	public void assertRedirectPermanently(final String url, String newLocation) {
 		init(url);
 		Assert.assertEquals(HttpStatus.SC_MOVED_PERMANENTLY, getStatusCode());
-		Assert.assertEquals(newLocation, getLocation());
+		final String actual = getLocation();
+		if (url.startsWith("http:") && actual.startsWith("https:")) {
+			newLocation = newLocation.replace("http:", "https:");
+		}
+		Assert.assertEquals(newLocation, actual);
 	}
 
 	public void assertRedirectTemporarily(final String url, final String newLocation) {

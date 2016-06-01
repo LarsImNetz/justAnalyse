@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -111,7 +110,7 @@ public class ITAllHttpRedirections {
 	 * Der eigentliche Test, der mit den Parametern zurecht kommen sollte.
 	 */
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void test() {
 		Assert.assertNotNull(virtualHost);
