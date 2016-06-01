@@ -1,32 +1,41 @@
 package org.homelinux.moonserver;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestJsonCreation {
 
+	private static ObjectMapperHelper OBJECTMAPPER;
+
+	@BeforeClass
+	public static void setUp() {
+		OBJECTMAPPER = new ObjectMapperHelper();
+	}
+
 	@Test
 	public void testValue() {
 		final Integer value = Integer.valueOf(3);
-		final String json = ObjectMapperHelper.createJsonString(value);
+		final String json = OBJECTMAPPER.createJsonString(value);
 		Assert.assertEquals("3", json);
 	}
 
 	@Test
 	public void testString() {
 		final String hello = "Hello World!";
-		final String json = ObjectMapperHelper.createJsonString(hello);
+		final String json = OBJECTMAPPER.createJsonString(hello);
 		Assert.assertEquals("\"Hello World!\"", json);
 	}
 
 	@Test
 	public void testArray() {
 		final List<String> list = Arrays.asList("a", "b");
-		final String json = ObjectMapperHelper.createJsonString(list);
+		final String json = OBJECTMAPPER.createJsonString(list);
 		Assert.assertEquals("[\"a\",\"b\"]", json);
 	}
 
@@ -39,7 +48,7 @@ public class TestJsonCreation {
 		public A(final int eins) {
 			this.eins = eins;
 		}
-		
+
 		public int getEins() {
 			return this.eins;
 		}
@@ -53,68 +62,28 @@ public class TestJsonCreation {
 	public void testClassA() {
 		final A a = new A(2);
 
-		final String json = ObjectMapperHelper.createJsonString(a);
+		final String json = OBJECTMAPPER.createJsonString(a);
 		Assert.assertEquals("{\"eins\":2}", json);
 	}
 
-	// -------------------------------------------------------------
-	private static class B {
-
-		private String vorname;
-		private String nachname;
-		private LocalDateTime geburtstag;
-
-		public B() {
-		}
-
-		
-		public String getVorname() {
-			return vorname;
-		}
-
-		
-		public void setVorname(final String vorname) {
-			this.vorname = vorname;
-		}
-
-		
-		public String getNachname() {
-			return nachname;
-		}
-
-		
-		public void setNachname(final String nachname) {
-			this.nachname = nachname;
-		}
-
-		
-		public LocalDateTime getGeburtstag() {
-			return geburtstag;
-		}
-
-		
-		public void setGeburtstag(final LocalDateTime geburtstag) {
-			this.geburtstag = geburtstag;
-		}
-		
-	}
 
 	@Test
 	public void testClassBEmpty() {
-		final B b = new B();
-		
-		final String json = ObjectMapperHelper.createJsonString(b);
+		final SimpleDTO b = new SimpleDTO();
+
+		final String json = OBJECTMAPPER.createJsonString(b);
 		Assert.assertEquals("{\"vorname\":null,\"nachname\":null,\"geburtstag\":null}", json);
 	}
 
 	@Test
-	public void testClassB() {
-		final B b = new B();
+	public void testClassBSerialize() {
+		final SimpleDTO b = new SimpleDTO();
 		b.setVorname("Lars");
 		b.setNachname("Langhans");
+		final LocalDate geburtstag = LocalDate.of(1968, Month.JANUARY, 4);
 		b.setGeburtstag(geburtstag);
-		final String json = ObjectMapperHelper.createJsonString(b);
-		Assert.assertEquals("{\"vorname\":null,\"nachname\":null,\"geburtstag\":null}", json);
+		final String json = OBJECTMAPPER.createJsonString(b);
+		Assert.assertEquals("{\"vorname\":\"Lars\",\"nachname\":\"Langhans\",\"geburtstag\":\"04.01.1968\"}", json);
 	}
 
 }
