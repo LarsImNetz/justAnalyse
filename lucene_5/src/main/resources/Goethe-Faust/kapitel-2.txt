@@ -1,0 +1,228 @@
+
+<div id="gutenb">
+
+    <h3>Vorspiel auf dem Theater</h3>
+    <p class="center"><span class="regie">Direktor. Theatherdichter. Lustige Person:</span></p>
+    <p><span class="speaker">Direktor:</span></p>
+    <p class="vers">Ihr beiden, die ihr mir so oft,<br>
+      In Not und Tr&uuml;bsal, beigestanden,<br>
+      Sagt, was ihr wohl in deutschen Landen<br>
+      Von unsrer Unternehmung hofft?<br>
+      Ich w&uuml;nschte sehr der Menge zu behagen,<br>
+      Besonders weil sie lebt und leben l&auml;&szlig;t.<br>
+      Die Pfosten sind, die Bretter aufgeschlagen,<br>
+      Und jedermann erwartet sich ein Fest.<br>
+      Sie sitzen schon mit hohen Augenbraunen<br>
+      Gelassen da und m&ouml;chten gern erstaunen.<br>
+      Ich wei&szlig;, wie man den Geist des Volks vers&ouml;hnt;<br>
+      Doch so verlegen bin ich nie gewesen:<br>
+      Zwar sind sie an das Beste nicht gew&ouml;hnt,<br>
+      Allein sie haben schrecklich viel gelesen.<br>
+      Wie machen wir's, da&szlig; alles frisch und neu<br>
+      Und mit Bedeutung auch gef&auml;llig sei?<br>
+      Denn freilich mag ich gern die Menge sehen,<br>
+      Wenn sich der Strom nach unsrer Bude dr&auml;ngt,<br>
+      Und mit gewaltig wiederholten Wehen<br>
+      Sich durch die enge Gnadenpforte zw&auml;ngt;<br>
+      Bei hellem Tage, schon vor vieren,<br>
+      Mit St&ouml;&szlig;en sich bis an die Kasse ficht<br>
+      Und, wie in Hungersnot um Brot an B&auml;ckert&uuml;ren,<br>
+      Um ein Billet sich fast die H&auml;lse bricht.<br>
+      Dies Wunder wirkt auf so verschiedne Leute<br>
+      Der Dichter nur; mein Freund, o tu es heute!</p>
+    <p><span class="speaker">Dichter:</span></p>
+    <p class="vers">O sprich mir nicht von jener bunten Menge,<br>
+      Bei deren Anblick uns der Geist entflieht.<br>
+      Verh&uuml;lle mir das wogende Gedr&auml;nge,<br>
+      Das wider Willen uns zum Strudel zieht.<br>
+      Nein, f&uuml;hre mich zur stillen Himmelsenge,<br>
+      Wo nur dem Dichter reine Freude bl&uuml;ht;<br>
+      Wo Lieb und Freundschaft unsres Herzens Segen<br>
+      Mit G&ouml;tterhand erschaffen und erpflegen.</p>
+    <p class="vers">Ach! was in tiefer Brust uns da entsprungen,<br>
+      Was sich die Lippe sch&uuml;chtern vorgelallt,<br>
+      Mi&szlig;raten jetzt und jetzt vielleicht gelungen,<br>
+      Verschlingt des wilden Augenblicks Gewalt.<br>
+      Oft, wenn es erst durch Jahre durchgedrungen,<br>
+      Erscheint es in vollendeter Gestalt.<br>
+      Was gl&auml;nzt, ist f&uuml;r den Augenblick geboren,<br>
+      Das Echte bleibt der Nachwelt unverloren.</p>
+    <p><span class="speaker">Lustige Person:</span></p>
+    <p class="vers">Wenn ich nur nichts von Nachwelt h&ouml;ren sollte.<br>
+      Gesetzt, da&szlig; <i>ich</i> von Nachwelt reden wollte,<br>
+      Wer machte denn der Mitwelt Spa&szlig;?<br>
+      Den will sie doch und soll ihn haben.<br>
+      Die Gegenwart von einem braven Knaben<br>
+      Ist, d&auml;cht ich, immer auch schon was.<br>
+      Wer sich behaglich mitzuteilen wei&szlig;,<br>
+      Den wird des Volkes Laune nicht erbittern;<br>
+      Er w&uuml;nscht sich einen gro&szlig;en Kreis,<br>
+      Um ihn gewisser zu ersch&uuml;ttern.<br>
+      Drum seid nur brav und zeigt euch musterhaft,<br>
+      La&szlig;t Phantasie, mit allen ihren Ch&ouml;ren,<br>
+      Vernunft, Verstand, Empfindung, Leidenschaft,<br>
+      Doch, merkt euch wohl! nicht ohne Narrheit h&ouml;ren.</p>
+    <p><span class="speaker">Direktor:</span></p>
+    <p class="vers">Besonders aber la&szlig;t genug geschehn!<br>
+      Man kommt zu schaun, man will am liebsten sehn.<br>
+      Wird vieles vor den Augen abgesponnen,<br>
+      So da&szlig; die Menge staunend gaffen kann,<br>
+      Da habt Ihr in der Breite gleich gewonnen,<br>
+      Ihr seid ein vielgeliebter Mann.<br>
+      Die Masse k&ouml;nnt Ihr nur durch Masse zwingen,<br>
+      Ein jeder sucht sich endlich selbst was aus.<br>
+      Wer vieles bringt, wird manchem etwas bringen;<br>
+      Und jeder geht zufrieden aus dem Haus.<br>
+      Gebt Ihr ein St&uuml;ck, so gebt es gleich in St&uuml;cken!<br>
+      Solch ein Ragout, es mu&szlig; Euch gl&uuml;cken;<br>
+      Leicht ist es vorgelegt, so leicht als ausgedacht.<br>
+      Was hilft's, wenn Ihr ein Ganzes dargebracht?<br>
+      Das Publikum wird es Euch doch zerpfl&uuml;cken.</p>
+    <p><span class="speaker">Dichter:</span></p>
+    <p class="vers">Ihr f&uuml;hlet nicht, wie schlecht ein solches Handwerk sei!<br>
+      Wie wenig das dem echten K&uuml;nstler zieme!<br>
+      Der saubern Herren Pfuscherei<br>
+      Ist, merk ich, schon bei Euch Maxime.</p>
+    <p><span class="speaker">Direktor:</span></p>
+    <p class="vers">Ein solcher Vorwurf l&auml;&szlig;t mich ungekr&auml;nkt:<br>
+      Ein Mann, der recht zu wirken denkt,<br>
+      Mu&szlig; auf das beste Werkzeug halten.<br>
+      Bedenkt, Ihr habet weiches Holz zu spalten,<br>
+      Und seht nur hin, f&uuml;r wen Ihr schreibt!<br>
+      Wenn diesen Langeweile treibt,<br>
+      Kommt jener satt vom &uuml;bertischten Mahle,<br>
+      Und, was das Allerschlimmste bleibt,<br>
+      Gar mancher kommt vom Lesen der Journale.<br>
+      Man eilt zerstreut zu uns, wie zu den Maskenfesten,<br>
+      Und Neugier nur befl&uuml;gelt jeden Schritt;<br>
+      Die Damen geben sich und ihren Putz zum besten<br>
+      Und spielen ohne Gage mit.<br>
+      Was tr&auml;umet Ihr auf Eurer Dichterh&ouml;he?<br>
+      Was macht ein volles Haus Euch froh?<br>
+      Beseht die G&ouml;nner in der N&auml;he!<br>
+      Halb sind sie kalt, halb sind sie roh.<br>
+      Der, nach dem Schauspiel, hofft ein Kartenspiel,<br>
+      Der eine wilde Nacht an einer Dirne Busen.<br>
+      Was plagt ihr armen Toren viel,<br>
+      Zu solchem Zweck, die holden Musen?<br>
+      Ich sag Euch, gebt nur mehr und immer, immer mehr,<br>
+      So k&ouml;nnt Ihr Euch vom Ziele nie verirren<br>
+      Sucht nur die Menschen zu verwirren,<br>
+      Sie zu befriedigen, ist schwer &ndash;<br>
+      Was f&auml;llt Euch an? Entz&uuml;ckung oder Schmerzen?</p>
+    <p><span class="speaker">Dichter:</span></p>
+    <p class="vers">Geh hin und such dir einen andern Knecht!<br>
+      Der Dichter sollte wohl das h&ouml;chste Recht,<br>
+      Das Menschenrecht, das ihm Natur verg&ouml;nnt,<br>
+      Um deinetwillen freventlich verscherzen!<br>
+      Wodurch bewegt er alle Herzen?<br>
+      Wodurch besiegt er jedes Element?<br>
+      Ist es der Einklang nicht, der aus dem Busen dringt,<br>
+      Und in sein Herz die Welt zur&uuml;cke schlingt?<br>
+      Wenn die Natur des Fadens ew'ge L&auml;nge,<br>
+      Gleichg&uuml;ltig drehend, auf die Spindel zwingt,<br>
+      Wenn aller Wesen unharmon'sche Menge<br>
+      Verdrie&szlig;lich durcheinander klingt &ndash;<br>
+      Wer teilt die flie&szlig;end immer gleiche Reihe<br>
+      Belebend ab, da&szlig; sie sich rhythmisch regt?<br>
+      Wer ruft das Einzelne zur allgemeinen Weihe,<br>
+      Wo es in herrlichen Akkorden schl&auml;gt?<br>
+      Wer l&auml;&szlig;t den Sturm zu Leidenschaften w&uuml;ten?<br>
+      Das Abendrot im ernsten Sinne gl&uuml;hn?<br>
+      Wer sch&uuml;ttet alle sch&ouml;nen Fr&uuml;hlingsbl&uuml;ten<br>
+      Auf der Geliebten Pfade hin?<br>
+      Wer flicht die unbedeutend gr&uuml;nen Bl&auml;tter<br>
+      Zum Ehrenkranz Verdiensten jeder Art?<br>
+      Wer sichert den Olymp? vereinet G&ouml;tter?<br>
+      Des Menschen Kraft, im Dichter offenbart.</p>
+    <p><span class="speaker">Lustige Person:</span></p>
+    <p class="vers">So braucht sie denn, die sch&ouml;nen Kr&auml;fte<br>
+      Und treibt die dichtrischen Gesch&auml;fte<br>
+      Wie man ein Liebesabenteuer treibt.<br>
+      Zuf&auml;llig naht man sich, man f&uuml;hlt, man bleibt<br>
+      Und nach und nach wird man verflochten;<br>
+      Es w&auml;chst das Gl&uuml;ck, dann wird es angefochten<br>
+      Man ist entz&uuml;ckt, nun kommt der Schmerz heran,<br>
+      Und eh man sich's versieht, ist's eben ein Roman.<br>
+      La&szlig;t uns auch so ein Schauspiel geben!<br>
+      Greift nur hinein ins volle Menschenleben!<br>
+      Ein jeder lebt's, nicht vielen ist's bekannt,<br>
+      Und wo ihr's packt, da ist's interessant.<br>
+      In bunten Bildern wenig Klarheit,<br>
+      Viel Irrtum und ein F&uuml;nkchen Wahrheit,<br>
+      So wird der beste Trank gebraut,<br>
+      Der alle Welt erquickt und auferbaut.<br>
+      Dann sammelt sich der Jugend sch&ouml;nste Bl&uuml;te<br>
+      Vor eurem Spiel und lauscht der Offenbarung,<br>
+      Dann sauget jedes z&auml;rtliche Gem&uuml;te<br>
+      Aus eurem Werk sich melanchol'sche Nahrung,<br>
+      Dann wird bald dies, bald jenes aufgeregt<br>
+      Ein jeder sieht, was er im Herzen tr&auml;gt.<br>
+      Noch sind sie gleich bereit, zu weinen und zu lachen,<br>
+      Sie ehren noch den Schwung, erfreuen sich am Schein;<br>
+      Wer fertig ist, dem ist nichts recht zu machen;<br>
+      Ein Werdender wird immer dankbar sein.</p>
+    <p><span class="speaker">Dichter:</span></p>
+    <p class="vers">So gib mir auch die Zeiten wieder,<br>
+      Da ich noch selbst im Werden war,<br>
+      Da sich ein Quell gedr&auml;ngter Lieder<br>
+      Ununterbrochen neu gebar,<br>
+      Da Nebel mir die Welt verh&uuml;llten,<br>
+      Die Knospe Wunder noch versprach,<br>
+      Da ich die tausend Blumen brach,<br>
+      Die alle T&auml;ler reichlich f&uuml;llten.<br>
+      Ich hatte nichts und doch genug:<br>
+      Den Drang nach Wahrheit und die Lust am Trug.<br>
+      Gib ungeb&auml;ndigt jene Triebe,<br>
+      Das tiefe, schmerzenvolle Gl&uuml;ck,<br>
+      Des Hasses Kraft, die Macht der Liebe,<br>
+      Gib meine Jugend mir zur&uuml;ck!</p>
+    <p><span class="speaker">Lustige Person:</span></p>
+    <p class="vers">Der Jugend, guter Freund, bedarfst du allenfalls,<br>
+      Wenn dich in Schlachten Feinde dr&auml;ngen,<br>
+      Wenn mit Gewalt an deinen Hals<br>
+      Sich allerliebste M&auml;dchen h&auml;ngen,<br>
+      Wenn fern des schnellen Laufes Kranz<br>
+      Vom schwer erreichten Ziele winket,<br>
+      Wenn nach dem heft'gen Wirbeltanz<br>
+      Die N&auml;chte schmausend man vertrinket.<br>
+      Doch ins bekannte Saitenspiel<br>
+      Mit Mut und Anmut einzugreifen,<br>
+      Nach einem selbstgesteckten Ziel<br>
+      Mit holdem Irren hinzuschweifen,<br>
+      Das, alte Herrn, ist eure Pflicht,<br>
+      Und wir verehren euch darum nicht minder.<br>
+      Das Alter macht nicht kindisch, wie man spricht,<br>
+      Es findet uns nur noch als wahre Kinder.</p>
+    <p><span class="speaker">Direktor:</span></p>
+    <p class="vers">Der Worte sind genug gewechselt,<br>
+      La&szlig;t mich auch endlich Taten sehn!<br>
+      Indes ihr Komplimente drechselt,<br>
+      Kann etwas N&uuml;tzliches geschehn.<br>
+      Was hilft es, viel von Stimmung reden?<br>
+      Dem Zaudernden erscheint sie nie.<br>
+      Gebt ihr euch einmal f&uuml;r Poeten,<br>
+      So kommandiert die Poesie.<br>
+      Euch ist bekannt, was wir bed&uuml;rfen,<br>
+      Wir wollen stark Getr&auml;nke schl&uuml;rfen;<br>
+      Nun braut mir unverz&uuml;glich dran!<br>
+      Was heute nicht geschieht, ist morgen nicht getan,<br>
+      Und keinen Tag soll man verpassen,<br>
+      Das M&ouml;gliche soll der Entschlu&szlig;<br>
+      Beherzt sogleich beim Schopfe fassen,<br>
+      Er will es dann nicht fahren lassen<br>
+      Und wirket weiter, weil er mu&szlig;.</p>
+    <p class="vers">Ihr wi&szlig;t, auf unsern deutschen B&uuml;hnen<br>
+      Probiert ein jeder, was er mag;<br>
+      Drum schonet mir an diesem Tag<br>
+      Prospekte nicht und nicht Maschinen.<br>
+      Gebraucht das gro&szlig;, und kleine Himmelslicht,<br>
+      Die Sterne d&uuml;rfet ihr verschwenden;<br>
+      An Wasser, Feuer, Felsenw&auml;nden,<br>
+      An Tier und V&ouml;geln fehlt es nicht.<br>
+      So schreitet in dem engen Bretterhaus<br>
+      Den ganzen Kreis der Sch&ouml;pfung aus,<br>
+      Und wandelt mit bed&auml;cht'ger Schnelle<br>
+      Vom Himmel durch die Welt zur H&ouml;lle.</p>
+  
+</div>
