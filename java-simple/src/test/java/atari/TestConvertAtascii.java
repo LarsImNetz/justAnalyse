@@ -1,64 +1,73 @@
 package atari;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestConvertAtascii {
 
-	private String path = "/usr/local/src/lla.atarixl/software/eigenes/ataripath/";
+	private final String path = "/usr/local/src/lla.atarixl/software/eigenes/ataripath/";
 	
+	@Ignore
 	@Test
 	public void testCompiler() throws Exception {
-		String file = path + "COMPILER.LST";
-		String[] argv = { file };
+		final String file = path + "COMPILER.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
+	@Ignore
 	@Test
 	public void testGetsym() throws Exception {
-		String file = path + "GETSYM.LST";
-		String[] argv = { file };
+		final String file = path + "GETSYM.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
+	@Ignore
 	@Test
 	public void testAusdruck2() throws Exception {
-		String file = path + "AUSDRCK2.LST";
-		String[] argv = { file };
+		final String file = path + "AUSDRCK2.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
+	@Ignore
 	@Test
 	public void testAusdruck() throws Exception {
-		String file = path + "AUSDRUCK.LST";
-		String[] argv = { file };
+		final String file = path + "AUSDRUCK.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
+	@Ignore
 	@Test
 	public void testFacio() throws Exception {
-		String file = path + "FACIO.LST";
-		String[] argv = { file };
+		final String file = path + "FACIO.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
+	@Ignore
 	@Test
 	public void testZahlen() throws Exception {
-		String file = path + "ZAHLEN.LST";
-		String[] argv = { file };
+		final String file = path + "ZAHLEN.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
+	@Ignore
 	@Test
 	public void testZahlen2() throws Exception {
-		String file = path + "ZAHLEN2.LST";
-		String[] argv = { file };
+		final String file = path + "ZAHLEN2.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
+	@Ignore
 	@Test
 	public void testAusdruckFlp() throws Exception {
-		String file = path + "AUSDRFLP.LST";
-		String[] argv = { file };
+		final String file = path + "AUSDRFLP.LST";
+		final String[] argv = { file };
 		ConvertAtascii.main(argv);
 	}
 
