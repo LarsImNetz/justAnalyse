@@ -21,13 +21,15 @@
 	<modules>
 		<module>ajaxsample</module>
 		<!-- <module>angular</module> -->
-		<!-- <module>aspectj</module> -->
+		<!-- Mein alter Compiler <module>atari</module> -->
 		<!-- <module>bash-analyse</module> -->
 
 		<!-- <module>configPom</module> -->
+		<!-- JAVA Code Style <module>configuration</module> -->
 		<module>container</module>
 		<module>csvdiff</module>
 		<module>cucumber-kata</module>
+		<!-- AM pom.xml ENDE! <module>dbsample</module> -->
 
 
 		<module>eclipse-analyse</module>
@@ -35,16 +37,20 @@
 
                 <!-- <module>halde</module> -->
 		<!-- <module>html5tests</module> -->
+		<module>java-simple</module>
 		<module>javaapplicationsample</module>
 		<!-- <module>javaeight</module> -->
 		<!-- <module>javascript</module> -->
 		<module>javaseven</module>
-		<module>java-simple</module>
 		<module>jquery</module>
 		<module>just</module>
 		<module>konto-import</module>
 		<module>listresources</module>
+		<module>lucene_4</module>
+		<module>lucene_5</module>
+		<module>lucene_search/ui</module>
 		<module>miscellaneous</module>
+		<module>mongodb</module>
 		<module>ovalsample</module>
 		<module>pattern</module>
 
@@ -52,6 +58,7 @@
                 <!--		<module>responsive</module> -->
 		<module>rest</module>
 		<!-- <module>rsync</module> -->
+		<!-- SASS mit npm <module>sass</module> -->
 
 
 		<module>unit-tests</module>
