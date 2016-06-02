@@ -6,7 +6,7 @@
 	<artifactId>Lucene-4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>Lucene</name>
+	<name>Lucene-4</name>
 	<description>Mavenized version of Kelvin Tan's example</description>
 
 
