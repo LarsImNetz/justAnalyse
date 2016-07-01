@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Wort {
 	private final List<String> liste;
+	private int pointer;
 	
 	public Wort(final String liste) {
 		final ArrayList<String> singles = new ArrayList<>();
@@ -33,6 +34,11 @@ public class Wort {
 	}
 
 	public String getWort() {
-		return " " + liste.get(0);
+		final String wort = " " + liste.get(pointer);
+		pointer++;
+		if (pointer >= liste.size()) {
+			pointer = 0;
+		}
+		return wort;
 	}
 }

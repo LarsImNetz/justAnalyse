@@ -1,5 +1,11 @@
 package org.lla.phrasendrescher;
 
+/*
+ * Etwas filigraner - jedoch wesentlich subtiler in der Anwendung - ist der
+interaktive Phrasomat. Mit seiner Hilfe verleihen Sie jeder akademischen
+Publikation eine entscheidende, von Fachwissen gepr�gte Autorit�t. Wer
+allerdings �berhaupt keine Ahnung hat nutzt die Zufallsfunktion.
+*/
 
 public class Phrase implements ISatz {
 				
@@ -51,13 +57,7 @@ public class Phrase implements ISatz {
 		satz.append(" unter Berücksichtigung der");
 		satz.append(adjektiv4.getWort());
 		satz.append(nomen4.getWort());
-/*
-		"Unter Zuhilfenahme von bilateralen pathologischen Beziehungs-prozessen"
-		"kann die antiserielle Implikation"
-		"der normativen Inhibitations-dogmen unter Berücksichtigung der psychoanalytischen Stimuli"
-		" bei gleichzeitiger residualer Dehydriertheit derart abgeleitet werden, "
-		"so daß eine Inkontinenz des formalhygienischen Retroeffekts weitgehend invertiert wird."
-*/
+
 		satz.append(" bei gleichzeitiger");
 		satz.append(adjektiv5.getWort());
 		satz.append(nomen5.getWort());
