@@ -22,8 +22,7 @@ public class TestVarargsParameter {
 
 	@Test
 	public void testWithStringArray() throws Exception {
-		Assert.assertEquals("EinsZweiDrei",
-				testMethod(new String[]{"Eins", "Zwei", "Drei"}));
+		Assert.assertEquals("EinsZweiDrei", testMethod(new String[] {"Eins", "Zwei", "Drei"}));
 	}
 
 	@Test

@@ -69,9 +69,9 @@ public class TestTrySqlDao {
 	}
 
 	public static void createDBContent() {
-	  dao.deleteAll();
-	  
-	  final Date today = getTodayAsDate();
+		dao.deleteAll();
+
+		final Date today = getTodayAsDate();
 		dao.insertInto(1, today, "Skywalker", "Luke", 1d);
 		dao.insertInto(2, today, "Skywalker", "Anakin", 2d);
 		dao.insertInto(3, today, "Solo", "Han", 2d);
@@ -83,16 +83,17 @@ public class TestTrySqlDao {
 
 	/**
 	 * Nur der heutige Tag, nicht auch noch die Uhrzeit!
+	 * 
 	 * @return
 	 */
 	private static LocalDateTime getToday() {
 		final LocalDateTime ldt = LocalDateTime.now();
-		return LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), 0,0);
+		return LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), 0, 0);
 	}
 
 	private static Date getTodayAsDate() {
-	  final Instant instant = getToday().atZone(ZoneId.systemDefault()).toInstant();
-	  final Date today = Date.from(instant);
+		final Instant instant = getToday().atZone(ZoneId.systemDefault()).toInstant();
+		final Date today = Date.from(instant);
 		return today;
 	}
 
@@ -112,11 +113,11 @@ public class TestTrySqlDao {
 	}
 
 	private static LocalDateTime convertToLocalDateTime(final Object obj) {
-		final Date date = (Date)obj;
-		final LocalDateTime ldt = LocalDateTime.of(date.getYear() + 1900, date.getMonth() + 1, date.getDate(),0,0);
+		final Date date = (Date) obj;
+		final LocalDateTime ldt = LocalDateTime.of(date.getYear() + 1900, date.getMonth() + 1, date.getDate(), 0, 0);
 		return ldt;
 	}
-	
+
 	@Test
 	public void test_fetchZahl() {
 
@@ -128,12 +129,12 @@ public class TestTrySqlDao {
 		Object[] objs = resultList.get(6);
 		Assert.assertEquals("1brd", objs[1]);
 		Assert.assertEquals("Zahl", objs[2]);
-		Assert.assertEquals(Double.valueOf(1_000_000_000_000_000d), Double.valueOf((double)objs[4]));
+		Assert.assertEquals(Double.valueOf(1_000_000_000_000_000d), Double.valueOf((double) objs[4]));
 
 		objs = resultList.get(3);
 		Assert.assertEquals("Pi", objs[1]);
 		Assert.assertEquals("Zahl", objs[2]);
-		Assert.assertEquals(3.141592653589, ((double)objs[4]), 0.000000000001);
+		Assert.assertEquals(3.141592653589, ((double) objs[4]), 0.000000000001);
 
 	}
 

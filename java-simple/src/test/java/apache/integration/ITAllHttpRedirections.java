@@ -57,15 +57,15 @@ public class ITAllHttpRedirections {
 							final String redirection = vhost.getRedirection();
 							if (redirection != null) {
 								// if (redirection.contains("www.vergleich.de")) {
-								if (
-										redirection.contains("www.grundbuch.de") ||
-										redirection.contains("www.drklein.de") ||
-										redirection.contains("www.finanzpartnernetz.de") ||
-										redirection.contains("www.zinsentwicklung.de") ||
-										redirection.contains("www.hypoweb.de")
-										) {
+								// FORMATTER:OFF
+								if (redirection.contains("www.grundbuch.de") ||
+									redirection.contains("www.drklein.de") ||
+									redirection.contains("www.finanzpartnernetz.de") ||
+									redirection.contains("www.zinsentwicklung.de") ||
+									redirection.contains("www.hypoweb.de")) {
 									append(list, serverAlias, vhost, redirection, vhostName);
 								}
+								// FORMATTER:ON
 							}
 						}
 					}

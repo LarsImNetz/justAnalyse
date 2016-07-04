@@ -14,7 +14,6 @@ public class HttpRedirectionTester {
 	public HttpRedirectionTester() {
 	}
 
-	
 	public void assertRedirectPermanently(final String url, String newLocation) {
 		init(url);
 		Assert.assertEquals(HttpStatus.SC_MOVED_PERMANENTLY, getStatusCode());
@@ -32,13 +31,13 @@ public class HttpRedirectionTester {
 	}
 
 	private CloseableHttpResponse response;
-	
+
 	public void init(final String url) {
 		if (response == null) {
 			initialize(url);
 		}
 	}
-	
+
 	private void initialize(final String url) {
 		final CloseableHttpClient httpclient = HttpClients.createDefault();
 

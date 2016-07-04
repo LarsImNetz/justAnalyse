@@ -9,11 +9,13 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 public class JettyStart {
+
 	public static void main(String[] args) throws Exception {
 		JettyStart starter = new JettyStart();
 		try {
 			starter.serverstart(args);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -77,7 +79,8 @@ public class JettyStart {
 			System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
 			server.stop();
 			server.join();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}

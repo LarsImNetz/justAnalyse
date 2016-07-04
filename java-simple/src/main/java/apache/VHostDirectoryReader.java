@@ -7,6 +7,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 public class VHostDirectoryReader {
+
 	private static final String BASE_FOLDER = "src/test/resources/apache/vhost.d";
 
 	public Collection<Object[]> findAllVHostFiles() {

@@ -15,6 +15,7 @@ import org.apache.wicket.request.Response;
  * @see org.linuxx.moonserver.JettyStart#main(String[])
  */
 public class WicketApplication extends WebApplication {
+
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */

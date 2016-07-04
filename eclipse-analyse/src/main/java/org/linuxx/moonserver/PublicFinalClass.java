@@ -1,6 +1,7 @@
 package org.linuxx.moonserver;
 
 public final class PublicFinalClass implements InterfaceGetInt {
+
 	public PublicFinalClass() {
 	}
 

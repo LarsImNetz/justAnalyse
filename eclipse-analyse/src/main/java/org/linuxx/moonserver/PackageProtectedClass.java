@@ -1,6 +1,7 @@
 package org.linuxx.moonserver;
 
 class PackageProtectedClass implements InterfaceGetInt {
+
 	public PackageProtectedClass() {
 	}
 

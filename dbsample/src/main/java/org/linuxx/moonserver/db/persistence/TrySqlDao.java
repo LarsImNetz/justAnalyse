@@ -16,8 +16,7 @@ public class TrySqlDao {
 		final String sql = "SELECT a.id, a.vorname, a.name, a.erstelltam,a.zahl FROM Try a";
 		final Query nativeQuery = em.createNativeQuery(sql);
 		@SuppressWarnings("unchecked")
-		final
-		List<Object[]> resultList = nativeQuery.getResultList();
+		final List<Object[]> resultList = nativeQuery.getResultList();
 		return resultList;
 	}
 
@@ -27,7 +26,7 @@ public class TrySqlDao {
 		final Object result = nativeQuery.getResultList();
 		return result;
 	}
-	
+
 	public Object fetch(final int id) {
 		final String sql = "SELECT a.id, a.vorname, a.name FROM Try a WHERE a.id=?";
 		final Query nativeQuery = em.createNativeQuery(sql);

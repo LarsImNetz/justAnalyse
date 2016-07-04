@@ -47,14 +47,13 @@ public class TestTryDao {
 		final TryEntity entity = new TryEntity();
 		entity.setId(1);
 		entity.setName("testname");
-		entity.setErstellt(new DateTime(2016,1,1,0,0).toDate());
+		entity.setErstellt(new DateTime(2016, 1, 1, 0, 0).toDate());
 		dao.save(entity);
-
 
 		final TryEntity entity2 = new TryEntity();
 		entity2.setId(2);
 		entity2.setName("testname2");
-		entity2.setErstellt(new DateTime(2016,1,2,0,0).toDate());
+		entity2.setErstellt(new DateTime(2016, 1, 2, 0, 0).toDate());
 		dao.save(entity2);
 	}
 

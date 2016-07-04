@@ -8,17 +8,17 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-
 public class TestGenericsWithMockitoTest {
 
 	private static class MyClass {
 
 		private MyClass() {
 		}
-		
+
 		public String getString(final String anyString) {
 			return anyString;
 		}
+
 		public String getComplicated(final Map<String, List<String>> map) {
 			return "complicated";
 		}
@@ -50,12 +50,11 @@ public class TestGenericsWithMockitoTest {
 	public void testGetComplicated_anyMap() {
 		final MyClass myMock = Mockito.mock(MyClass.class);
 		final String value = "hallo Mockito";
-		Mockito.when(myMock.getComplicated(Mockito.anyMap())).thenReturn(value);		
+		Mockito.when(myMock.getComplicated(Mockito.anyMap())).thenReturn(value);
 
 		final String actual = myMock.getComplicated(null);
 		Assert.assertEquals("hallo Mockito", actual);
 	}
-
 
 	@SuppressWarnings("unchecked")
 	@Test

@@ -4,13 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestEightLadiesTable {
+
 	EightLadiesTable etable = new EightLadiesTable(new int[8][8]);
 
 	@Test
 	public void testName() throws Exception {
 		System.out.println(etable.output());
 	}
-	
+
 	@Test
 	public void testBackgroundColor() throws Exception {
 		Assert.assertEquals("bgcolor=#ffffff", etable.backgroundColor(0, 0));

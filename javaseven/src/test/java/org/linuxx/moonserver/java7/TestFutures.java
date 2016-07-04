@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class TestFutures {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TestFutures.class);
+
 	@Test
 	public void testLearnFutures() throws Exception {
 
