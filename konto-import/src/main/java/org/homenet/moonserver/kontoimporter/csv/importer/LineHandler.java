@@ -35,10 +35,11 @@ public class LineHandler {
 	public BuchungFormatEnum getFormat() {
 		return format;
 	}
-	public void setFormat(final BuchungFormatEnum  format) {
+
+	public void setFormat(final BuchungFormatEnum format) {
 		this.format = format;
 	}
-	
+
 	private IBuchung createBuchungFrom(final String line, final int lineNumber) {
 		try {
 			final String[] split = linesplitter.split(line); // !SRP?

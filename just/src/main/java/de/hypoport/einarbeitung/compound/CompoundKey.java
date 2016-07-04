@@ -1,7 +1,5 @@
 package de.hypoport.einarbeitung.compound;
 
-
-
 public class CompoundKey {
 
 	private LaufzeitEnum laufzeit;

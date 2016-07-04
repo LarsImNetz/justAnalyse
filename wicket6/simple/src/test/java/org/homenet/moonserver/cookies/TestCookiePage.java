@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestCookiePage {
+
 	private WicketTester tester;
 
 	@Before

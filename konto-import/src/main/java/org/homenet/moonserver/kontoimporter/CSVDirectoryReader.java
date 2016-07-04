@@ -10,8 +10,11 @@ import java.util.List;
  * Find all CSV Files in a given directory.<br>
  * 
  * Design by Contract, baseFolder must exist, will not checked here!
- * @param baseFolder must exist
- * @param filter must given
+ * 
+ * @param baseFolder
+ *          must exist
+ * @param filter
+ *          must given
  */
 public class CSVDirectoryReader {
 

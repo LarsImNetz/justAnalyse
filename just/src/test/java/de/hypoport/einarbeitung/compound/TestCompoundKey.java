@@ -8,7 +8,6 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class TestCompoundKey {
 
 	@Test

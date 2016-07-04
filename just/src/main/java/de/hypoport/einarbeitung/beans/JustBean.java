@@ -6,6 +6,7 @@ import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 
 public class JustBean {
+
 	public JustBean() {
 	}
 

@@ -1,6 +1,5 @@
 package de.hypoport.einarbeitung.guice;
 
-
 public class SampleClass implements ISampleClass {
 
 	String value;

@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public abstract class ShowList extends Panel {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShowList.class);
-	
+
 	public ShowList(final String id, final IModel<List<String>> liste) {
 		super(id);
 
@@ -58,9 +58,8 @@ public abstract class ShowList extends Panel {
 
 		// Füllen einer Pseudo-Liste
 		final List<String> liste = new ArrayList<String>();
-		final String[] strings = {"Anakin Skywalker", "Ben Obi-Wan Kenobi", "Luke Skywalker", "Leia Organa", "Han Solo",
-				"Darth Vader", "Boba Fett", "Jabba the Hutt", "R2 D2", "C-3P0", "Lando Calrissian", "Qui-Gon Jinn",
-				"Padme Amidala", "Darth Maul", "Mace Windu", "Yoda", "Chewbacca"};
+		final String[] strings = {"Anakin Skywalker", "Ben Obi-Wan Kenobi", "Luke Skywalker", "Leia Organa", "Han Solo", "Darth Vader", "Boba Fett",
+				"Jabba the Hutt", "R2 D2", "C-3P0", "Lando Calrissian", "Qui-Gon Jinn", "Padme Amidala", "Darth Maul", "Mace Windu", "Yoda", "Chewbacca"};
 
 		for (final String f : strings) {
 			final String name = f;
@@ -68,7 +67,8 @@ public abstract class ShowList extends Panel {
 
 			try {
 				Thread.sleep(2 * 1000 / strings.length);
-			} catch (final InterruptedException e) {
+			}
+			catch (final InterruptedException e) {
 				LOGGER.error(e.getMessage());
 			}
 		}

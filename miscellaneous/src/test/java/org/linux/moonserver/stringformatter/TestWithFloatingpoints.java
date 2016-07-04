@@ -21,8 +21,9 @@ public class TestWithFloatingpoints {
 		Assert.assertEquals("1,00e+03", String.format(Locale.GERMAN, "%.2e", Double.valueOf(1000d))); // 2 Nachkommastellen
 		Assert.assertEquals("1.000000e+03", String.format(Locale.US, "%e", Double.valueOf(1000d))); // default Englisch (Punkt)
 	}
+
 	@Test
-	public void testStringFormatFloatF() {			
+	public void testStringFormatFloatF() {
 		Assert.assertEquals("1000", String.format(Locale.GERMANY, "%.0f", Double.valueOf(1000.123d)));
 		Assert.assertEquals("1000,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(1000d)));
 		Assert.assertEquals("100000,00", String.format(Locale.GERMANY, "%.2f", Double.valueOf(100000d)));

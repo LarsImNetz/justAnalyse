@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestInfo {
+
 	@Test
 	public void testGetInfo() throws Exception {
 		final IInformation info = new Info();

@@ -5,7 +5,8 @@ import org.junit.Test;
 
 public class TestStringFormatterWithString {
 
-	/* Format String Systax
+	/*
+	 * Format String Systax
 	 * %[argument_index$][flags][width][.precision]conversion
 	 */
 
@@ -61,12 +62,12 @@ public class TestStringFormatterWithString {
 		Assert.assertEquals("Column 1", String.format("%4s", title1));
 		Assert.assertEquals("Column 1", String.format("%-4s", title1));
 	}
-	
+
 	@Test
 	public void testStringWithParameter() throws Exception {
 		final String string1 = "parameter1";
 		final String string2 = "parameter2";
-		final String s = String.format("%2$s %1$s", string1, string2);		
+		final String s = String.format("%2$s %1$s", string1, string2);
 		Assert.assertEquals("parameter2 parameter1", s);
 	}
 }

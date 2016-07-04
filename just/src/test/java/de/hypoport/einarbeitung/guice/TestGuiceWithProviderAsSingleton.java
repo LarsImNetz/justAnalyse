@@ -52,7 +52,6 @@ public class TestGuiceWithProviderAsSingleton {
 		}
 	}
 
-
 	private static class TestClassProvider implements Provider<SampleClass> {
 
 		@Override

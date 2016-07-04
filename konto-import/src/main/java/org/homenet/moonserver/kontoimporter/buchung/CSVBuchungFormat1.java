@@ -1,13 +1,12 @@
 package org.homenet.moonserver.kontoimporter.buchung;
 
-final class CSVBuchungFormat1 extends CSVBuchung /* implements CSVBuchungspruefung */  {
+final class CSVBuchungFormat1 extends CSVBuchung /* implements CSVBuchungspruefung */ {
 	// Buchungstag;Wert;Verwendungszweck;Soll;Haben;Waehrung
 	// Buchungstag;Wert;Verwendungszweck;Soll;Haben;Währung
 
 	CSVBuchungFormat1(final String[] split) {
 		super(split);
 	}
-
 
 	public static BuchungFormatEnum check(final String line) {
 		if (line.equals("Buchungstag;Wert;Verwendungszweck;Soll;Haben;Waehrung")) {
@@ -20,4 +19,3 @@ final class CSVBuchungFormat1 extends CSVBuchung /* implements CSVBuchungspruefu
 	}
 
 }
-

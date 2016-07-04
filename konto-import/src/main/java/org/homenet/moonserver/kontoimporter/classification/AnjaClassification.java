@@ -9,7 +9,7 @@ public class AnjaClassification implements IClassification {
 	public ClassificationEnum getClassification() {
 		return classification;
 	}
-	
+
 	@Override
 	public ClassificationEnum classify(final IBuchung buchung) {
 		classification = ClassificationEnum.UNKNOWN;
@@ -106,6 +106,7 @@ public class AnjaClassification implements IClassification {
 		}
 		return false;
 	}
+
 	private void gehalt(final String verwendungszweck) {
 		final String[] all = {"GEHALT"};
 		if (checkStrings(verwendungszweck, all)) {
@@ -134,16 +135,15 @@ public class AnjaClassification implements IClassification {
 		}
 	}
 
-	
 	private void telefon(final String verwendungszweck) {
-		
+
 		if (verwendungszweck.contains("Telekom Deutschland")) {
 			classification = ClassificationEnum.TELEFON;
 		}
 	}
 
 	private void herrentunnel(final String verwendungszweck) {
-		
+
 		if (verwendungszweck.contains("Herrentunnel Luebeck")) {
 			classification = ClassificationEnum.HERRENTUNNEL;
 		}
@@ -157,12 +157,12 @@ public class AnjaClassification implements IClassification {
 	}
 
 	private void klamotten(final String verwendungszweck) {
-		
-		final String[] all = {"MANCHESTER-GROSSE", "S.OLIVER", "KARSTADT", "DEICHMANN",
-				"GOERTZ", "ZERO", "zero Fil.", "ERNSTINGS", "P&C", "C&A", "SCHUHBODE", "CB MODE", "GERRY WEBER", "TORKUHL GMBH"};
+
+		final String[] all = {"MANCHESTER-GROSSE", "S.OLIVER", "KARSTADT", "DEICHMANN", "GOERTZ", "ZERO", "zero Fil.", "ERNSTINGS", "P&C", "C&A", "SCHUHBODE",
+				"CB MODE", "GERRY WEBER", "TORKUHL GMBH"};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.KLAMOTTEN;
-		}		
+		}
 	}
 
 	private void spielzeug(final String verwendungszweck) {
@@ -173,7 +173,7 @@ public class AnjaClassification implements IClassification {
 	}
 
 	private void sport(final String verwendungszweck) {
-		final String[] all = {"TuS Luebeck" /*, "Mitgliedsbeitrag"*/};
+		final String[] all = {"TuS Luebeck" /* , "Mitgliedsbeitrag" */};
 		if (checkStrings(verwendungszweck, all)) {
 			classification = ClassificationEnum.SPORT;
 		}

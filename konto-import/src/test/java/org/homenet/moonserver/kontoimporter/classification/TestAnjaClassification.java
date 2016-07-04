@@ -9,12 +9,15 @@ import org.junit.Test;
 public class TestAnjaClassification {
 
 	AnjaClassification classificationSUT = new AnjaClassification();
+
 	@Test
 	public void testReflectionByName() throws Exception {
-		
-		for(final ClassificationEnum classEnum : ClassificationEnum.values()) {
+
+		for (final ClassificationEnum classEnum : ClassificationEnum.values()) {
 			final String name = classEnum.name().toLowerCase();
-			if (name.equals("unknown")) { break; }
+			if (name.equals("unknown")) {
+				break;
+			}
 			// search for method
 			boolean found = false;
 			final Method[] declaredMethods = classificationSUT.getClass().getDeclaredMethods();
@@ -40,7 +43,7 @@ public class TestAnjaClassification {
 	public void testCallMethod() throws Exception {
 		final Method method = classificationSUT.getClass().getMethod("herrentunnel", String.class);
 		Assert.assertNotNull(method);
-		
+
 		method.setAccessible(true);
 		method.invoke(classificationSUT, "Herrentunnel Luebeck");
 		Assert.assertEquals(ClassificationEnum.HERRENTUNNEL, classificationSUT.getClassification());

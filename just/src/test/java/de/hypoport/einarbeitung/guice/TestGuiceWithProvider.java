@@ -55,6 +55,7 @@ public class TestGuiceWithProvider {
 		Assert.assertNotSame(iTestClass2, iTestClass3);
 
 	}
+
 	private static class MyModule extends AbstractModule {
 
 		@Override
@@ -62,7 +63,6 @@ public class TestGuiceWithProvider {
 			bind(ISampleClass.class).toProvider(TestClassProvider.class);
 		}
 	}
-
 
 	private static class TestClassProvider implements Provider<SampleClass> {
 

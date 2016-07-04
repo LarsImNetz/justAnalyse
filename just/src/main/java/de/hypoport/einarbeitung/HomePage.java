@@ -49,13 +49,13 @@ public class HomePage extends WebPage {
 
 		};
 
-//		labelText = new AbstractReadOnlyModel<String>() {
-//
-//			@Override
-//			public String getObject() {
-//				return "Hier könnte Ihr Text stehen"; // EnvironmentProvider.getHostname();
-//			}
-//		};
+		//		labelText = new AbstractReadOnlyModel<String>() {
+		//
+		//			@Override
+		//			public String getObject() {
+		//				return "Hier könnte Ihr Text stehen"; // EnvironmentProvider.getHostname();
+		//			}
+		//		};
 		labelText = new StringModel("Hier könnte Ihr Text stehen");
 
 		label = new Label("label", labelText) {
@@ -107,17 +107,16 @@ public class HomePage extends WebPage {
 	public static void sleep() {
 		try {
 			Thread.sleep(200);
-		} catch (final InterruptedException e) {
+		}
+		catch (final InterruptedException e) {
 			LOGGER.error(e.getMessage());
 		}
 	}
 
-	
 	@Override
 	public void renderHead(final IHeaderResponse response) {
 		response.render(CssHeaderItem.forReference(new CssResourceReference(this.getClass(), "HomePage.css")));
 	}
-
 
 	public static class StringModel implements IModel<String> {
 
@@ -142,6 +141,5 @@ public class HomePage extends WebPage {
 			text = object;
 		}
 	}
-
 
 }

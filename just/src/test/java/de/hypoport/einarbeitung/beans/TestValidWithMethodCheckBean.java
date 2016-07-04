@@ -19,6 +19,7 @@ public class TestValidWithMethodCheckBean {
 		bean = new ValidWithMethodCheckBean();
 		validator = new Validator();
 	}
+
 	@Test
 	public void test() {
 		List<ConstraintViolation> violations = validator.validate(bean);
@@ -31,6 +32,5 @@ public class TestValidWithMethodCheckBean {
 		List<ConstraintViolation> violations = validator.validate(bean);
 		Assert.assertFalse("Es sollte einen Fehler geben.", violations.size() == 0);
 	}
-
 
 }

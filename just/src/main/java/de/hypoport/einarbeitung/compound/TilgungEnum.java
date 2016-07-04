@@ -2,7 +2,6 @@ package de.hypoport.einarbeitung.compound;
 
 import de.hypoport.einarbeitung.toolkit.Zins;
 
-
 public enum TilgungEnum {
 	EIN_PROZENT(1),
 	ZWEI_PROZENT(2),

@@ -35,9 +35,11 @@ public class TestSimpleDTO {
 		s.setHausnummer("1");
 		s.setPlz(12345);
 		s.setOrt("Ein Ort");
-		
+
 		final String json = OBJECTMAPPER.createJsonString(s);
-		Assert.assertEquals("{\"vorname\":\"Lars\",\"nachname\":\"Langhans\",\"geburtstag\":\"04.01.1968\",\"strasse\":\"Eine Strasse\",\"hausnummer\":\"1\",\"plz\":12345,\"ort\":\"Ein Ort\"}", json);
+		Assert.assertEquals(
+				"{\"vorname\":\"Lars\",\"nachname\":\"Langhans\",\"geburtstag\":\"04.01.1968\",\"strasse\":\"Eine Strasse\",\"hausnummer\":\"1\",\"plz\":12345,\"ort\":\"Ein Ort\"}",
+				json);
 	}
 
 }

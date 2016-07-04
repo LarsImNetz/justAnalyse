@@ -46,6 +46,5 @@ public class BuchungClassification implements IBuchungClassification {
 	public String toString() {
 		return "BuchungClassification [class=" + classification + ", buchung=" + buchung + "]";
 	}
-	
-	
+
 }

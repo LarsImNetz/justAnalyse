@@ -64,7 +64,4 @@ public class TestJsonCreation {
 		Assert.assertEquals("{\"eins\":2}", json);
 	}
 
-
-
-
 }

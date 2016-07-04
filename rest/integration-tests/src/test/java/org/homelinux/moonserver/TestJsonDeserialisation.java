@@ -1,10 +1,8 @@
 package org.homelinux.moonserver;
 
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 
 public class TestJsonDeserialisation {
 
@@ -23,14 +21,14 @@ public class TestJsonDeserialisation {
 		Assert.assertNotNull(obj);
 
 		final SimpleDTO s = (SimpleDTO) obj;
-		
-		Assert.assertEquals(1968,  s.getGeburtstag().getYear());
-		Assert.assertEquals(1,  s.getGeburtstag().getMonthValue());
-		Assert.assertEquals(4,  s.getGeburtstag().getDayOfMonth());
-		
+
+		Assert.assertEquals(1968, s.getGeburtstag().getYear());
+		Assert.assertEquals(1, s.getGeburtstag().getMonthValue());
+		Assert.assertEquals(4, s.getGeburtstag().getDayOfMonth());
+
 		Assert.assertEquals("Lars", s.getVorname());
 		Assert.assertEquals("Langhans", s.getNachname());
-		
+
 		Assert.assertEquals(null, s.getStrasse());
 		Assert.assertEquals(null, s.getHausnummer());
 		Assert.assertEquals(Integer.valueOf(12345), s.getPlz());

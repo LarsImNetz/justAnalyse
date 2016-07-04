@@ -19,5 +19,6 @@ public enum ClassificationEnum {
 	EAR,
 	HAUS,
 	VERSICHERUNG,
-	BETREUUNG, HERRENTUNNEL
+	BETREUUNG,
+	HERRENTUNNEL
 }

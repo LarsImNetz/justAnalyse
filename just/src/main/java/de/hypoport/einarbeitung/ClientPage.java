@@ -14,7 +14,6 @@ public class ClientPage extends WebPage {
 	public ClientPage(final PageParameters parameters) {
 		super(parameters);
 
-
 		labelText = new StringModel("später");
 
 		label = new Label("label", labelText) {

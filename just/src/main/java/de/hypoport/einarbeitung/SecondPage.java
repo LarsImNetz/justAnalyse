@@ -20,7 +20,6 @@ import org.apache.wicket.util.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class SecondPage extends WebPage {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecondPage.class);
@@ -29,7 +28,7 @@ public class SecondPage extends WebPage {
 
 	private int counter = 0;
 	private ListModel<String> listeModel;
-	
+
 	private transient SOAPEmulatingThread soapThread = null;
 
 	SOAPEmulatingThread getThread() {
@@ -77,17 +76,17 @@ public class SecondPage extends WebPage {
 				final String label = parameters.get("label").toString();
 				return label + " " + String.valueOf(counter);
 			}
-		};			
+		};
 
 		final Label label = new Label("label", labelModel) {
-				
+
 			@Override
 			protected void onConfigure() {
 				setVisibilityAllowed(true);
 				super.onConfigure();
 			}
 		};
-		
+
 		label.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(3)));
 		form.add(label);
 
@@ -117,8 +116,7 @@ public class SecondPage extends WebPage {
 		 * hier wird ein Timer erstellt, der alle Sekunde ein Update ausführen soll
 		 * am Ende jedes Updates wird geprüft, ob das Update noch ein weiteres mal gebraucht wird.
 		 */
-		final AjaxSelfUpdatingTimerBehavior ajaxSelfUpdatingTimerBehavior = new AjaxSelfUpdatingTimerBehavior(
-				Duration.ONE_SECOND) {
+		final AjaxSelfUpdatingTimerBehavior ajaxSelfUpdatingTimerBehavior = new AjaxSelfUpdatingTimerBehavior(Duration.ONE_SECOND) {
 
 			@Override
 			protected void onPostProcessTarget(final AjaxRequestTarget target) {

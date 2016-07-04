@@ -113,8 +113,8 @@ public class LarsClassification implements IClassification {
 
 	private void kosmetik(final String verwendungszweck) {
 
-		if (verwendungszweck.contains("Rossmann") || verwendungszweck.contains("ROSSMANN") || verwendungszweck.contains("DOUGLAS") || verwendungszweck.contains("PARFUEMERIE SCHUBAC")
-				|| verwendungszweck.contains("DER MODE SALON") || verwendungszweck.contains("APOTHEKE")) {
+		if (verwendungszweck.contains("Rossmann") || verwendungszweck.contains("ROSSMANN") || verwendungszweck.contains("DOUGLAS")
+				|| verwendungszweck.contains("PARFUEMERIE SCHUBAC") || verwendungszweck.contains("DER MODE SALON") || verwendungszweck.contains("APOTHEKE")) {
 			classification = ClassificationEnum.KOSMETIK;
 		}
 	}
@@ -122,7 +122,8 @@ public class LarsClassification implements IClassification {
 	private void klamotten(final String verwendungszweck) {
 
 		if (verwendungszweck.contains("MANCHESTER-GROSSE") || verwendungszweck.contains("KARSTADT") || verwendungszweck.contains("DEICHMANN")
-				|| verwendungszweck.contains("C&A") || verwendungszweck.contains("GOERTZ") || verwendungszweck.contains("ZERO") || verwendungszweck.contains("ERNSTINGS") || verwendungszweck.contains("P&C")) {
+				|| verwendungszweck.contains("C&A") || verwendungszweck.contains("GOERTZ") || verwendungszweck.contains("ZERO")
+				|| verwendungszweck.contains("ERNSTINGS") || verwendungszweck.contains("P&C")) {
 			classification = ClassificationEnum.KLAMOTTEN;
 		}
 	}

@@ -15,7 +15,7 @@ public class SinglePage extends WebPage {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SinglePage.class);
 
-	public SinglePage(final PageParameters parameters)  {
+	public SinglePage(final PageParameters parameters) {
 		super(parameters);
 		LOGGER.info("CTor()");
 		add(new Label("label", "Hier ist nix zu sehen"));
@@ -51,7 +51,6 @@ public class SinglePage extends WebPage {
 		LOGGER.info("onAfterRenderChildren()");
 		super.onAfterRenderChildren();
 	}
-
 
 	@Override
 	public void renderHead(final IHeaderResponse response) {
