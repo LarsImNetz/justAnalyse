@@ -24,6 +24,9 @@ public class Main {
 		Main main = new Main();
 		main.helloWorld();
 		LOGGER.trace("end main()");
+		// Just a test.
+		// If we leave with a throw, System.exit(1) is called
+		// throw new IllegalStateException("Schnubbel");
 	}
 
 	public void helloWorld() {
