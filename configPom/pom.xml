@@ -54,7 +54,7 @@
 		<junithamcrest.version>1.3</junithamcrest.version>
 		<commons.version>3.3.2</commons.version>
 		<commons-lang3.version>3.1</commons-lang3.version>
-		<guava.version>18.0</guava.version>
+		<guava.version>19.0</guava.version>
 		<httpclient.version>4.3.1</httpclient.version>
 		<hibernate-jpamodelgen.version>4.3.8-Final</hibernate-jpamodelgen.version>
 
