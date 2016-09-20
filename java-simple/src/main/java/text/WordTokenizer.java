@@ -1,6 +1,7 @@
 package text;
 
 import java.util.Enumeration;
+import java.util.NoSuchElementException;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Preconditions;
@@ -10,8 +11,6 @@ import com.google.common.base.Preconditions;
  * Ein Zeichen
  * Ein Word
  * Eine Zahl
- * 
- * @author lars.langhans
  *
  */
 public class WordTokenizer implements Enumeration<String>{
@@ -36,6 +35,9 @@ public class WordTokenizer implements Enumeration<String>{
 
 	@Override
 	public String nextElement() {
+		if (!hasMoreElements()) {
+			throw new NoSuchElementException("There are no more items");
+		}
 		// TODO Auto-generated method stub
 		char buchstabe = sentence.charAt(cursorPosition);
 		if (CharMatcher.javaLetter().matches(buchstabe)) {
