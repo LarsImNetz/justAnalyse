@@ -13,21 +13,20 @@ import com.google.common.base.Preconditions;
  * Eine Zahl
  *
  */
-public class WordTokenizer implements Enumeration<String>{
+public class WordTokenizer implements Enumeration<String> {
 
 	private final String sentence;
 
 	private int cursorPosition = 0;
 	private int maxPosition;
-	
+
 	public WordTokenizer(String sentence) {
 		Preconditions.checkNotNull(sentence);
-		
+
 		this.sentence = sentence;
 		this.maxPosition = sentence.length();
 	}
-	
-	
+
 	@Override
 	public boolean hasMoreElements() {
 		return cursorPosition < maxPosition;
@@ -51,14 +50,14 @@ public class WordTokenizer implements Enumeration<String>{
 
 	protected String findWord() {
 		int startPosition = cursorPosition;
-		
+
 		// find words end
 		while (cursorPosition < maxPosition) {
 			char buchstabe = sentence.charAt(cursorPosition);
 			if (!CharMatcher.javaLetter().matches(buchstabe)) {
 				break;
 			}
-			cursorPosition ++;
+			cursorPosition++;
 		}
 		final String word = sentence.substring(startPosition, cursorPosition);
 		return word;
@@ -66,14 +65,14 @@ public class WordTokenizer implements Enumeration<String>{
 
 	protected String findDigit() {
 		int startPosition = cursorPosition;
-		
+
 		// find words end
 		while (cursorPosition < maxPosition) {
 			char buchstabe = sentence.charAt(cursorPosition);
 			if (!CharMatcher.javaDigit().matches(buchstabe)) {
 				break;
 			}
-			cursorPosition ++;
+			cursorPosition++;
 		}
 		final String word = sentence.substring(startPosition, cursorPosition);
 		return word;
@@ -81,14 +80,14 @@ public class WordTokenizer implements Enumeration<String>{
 
 	protected String findRest() {
 		int startPosition = cursorPosition;
-		
+
 		// find words end
 		while (cursorPosition < maxPosition) {
 			char buchstabe = sentence.charAt(cursorPosition);
 			if (CharMatcher.javaLetterOrDigit().matches(buchstabe)) {
 				break;
 			}
-			cursorPosition ++;
+			cursorPosition++;
 		}
 		final String word = sentence.substring(startPosition, cursorPosition);
 		return word;
