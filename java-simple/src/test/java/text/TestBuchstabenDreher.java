@@ -47,7 +47,7 @@ public class TestBuchstabenDreher {
 	public void testVerwuerfeln_zwei() {
 		BuchstabenDreher word = new BuchstabenDreher("zwei");
 		word.verwuerfeln();
-		Assert.assertEquals("zwei", word.getWord());
+		Assert.assertEquals("zewi", word.getWord());
 	}
 
 	@Test
