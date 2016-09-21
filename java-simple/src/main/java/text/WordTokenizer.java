@@ -67,6 +67,7 @@ public class WordTokenizer implements Enumeration<String> {
 		return findRest();
 	}
 
+	// TODO: findWord, findDigit, findRest zusammenfassen, nur die Abbruchbedingung ist anders
 	private String findWord() {
 		int startPosition = cursorPosition;
 
