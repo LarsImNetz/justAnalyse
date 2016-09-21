@@ -12,6 +12,11 @@ import org.junit.Assert;
 
 public class TestTokenizerLearning {
 
+	@Test(expected = NullPointerException.class)
+	public void testStringTokenizer_null() {
+		new StringTokenizer(null);		
+	}
+	
 	@Test
 	public void testStringTokenizer_ein_Satz() {
 		String satz = "Heute ist Montag.";
