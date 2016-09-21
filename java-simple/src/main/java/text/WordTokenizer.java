@@ -7,18 +7,11 @@ import com.google.common.base.CharMatcher;
 import com.google.common.base.Preconditions;
 
 /**
- * Manöverkritik:
- * - Viel zu kompliziert.
- * - getNextElementType guckt in die Zukunft, funktioniert nicht nachgelagert
- * - nextElement ist nicht simple 
- * 
  * WordTokenizer zerpflückt einen Satz in seine Bestandteile
- * Ein Zeichen
  * Ein Word
- * Eine Zahl
+ * Eine Zahl (nur Ziffern!)
+ * Ein Zeichen
  * 
- * Idee: Wir können in die Zukunft gucken und wissen was als nächstes kommt, dann kann man leichter auf das Ergebnis reagieren
- *
  * Guava Usage Examples
  * https://github.com/leveluplunch/levelup-java-examples/tree/master/src/test/java/com/levelup/java/guava
  */
@@ -29,13 +22,11 @@ public class WordTokenizer implements Enumeration<String> {
 	private int cursorPosition = 0;
 	private int maxCursorPosition;
 
-	private boolean hasNextElements;
-	private String nextElement;
-
 	public enum Type {
 		WORD,
 		NUMBER,
-		OTHER
+		OTHER,
+		NOT_INITIALISED
 	};
 
 	private Type elementType;
@@ -43,20 +34,24 @@ public class WordTokenizer implements Enumeration<String> {
 	public WordTokenizer(String sentence) {
 		Preconditions.checkNotNull(sentence);
 
+		this.elementType = Type.NOT_INITIALISED;
 		this.sentence = sentence;
 		this.maxCursorPosition = sentence.length();
-
-		this.hasNextElements = lookForMoreElement();
-		this.nextElement = peekElement();
 	}
 
-	private boolean lookForMoreElement() {
+	public Type getElementType() {
+		return elementType;
+	}
+	
+	@Override
+	public boolean hasMoreElements() {
 		return cursorPosition < maxCursorPosition;
 	}
 
-	private String peekElement() {
-		if (!hasNextElements) {
-			return "";
+	@Override
+	public String nextElement() {
+		if (!hasMoreElements()) {
+			throw new NoSuchElementException("There are no more items");
 		}
 
 		char buchstabe = sentence.charAt(cursorPosition);
@@ -117,27 +112,4 @@ public class WordTokenizer implements Enumeration<String> {
 		return word;
 	}
 
-	// TODO: must be called before nextElement()
-	public Type getNextElementType() {
-		return elementType;
-	}
-	
-	// Enumeration API
-	@Override
-	public boolean hasMoreElements() {
-		return hasNextElements;
-	}
-
-	@Override
-	public String nextElement() {
-		if (!hasNextElements) {
-			throw new NoSuchElementException("There are no more items");
-		}
-
-		final String result = nextElement;
-		
-		this.hasNextElements = lookForMoreElement();
-		this.nextElement = peekElement();
-		return result;
-	}
 }

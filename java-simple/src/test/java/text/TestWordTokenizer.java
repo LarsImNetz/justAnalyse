@@ -48,17 +48,17 @@ public class TestWordTokenizer {
 		Assert.assertEquals(".", token.nextElement());
 	}
 
-//	@Test
-//	public void testWordTokenizer_getElementType_only() {
-//		WordTokenizer token = new WordTokenizer("Heute ist Montag.");
-//		Assert.assertEquals(WordTokenizer.Type.NOT_INITIALISED, token.getElementType());
-//	}
+	@Test
+	public void testWordTokenizer_getElementType_only() {
+		WordTokenizer token = new WordTokenizer("Heute ist Montag.");
+		Assert.assertEquals(WordTokenizer.Type.NOT_INITIALISED, token.getElementType());
+	}
 
-//	@Test
-//	public void testWordTokenizer_getElementType() {
-//		WordTokenizer token = new WordTokenizer("Heute ist Montag.");
-//		Assert.assertEquals("Heute", token.nextElement());
-//		Assert.assertEquals(WordTokenizer.Type.WORD, token.getElementType());
-//	}
+	@Test
+	public void testWordTokenizer_getElementType() {
+		WordTokenizer token = new WordTokenizer("Heute ist Montag.");
+		Assert.assertEquals("Heute", token.nextElement());
+		Assert.assertEquals(WordTokenizer.Type.WORD, token.getElementType());
+	}
 
 }
