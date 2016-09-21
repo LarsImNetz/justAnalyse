@@ -7,6 +7,11 @@ import com.google.common.base.CharMatcher;
 import com.google.common.base.Preconditions;
 
 /**
+ * Manöverkritik:
+ * - Viel zu kompliziert.
+ * - getNextElementType guckt in die Zukunft, funktioniert nicht nachgelagert
+ * - nextElement ist nicht simple 
+ * 
  * WordTokenizer zerpflückt einen Satz in seine Bestandteile
  * Ein Zeichen
  * Ein Word
@@ -29,8 +34,8 @@ public class WordTokenizer implements Enumeration<String> {
 
 	public enum Type {
 		WORD,
-		DIGIT,
-		PUNCTUATION
+		NUMBER,
+		OTHER
 	};
 
 	private Type elementType;
@@ -42,36 +47,29 @@ public class WordTokenizer implements Enumeration<String> {
 		this.maxCursorPosition = sentence.length();
 
 		this.hasNextElements = lookForMoreElement();
-		peekElement();
+		this.nextElement = peekElement();
 	}
 
 	private boolean lookForMoreElement() {
 		return cursorPosition < maxCursorPosition;
 	}
 
-	private void peekElement() {
+	private String peekElement() {
 		if (!hasNextElements) {
-			return;
-		}
-
-		if (!lookForMoreElement()) {
-			hasNextElements = false;
-			return;
+			return "";
 		}
 
 		char buchstabe = sentence.charAt(cursorPosition);
 		if (CharMatcher.javaLetter().matches(buchstabe)) {
 			elementType = Type.WORD;
-			nextElement = findWord();
-			return;
+			return findWord();
 		}
 		if (CharMatcher.javaDigit().matches(buchstabe)) {
-			elementType = Type.DIGIT;
-			nextElement = findDigit();
-			return;
+			elementType = Type.NUMBER;
+			return findDigit();
 		}
-		elementType = Type.PUNCTUATION;
-		nextElement  = findRest();
+		elementType = Type.OTHER;
+		return findRest();
 	}
 
 	private String findWord() {
@@ -119,6 +117,7 @@ public class WordTokenizer implements Enumeration<String> {
 		return word;
 	}
 
+	// TODO: must be called before nextElement()
 	public Type getNextElementType() {
 		return elementType;
 	}
@@ -134,8 +133,11 @@ public class WordTokenizer implements Enumeration<String> {
 		if (!hasNextElements) {
 			throw new NoSuchElementException("There are no more items");
 		}
+
 		final String result = nextElement;
-		peekElement();
+		
+		this.hasNextElements = lookForMoreElement();
+		this.nextElement = peekElement();
 		return result;
 	}
 }
