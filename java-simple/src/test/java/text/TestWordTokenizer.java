@@ -1,21 +1,31 @@
 package text;
 
+import java.util.Enumeration;
 import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestWordTokenizer {
 
+	Enumeration<String> token;
+
 	@Test(expected = NoSuchElementException.class)
 	public void testWordTokenizer_EnumerationAPI_nix() {
-		WordTokenizer token = new WordTokenizer("");
+		token = new WordTokenizer("");
 		token.nextElement();
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testWordTokenizer_null() {
+		new WordTokenizer(null);
 	}
 
 	@Test()
 	public void testWordTokenizer_EnumerationAPI_ein_Element() {
-		WordTokenizer token = new WordTokenizer("eins");
+		token = new WordTokenizer("eins");
 
 		Assert.assertTrue(token.hasMoreElements());
 
@@ -25,13 +35,13 @@ public class TestWordTokenizer {
 
 	@Test
 	public void testWordTokenizer_EnumerationAPI_first() {
-		WordTokenizer token = new WordTokenizer("Heute ist Montag.");
+		token = new WordTokenizer("Heute ist Montag.");
 		Assert.assertEquals("Heute", token.nextElement());
 	}
 
 	@Test
 	public void testWordTokenizer_EnumerationAPI_allWords() {
-		WordTokenizer token = new WordTokenizer("Heute ist Montag.");
+		token = new WordTokenizer("Heute ist Montag.");
 		Assert.assertEquals("Heute", token.nextElement());
 		Assert.assertEquals(" ", token.nextElement());
 		Assert.assertEquals("ist", token.nextElement());

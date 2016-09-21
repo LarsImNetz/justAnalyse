@@ -11,48 +11,74 @@ import com.google.common.base.Preconditions;
  * Ein Zeichen
  * Ein Word
  * Eine Zahl
+ * 
+ * Idee: Wir können in die Zukunft gucken und wissen was als nächstes kommt, dann kann man leichter auf das Ergebnis reagieren
  *
+ * Guava Usage Examples
+ * https://github.com/leveluplunch/levelup-java-examples/tree/master/src/test/java/com/levelup/java/guava
  */
 public class WordTokenizer implements Enumeration<String> {
 
 	private final String sentence;
 
 	private int cursorPosition = 0;
-	private int maxPosition;
+	private int maxCursorPosition;
 
+	private boolean hasNextElements;
+	private String nextElement;
+
+	public enum Type {
+		WORD,
+		DIGIT,
+		PUNCTUATION
+	};
+
+	private Type elementType;
+	
 	public WordTokenizer(String sentence) {
 		Preconditions.checkNotNull(sentence);
 
 		this.sentence = sentence;
-		this.maxPosition = sentence.length();
+		this.maxCursorPosition = sentence.length();
+
+		this.hasNextElements = lookForMoreElement();
+		peekElement();
 	}
 
-	@Override
-	public boolean hasMoreElements() {
-		return cursorPosition < maxPosition;
+	private boolean lookForMoreElement() {
+		return cursorPosition < maxCursorPosition;
 	}
 
-	@Override
-	public String nextElement() {
-		if (!hasMoreElements()) {
-			throw new NoSuchElementException("There are no more items");
+	private void peekElement() {
+		if (!hasNextElements) {
+			return;
 		}
-		// TODO Auto-generated method stub
+
+		if (!lookForMoreElement()) {
+			hasNextElements = false;
+			return;
+		}
+
 		char buchstabe = sentence.charAt(cursorPosition);
 		if (CharMatcher.javaLetter().matches(buchstabe)) {
-			return findWord();
+			elementType = Type.WORD;
+			nextElement = findWord();
+			return;
 		}
 		if (CharMatcher.javaDigit().matches(buchstabe)) {
-			return findDigit();
+			elementType = Type.DIGIT;
+			nextElement = findDigit();
+			return;
 		}
-		return findRest();
+		elementType = Type.PUNCTUATION;
+		nextElement  = findRest();
 	}
 
-	protected String findWord() {
+	private String findWord() {
 		int startPosition = cursorPosition;
 
 		// find words end
-		while (cursorPosition < maxPosition) {
+		while (cursorPosition < maxCursorPosition) {
 			char buchstabe = sentence.charAt(cursorPosition);
 			if (!CharMatcher.javaLetter().matches(buchstabe)) {
 				break;
@@ -63,11 +89,11 @@ public class WordTokenizer implements Enumeration<String> {
 		return word;
 	}
 
-	protected String findDigit() {
+	private String findDigit() {
 		int startPosition = cursorPosition;
 
 		// find words end
-		while (cursorPosition < maxPosition) {
+		while (cursorPosition < maxCursorPosition) {
 			char buchstabe = sentence.charAt(cursorPosition);
 			if (!CharMatcher.javaDigit().matches(buchstabe)) {
 				break;
@@ -78,11 +104,11 @@ public class WordTokenizer implements Enumeration<String> {
 		return word;
 	}
 
-	protected String findRest() {
+	private String findRest() {
 		int startPosition = cursorPosition;
 
 		// find words end
-		while (cursorPosition < maxPosition) {
+		while (cursorPosition < maxCursorPosition) {
 			char buchstabe = sentence.charAt(cursorPosition);
 			if (CharMatcher.javaLetterOrDigit().matches(buchstabe)) {
 				break;
@@ -93,4 +119,23 @@ public class WordTokenizer implements Enumeration<String> {
 		return word;
 	}
 
+	public Type getNextElementType() {
+		return elementType;
+	}
+	
+	// Enumeration API
+	@Override
+	public boolean hasMoreElements() {
+		return hasNextElements;
+	}
+
+	@Override
+	public String nextElement() {
+		if (!hasNextElements) {
+			throw new NoSuchElementException("There are no more items");
+		}
+		final String result = nextElement;
+		peekElement();
+		return result;
+	}
 }
