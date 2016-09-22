@@ -7,7 +7,7 @@ import com.google.common.base.CharMatcher;
 import com.google.common.base.Preconditions;
 
 /**
- * WordTokenizer zerpflückt einen Satz in seine Bestandteile
+ * SentenceTokenizer zerpflückt einen Satz in seine Bestandteile
  * Ein Word
  * Eine Zahl (nur Ziffern!)
  * Ein Zeichen
@@ -15,7 +15,7 @@ import com.google.common.base.Preconditions;
  * Guava Usage Examples
  * https://github.com/leveluplunch/levelup-java-examples/tree/master/src/test/java/com/levelup/java/guava
  */
-public class WordTokenizer implements Enumeration<String> {
+public class SentenceTokenizer implements Enumeration<String> {
 
 	private final String sentence;
 
@@ -31,7 +31,7 @@ public class WordTokenizer implements Enumeration<String> {
 
 	private Type elementType;
 	
-	public WordTokenizer(String sentence) {
+	public SentenceTokenizer(String sentence) {
 		Preconditions.checkNotNull(sentence);
 
 		this.elementType = Type.NOT_INITIALISED;
