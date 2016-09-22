@@ -13,11 +13,14 @@ import com.google.common.base.Preconditions;
  */
 public class BuchstabenManipulator {
 
-	private final char[] buchstaben;
+	private char[] buchstaben;
 	
-	public BuchstabenManipulator(String word) {
+	public BuchstabenManipulator() {
+	}
+
+	public void setWord(String word) {
 		Preconditions.checkArgument(word != null);
-		this.buchstaben = word.toCharArray(); 
+		this.buchstaben = word.toCharArray();
 	}
 	
 	public String getWord() {

@@ -3,18 +3,20 @@ package text;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestBuchstabenDreher {
+public class TestWordDreher {
 
 	@Test
 	public void testVerdrehen_ein() throws Exception {
-		BuchstabenDreher word = new BuchstabenDreher("ein");
+		WordDreher word = new WordDreher();
+		word.setWord("ein");
 		word.verdrehen();
 		Assert.assertEquals("ein", word.getWord());
 	}
 
 	@Test
 	public void testVerdrehen_zwei() throws Exception {
-		BuchstabenDreher word = new BuchstabenDreher("zwei");
+		WordDreher word = new WordDreher();
+		word.setWord("zwei");
 		word.verdrehen();
 		Assert.assertEquals("zewi", word.getWord());
 	}
@@ -22,7 +24,8 @@ public class TestBuchstabenDreher {
 	// Word verdrehen mit ungerader Anzahl Buchstaben
 	@Test
 	public void testVerdrehen_gehen() throws Exception {
-		BuchstabenDreher word = new BuchstabenDreher("gehen");
+		WordDreher word = new WordDreher();
+		word.setWord("gehen");
 		word.verdrehen();
 		Assert.assertEquals("gheen", word.getWord());
 	}
@@ -30,7 +33,8 @@ public class TestBuchstabenDreher {
 	// Word mit 6 Buchstaben verdrehen
 	@Test
 	public void testVerdrehen_laufen() throws Exception {
-		BuchstabenDreher word = new BuchstabenDreher("laufen");
+		WordDreher word = new WordDreher();
+		word.setWord("laufen");
 		word.verdrehen();
 		Assert.assertEquals("luaefn", word.getWord());
 	}
@@ -38,21 +42,24 @@ public class TestBuchstabenDreher {
 	// Word mit 6 Buchstaben verdrehen
 	@Test
 	public void testVerdrehen_vergleich() throws Exception {
-		BuchstabenDreher word = new BuchstabenDreher("vergleich");
+		WordDreher word = new WordDreher();
+		word.setWord("vergleich");
 		word.verdrehen();
 		Assert.assertEquals("vrelgiech", word.getWord());
 	}
 
 	@Test
 	public void testVerwuerfeln_zwei() {
-		BuchstabenDreher word = new BuchstabenDreher("zwei");
+		WordDreher word = new WordDreher();
+		word.setWord("zwei");
 		word.verwuerfeln();
 		Assert.assertEquals("zewi", word.getWord());
 	}
 
 	@Test
 	public void testVerwuerfeln_rennt() {
-		BuchstabenDreher word = new BuchstabenDreher("rennt");
+		WordDreher word = new WordDreher();
+		word.setWord("rennt");
 		word.verwuerfeln();
 		Assert.assertEquals("rnnet", word.getWord());
 	}
