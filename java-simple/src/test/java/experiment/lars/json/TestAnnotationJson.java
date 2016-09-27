@@ -73,7 +73,8 @@ public class TestAnnotationJson {
 
 		final Pojo pojo = new Pojo(foo);
 
-		final String expected = "{\"foo\":\"" + foo + "\"}";
+		// final String expected = "{\"foo\":\"" + foo + "\"}";
+		final String expected = "{\"b\":null,\"foo\":\"" + foo + "\"}";
 
 		final ObjectMapper objectMapper = new ObjectMapper();
 		final String output = objectMapper.writeValueAsString(pojo);
