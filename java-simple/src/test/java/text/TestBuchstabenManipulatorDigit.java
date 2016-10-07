@@ -51,5 +51,12 @@ public class TestBuchstabenManipulatorDigit {
 		manipulator.buchstabenErsetzen();
 		Assert.assertEquals("73X7", manipulator.getWord());
 	}
-
+	
+	/*
+	Diese Mitteilung dient als Beweis dafuer, was fuer erstaunliche Dinge unser Verstand
+	leisten kann. Beindruckend.
+	am Anfang war's schon schwer, aber jetzt, in dieser Zeile, liest es dein Gehirn
+	automatisch. Ohne darueber nachzudenken. Sei stolz drauf.
+	Also teile dieses Bild, wenn du es lesen kannst.
+	*/
 }
