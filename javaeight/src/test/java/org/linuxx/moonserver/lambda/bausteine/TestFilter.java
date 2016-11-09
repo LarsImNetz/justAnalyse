@@ -19,8 +19,9 @@ public class TestFilter {
 	}
 
 	/*
-	 * Das funktionale Interface Function<T,R> transformiert einen Eingabetyp T in einen Ausgabetyp R. Ein typisches Nutzungsszenario sind Mapper, die
-	 * Eingabedaten in ein Ausgabedatum transformieren, konvertieren, berechnen. Eine solche Funktion kam im einleitenden Beispiel bei der Rabattierung als
+	 * Das funktionale Interface Function<T,R> transformiert einen Eingabetyp T in einen Ausgabetyp R.
+	 * Ein typisches Nutzungsszenario sind Mapper, die Eingabedaten in ein Ausgabedatum transformieren,
+	 * konvertieren, berechnen. Eine solche Funktion kam im einleitenden Beispiel bei der Rabattierung als
 	 * mapToDouble(price -> price * 0.9) zum Einsatz. Die Definition von Function sieht wie folgender Code-Ausschnitt aus:
 	 * 
 	 */
@@ -38,8 +39,9 @@ public class TestFilter {
 	}
 
 	/*
-	 * square ist eine Abbildung von Integer nach Integer und liefert das Quadrat der übergebenen Zahl zurück. Eine Anwendung mit Function.apply ist – wie in
-	 * Zeile 4 gezeigt – möglich. Besser und im Sinne von "Code as Data" ist aber, die Function<T,R> als Lambda-Ausdruck an die generische Funktion Stream.map zu
+	 * square ist eine Abbildung von Integer nach Integer und liefert das Quadrat der übergebenen Zahl zurück.
+	 * Eine Anwendung mit Function.apply ist – wie in Zeile 4 gezeigt – möglich. Besser und im Sinne von
+	 * "Code as Data" ist aber, die Function<T,R> als Lambda-Ausdruck an die generische Funktion Stream.map zu
 	 * übergeben.
 	 *
 	 * map ( n -> n*n, input );

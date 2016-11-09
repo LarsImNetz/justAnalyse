@@ -7,7 +7,8 @@ public class TestConsumer {
 	/*
 	 * Funktionales Interface Consumer
 	 * 
-	 * Consumer<T> ist eine Funktion, die den Programmzustand durch Seiteneffekte verändert. Ein typisches Nutzungsszenario ist die Verarbeitung von Collections
+	 * Consumer<T> ist eine Funktion, die den Programmzustand durch Seiteneffekte verändert.
+	 *  Ein typisches Nutzungsszenario ist die Verarbeitung von Collections
 	 * mit forEach. Die Definition von Consumer zeigt der folgende Code-Ausschnitt:
 	 */
 	@FunctionalInterface
@@ -33,7 +34,8 @@ public class TestConsumer {
 	}
 
 	/*
-	 * Auch hier gilt wieder: Consumer<T>.accept lässt sich direkt (Zeile 2) aufrufen, im Sinne von "Code as Data" ist es jedoch besser, den Consumer<T> als
+	 * Auch hier gilt wieder: Consumer<T>.accept lässt sich direkt (Zeile 2) aufrufen, im Sinne
+	 * von "Code as Data" ist es jedoch besser, den Consumer<T> als
 	 * Lambda-Ausdruck an Stream.foreach zu übergeben:
 	 *
 	 * forEach ( s -> System.out.println(s), input );
