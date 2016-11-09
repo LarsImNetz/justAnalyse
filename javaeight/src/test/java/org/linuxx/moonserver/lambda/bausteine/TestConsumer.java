@@ -1,7 +1,5 @@
 package org.linuxx.moonserver.lambda.bausteine;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class TestConsumer {

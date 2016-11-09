@@ -36,6 +36,9 @@ public class TestPredicate {
 		// default Predicate<T> or(...) {...}
 		// default Predicate<T> xor(...) {...}
 
+		default	Predicate<T> and(Predicate<T> other) { return egal -> test(egal) &&  other.test(egal); }
+ 		default	Predicate<T> or(Predicate<T> other) { return egal -> test(egal) || other.test(egal); }
+
 	}
 
 	@Test
@@ -45,27 +48,39 @@ public class TestPredicate {
 		
 		Predicate<Integer> isOdd = isEven.negate();
 		assertFalse(isOdd.test(2));
+		assertTrue(isOdd.test(1));
+		assertTrue(isOdd.test(3));
 	}
 
 
-//	@Test
-//	public void testPositiv() throws Exception {
-//		Predicate<Integer> isPositive = n -> n > 0;
-//		Predicate<Integer> isEven = n -> n % 2 == 0;
-//		
-//		Predicate<Integer> isEvenAndPositive = isEven.and(isPositive);
-//		assertTrue(isEvenAndPositive.test(2));
-//		assertFalse(isEvenAndPositive.test(0));
-//	}
-//	
-//	@Test
-//	public void testZero() throws Exception {
-//		Predicate<Integer> isPositive = n -> n > 0;
-//		Predicate<Integer> isZero = n -> n == 0;
-//
-//		Predicate<Integer> isZeroOrPositive = isPositive.or(isZero);
-//		assertTrue(isZeroOrPositive.test(0));
-//	}
+	@Test
+	public void testPositiv() throws Exception {
+		Predicate<Integer> isPositive = n -> n > 0;
+		Predicate<Integer> isEven = n -> n % 2 == 0;
+		
+		Predicate<Integer> isEvenAndPositive = isEven.and(isPositive);
+		assertTrue(isEvenAndPositive.test(2)); // true
+		assertFalse(isEvenAndPositive.test(3)); // ! even
+		assertFalse(isEvenAndPositive.test(-2)); // ! positiv
+		assertFalse(isEvenAndPositive.test(-1)); // ! positiv
+		assertFalse(isEvenAndPositive.test(0)); // ! positiv
+		assertTrue(isEvenAndPositive.test(4)); // true
+		assertFalse(isEvenAndPositive.test(5)); // ! even
+	}
+
+	
+	//	
+	@Test
+	public void testZero() throws Exception {
+		Predicate<Integer> isPositive = n -> n > 0;
+		Predicate<Integer> isZero = n -> n == 0;
+
+		Predicate<Integer> isZeroOrPositive = isPositive.or(isZero);
+		assertTrue(isZeroOrPositive.test(0));
+		assertTrue(isZeroOrPositive.test(1));
+
+		assertFalse(isZeroOrPositive.test(-1));
+	}
 
 	/*
 	 * Auch Predicate<T>.test lässt sich direkt aufrufen, empfehlenswert ist aber auch hier die Übergabe des Predicate<T> als Lambda-Ausdruck an Stream.filter.

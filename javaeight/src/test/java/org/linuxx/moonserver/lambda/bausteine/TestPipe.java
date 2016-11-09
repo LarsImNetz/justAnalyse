@@ -1,10 +1,5 @@
 package org.linuxx.moonserver.lambda.bausteine;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.Test;
-
 public class TestPipe {
 
 	/*
