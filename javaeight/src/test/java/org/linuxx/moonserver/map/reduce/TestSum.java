@@ -35,7 +35,9 @@ public class TestSum {
 
 		final List<Integer> asList = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80);
 		final Stream<Integer> stream = asList.stream();
-		final int n = stream.mapToInt(value -> {return 1;}).sum();
+		final int n = stream.mapToInt(value -> {
+			return 1;
+		}).sum();
 
 		Assert.assertEquals(8, n);
 	}

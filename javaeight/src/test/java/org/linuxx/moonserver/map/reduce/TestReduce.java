@@ -23,8 +23,8 @@ public class TestReduce {
 	public void testReduceAsSum2() {
 		final Stream<Integer> stream = asList.stream();
 		Integer count = stream.reduce(0, Integer::sum);
-		
-		Assert.assertEquals(Integer.valueOf(10 + 20 + 30 + 40 + 50 + 60 + 70 + 80), count);		
+
+		Assert.assertEquals(Integer.valueOf(10 + 20 + 30 + 40 + 50 + 60 + 70 + 80), count);
 	}
 
 	@Test
@@ -44,8 +44,8 @@ public class TestReduce {
 	}
 
 	private static int count(int a, int b) {
-        return a + 1;
-    }
+		return a + 1;
+	}
 
 	@Test
 	public void testCount() {
@@ -54,6 +54,5 @@ public class TestReduce {
 
 		Assert.assertEquals(8L, countValue);
 	}
-
 
 }
