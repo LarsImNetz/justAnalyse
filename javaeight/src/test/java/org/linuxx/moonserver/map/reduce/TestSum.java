@@ -5,14 +5,21 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestSum {
 
+	private List<Integer> asList;
+	
+	@Before
+	public void setup() {
+		asList = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80);		
+	}
+	
 	@Test
 	public void testSumWithFilter() {
 
-		final List<Integer> asList = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80);
 		final Stream<Integer> stream = asList.stream();
 		final double sum = stream.filter(value -> value > 40).mapToDouble(value -> value * 1.0).sum();
 
@@ -23,7 +30,6 @@ public class TestSum {
 	@Test
 	public void testSum() {
 
-		final List<Integer> asList = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80);
 		final Stream<Integer> stream = asList.stream();
 		final double sum = stream.mapToDouble(value -> value * 1.0).sum();
 
@@ -33,7 +39,6 @@ public class TestSum {
 	@Test
 	public void testSumAsCountWithReturn() {
 
-		final List<Integer> asList = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80);
 		final Stream<Integer> stream = asList.stream();
 		final int n = stream.mapToInt(value -> {
 			return 1;
@@ -45,10 +50,11 @@ public class TestSum {
 	@Test
 	public void testSumAsCount() {
 
-		final List<Integer> asList = Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80);
 		final Stream<Integer> stream = asList.stream();
 		final int n = stream.mapToInt(value -> 1).sum();
 
 		Assert.assertEquals(8, n);
 	}
+
 }
+
