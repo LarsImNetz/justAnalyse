@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -13,8 +15,14 @@ public class Main {
 //		execCommand(cmd);
 
 		File tempFile = File.createTempFile("temp", ".txt");
-		String cmdSingle =  "/bin/bash -c echo Hello World >" + tempFile.getAbsolutePath();
-		execSingleCommand(cmdSingle);
+//		String cmdSingle =  "/bin/bash -c echo Hello World >" + tempFile.getAbsolutePath();
+//		execSingleCommand(cmdSingle);
+
+		ArrayList<String> command = new ArrayList<>();
+		command.add("/bin/bash");
+		command.add("-c");
+		command.add("echo Hello World >" + tempFile.getAbsolutePath());
+		execSingleCommand(command);
 	}
 
 	static void ownRuntime() throws Exception {
@@ -70,20 +78,21 @@ public class Main {
 //		}
 //	}
 
-	static void execSingleCommand(String command) {
+	static void execSingleCommand(List<String> commandList) {
 		String line;
 		try {
-			Process p = Runtime.getRuntime().exec(command);
-//			BufferedReader stdoutReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//			while ((line = stdoutReader.readLine()) != null) {
-//				// process procs standard output here
-//				System.out.println(" .. stdout: " + line);
-//			}
-//			BufferedReader stderrReader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-//			while ((line = stderrReader.readLine()) != null) {
-//				// process procs standard error here
-//				System.err.println(" .. stderr: " + line);
-//			}
+			Process p = new ProcessBuilder(commandList).start();
+			//Process p = Runtime.getRuntime().exec(command);
+			BufferedReader stdoutReader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			while ((line = stdoutReader.readLine()) != null) {
+				// process procs standard output here
+				System.out.println(" .. stdout: " + line);
+			}
+			BufferedReader stderrReader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			while ((line = stderrReader.readLine()) != null) {
+				// process procs standard error here
+				System.err.println(" .. stderr: " + line);
+			}
 			int retValue = p.waitFor();
 			System.out.println(" .. exit code:" + Integer.toString(retValue));
 
