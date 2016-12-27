@@ -23,6 +23,9 @@ public class Main {
 		command.add("-c");
 		command.add("echo Hello World >" + tempFile.getAbsolutePath());
 		execSingleCommand(command);
+		
+		String fileContent = new String(Files.readAllBytes(Paths.get(tempFile.getAbsolutePath())));
+		System.out.println("FileContent: " + fileContent);
 	}
 
 	static void ownRuntime() throws Exception {
