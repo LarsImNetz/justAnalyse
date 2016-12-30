@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,30 +27,31 @@ public class ITestRuntimeWrapper {
 	@Test
 	public void testExec() throws IOException, InterruptedException {
 
-		System.out.println("#####################################################################################");
 		File temp = File.createTempFile("temp-file-name", ".tmp");
 		Process test = null;
-		String command = null;
-		System.out.println("os.name: " + System.getProperty("os.name"));
-		System.out.println("Tempfile: " + temp.getAbsolutePath());
-		if (System.getProperty("os.name").startsWith("Windows")) {
-			command = "C:\\Windows\\System32\\cmd.exe /C echo Hello World > " + temp.getAbsolutePath();
-			System.out.println("#" + command);
+		ArrayList<String> commandList = new ArrayList<>();
+		String osType = System.getProperty("os.name");
+		if (osType.startsWith("Windows")) {			
+			commandList.add("C:\\Windows\\System32\\cmd.exe");
+			commandList.add("/C");
+			commandList.add("echo Hello World > " + temp.getAbsolutePath());
 		}
-		if (System.getProperty("os.name").startsWith("Linux")) {
+		else if (osType.startsWith("Linux")) {
 			Assert.assertTrue(new File("/bin/bash").exists());
-			command = "/bin/bash -c \"echo Hello World > " + temp.getAbsolutePath() + "\"";
-			System.out.println("#" + command);
+			commandList.add("/bin/bash");
+			commandList.add("-c");
+			commandList.add("echo Hello World > " + temp.getAbsolutePath());
 		}
-		System.out.println("#####################################################################################");
-		test = runtimeWrapperSUT.exec(command);
+		else {
+			Assert.assertTrue("This system "+ osType +" is not supported yet.", false);
+		}
+		test = runtimeWrapperSUT.exec(commandList);
 		Assert.assertNotNull(test);
 		
 		test.waitFor();
 		int exitValue = test.exitValue();
 
 		Assert.assertEquals(0, exitValue);
-		Thread.sleep(300);
 
 		Assert.assertTrue(temp.exists());
 		String fileContent = new String(Files.readAllBytes(Paths.get(temp.getAbsolutePath())));

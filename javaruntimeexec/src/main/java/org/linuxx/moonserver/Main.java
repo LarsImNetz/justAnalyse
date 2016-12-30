@@ -28,6 +28,7 @@ public class Main {
 		System.out.println("FileContent: " + fileContent);
 	}
 
+	/*
 	static void ownRuntime() throws Exception {
 		RuntimeWrapper runtimeWrapperSUT = new RuntimeWrapper();
 
@@ -59,7 +60,8 @@ public class Main {
 		System.out.println("FileContent: " + fileContent);
 
 	}
-
+*/
+	
 //	static void execCommand(String[] commandArr) {
 //		String line;
 //		try {
