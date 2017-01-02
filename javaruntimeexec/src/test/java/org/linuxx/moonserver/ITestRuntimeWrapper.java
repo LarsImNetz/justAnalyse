@@ -57,5 +57,7 @@ public class ITestRuntimeWrapper {
 		String fileContent = new String(Files.readAllBytes(Paths.get(temp.getAbsolutePath())));
 
 		Assert.assertTrue(fileContent.startsWith("Hello World"));
+
+		temp.delete();
 	}
 }
