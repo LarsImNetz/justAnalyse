@@ -12,37 +12,37 @@ public class Phrase implements ISatz {
 	Adjektiv adjektiv1 = new Adjektiv(
 			"bilateralen koordinierten ambivalenten kategorischen retrograden zeitgemäßen progressiven intuitiven desintegrierten traditionellen belastbaren");
 	Adjektiv adjektiv1b = new Adjektiv("pathologischen funktionellen geordneten extrapolierten konvergenten kalzinierenden rechnergesteuerten terminologischen");
-	Nomen nomen1 = new Nomen(
+	Substantiv nomen1 = new Substantiv(
 			"Beziehungs- Analyse- Kooperations- Unternehmens- Universal- Interdisziplinär- Korrelations- Emmetropie-",
 			"prozessen funktionen entscheidungen methoden einsichten kriterien stimuli hypothesen parameter konzeptionen phasen");
 
 	Adjektiv adjektiv2 = new Adjektiv(
 			"antiserielle immanente homogene scholastische dialektische traditionelle integrierte quasilineare kompensatorische syntaktische proportionale");
-	Nomen nomen2 = new Nomen("Implikation Kooperation Problematik Konzeption Indoktrination Beurteilung Identität Politik Einsicht Semantik Polyandrie");
+	Substantiv nomen2 = new Substantiv("Implikation Kooperation Problematik Konzeption Indoktrination Beurteilung Identität Politik Einsicht Semantik Polyandrie");
 
 	Adjektiv adjektiv3 = new Adjektiv(
 			"normativen langlebigen refrakturierten objektivierten konzentrierten informellen potentiellen graduierten zielgerichteten objektgesteuerten");
-	Nomen nomen3 = new Nomen(
+	Substantiv nomen3 = new Substantiv(
 			"Inhibitations- Fluktuations- Sozialisations- Interaktions- Organisations- Diskursions- Koalisations- Kommunikations- Interdependanz- Denudations- Induktanz- Kopulations-",
 			"dogmen akzeptanz identität prämisse duktilität potenz problematik programmierung transparenz flexibilität parakme");
 
 	Adjektiv adjektiv4 = new Adjektiv(
 			"psychoanalytischen regressiven akademischen strukturellen kontraktären dubitativen konvexen humanistischen amorphen pragmatischen evokativen");
-	Nomen nomen4 = new Nomen("Stimuli Kriterien Determinanten Ressourcen Einflußfaktoren Bezugsrahmen Isoquanten Technologien Nutzenfunktion Elastizität");
+	Substantiv nomen4 = new Substantiv("Stimuli Kriterien Determinanten Ressourcen Einflußfaktoren Bezugsrahmen Isoquanten Technologien Nutzenfunktion Elastizität");
 
 	Adjektiv adjektiv5 = new Adjektiv(
 			"residualer synchroner definitionaler effizienter grammatikularischer strategischer pädagogischer bilateraler quantitativer materieller ideeller");
-	Nomen nomen5 = new Nomen(
+	Substantiv nomen5 = new Substantiv(
 			"Dehydriertheit Symbolistik Allokation Grundlagen Dephlegmation Orientiertheit Faktormengen Echinoderme Kolmation Kolorimerie Natalität");
 
 	Verb verb6 = new Verb(
 			"abgeleitet normiert standardisiert funktionalisiert objektiviert relativiert pauschalisiert pauperisiert kujoniert konditioniert evangelisiert");
-	Nomen nomen6 = new Nomen(
+	Substantiv nomen6 = new Substantiv(
 			"Inkontinenz Transparenz Divergenz Relation Imputabilität Kommerzialisierung Probabilität Mastoptose Überbewertung Stichomantie Janusköpfigkeit");
 
 	Adjektiv adjektiv7 = new Adjektiv(
 			"formalhygienischen eprigonetischen bornierten wissenschaftlichen phlegmatischen saturierten funktionellen kategorischen qualifizierten systemorientierten subjektiven");
-	Nomen nomen7 = new Nomen("Retroeffekts Konsens Intellekts Metazentrums Blickwinkels Forschungstriebes Imperativs Geistes Zeitgefühles Antriebs Kontextes");
+	Substantiv nomen7 = new Substantiv("Retroeffekts Konsens Intellekts Metazentrums Blickwinkels Forschungstriebes Imperativs Geistes Zeitgefühles Antriebs Kontextes");
 
 	Verb verb8 = new Verb(
 			"invertiert maximiert subjektiviert optimiert intervallskaliert automatisiert ignoriert minimiert exagoriert individualisiert rationalisiert");
