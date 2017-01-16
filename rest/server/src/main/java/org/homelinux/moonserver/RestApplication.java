@@ -8,12 +8,17 @@ import javax.ws.rs.core.Application;
 
 import org.homelinux.moonserver.task.CheckForNewMailTask;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 public class RestApplication extends Application {
 
 	// Alle 15 Minuten wird das Postfach auf neue Mails geprueft
 	private static final long CHECK_FOR_NEW_REPORTING_INTERVAL = 15 * 60 * 1000;
 
 	public RestApplication() {
+
+		Injector injector = createInjector();
 		startCheckForNewMailTask();
 	}
 
@@ -30,5 +35,11 @@ public class RestApplication extends Application {
 		classes.add(BuchenAktualisierung.class);
 
 		return classes;
+	}
+	
+	private Injector createInjector() {
+		return Guice.createInjector(
+				new RestModule()
+				);
 	}
 }
