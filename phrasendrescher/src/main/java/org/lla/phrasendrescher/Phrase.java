@@ -3,22 +3,24 @@ package org.lla.phrasendrescher;
 /*
  * Etwas filigraner - jedoch wesentlich subtiler in der Anwendung - ist der
  * interaktive Phrasomat. Mit seiner Hilfe verleihen Sie jeder akademischen
- * Publikation eine entscheidende, von Fachwissen gepr�gte Autorit�t. Wer
- * allerdings �berhaupt keine Ahnung hat nutzt die Zufallsfunktion.
+ * Publikation eine entscheidende, von Fachwissen geprägte Autorität. Wer
+ * allerdings überhaupt keine Ahnung hat nutzt die Zufallsfunktion.
  */
 
 public class Phrase implements ISatz {
 
 	Adjektiv adjektiv1 = new Adjektiv(
 			"bilateralen koordinierten ambivalenten kategorischen retrograden zeitgemäßen progressiven intuitiven desintegrierten traditionellen belastbaren");
-	Adjektiv adjektiv1b = new Adjektiv("pathologischen funktionellen geordneten extrapolierten konvergenten kalzinierenden rechnergesteuerten terminologischen");
+	Adjektiv adjektiv1b = new Adjektiv(
+			"pathologischen funktionellen geordneten extrapolierten konvergenten kalzinierenden rechnergesteuerten terminologischen");
 	Substantiv nomen1 = new Substantiv(
-			"Beziehungs- Analyse- Kooperations- Unternehmens- Universal- Interdisziplinär- Korrelations- Emmetropie-",
+			"Beziehungs Analyse Kooperations Unternehmens Universal Interdisziplinär Korrelations Emmetropie",
 			"prozessen funktionen entscheidungen methoden einsichten kriterien stimuli hypothesen parameter konzeptionen phasen");
 
 	Adjektiv adjektiv2 = new Adjektiv(
 			"antiserielle immanente homogene scholastische dialektische traditionelle integrierte quasilineare kompensatorische syntaktische proportionale");
-	Substantiv nomen2 = new Substantiv("Implikation Kooperation Problematik Konzeption Indoktrination Beurteilung Identität Politik Einsicht Semantik Polyandrie");
+	Substantiv nomen2 = new Substantiv(
+			"Implikation Kooperation Problematik Konzeption Indoktrination Beurteilung Identität Politik Einsicht Semantik Polyandrie");
 
 	Adjektiv adjektiv3 = new Adjektiv(
 			"normativen langlebigen refrakturierten objektivierten konzentrierten informellen potentiellen graduierten zielgerichteten objektgesteuerten");
@@ -28,7 +30,8 @@ public class Phrase implements ISatz {
 
 	Adjektiv adjektiv4 = new Adjektiv(
 			"psychoanalytischen regressiven akademischen strukturellen kontraktären dubitativen konvexen humanistischen amorphen pragmatischen evokativen");
-	Substantiv nomen4 = new Substantiv("Stimuli Kriterien Determinanten Ressourcen Einflußfaktoren Bezugsrahmen Isoquanten Technologien Nutzenfunktion Elastizität");
+	Substantiv nomen4 = new Substantiv(
+			"Stimuli Kriterien Determinanten Ressourcen Einflußfaktoren Bezugsrahmen Isoquanten Technologien Nutzenfunktion Elastizität");
 
 	Adjektiv adjektiv5 = new Adjektiv(
 			"residualer synchroner definitionaler effizienter grammatikularischer strategischer pädagogischer bilateraler quantitativer materieller ideeller");
@@ -42,7 +45,8 @@ public class Phrase implements ISatz {
 
 	Adjektiv adjektiv7 = new Adjektiv(
 			"formalhygienischen eprigonetischen bornierten wissenschaftlichen phlegmatischen saturierten funktionellen kategorischen qualifizierten systemorientierten subjektiven");
-	Substantiv nomen7 = new Substantiv("Retroeffekts Konsens Intellekts Metazentrums Blickwinkels Forschungstriebes Imperativs Geistes Zeitgefühles Antriebs Kontextes");
+	Substantiv nomen7 = new Substantiv(
+			"Retroeffekts Konsens Intellekts Metazentrums Blickwinkels Forschungstriebes Imperativs Geistes Zeitgefühles Antriebs Kontextes");
 
 	Verb verb8 = new Verb(
 			"invertiert maximiert subjektiviert optimiert intervallskaliert automatisiert ignoriert minimiert exagoriert individualisiert rationalisiert");
