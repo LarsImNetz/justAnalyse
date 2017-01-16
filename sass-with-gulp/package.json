@@ -1,0 +1,28 @@
+{
+  "name": "sass-with-gulp",
+  "author": "lars",
+  "description": "",
+  "private": true,
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "1.7.7",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cli": "1.2.1",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "1.5.2",
+    "gulp-util": "3.0.7",
+    "request": "^2.76.0"
+  },
+  "scripts": {
+    "preinstall": "npm prune",
+    "postinstall": "node node_modules/bower/bin/bower prune && node node_modules/bower/bin/bower install",
+    "sass": "node node_modules/gulp-cli/bin/gulp sass",
+    "sass:watch": "node node_modules/gulp-cli/bin/gulp sass:watch",
+    "watch": "node node_modules/gulp-cli/bin/gulp watch",
+    "build": "npm install && node node_modules/gulp-cli/bin/gulp"
+  }
+}

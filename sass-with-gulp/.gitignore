@@ -1,0 +1,16 @@
+# vendor for bower and composer
+vendor/**
+
+css/**
+
+# npm
+node_modules/
+npm-debug.log
+**/npm-debug.log
+
+# IDE Stuff
+*.sublime-project
+*.sublime-workspace
+.idea
+.phpintel/
+
