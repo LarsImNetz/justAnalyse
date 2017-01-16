@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Wort {
+public class WortListe {
 
 	private final List<String> liste;
 	private int pointer;
 
-	public Wort(final String liste) {
+	public WortListe(final String liste) {
 		final ArrayList<String> singles = new ArrayList<>();
 		final String[] split = liste.split(" ");
 		for (int i = 0; i < split.length; i++) {
@@ -18,7 +18,7 @@ public class Wort {
 		this.liste = singles;
 	}
 
-	public Wort(final String liste, final String liste2) {
+	public WortListe(final String liste, final String liste2) {
 		final ArrayList<String> list1 = new ArrayList<>();
 		Collections.addAll(list1, liste.split(" "));
 

@@ -1,6 +1,6 @@
 package org.lla.phrasendrescher;
 
-public class Nomen extends Wort {
+public class Nomen extends WortListe {
 
 	public Nomen(final String liste) {
 		super(liste);
