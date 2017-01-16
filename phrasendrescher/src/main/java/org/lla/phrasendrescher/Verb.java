@@ -3,7 +3,7 @@ package org.lla.phrasendrescher;
 /**
  * Verb
  * 
- * Das Verb auch bekannt als Tu-Wort, wird grundsätzlich klein geschrieben.
+ * auch bekannt als Tu-Wort, wird grundsätzlich klein geschrieben.
  */
 public class Verb extends WortListe {
 

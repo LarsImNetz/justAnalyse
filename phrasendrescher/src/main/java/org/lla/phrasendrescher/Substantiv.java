@@ -3,7 +3,7 @@ package org.lla.phrasendrescher;
 /**
  * Das Substantiv
  * 
- * Auch bekannt als Nomen oder Hauptwort
+ * auch bekannt als Nomen oder Hauptwort
  *
  */
 public class Substantiv extends WortListe {
@@ -16,6 +16,10 @@ public class Substantiv extends WortListe {
 		super(liste);
 	}
 
+	/**
+	 * Nimmt zwei whitespace getrennte Wortlisten entgegen, die als ein Wort zurückgegeben werden können
+	 * @param liste
+	 */
 	public Substantiv(final String liste, final String liste2) {
 		super(liste, liste2);
 	}

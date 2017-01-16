@@ -3,7 +3,7 @@ package org.lla.phrasendrescher;
 /**
  * Das Adjektiv
  * 
- * Das Adjektiv auch bekannt als Wie-Wort, wird immer klein geschrieben
+ * auch bekannt als Wie-Wort, wird immer klein geschrieben.
  *
  */
 public class Adjektiv extends WortListe {
