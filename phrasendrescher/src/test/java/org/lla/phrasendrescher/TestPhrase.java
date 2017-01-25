@@ -12,7 +12,7 @@ public class TestPhrase {
 
 		System.out.println(satz);
 
-		final String expected = "Unter Zuhilfenahme von bilateralen pathologischen Beziehungs-prozessen kann die "
+		final String expected = "Unter Zuhilfenahme von bilateralen pathologischen Beziehungsprozessen kann die "
 				+ "antiserielle Implikation der normativen Inhibitations-dogmen " + "unter Berücksichtigung der psychoanalytischen Stimuli "
 				+ "bei gleichzeitiger residualer Dehydriertheit derart abgeleitet werden, so daß eine "
 				+ "Inkontinenz des formalhygienischen Retroeffekts weitgehend invertiert wird.";
