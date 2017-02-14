@@ -12,3 +12,6 @@ mvn package
 ## Starten
 mvn jetty:run
 
+### Find more
+* http://stackoverflow.com/questions/12451081/404-not-found-error-in-a-simple-jetty-maven-hello-world-webapp
+* http://wiki.eclipse.org/Jetty/Feature/Jetty_Maven_Plugin
