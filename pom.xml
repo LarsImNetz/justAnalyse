@@ -47,8 +47,8 @@
     <module>konto-import</module>
     <module>listresources</module>
     <!-- <module>lucene_4</module> -->
-<!--    <module>lucene_5</module> -->
-    <!-- <module>lucene_search/ui</module> -->
+    <module>lucene_5</module>
+    <module>lucene_search/ui</module>
     <module>miscellaneous</module>
     <module>mongodb</module>
     <module>ovalsample</module>
