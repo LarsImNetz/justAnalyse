@@ -1,7 +1,5 @@
 package experiment.lars.java.list;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 
 import org.junit.Assert;
@@ -29,7 +27,7 @@ public class TestArrayList {
 	public void testEmpty() {
 		Assert.assertFalse(list.isEmpty());
 
-		ArrayList emptyList = new ArrayList<>();
+		ArrayList<String> emptyList = new ArrayList<>();
 		Assert.assertTrue(emptyList.isEmpty());
 	}
 
