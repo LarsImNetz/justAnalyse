@@ -19,6 +19,15 @@ public class TestLocalDate {
 		Assert.assertEquals(1, ldt.getMonthValue());
 		Assert.assertEquals(4, ldt.getDayOfMonth());
 	}
+	
+	@Test
+	public void testToGermanFormat() {
+		LocalDate ldt = LocalDate.of(2017, 7, 2);
+
+		String string = ldt.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+		Assert.assertEquals("02.07.2017", string);
+	}
+	
 
 	@Test
 	public void testISO() {
