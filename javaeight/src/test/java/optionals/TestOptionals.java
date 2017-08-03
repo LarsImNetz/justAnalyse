@@ -22,7 +22,23 @@ public class TestOptionals {
 	}
 
 	@Test
-	public void testOptional_orElse() {
+	public void testOptional_orElse_A() {
+		Optional<String> optionalRight = Optional.ofNullable("A");
+		String actual = optionalRight.orElse("B");
+
+		Assert.assertEquals("A", actual);
+	}
+
+	@Test
+	public void testOptional_orElse_Null() {
+		Optional<String> optionalRight = Optional.ofNullable(null);
+		String actual = optionalRight.orElse("B");
+
+		Assert.assertEquals("B", actual);
+	}
+	
+	@Test
+	public void testOptional_orElse_in_reduce() {
 		List<String> list = Arrays.asList("Hello", null, "World");
 		String actual = list.stream().reduce("", TestOptionals::concat);
 		
@@ -33,9 +49,10 @@ public class TestOptionals {
 		return "'" + a + "'";
 	}
 
-	private static String concat(String a, String b) {
-		Optional<String> optionalB = Optional.ofNullable(b);
-		LOGGER.info("a: " + quote(a) + " b: " + quote(b));
-		return a + optionalB.orElse("-");
+	private static String concat(String left, String right) {
+		LOGGER.info("a: " + quote(left) + " b: " + quote(right));
+
+		Optional<String> optionalRight = Optional.ofNullable(right);
+		return left + optionalRight.orElse("-");
 	}	
 }
