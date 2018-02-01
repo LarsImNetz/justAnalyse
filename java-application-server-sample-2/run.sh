@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -e target/Single-Server-Main-Application-2.jar ]; then
+    java -jar target/Single-Server-Main-Application-2.jar
+else
+    echo "File target/Single-Server-Main-Application-2.jar to start not found."
+fi

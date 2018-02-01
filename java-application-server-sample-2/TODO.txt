@@ -1,0 +1,7 @@
+TODOs
+-----
+
+Noch ein Server. Ich möchte rausfinden ob ich diesen neben den anderen legen und starten kann.
+
+https://stackoverflow.com/questions/3732109/simple-http-server-in-java-using-only-java-se-api/3732328#3732328
+https://github.com/stas-slu/embedded-jetty-java-server-example
