@@ -39,6 +39,7 @@
     <!-- <module>html5tests</module> -->
     <module>java-simple</module>
     <module>javaapplicationsample</module>
+    <module>java-application-server-sample</module>
     <module>javaeight</module>
     <!-- <module>javascript</module> -->
     <module>javaseven</module>

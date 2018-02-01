@@ -1,0 +1,8 @@
+TODOs
+-----
+
+
+- Rausfinden, wie man den jersey-server komplett includiert
+- http://maven.apache.org/plugins/maven-assembly-plugin/examples/multimodule/module-binary-inclusion-simple.html
+- http://openbook.rheinwerk-verlag.de/java7/1507_13_002.html
+ 
