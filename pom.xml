@@ -40,6 +40,7 @@
     <module>java-simple</module>
     <module>javaapplicationsample</module>
     <module>java-application-server-sample</module>
+    <module>java-application-server-sample-2</module>
     <module>javaeight</module>
     <!-- <module>javascript</module> -->
     <module>javaseven</module>

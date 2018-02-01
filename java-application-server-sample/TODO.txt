@@ -2,7 +2,16 @@ TODOs
 -----
 
 
-- Rausfinden, wie man den jersey-server komplett includiert
-- http://maven.apache.org/plugins/maven-assembly-plugin/examples/multimodule/module-binary-inclusion-simple.html
-- http://openbook.rheinwerk-verlag.de/java7/1507_13_002.html
+Q: Rausfinden, wie man den jersey-server komplett includiert, eher richtig includiert
+A: Man nehme statt maven-assembly-plugin das maven-shade-plugin in der Version 3.1.0 
+- https://stackoverflow.com/questions/12611213/jersey-exception-only-thrown-when-depencencies-assembled-into-a-single-jar
  
+- http://maven.apache.org/plugins/maven-assembly-plugin/examples/multimodule/module-binary-inclusion-simple.html
+
+- http://openbook.rheinwerk-verlag.de/java7/1507_13_002.html
+- Nett beschrieben, allerdings sehr dünn!
+
+curl -H "Accept: application/json" http://localhost:8080/rest/message/serverinfo
+- liefert json
+curl http://localhost:8080/rest/message/serverinfo
+- liefert xml
