@@ -71,6 +71,7 @@
     <module>wicket7</module>
     <!-- lass die KackDB am Ende! -->
     <module>dbsample</module>
+    <module>fail-tests</module>
   </modules>
 
   <build>
