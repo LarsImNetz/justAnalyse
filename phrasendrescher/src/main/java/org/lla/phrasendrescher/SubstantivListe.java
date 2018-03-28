@@ -6,13 +6,13 @@ package org.lla.phrasendrescher;
  * auch bekannt als Nomen oder Hauptwort
  *
  */
-public class Substantiv extends WortListe {
+public class SubstantivListe extends WortListe {
 
 	/**
 	 * Nimmt eine whitespace getrennte Wortliste entgegen
 	 * @param liste
 	 */
-	public Substantiv(final String liste) {
+	public SubstantivListe(final String liste) {
 		super(liste);
 	}
 
@@ -20,7 +20,7 @@ public class Substantiv extends WortListe {
 	 * Nimmt zwei whitespace getrennte Wortlisten entgegen, die als ein Wort zurückgegeben werden können
 	 * @param liste
 	 */
-	public Substantiv(final String liste, final String liste2) {
+	public SubstantivListe(final String liste, final String liste2) {
 		super(liste, liste2);
 	}
 }

@@ -9,46 +9,46 @@ package org.lla.phrasendrescher;
 
 public class Phrase implements ISatz {
 
-	Adjektiv adjektiv1 = new Adjektiv(
+	AdjektivListe adjektivList1 = new AdjektivListe(
 			"bilateralen koordinierten ambivalenten kategorischen retrograden zeitgemäßen progressiven intuitiven desintegrierten traditionellen belastbaren");
-	Adjektiv adjektiv1b = new Adjektiv(
+	AdjektivListe adjektivList1b = new AdjektivListe(
 			"pathologischen funktionellen geordneten extrapolierten konvergenten kalzinierenden rechnergesteuerten terminologischen");
-	Substantiv nomen1 = new Substantiv(
+	SubstantivListe nomenList1 = new SubstantivListe(
 			"Beziehungs Analyse Kooperations Unternehmens Universal Interdisziplinär Korrelations Emmetropie",
 			"prozessen funktionen entscheidungen methoden einsichten kriterien stimuli hypothesen parameter konzeptionen phasen");
 
-	Adjektiv adjektiv2 = new Adjektiv(
+	AdjektivListe adjektivList2 = new AdjektivListe(
 			"antiserielle immanente homogene scholastische dialektische traditionelle integrierte quasilineare kompensatorische syntaktische proportionale");
-	Substantiv nomen2 = new Substantiv(
+	SubstantivListe nomenList2 = new SubstantivListe(
 			"Implikation Kooperation Problematik Konzeption Indoktrination Beurteilung Identität Politik Einsicht Semantik Polyandrie");
 
-	Adjektiv adjektiv3 = new Adjektiv(
+	AdjektivListe adjektivList3 = new AdjektivListe(
 			"normativen langlebigen refrakturierten objektivierten konzentrierten informellen potentiellen graduierten zielgerichteten objektgesteuerten");
-	Substantiv nomen3 = new Substantiv(
+	SubstantivListe nomenList3 = new SubstantivListe(
 			"Inhibitations- Fluktuations- Sozialisations- Interaktions- Organisations- Diskursions- Koalisations- Kommunikations- Interdependanz- Denudations- Induktanz- Kopulations-",
 			"dogmen akzeptanz identität prämisse duktilität potenz problematik programmierung transparenz flexibilität parakme");
 
-	Adjektiv adjektiv4 = new Adjektiv(
+	AdjektivListe adjektivList4 = new AdjektivListe(
 			"psychoanalytischen regressiven akademischen strukturellen kontraktären dubitativen konvexen humanistischen amorphen pragmatischen evokativen");
-	Substantiv nomen4 = new Substantiv(
+	SubstantivListe nomenList4 = new SubstantivListe(
 			"Stimuli Kriterien Determinanten Ressourcen Einflußfaktoren Bezugsrahmen Isoquanten Technologien Nutzenfunktion Elastizität");
 
-	Adjektiv adjektiv5 = new Adjektiv(
+	AdjektivListe adjektivList5 = new AdjektivListe(
 			"residualer synchroner definitionaler effizienter grammatikularischer strategischer pädagogischer bilateraler quantitativer materieller ideeller");
-	Substantiv nomen5 = new Substantiv(
+	SubstantivListe nomenList5 = new SubstantivListe(
 			"Dehydriertheit Symbolistik Allokation Grundlagen Dephlegmation Orientiertheit Faktormengen Echinoderme Kolmation Kolorimerie Natalität");
 
-	Verb verb6 = new Verb(
+	VerbListe verbList6 = new VerbListe(
 			"abgeleitet normiert standardisiert funktionalisiert objektiviert relativiert pauschalisiert pauperisiert kujoniert konditioniert evangelisiert");
-	Substantiv nomen6 = new Substantiv(
+	SubstantivListe nomenList6 = new SubstantivListe(
 			"Inkontinenz Transparenz Divergenz Relation Imputabilität Kommerzialisierung Probabilität Mastoptose Überbewertung Stichomantie Janusköpfigkeit");
 
-	Adjektiv adjektiv7 = new Adjektiv(
+	AdjektivListe adjektivList7 = new AdjektivListe(
 			"formalhygienischen eprigonetischen bornierten wissenschaftlichen phlegmatischen saturierten funktionellen kategorischen qualifizierten systemorientierten subjektiven");
-	Substantiv nomen7 = new Substantiv(
+	SubstantivListe nomenList7 = new SubstantivListe(
 			"Retroeffekts Konsens Intellekts Metazentrums Blickwinkels Forschungstriebes Imperativs Geistes Zeitgefühles Antriebs Kontextes");
 
-	Verb verb8 = new Verb(
+	VerbListe verbList8 = new VerbListe(
 			"invertiert maximiert subjektiviert optimiert intervallskaliert automatisiert ignoriert minimiert exagoriert individualisiert rationalisiert");
 
 	public Phrase() {
@@ -59,38 +59,38 @@ public class Phrase implements ISatz {
 	public String getSatz() {
 		final StringBuilder satz = new StringBuilder();
 		satz.append("Unter Zuhilfenahme von");
-		satz.append(adjektiv1.getWort());
-		satz.append(adjektiv1b.getWort());
-		satz.append(nomen1.getWort());
+		satz.append(adjektivList1.getWort());
+		satz.append(adjektivList1b.getWort());
+		satz.append(nomenList1.getWort());
 
 		satz.append(" kann die");
-		satz.append(adjektiv2.getWort());
-		satz.append(nomen2.getWort());
+		satz.append(adjektivList2.getWort());
+		satz.append(nomenList2.getWort());
 
 		satz.append(" der");
-		satz.append(adjektiv3.getWort());
-		satz.append(nomen3.getWort());
+		satz.append(adjektivList3.getWort());
+		satz.append(nomenList3.getWort());
 
 		satz.append(" unter Berücksichtigung der");
-		satz.append(adjektiv4.getWort());
-		satz.append(nomen4.getWort());
+		satz.append(adjektivList4.getWort());
+		satz.append(nomenList4.getWort());
 
 		satz.append(" bei gleichzeitiger");
-		satz.append(adjektiv5.getWort());
-		satz.append(nomen5.getWort());
+		satz.append(adjektivList5.getWort());
+		satz.append(nomenList5.getWort());
 
 		satz.append(" derart");
-		satz.append(verb6.getWort());
+		satz.append(verbList6.getWort());
 
 		satz.append(" werden, so daß eine");
-		satz.append(nomen6.getWort());
+		satz.append(nomenList6.getWort());
 
 		satz.append(" des");
-		satz.append(adjektiv7.getWort());
-		satz.append(nomen7.getWort());
+		satz.append(adjektivList7.getWort());
+		satz.append(nomenList7.getWort());
 
 		satz.append(" weitgehend");
-		satz.append(verb8.getWort());
+		satz.append(verbList8.getWort());
 
 		satz.append(" wird.");
 		return satz.toString();
