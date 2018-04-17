@@ -19,6 +19,7 @@
   <packaging>pom</packaging>
   
   <modules>
+    <module>configPom</module>
     <module>ajaxsample</module>
     <!-- <module>angular</module> -->
     <!-- Mein alter Compiler <module>atari</module> -->
@@ -35,6 +36,7 @@
     <module>eclipse-analyse</module>
 
 
+
     <!-- <module>halde</module> -->
     <!-- <module>html5tests</module> -->
     <module>java-simple</module>
@@ -42,6 +44,7 @@
     <module>java-application-server-sample</module>
     <module>java-application-server-sample-2</module>
     <module>javaeight</module>
+    <module>javanine</module>
     <!-- <module>javascript</module> -->
     <module>javaseven</module>
     <module>jquery</module>
@@ -71,7 +74,7 @@
     <module>wicket7</module>
     <!-- lass die KackDB am Ende! -->
     <module>dbsample</module>
-    <module>fail-tests</module>
+    <!-- <module>fail-tests</module> -->
   </modules>
 
   <build>
