@@ -1,5 +1,7 @@
 package org.linuxx.moonserver.db.persistence;
 
+import java.util.List;
+
 public interface IAddressDao {
-	AddressEntity fetch(String id);
+	List<AddressEntity> fetch(String id);
 }

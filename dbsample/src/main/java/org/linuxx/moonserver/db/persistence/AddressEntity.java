@@ -16,7 +16,7 @@ public class AddressEntity {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "name", unique = false, nullable=false)
+	@Column(name = "name", nullable=false, length = 25)
 	private String name;
 
 	@Column(name = "ort", nullable = false, length = 255)
@@ -28,7 +28,7 @@ public class AddressEntity {
 	@Column(name = "strasse", nullable = true, length = 255)
 	private String strasse;
 
-	@Column(name = "hausnummer", nullable = true, length = 255)
+	@Column(name = "hausnummer", nullable = true, length = 20)
 	private String hausnummer;
 
 	@Column(name = "seitJahr", nullable = false)

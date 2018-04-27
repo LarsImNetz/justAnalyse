@@ -1,11 +1,16 @@
 package org.linuxx.moonserver.db.persistence;
 
+import java.rmi.dgc.Lease;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -30,9 +35,12 @@ public class NameDao implements INameDao {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<NameEntity> query = criteriaBuilder.createQuery(NameEntity.class);
 
-		Root<NameEntity> table = query.from(NameEntity.class);
-		Path<Integer> column = table.get(NameEntity_.id);
+		Root<NameEntity> nameTable = query.from(NameEntity.class);
 
+//		Join<NameEntity, AddressEntity> sJoin = nameTable.join("address", JoinType.LEFT);
+//		sJoin.on(criteriaBuilder.equal(sJoin.get("address"), "lars"));
+
+		Path<Integer> column = nameTable.get(NameEntity_.id);
 		Predicate criteria = criteriaBuilder.equal(column, id);
 		query.where(criteria);
 

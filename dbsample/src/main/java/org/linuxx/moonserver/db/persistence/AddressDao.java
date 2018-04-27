@@ -1,5 +1,7 @@
 package org.linuxx.moonserver.db.persistence;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -26,7 +28,7 @@ public class AddressDao implements IAddressDao {
 	}
 	
 	@Override
-	public AddressEntity fetch(String id) {
+	public List<AddressEntity> fetch(String id) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<AddressEntity> query = criteriaBuilder.createQuery(AddressEntity.class);
 
@@ -37,7 +39,7 @@ public class AddressDao implements IAddressDao {
 		query.where(criteria);
 
 		try {
-			return em.createQuery(query).getSingleResult();
+			return em.createQuery(query).getResultList();
 		}
 		catch (NoResultException e) {
 			LOGGER.error("Exception: " + e.getMessage());

@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.linuxx.moonserver.db.persistence.guice.provider.EntityManagerTestProvider;
 
@@ -53,6 +54,13 @@ public class TestNameDao {
 		entity.setGeburtsdatum(new DateTime(1968, 1, 4, 0, 0).toDate());
 		nameDaoSUT.save(entity);
 
+//		final NameEntity entity2 = new NameEntity();
+//		entity2.setId(2);
+//		entity2.setName("solo");
+//		entity2.setVorname("han");
+//		entity2.setGeburtsdatum(new DateTime(2015, 1, 1, 0, 0).toDate());
+//		nameDaoSUT.save(entity2);
+
 		insertAddress("lars", "Tremskamp", 1968);
 		insertAddress("lars", "Karavellenstraße", 1969);
 		insertAddress("lars", "Klipperstraße", 1970);
@@ -63,17 +71,12 @@ public class TestNameDao {
 		insertAddress("lars", "Loignystraße", 1992);
 		insertAddress("lars", "Schildfarneck", 1999);
 
-		final NameEntity entity2 = new NameEntity();
-		entity2.setId(2);
-		entity2.setName("solo");
-		entity2.setVorname("han");
-		entity2.setGeburtsdatum(new DateTime(2015, 1, 1, 0, 0).toDate());
-		nameDaoSUT.save(entity2);
+
 	}
 
-	private void insertAddress(String id, String ort, int jahr) {
+	private void insertAddress(String name, String ort, int jahr) {
 		final AddressEntity address = new AddressEntity();
-		address.setName(id);
+		address.setName(name);
 		address.setOrt(ort);
 		address.setSeitJahr(jahr);
 		addressDaoSUT.save(address);
@@ -85,6 +88,12 @@ public class TestNameDao {
 		nameDaoSUT.deleteAll();
 	}
 
+	@Test
+	public void testFetchAddress() {
+		List<AddressEntity> names = addressDaoSUT.fetch("lars");
+		Assert.assertTrue(names.size() > 1);		
+	}
+	
 	@Test
 	public void testFetch() {
 		final NameEntity name = nameDaoSUT.fetch(1);
