@@ -31,7 +31,7 @@ public class NameEntity {
 	@Column(name = "geburtsdatum"/* , nullable = false */)
 	private Date geburtsdatum;
 
-	@Column(name = "address", unique = true, nullable = true)
+	@Column(name = "address", unique = true, nullable = false)
 	private String address;
 
 	@OneToMany(targetEntity = AddressEntity.class)
