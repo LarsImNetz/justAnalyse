@@ -39,6 +39,22 @@ public class ITTestNameDao {
 			bind(EntityManager.class).toProvider(EntityManagerTestProvider.class);
 		}
 	}
+/*
+ CREATE TABLE Address (
+  'id' int(11) NOT NULL AUTO_INCREMENT,
+  'name' varchar(50) NOT NULL,
+  'ort' varchar(200) NOT NULL 
+);
+
+CREATE TABLE Name (
+  'id' int(11) NOT NULL AUTO_INCREMENT,
+  'vorname' varchar(200) NOT NULL,
+  'name' varchar(200) NOT NULL,
+  'address' varchar(50) NOT NULL,
+  PRIMARY KEY ('id'),
+  FOREIGN KEY ('address') REFERENCES address('name')
+);
+*/
 
 	@Before
 	public void fillTable() {
