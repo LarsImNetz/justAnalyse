@@ -9,6 +9,8 @@
 		<!-- Wird hier ein Entity eingetragen MUSS unbedingt: -->
 		<!-- mvn clean install -->
 		<!-- ausgeführt werden, sonst werden die Sourcen nicht generiert -->
+		<class>org.linuxx.moonserver.db.persistence.NameEntity</class>
+		<class>org.linuxx.moonserver.db.persistence.AddressEntity</class>
 		<class>org.linuxx.moonserver.db.persistence.TryEntity</class>
 		<class>org.linuxx.moonserver.db.persistence.update.Try2Entity</class>
 
