@@ -25,6 +25,8 @@ CREATE TABLE Name (
 );
 ALTER TABLE Name ENGINE=InnoDB;
 
+-- https://stackoverflow.com/questions/18435065/foreign-key-to-non-primary-key
+
 delete from name where vorname='lars';
 insert into name(id, vorname, name, fk_address) values (1, 'lars', 'langhans', 'larsl');
 -- Kardinalität Name 1:n Address
