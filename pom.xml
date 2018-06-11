@@ -73,6 +73,8 @@
     <!-- <module>xtend/first-tests</module> -->
     <module>wicket6/simple</module>
     <module>wicket7</module>
+    <module>javax-mail</module>
+
     <!-- lass die KackDB am Ende! -->
     <module>dbsample</module>
     <!-- <module>fail-tests</module> -->

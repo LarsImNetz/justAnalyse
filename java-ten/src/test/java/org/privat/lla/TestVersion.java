@@ -6,8 +6,8 @@ import org.junit.Test;
 public class TestVersion {
 
 	@Test
-	public void testVersion() {
-		String version = System.getProperty("java.version");
+	public void testAtLeastVersion() {
+		var version = System.getProperty("java.version");
 		Assert.assertTrue(10 <= Integer.parseInt(version));
 	}
 }
