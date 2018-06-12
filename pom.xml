@@ -50,6 +50,7 @@
     <module>javaseven</module>
     <module>jquery</module>
     <module>just</module>
+    <module>jetty/jetty-tutorial-server</module>
     <module>konto-import</module>
     <module>listresources</module>
     <!-- <module>lucene_4</module> -->
