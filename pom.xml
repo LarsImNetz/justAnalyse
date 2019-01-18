@@ -44,7 +44,7 @@
     <module>java-application-server-sample</module>
     <module>java-application-server-sample-2</module>
     <module>javaeight</module>
-    <module>javanine</module>
+    <!-- <module>javanine</module> -->
     <!-- <module>java-ten</module> -->
     <!-- <module>javascript</module> -->
     <module>javaseven</module>
