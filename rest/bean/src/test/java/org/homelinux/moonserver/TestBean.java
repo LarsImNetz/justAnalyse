@@ -32,7 +32,7 @@ public class TestBean {
 		bean.setC(1234);
 
 		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(bean);
+		System.out.println(json);
 		JSONAssert.assertEquals("{'a': 'Aber ein A', 'b': null, 'c': 1234}", json, false);
-
 	}
 }
