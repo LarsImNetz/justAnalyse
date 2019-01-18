@@ -1,7 +1,9 @@
 package org.homelinux.moonserver;
 
+import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
+import org.omg.DynamicAny.NameValuePair;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 public class TestLearningJson {
@@ -31,6 +33,17 @@ public class TestLearningJson {
 		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(array);
 		System.out.println(json);
 		JSONAssert.assertEquals("[ 'a', 'b' ]", json, false);
+	}
+
+	@Test
+	public void testNameValuePair()  throws Exception {
+		 BasicNameValuePair pair = new BasicNameValuePair("key", "value");
+		 
+		 // NameValuePair[] array = {{"vorname","Testy"},{"nachname", "McTest"}};
+
+		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(pair);
+		System.out.println(json);
+		// JSONAssert.assertEquals("[ 'a', 'b' ]", json, false);
 	}
 
 }
