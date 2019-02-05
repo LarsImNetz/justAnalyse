@@ -1,49 +1,75 @@
 package org.homelinux.moonserver;
 
-import org.apache.http.message.BasicNameValuePair;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
 import org.junit.Test;
-import org.omg.DynamicAny.NameValuePair;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 public class TestLearningJson {
 
+	private static final boolean NOT_STRICT = false;
+	private static final boolean STRICT = false;
+
 	@Test
-	public void testInteger()  throws Exception {
+	public void testInteger() throws JSONException, IOException {
 		Integer i = 1;
 
 		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(i);
-		System.out.println(json);
-		JSONAssert.assertEquals("1", json, false);
+		JSONAssert.assertEquals("1", json, NOT_STRICT);
 	}
 
 	@Test
-	public void testString()  throws Exception {
+	public void testString() throws JSONException, IOException  {
 		String value = "ein String";
 
 		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(value);
-		System.out.println(json);
-		JSONAssert.assertEquals("\"ein String\"", json, false);
+		JSONAssert.assertEquals("\"ein String\"", json, NOT_STRICT);
 	}
 
 	@Test
-	public void testStringArray()  throws Exception {
-		String[] array = {"a", "b"};
+	public void testStringArray() throws JSONException, IOException {
+		String[] array = { "a", "b", "c" };
 
 		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(array);
-		System.out.println(json);
-		JSONAssert.assertEquals("[ 'a', 'b' ]", json, false);
+		JSONAssert.assertEquals("[ 'a', 'b','c' ]", json, NOT_STRICT);
 	}
 
 	@Test
-	public void testNameValuePair()  throws Exception {
-		 BasicNameValuePair pair = new BasicNameValuePair("key", "value");
-		 
-		 // NameValuePair[] array = {{"vorname","Testy"},{"nachname", "McTest"}};
+	public void testStringList() throws JSONException, IOException {
+		List<String> strings = new ArrayList<>();
+		strings.add("Hallo");
+		strings.add("World");
 
-		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(pair);
-		System.out.println(json);
-		// TODO: JSONAssert.assertEquals("[ 'a', 'b' ]", json, false);
+		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(strings);
+		JSONAssert.assertEquals("[ 'Hallo', 'World' ]", json, STRICT);
+	}
+
+	@Test
+	public void testStringMap() throws JSONException, IOException {
+		Map<String, String> strings = new HashMap<>();
+		strings.put("1", "Hallo");
+		strings.put("2", "World");
+
+		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(strings);
+ 		JSONAssert.assertEquals("{ '1':'Hallo', '2':'World' }", json, NOT_STRICT);
+	}
+
+	@Test
+	public void testStringMapMap() throws JSONException, IOException {
+		Map<String, Map<String, String>> strings = new HashMap<>();
+		Map<String, String> innerMap = new HashMap<>();
+		innerMap.put("1", "Hallo");
+		innerMap.put("2", "World");
+		strings.put("one", innerMap);
+
+		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(strings);
+		JSONAssert.assertEquals("{ 'one': {'1':'Hallo', '2':'World'} }", json, NOT_STRICT);
 	}
 
 }
