@@ -9,8 +9,8 @@ import org.skyscreamer.jsonassert.JSONAssert;
 
 public class BeanList {
 	List<String> list;
-	
-	public BeanList(){
+
+	public BeanList() {
 		list = new ArrayList<>();
 	}
 
@@ -19,13 +19,12 @@ public class BeanList {
 	}
 
 	String[] getList() {
-		String[] elements = new String[list.size()];
-		return list.toArray(elements);
+		String[] elemente = new String[list.size()];
+		return list.toArray(elemente);
 	}
-	
+
 	int size() {
 		return list.size();
 	}
-	
 
 }

@@ -25,15 +25,16 @@ public class TestBeanList {
 	}
 	
 	@Test
-	public void testJsonBean() throws Exception {
+	public void testJsonBeanListWithAdapter() throws Exception {
 		BeanList list = new BeanList();
 		list.add("a");
 		list.add("b");
+		list.add("c");
+		list.add("d");
 
-		BeanArray array = new BeanArray(list);
+		BeanArrayAdapter array = new BeanArrayAdapter(list);
 		
 		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(array);
-		JSONAssert.assertEquals("{'elements': [ 'a', 'b' ] }", json, false);
+		JSONAssert.assertEquals("{'elements': [ 'a', 'b','c','d' ] }", json, true);
 	}
-
 }
