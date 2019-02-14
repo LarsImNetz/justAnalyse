@@ -69,30 +69,5 @@ public class TestLearningJsonWithObjects {
 				STRICT);
 	}
 
-	private static class Name {
-		private String name;
-
-		public Name(String name) {
-			this.name = name;
-		}
-
-		public String getName() {
-			return name;
-		}
-	}
-
-	@Test
-	public void testListOfName() throws JSONException, IOException {
-		List<Name> names = new ArrayList<>();
-		names.add(new Name("Luke"));
-		names.add(new Name("Leia"));
-
-		final String json = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(names);
-		JSONAssert.assertEquals("[{ 'name':'Luke'},{ 'name':'Leia'}]", json, STRICT);
-
-		JSONAssert.assertEquals("[{},{}]", json, NOT_STRICT);
-		JSONAssert.assertEquals("[{ 'name':'Luke'},{}]", json, NOT_STRICT);
-		JSONAssert.assertEquals("[{ 'name':'Leia'},{}]", json, NOT_STRICT);
-	}
-
+	
 }
