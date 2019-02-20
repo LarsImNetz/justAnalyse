@@ -39,15 +39,8 @@
 
     <!-- <module>halde</module> -->
     <!-- <module>html5tests</module> -->
-    <module>java-simple</module>
-    <module>javaapplicationsample</module>
     <module>java-application-server-sample</module>
     <module>java-application-server-sample-2</module>
-    <module>javaeight</module>
-    <!-- <module>javanine</module> -->
-    <!-- <module>java-ten</module> -->
-    <!-- <module>javascript</module> -->
-    <module>javaseven</module>
     <module>jquery</module>
     <module>just</module>
     <module>jetty/jetty-tutorial-server</module>
@@ -58,7 +51,6 @@
     <module>miscellaneous</module>
     <module>mongodb</module>
     <module>ovalsample</module>
-    <module>pattern</module>
 
     <module>phrasendrescher</module>
 
@@ -68,7 +60,6 @@
     <!-- SASS mit npm <module>sass</module> -->
 
 
-    <module>unit-tests</module>
     <module>visible_helper</module>
     <!-- <module>xtend/first-tests</module> -->
     <module>wicket6/simple</module>
